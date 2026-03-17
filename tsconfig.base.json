@@ -2,13 +2,16 @@
   "compileOnSave": false,
   "compilerOptions": {
     "moduleResolution": "bundler",
-    "emitDecoratorMetadata": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "target": "es2022",
     "module": "preserve",
     "lib": ["es2020", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@design-system/ui-components": ["ui-components/src/index.ts"]
+      "@design-system/ui-components": ["ui-components/src/index.ts"],
+      "@design-system/tokens": ["tokens/src/index.ts"],
+      "@trevvo/tokens": ["tokens/src/index.ts"]
     },
     "skipLibCheck": true
   },
