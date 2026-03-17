@@ -1,5 +1,6 @@
-import { vitest as vi, describe, it, expect, beforeEach } from 'vitest';
+import { vitest as vi, describe, it, expect, beforeEach, beforeAll, afterEach } from 'vitest';
 import { TestBed } from '@angular/core/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { ThemeService } from './theme.service';
 import { DOCUMENT } from '@angular/common';
 
@@ -8,16 +9,28 @@ describe('ThemeService', () => {
   let mockDocument: {
     documentElement: {
       style: {
-        setProperty: (key: string, value: string) => void;
+        setProperty: ReturnType<typeof vi.fn>;
       };
     };
   };
+
+  beforeAll(() => {
+    try {
+      TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+    } catch (e) {
+      // already initialized
+    }
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
 
   beforeEach(() => {
     mockDocument = {
       documentElement: {
         style: {
-          setProperty: (key: string, value: string) => {}
+          setProperty: vi.fn()
         }
       }
     };
@@ -35,13 +48,28 @@ describe('ThemeService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should set css variables when initializing tokens', () => {
-    const setPropertySpy = vi.spyOn(mockDocument.documentElement.style, 'setProperty');
-    
+  it('should set css variables when initializing tokens defaults to trevvo', () => {
     service.initializeTokens();
+    const setPropertyCalls = mockDocument.documentElement.style.setProperty.mock.calls;
     
-    // It should have called setProperty for colors, spacing, etc.
-    expect(setPropertySpy).toHaveBeenCalled();
-    expect(setPropertySpy).toHaveBeenCalledWith('--color-primary', '#0F172A');
+    expect(mockDocument.documentElement.style.setProperty).toHaveBeenCalled();
+    // Trevvo brand color check
+    const primaryColorCall = setPropertyCalls.find(call => call[0] === '--color-primary');
+    expect(primaryColorCall).toBeTruthy();
+    expect(primaryColorCall?.[1]).toBe('#0F172A'); 
+  });
+
+  it('should switch theme correctly to partner brand', () => {
+    service.initializeTokens();
+    // switch to partner
+    service.switchTheme('partner');
+    
+    const setPropertyCalls = mockDocument.documentElement.style.setProperty.mock.calls;
+    // The last call for primary color should be the partner brand's color
+    const primaryColorCalls = setPropertyCalls.filter(call => call[0] === '--color-primary');
+    const lastPrimaryColorCall = primaryColorCalls[primaryColorCalls.length - 1];
+    
+    expect(lastPrimaryColorCall).toBeTruthy();
+    expect(lastPrimaryColorCall[1]).toBe('#4338CA'); 
   });
 });
