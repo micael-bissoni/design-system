@@ -11,6 +11,7 @@ describe('ThemeService', () => {
       style: {
         setProperty: ReturnType<typeof vi.fn>;
       };
+      setAttribute: ReturnType<typeof vi.fn>;
     };
   };
 
@@ -31,7 +32,8 @@ describe('ThemeService', () => {
       documentElement: {
         style: {
           setProperty: vi.fn()
-        }
+        },
+        setAttribute: vi.fn()
       }
     };
 
