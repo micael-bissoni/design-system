@@ -119,7 +119,7 @@ const preview: Preview = {
                     ...(story.applicationConfig || { providers: [] }),
                     providers: [
                         ...(story.applicationConfig?.providers || []),
-                        provideThemeService(brand),
+                        provideThemeService(brand as any)
                     ],
                 },
                 moduleMetadata: {

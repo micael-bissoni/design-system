@@ -8,10 +8,10 @@ describe('ThemeService', () => {
   let service: ThemeService;
   let mockDocument: {
     documentElement: {
+      setAttribute: ReturnType<typeof vi.fn>;
       style: {
         setProperty: ReturnType<typeof vi.fn>;
       };
-      setAttribute: ReturnType<typeof vi.fn>;
     };
   };
 
@@ -30,10 +30,10 @@ describe('ThemeService', () => {
   beforeEach(() => {
     mockDocument = {
       documentElement: {
+        setAttribute: vi.fn(),
         style: {
           setProperty: vi.fn()
-        },
-        setAttribute: vi.fn()
+        }
       }
     };
 
