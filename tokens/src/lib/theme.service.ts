@@ -2,9 +2,7 @@ import { Injectable, inject, APP_INITIALIZER, EnvironmentProviders, makeEnvironm
 import { DOCUMENT } from '@angular/common';
 import { coreTokens, brandColors, Brand } from './tokens';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ThemeService {
   private readonly document = inject(DOCUMENT);
   private currentBrand: Brand = 'default';
@@ -57,6 +55,7 @@ export class ThemeService {
 
 export function provideThemeService(defaultBrand: Brand = 'default'): EnvironmentProviders {
   return makeEnvironmentProviders([
+    ThemeService,
     {
       provide: APP_INITIALIZER,
       useFactory: () => {
