@@ -1,0 +1,12 @@
+{
+  "trevvo": {
+    "primary": { "value": "#0F172A" },
+    "onPrimary": { "value": "#FFFFFF" },
+    "secondary": { "value": "#F1F5F9" },
+    "onSecondary": { "value": "#0F172A" },
+    "surface": { "value": "#FFFFFF" },
+    "error": { "value": "#EF4444" },
+    "success": { "value": "#10B981" },
+    "outline": { "value": "#CBD5E1" }
+  }
+}
