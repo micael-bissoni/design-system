@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { coreTokens, brandColors, Brand } from './tokens';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemeService {
   private readonly document = inject(DOCUMENT);
@@ -15,6 +15,7 @@ export class ThemeService {
    */
   public initializeTokens(brand: Brand = 'default'): void {
     const root = this.document.documentElement;
+    console.log(root)
     root.setAttribute('data-theme', brand);
     this.currentBrand = brand;
     console.log('DS: brand ', brand)
@@ -55,19 +56,3 @@ export class ThemeService {
   }
 }
 
-/**
- * Provider function to initialize the ThemeService with a default brand.
- */
-export function provideThemeService(defaultBrand: Brand = 'default'): EnvironmentProviders {
-  return makeEnvironmentProviders([
-    ThemeService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => {
-        const themeService = inject(ThemeService);
-        return () => themeService.initializeTokens(defaultBrand);
-      },
-      multi: true
-    }
-  ]);
-}

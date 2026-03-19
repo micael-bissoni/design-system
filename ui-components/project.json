@@ -36,7 +36,8 @@
         "port": 4400,
         "configDir": "ui-components/.storybook",
         "browserTarget": "ui-components:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "experimentalZoneless": true
       },
       "configurations": {
         "ci": {
@@ -54,6 +55,7 @@
         "configDir": "ui-components/.storybook",
         "browserTarget": "ui-components:build-storybook",
         "compodoc": false,
+        "experimentalZoneless": true,
         "styles": [
           "styles/styles.scss"
         ]

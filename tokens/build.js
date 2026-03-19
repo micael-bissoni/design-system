@@ -22,7 +22,7 @@ async function build() {
     format: async function ({ dictionary }) {
       // Group properties by top-level key
       const tokens = dictionary.tokens;
-      
+
       // Core tokens (spacing, font, radius)
       const coreKeys = ['spacing', 'font', 'radius'];
       const coreTokens = {};
@@ -50,7 +50,7 @@ export type Brand = keyof typeof brandColors;
 
 export const designTokens = {
   ...coreTokens,
-  color: brandColors.trevvo
+  color: brandColors.default
 } as const;
 
 export type DesignTokens = typeof designTokens;

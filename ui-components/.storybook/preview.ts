@@ -11,15 +11,16 @@ import {
     provideTranslateLoader,
 } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { applicationConfig, type Preview } from '@storybook/angular';
 import { DatePipe } from '@angular/common';
 
-import { ThemeService, brandColors, provideThemeService } from '@design-system/tokens';
+import { ThemeService, brandColors } from '@design-system/tokens';
 
 import '@angular/common/locales/global/en';
 import '@angular/common/locales/global/pt';
 import '@angular/common/locales/global/es';
+import { decorators } from './i18n.decorator';
 
 const brandItems = Object.keys(brandColors).map(key => ({
     value: key,
@@ -91,58 +92,23 @@ const preview: Preview = {
             providers: [
                 provideZonelessChangeDetection(),
                 provideHttpClient(),
+                provideTranslateService({
+                    loader: provideTranslateHttpLoader(),
+                }),
+                ThemeService,
+                {
+                    provide: APP_INITIALIZER,
+                    useFactory: (themeService: ThemeService) => () => {
+                        themeService.initializeTokens('default');
+                    },
+                    deps: [ThemeService],
+                    multi: true,
+                },
             ],
         }),
-        (storyFn, context) => {
-            const { theme, brand, currency } = context.globals;
-            let { locale } = context.globals;
-            locale = locale || 'en-GB';
-            const html = document.documentElement;
-            if (theme === 'dark') {
-                html.classList.add('dark');
-            } else {
-                html.classList.remove('dark');
-            }
-
-            // Apply brand data attribute for Style Dictionary tokens
-            html.setAttribute('data-brand', brand || 'default');
-
-            // Set localization and currency data attributes
-            html.setAttribute('lang', locale);
-            html.setAttribute('data-currency', currency || 'GBP');
-
-            const story = storyFn(context);
-
-            return {
-                ...story,
-                applicationConfig: {
-                    ...(story.applicationConfig || { providers: [] }),
-                    providers: [
-                        ...(story.applicationConfig?.providers || []),
-                        provideThemeService(brand as any)
-                    ],
-                },
-                moduleMetadata: {
-                    ...(story.moduleMetadata || {}),
-                    imports: [...(story.moduleMetadata?.imports || [])],
-                    providers: [
-                        ...(story.moduleMetadata?.providers || []),
-                        { provide: DEFAULT_CURRENCY_CODE, useValue: currency },
-                        DatePipe,
-                        { provide: LOCALE_ID, useValue: locale },
-                        provideTranslateService({
-                            loader: provideTranslateHttpLoader({
-                                prefix: '/assets/i18n/',
-                                suffix: '.json',
-                            }),
-                            fallbackLang: locale,
-                            lang: locale,
-                        }),
-                    ],
-                },
-            };
-        },
-    ],
+        ...decorators
+    ]
 };
+
 
 export default preview;
