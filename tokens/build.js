@@ -6,7 +6,7 @@ import path from 'path';
 const brands = fs.readdirSync(path.join(process.cwd(), 'tokens/properties/brands')).filter((brand) => !brand.startsWith('.'));
 const platforms = fs.readdirSync(path.join(process.cwd(), 'tokens/properties/platforms')).filter((platform) => !platform.startsWith('.'));
 
-const { androidColors, androidDimens, androidFontDimens, iosMacros, scssVariables } = formats;
+const { androidColors, androidDimens, androidFontDimens, iosMacros, scssVariables, cssFontface } = formats;
 const { web } = transformGroups;
 
 function toBabelCase(str) {
@@ -52,7 +52,8 @@ function getStyleDictionaryConfig(brand, platform) {
           },
           {
             destination: 'fonts.css',
-            format: 'css/fontface',
+            format: cssFontface,
+            filter: (token) => token.attributes.category === 'asset' && token.attributes.type === 'font',
           }
         ],
       },
