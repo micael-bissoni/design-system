@@ -16,7 +16,7 @@ import { TranslateDirective, TranslatePipe, TranslateService } from "@ngx-transl
 })
 export class SettingsManagerComponent implements OnChanges {
     @Input() locale: string = "en";
-    @Input() brand: Brand = "default";
+    @Input() brand: Brand = "defaultBrand";
 
     private translate = inject(TranslateService);
     private themeService = inject(ThemeService);
