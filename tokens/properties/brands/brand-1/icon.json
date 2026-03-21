@@ -1,0 +1,20 @@
+{
+  "icon": {
+    "font": {
+      "family": {
+        "value": "Brand1Icons",
+        "type": "fontFamily"
+      }
+    },
+    "name": {
+      "arrow_right": {
+        "value": "\\e900",
+        "type": "content"
+      },
+      "arrow_left": {
+        "value": "\\e901",
+        "type": "content"
+      }
+    }
+  }
+}
