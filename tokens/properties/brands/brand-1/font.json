@@ -1,7 +1,19 @@
 {
+  "asset": {
+    "font": {
+      "custom": {
+        "name": { "value": "CustomBrandFont" },
+        "ttf": { "value": "assets/fonts/brand-1/custom-font.ttf" },
+        "woff": { "value": "assets/fonts/brand-1/custom-font.woff" },
+        "woff2": { "value": "assets/fonts/brand-1/custom-font.woff2" },
+        "weight": { "value": "400" },
+        "style": { "value": "normal" }
+      }
+    }
+  },
   "font": {
     "family": {
-      "custom": { "value": "CustomBrandFont, sans-serif", "type": "fontFamily" }
+      "custom": { "value": "{asset.font.custom.name.value}, sans-serif", "type": "fontFamily" }
     }
   }
 }

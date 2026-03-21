@@ -50,6 +50,10 @@ function getStyleDictionaryConfig(brand, platform) {
             destination: 'tokens.scss',
             format: scssVariables,
           },
+          {
+            destination: 'fonts.css',
+            format: 'css/fontface',
+          }
         ],
       },
       ts: {

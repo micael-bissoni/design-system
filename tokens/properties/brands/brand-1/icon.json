@@ -1,20 +1,6 @@
 {
   "icon": {
-    "font": {
-      "family": {
-        "value": "Brand1Icons",
-        "type": "fontFamily"
-      }
-    },
-    "name": {
-      "arrow_right": {
-        "value": "\\e900",
-        "type": "content"
-      },
-      "arrow_left": {
-        "value": "\\e901",
-        "type": "content"
-      }
-    }
+    "arrow_right": { "value": "url('/assets/icons/brand-1/arrow_right.svg')", "type": "asset" },
+    "arrow_left": { "value": "url('/assets/icons/brand-1/arrow_left.svg')", "type": "asset" }
   }
 }
