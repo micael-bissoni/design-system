@@ -1,6 +1,26 @@
 <div class="max-w-5xl mx-auto p-8 font-base text-font-base bg-white">
-  <div class="mb-12 border-b border-base-gray-light pb-8">
-    <h1 class="font-headers text-4xl mb-4 font-bold text-base-black">Style Guide</h1>
+  <div class="mb-12 border-b border-base-gray-light pb-8 flex justify-between items-end">
+    <div>
+      <h1 class="font-headers text-4xl mb-4 font-bold text-base-black">Style Guide</h1>
+      <p class="text-base-gray-medium">Foundations & Brand Identity</p>
+    </div>
+    <div class="w-32 h-12 bg-contain bg-no-repeat bg-right" [style.backgroundImage]="'var(--icon-logo)'"></div>
+  </div>
+
+  <!-- Brand Identity Section -->
+  <div class="flex flex-col md:flex-row gap-12 mb-16 border-b border-base-gray-light pb-12">
+    <div class="w-full md:w-1/4">
+      <h2 class="text-xl font-semibold text-primary">Brand Identity</h2>
+    </div>
+    <div class="w-full md:w-1/4 flex flex-col items-center justify-center gap-4">
+      <div class="w-48 h-24 bg-contain bg-no-repeat bg-center border border-base-gray-light rounded-lg p-4 shadow-sm" [style.backgroundImage]="'var(--icon-logo)'"></div>
+      <span class="text-xs text-base-gray-medium font-mono">--icon-logo</span>
+    </div>
+    <div class="w-full md:w-2/4">
+      <p class="text-base-gray-dark leading-relaxed">
+        Our brand identity is represented by the primary logo, which is dynamically loaded via design tokens. This ensures brand consistency across different platforms and themes while allowing for easy maintenance and brand updates.
+      </p>
+    </div>
   </div>
 
   <!-- Font Section -->

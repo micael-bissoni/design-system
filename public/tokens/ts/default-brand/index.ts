@@ -2,7 +2,8 @@ export const defaultBrand = {
   "color": {
     "brand": {
       "primary": "#ea4335",
-      "secondary": "#34a853"
+      "secondary": "#34a853",
+      "tertiary": "#999999"
     },
     "base": {
       "black": "#000000",
@@ -12,10 +13,12 @@ export const defaultBrand = {
         "dark": "#111111"
       },
       "red": "#ff0000",
-      "green": "#00ff00"
+      "green": "#00ff00",
+      "blue": "#0000ff"
     },
     "primary": "#ea4335",
     "secondary": "#34a853",
+    "tertiary": "#999999",
     "action": {
       "primary": "#ea4335",
       "secondary": "#34a853",

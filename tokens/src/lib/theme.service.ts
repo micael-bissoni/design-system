@@ -29,7 +29,7 @@ export class ThemeService {
 
     // Apply all tokens recursively
     Object.entries(brandTokens).forEach(([key, value]) => {
-      if (key === 'asset') {
+      if (key === 'asset' || key === 'icon') {
         this.applyAssets(root, this.toKebabCase(key), value);
       } else {
         this.applyTokens(root, this.toKebabCase(key), value);
@@ -54,7 +54,8 @@ export class ThemeService {
   private applyAssets(root: HTMLElement, prefix: string, tokens: any): void {
     if (!tokens || typeof tokens !== 'object') return;
 
-    const fontAssets = tokens.font;
+    // Font Assets
+    const fontAssets = tokens.font || (prefix === 'font' ? tokens : null);
     if (fontAssets && typeof fontAssets === 'object') {
       let fontFaceString = '';
       Object.values(fontAssets).forEach((font: any) => {
@@ -80,6 +81,17 @@ export class ThemeService {
         }
         styleTag.textContent = fontFaceString;
       }
+    }
+
+    // Icon Assets
+    const iconAssets = tokens.icon || (prefix === 'icon' ? tokens : null);
+    if (iconAssets && typeof iconAssets === 'object') {
+      Object.entries(iconAssets).forEach(([key, value]: [string, any]) => {
+        const iconUrl = typeof value === 'string' ? value : value.value;
+        if (iconUrl) {
+          root.style.setProperty(`--icon-${this.toKebabCase(key)}`, iconUrl);
+        }
+      });
     }
   }
 

@@ -1,8 +1,9 @@
 export const brand2 = {
   "color": {
     "brand": {
-      "primary": "#1da1f2",
-      "secondary": "#aab8c2"
+      "primary": "#e15a3a",
+      "secondary": "#af1736",
+      "tertiary": "#efa34c"
     },
     "base": {
       "black": "#000000",
@@ -12,19 +13,21 @@ export const brand2 = {
         "dark": "#111111"
       },
       "red": "#ff0000",
-      "green": "#00ff00"
+      "green": "#00ff00",
+      "blue": "#0000ff"
     },
-    "primary": "#1da1f2",
-    "secondary": "#aab8c2",
+    "primary": "#e15a3a",
+    "secondary": "#af1736",
+    "tertiary": "#efa34c",
     "action": {
-      "primary": "#1da1f2",
-      "secondary": "#aab8c2",
-      "tertiary": "#999999"
+      "primary": "#e15a3a",
+      "secondary": "#af1736",
+      "tertiary": "#efa34c"
     },
     "font": {
       "base": "#000000",
-      "primary": "#1da1f2",
-      "secondary": "#aab8c2",
+      "primary": "#e15a3a",
+      "secondary": "#af1736",
       "tertiary": "#cccccc"
     }
   },
@@ -54,6 +57,9 @@ export const brand2 = {
     "platform": {
       "system": "Tahoma, Arial, 'Helvetica Neue', sans"
     }
+  },
+  "icon": {
+    "logo": "url('/tokens/brand-2/assets/icons/logo.svg')"
   },
   "button": {
     "border": {
