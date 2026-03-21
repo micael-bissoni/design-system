@@ -1,5 +1,48 @@
 {
   "default": {
+    "asset": {
+      "icon": {
+        "logo": {
+          "value": "assets/icons/logo.svg"
+        }
+      },
+      "font": {
+        "Roboto": {
+          "400": {
+            "normal": {
+              "value": "assets/fonts/Roboto-Regular",
+              "formats": [
+                "ttf"
+              ],
+              "type": "asset"
+            },
+            "italic": {
+              "value": "assets/fonts/Roboto-Regular",
+              "formats": [
+                "ttf"
+              ],
+              "type": "asset"
+            }
+          },
+          "700": {
+            "normal": {
+              "value": "assets/fonts/Roboto-Regular",
+              "formats": [
+                "ttf"
+              ],
+              "type": "asset"
+            },
+            "italic": {
+              "value": "assets/fonts/Roboto-Regular",
+              "formats": [
+                "ttf"
+              ],
+              "type": "asset"
+            }
+          }
+        }
+      }
+    },
     "font": {
       "family": {
         "base": {

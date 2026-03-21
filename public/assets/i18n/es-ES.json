@@ -1,0 +1,487 @@
+{
+  "common": {
+    "searchPlaceholder": "Buscar farmacias, pedidos...",
+    "notifications": "Notificaciones",
+    "settings": "Configuración",
+    "pdf": "PDF",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "support": "Soporte",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "back": "Atrás",
+    "roles": {
+      "seniorRep": "Rep. Sénior",
+      "chiefPharmacist": "Farmacéutico Jefe",
+      "regionalManager": "Gerente Regional",
+      "supervisor": "Supervisor",
+      "pharmacist": "Farmacéutico",
+      "assistant": "Asistente"
+    },
+    "units": "unidades",
+    "discount": {
+      "tier1": "Nivel 1 (5% Desc)",
+      "tier2": "Nivel 2 (15% Desc)",
+      "tier3": "Nivel 3 (20% Desc)"
+    },
+    "optional": "Opcional",
+    "remove": "Eliminar"
+  },
+  "styleguide": {
+    "title": "Guía de Estilo",
+    "font": {
+      "title": "Fuente",
+      "description1": "La escala tipográfica se calcula sistemáticamente para establecer una jerarquía clara. Al utilizar pesos variados e interlineado rítmico, garantizamos una lectura armoniosa.",
+      "descriptionSans": "La fuente Sans-Serif se utiliza para el cuerpo de texto y la interfaz, garantizando una legibilidad superior y un aspecto moderno y profesional.",
+      "descriptionMono": "La fuente Monoespaciada se reserva para datos técnicos, tokens y código, donde la precisión del alineamiento es vital para la claridad.",
+      "usageSans": "Uso para el cuerpo de texto, etiquetas de interfaz y botones.",
+      "usageDisplay": "Uso para títulos a gran escala, números de impacto y elementos de marca."
+    },
+    "headline": {
+      "title": "Titulares",
+      "h1": "Titular 1",
+      "h2": "Titular 2",
+      "body": "Cuerpo",
+      "captions": "Leyendas"
+    },
+    "typography": {
+      "bold": "Negrita",
+      "semiBold": "Seminegrita",
+      "medium": "Media",
+      "regular": "Regular"
+    },
+    "color": {
+      "title": "Sistema de Colores",
+      "description1": "Nuestro sistema de colores está meticulosamente estructurado en torno a los principios del diseño atómico, utilizando una estructura jerárquica de roles Primario, Secundario y Terciario. Esto garantiza un peso visual óptimo, accesibilidad (cumplimiento de WCAG) y una voz de marca coherente en todos los puntos de contacto digitales.",
+      "description2": "Estos se combinan con una escala de grises que va desde el negro profundo hasta el plata y el gris claro, ofreciendo un fuerte contraste para la tipografía y los elementos de la interfaz.",
+      "brandContext": "Contexto de Marca",
+      "corePrimary": "Primario Core",
+      "coreSecondary": "Secundario Core",
+      "coreTertiary": "Terciario Core",
+      "feedbackState": "Feedback y Estado"
+    },
+    "radius": {
+      "title": "Radio de Borde",
+      "xs": "Extra Pequeño",
+      "sm": "Pequeño",
+      "md": "Medio (Por defecto)",
+      "lg": "Grande",
+      "xl": "Extra Grande",
+      "2xl": "2X Grande",
+      "3xl": "3X Grande",
+      "full": "Total",
+      "usage": {
+        "sm": "Elementos pequeños como casillas de verificación o insignias pequeñas.",
+        "md": "Componentes estándar como botones y campos de entrada.",
+        "lg": "Componentes más grandes como tarjetas y modales.",
+        "xl": "Contenedores grandes o secciones hero.",
+        "2xl": "Esquinas muy redondeadas para diseños modernos.",
+        "3xl": "Redondeo extremo para contenedores anchos.",
+        "full": "Elementos circulares como avatares o insignias de píldora."
+      }
+    },
+    "spacing": {
+      "title": "Espaciado",
+      "xs": "xs",
+      "sm": "sm",
+      "md": "md",
+      "lg": "lg",
+      "xl": "xl",
+      "usage": {
+        "xs": "Espaciado estrecho entre iconos relacionados o texto pequeño.",
+        "sm": "Acolchado estándar para componentes pequeños.",
+        "md": "Espaciado general entre secciones o acolchado grande.",
+        "lg": "Amplio margen de maniobra para los diseños principales.",
+        "xl": "Márgenes exteriores generosos."
+      }
+    },
+    "shadow": {
+      "title": "Sombras",
+      "sm": "Pequeña",
+      "md": "Media",
+      "lg": "Grande",
+      "xl": "Extra Grande",
+      "2xl": "2X Grande",
+      "usage": {
+        "sm": "Elevación sutil para tarjetas pequeñas o estados de desplazamiento.",
+        "md": "Elevación estándar para componentes de interfaz.",
+        "lg": "Alta elevación para menús y menús desplegables.",
+        "xl": "Profundidad para modales y superposiciones.",
+        "2xl": "Prominencia máxima para elementos superpuestos."
+      }
+    },
+    "localization": {
+      "title": "i18n y Moneda",
+      "currencyTitle": "Vista Previa de Moneda",
+      "currencyDesc": "CurrencyPipe estándar usando DEFAULT_CURRENCY_CODE",
+      "dateTitle": "Vista Previa de Fecha",
+      "dateDesc": "Localización usando DatePipe estándar"
+    },
+    "tokens": {
+      "surface": "Superficie",
+      "surfaceDesc": "Define dónde 'viven' los elementos. Es la base de su diseño.",
+      "onSurface": "Contenido",
+      "onSurfaceDesc": "Colores para textos, iconos y bordes que se asientan sobre las superficies.",
+      "action": "Acción",
+      "actionDesc": "Cualquier cosa sobre la que el usuario pueda hacer clic o interactuar.",
+      "feedback": "Feedback",
+      "feedbackDesc": "Indica el estado del sistema.",
+      "surfacePrimary": "Superficie Primaria",
+      "surfaceSecondary": "Superficie Secundaria",
+      "surfaceTertiary": "Superficie Terciaria",
+      "surfaceInverse": "Superficie Inversa",
+      "onSurfacePrimary": "Sobre Superficie Primaria",
+      "onSurfaceSecondary": "Sobre Superficie Secundaria",
+      "onSurfaceTertiary": "Sobre Superficie Terciaria",
+      "onSurfaceInverse": "Sobre Superficie Inversa",
+      "outlineVariant": "Contorno Variante",
+      "primary": "Primario",
+      "primaryHover": "Primario Hover",
+      "primaryActive": "Primario Activo",
+      "onActionPrimary": "Sobre Acción Primaria",
+      "actionDisabled": "Acción Desactivada",
+      "success": "Éxito",
+      "successLight": "Éxito Claro",
+      "warning": "Advertencia",
+      "warningLight": "Advertencia Clara",
+      "error": "Error",
+      "errorLight": "Error Claro",
+      "usage": {
+        "surfacePrimary": "Fondo de la aplicación principal.",
+        "surfaceSecondary": "Fondo secundario para tarjetas, barras laterales o secciones.",
+        "surfaceTertiary": "Fondo terciario para entradas o contenedores anidados.",
+        "surfaceInverse": "Fondo de alto contraste para información sobre herramientas o notificaciones.",
+        "onSurfacePrimary": "Texto e iconos de alto énfasis.",
+        "onSurfaceSecondary": "Texto de énfasis medio e información meta.",
+        "onSurfaceTertiary": "Texto de bajo énfasis y estados deshabilitados.",
+        "onSurfaceInverse": "Texto e iconos en superficies inversas.",
+        "primary": "Acción primaria y estados activos.",
+        "primaryHover": "Estado de desplazamiento para acciones primarias.",
+        "primaryActive": "Estado activo/presionado para acciones primarias.",
+        "onActionPrimary": "Texto/Iconos en botones de acción primaria.",
+        "actionDisabled": "Estado deshabilitado para acciones.",
+        "success": "Mensajes de éxito y estados completados.",
+        "warning": "Mensajes de advertencia y estado que requieren atención.",
+        "error": "Mensajes de error y fallos críticos.",
+        "info": "Información neutra y consejos útiles."
+      }
+    },
+    "nomenclature": {
+      "title": "La Regla del Prefijo",
+      "rule": "[Categoría] - [Papel] - [Estado]",
+      "example": "Ejemplo: action-primary-hover",
+      "description": "Para mantener la organización en su Figma o código, utilice siempre este orden de nomenclatura."
+    }
+  },
+  "atoms": {
+    "signaturePad": {
+      "placeholder": "Firme aquí",
+      "authorization": "Autorización requerida"
+    },
+    "tierBadge": {
+      "tier": "Nivel",
+      "gold": "Oro",
+      "silver": "Plata",
+      "bronze": "Bronce",
+      "platinum": "Platina"
+    }
+  },
+  "molecules": {
+    "visitItem": {
+      "contactPerson": "Persona de Contacto",
+      "directions": "Instrucciones",
+      "checkIn": "Check In",
+      "waiting": "En espera",
+      "status": {
+        "nextUp": "Siguiente",
+        "scheduled": "Programado",
+        "completed": "Completado"
+      }
+    },
+    "productCard": {
+      "perUnit": "por unidad",
+      "add": "Añadir"
+    },
+    "bottomActionsNav": {
+      "checkoutVisit": "Finalizar Visita",
+      "nav": {
+        "home": "Inicio",
+        "order": "Pedido",
+        "visit": "Visita",
+        "dashboard": "Dashboard",
+        "profile": "Perfil"
+      }
+    },
+    "categoryBreakdown": {
+      "salesDistribution": "Distribución de Ventas",
+      "categories": {
+        "cardiology": "Cardiología",
+        "neurology": "Neurología",
+        "generalMed": "Medicina General"
+      }
+    },
+    "floatingActionBar": {
+      "totalOrderValue": "Valor Total del Pedido",
+      "estimatedDelivery": "Entrega Estimada",
+      "saveDraft": "Guardar Borrador",
+      "reviewOrder": "Revisar Pedido"
+    },
+    "kpiCard": {
+      "target": "Objetivo"
+    },
+    "leaderboardItem": {
+      "you": "Tú",
+      "pts": "pts"
+    },
+    "navigation": {
+      "home": "Inicio",
+      "orders": "Pedidos",
+      "products": "Productos",
+      "settings": "Configuración"
+    },
+    "profileSummary": {
+      "employeeId": "Nº Empleado",
+      "topPerformer": "Rendimiento Superior 5%",
+      "districtRank": "Clasificación Actual del Distrito",
+      "online": "En línea"
+    },
+    "tierProgress": {
+      "addAmount": "Añade",
+      "toUnlock": "para desbloquear",
+      "discounts": "descuentos"
+    },
+    "timerCard": {
+      "visitInProgress": "Visita en progreso",
+      "totalDuration": "Duración Total",
+      "pause": "Pausar",
+      "addNote": "Añadir Nota"
+    },
+    "toast": {
+      "title": {
+        "success": "Éxito",
+        "error": "Error",
+        "warning": "Advertencia",
+        "info": "Información",
+        "default": "Notificación"
+      },
+      "messages": {
+        "successMsg": "Tus cambios se han guardado con éxito.",
+        "errorMsg": "Error al guardar los cambios. Por favor, inténtalo de nuevo.",
+        "warningMsg": "Tu suscripción está a punto de caducar.",
+        "infoMsg": "Nuevas actualizaciones están disponibles para tu aplicación."
+      }
+    },
+    "uploadSlot": {
+      "label": "Subir Evidencia",
+      "subtext": "Toca para subir foto o documento",
+      "activeLabel": "Suelta Aquí",
+      "activeSubtext": "Suelta para subir"
+    },
+    "signatureCollector": {
+      "title": "Firma Digital",
+      "clear": "Limpiar Área",
+      "disclaimer": "Al firmar a continuación, autoriza la adquisición de los artículos enumerados anteriormente y confirma que los precios y descuentos por nivel son correctos de acuerdo con su contrato de cuenta.",
+      "license": "Licencia",
+      "timestamp": "Timestamp"
+    }
+  },
+  "organisms": {
+    "login": {
+      "brand": "Pharma Clean",
+      "welcomeTitle": "Bienvenido de nuevo",
+      "welcomeDesc": "Por favor, introduzca sus credenciales para acceder al portal de ventas.",
+      "email": "Email",
+      "emailPlaceholder": "nombre@pharmaclean.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Introduzca su contraseña",
+      "forgotPassword": "¿Olvidó su contraseña?",
+      "loginBtn": "Iniciar sesión en el panel",
+      "loadingBtn": "Iniciando sesión...",
+      "needAccount": "¿Necesita una cuenta?",
+      "accountRestricted": "El registro de cuentas está restringido. Póngase en contacto con su administrador regional para solicitar credenciales de acceso.",
+      "requestAccess": "Solicitar acceso",
+      "precisionTitle": "Precisión en cada detalle.",
+      "precisionDesc": "Acceda a la herramienta central de automatización de fuerza de ventas para los representantes de Pharma Clean.",
+      "complianceVerified": "Cumplimiento verificado",
+      "securePortal": "Portal Seguro"
+    },
+    "cartSidebar": {
+      "currentOrder": "Pedido Actual",
+      "pharmacyId": "ID de Farmacia",
+      "emptyCart": "Tu carrito está vacío",
+      "subtotal": "Subtotal",
+      "taxHandling": "Impuestos y Gastos",
+      "totalEst": "Total Est."
+    },
+    "dailyProgress": {
+      "title": "Progreso Diario",
+      "live": "EN VIVO",
+      "visitsDone": "Visitas Realizadas",
+      "targetCompletion": "Objetivo de Finalización",
+      "footerMessageDefault": "¡Faltan 4 visitas para alcanzar tu bono diario!",
+      "footerMessageCompleted": "¡Meta diaria alcanzada! Hora de relajarse."
+    },
+    "sidebar": {
+      "portalName": "Portal de Supervisor",
+      "mainContentArea": "Área de Contenido Principal",
+      "description": "La barra lateral está fija y se contrae/desplaza correctamente.",
+      "links": {
+        "dashboard": "Panel",
+        "teamReports": "Informes del Equipo",
+        "salesAnalysis": "Análisis de Ventas",
+        "productTiers": "Niveles de Productos",
+        "settings": "Configuración"
+      }
+    },
+    "insightsPanel": {
+      "coachingOpps": "Oportunidades de Coaching",
+      "observationLabel": "Observación",
+      "observationText": "El valor promedio del pedido está ligeramente por debajo del promedio del distrito a pesar de la alta ejecución de visitas.",
+      "priorityActionLabel": "Acción Prioritaria",
+      "priorityActionText": "Seguimiento en la visita cancelada al Hospital St. Jude (Oct 23). Cuenta de alta prioridad.",
+      "supervisorNotesTitle": "Notas Privadas del Supervisor",
+      "addNotesPlaceholder": "Agrega notas de coaching aquí...",
+      "lastEdited": "Última edición",
+      "saveNotes": "Guardar Notas",
+      "defaultNotes": "Centrarse en aumentar el tamaño del pedido la próxima semana.",
+      "defaultLastEdited": "Hoy a las 10:45 AM"
+    },
+    "kpiSection": {
+      "totalTeamSales": "Ventas Totales del Equipo",
+      "vsLastMonth": "vs el mes pasado",
+      "visitExecRate": "Tasa de Ejecución de Visitas",
+      "plannedVisits": "1,016 / 1,240 planeadas",
+      "avgTierAchieved": "Nivel Promedio Alcanzado"
+    },
+    "performanceTable": {
+      "teamPerf": "Rendimiento del Equipo",
+      "viewAll": "Ver Todo",
+      "representative": "Representante",
+      "dailyVisits": "Visitas Diárias",
+      "periodSales": "Ventas del Período",
+      "rank": "Clasificación",
+      "tier1Area": "Área de Nivel 1",
+      "northSector": "Sector Norte",
+      "cbdDistrict": "Distrito Central"
+    },
+    "teamLeaderboard": {
+      "title": "Clasificación del Equipo",
+      "seeAll": "Ver Todos"
+    },
+    "visitList": {
+      "nextVisits": "Próximas Visitas",
+      "remaining": "RESTANTES",
+      "today": "Hoy",
+      "mapView": "Vista de Mapa",
+      "status": {
+        "nextUp": "Siguiente",
+        "scheduled": "Programada"
+      }
+    },
+    "gamificationHero": {
+      "greeting": "¡Buenos días, {{userName}}!",
+      "rankPrefix": "Actualmente estás en el ",
+      "rankSuffix": " de los representantes este mes.",
+      "badges": {
+        "topCloser": "Mejor Closer",
+        "streak": "Racha de 10 Días",
+        "earlyBird": "Madrugador"
+      },
+      "actions": {
+        "performance": "Ver Rendimiento",
+        "briefing": "Resumen Diario"
+      }
+    },
+    "activityFeed": {
+      "title": "Actividad Recente",
+      "items": {
+        "orderConfirmed": "Nuevo Pedido Confirmado",
+        "signatureReceived": "Firma Recibida",
+        "visitCheckedIn": "Visita Iniciada",
+        "highVolumeOrder": "Pedido de Alto Volumen"
+      }
+    },
+    "reviewOrderTable": {
+      "title": "Artículos del Pedido",
+      "headers": {
+        "productName": "Nombre del Producto",
+        "qty": "Cant",
+        "tierDiscount": "Descuento por Nivel",
+        "subtotal": "Subtotal"
+      }
+    }
+  },
+  "templates": {
+    "orderReview": {
+      "title": "Revisar y Firmar Pedido",
+      "orderIdLabel": "ID del Pedido",
+      "generatedLabel": "Generado",
+      "editOrder": "Editar Detalles del Pedido",
+      "summary": "Resumen del Pedido",
+      "subtotal": "Subtotal",
+      "tierSavings": "Ahorro por Nivel",
+      "appliedAutomatically": "Aplicado automáticamente",
+      "processingFee": "Tarifa de Procesamiento",
+      "finalTotal": "Total Final",
+      "disclaimer": "Incluye descuento por nivel de volumen y manejo clínico",
+      "confirmSend": "Confirmar y Enviar Pedido",
+      "secureProcurement": "Adquisición Segura",
+      "securityDesc": "Protegido por cifrado clínico de extremo a extremo.",
+      "footerCopyright": "© 2023 Pharma Clean Logistics. Todos los derechos reservados."
+    },
+    "visitCheckout": {
+      "summaryTitle": "Resumen de la Visita",
+      "gpsVerified": "GPS Verificado",
+      "duration": "Duración",
+      "resultTitle": "Resultado de la Visita",
+      "evidenceTitle": "Evidencia de la Tienda",
+      "uploadPhotoLabel": "Cargar Foto del Expositor",
+      "uploadPhotoSubtext": "Toca para capturar o cargar evidencias de los estantes de la tienda",
+      "notesTitle": "Notas del Representante",
+      "notesPlaceholder": "Ingrese detalles específicos sobre la reunión, solicitudes de inventario o información competitiva...",
+      "completeVisit": "Finalizar Visita",
+      "footerEntry": "Fin de la Entrada de Ruta Diaria",
+      "options": {
+        "orderPlaced": "Pedido Realizado",
+        "infoShared": "Información Compartida",
+        "followUp": "Seguimiento",
+        "samples": "Muestras"
+      }
+    },
+    "productCatalog": {
+      "allProducts": "Todos los Productos",
+      "antibiotics": "Antibióticos",
+      "analgesics": "Analgésicos",
+      "cardiovascular": "Cardiovascular",
+      "vaccines": "Vacunas"
+    },
+    "supervisorDashboard": {
+      "title": "Panel del Supervisor",
+      "date": "Viernes, 27 de Octubre de 2023",
+      "exportReport": "Exportar Informe",
+      "newCampaign": "Nueva Campaña",
+      "visitsChart": "Gráfico de Visitas a lo Largo del Tiempo",
+      "salesVolumeChart": "Gráfico de Volumen de Ventas por Rep"
+    },
+    "teamMemberReport": {
+      "message": "Mensaje",
+      "scheduleReview": "Programar Revisión",
+      "visitHistoryPlaceholder": "Marcador de Tabla de Historial de Visitas Recientes",
+      "territoryMapPlaceholder": "Marcador de Mapa del Territorio",
+      "footerCopyright": "© 2023 PharmaSales Pro. Sistema de Informes Confidencial.",
+      "privacyPolicy": "Política de Privacidad",
+      "termsOfUse": "Términos de Uso",
+      "support": "Soporte"
+    },
+    "visitInProgress": {
+      "subtitle": "Visita en Curso",
+      "mapPlaceholder": "Área de Mapa Interactiva",
+      "inRange": "EN RANGO",
+      "objectivesTitle": "Objetivos para esta Visita",
+      "completedCount": "{{completed}} de {{total}} completado(s)",
+      "objective1": "Presentar Nueva Línea de Antibióticos",
+      "objective2": "Revisar Acuerdo de Nivel 2",
+      "objective3": "Recopilar Comentarios sobre el Último Pedido"
+    }
+  }
+}

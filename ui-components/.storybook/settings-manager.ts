@@ -1,4 +1,4 @@
-// i18n-manager.component.ts
+// settings-manager.component.ts
 
 import { Component, inject, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { ThemeService, type Brand } from "@design-system/tokens";
@@ -17,6 +17,7 @@ import { TranslateDirective, TranslatePipe, TranslateService } from "@ngx-transl
 export class SettingsManagerComponent implements OnChanges {
     @Input() locale: string = "en";
     @Input() brand: Brand = "default";
+
     private translate = inject(TranslateService);
     private themeService = inject(ThemeService);
 

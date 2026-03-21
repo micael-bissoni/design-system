@@ -1,28 +1,12 @@
-import {
-    ApplicationConfig,
-    DEFAULT_CURRENCY_CODE,
-    inject,
-    LOCALE_ID,
-    provideZonelessChangeDetection,
-    APP_INITIALIZER,
-} from '@angular/core';
-import {
-    provideTranslateService,
-    provideTranslateLoader,
-} from '@ngx-translate/core';
-import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { applicationConfig, type Preview } from '@storybook/angular';
-import { DatePipe } from '@angular/common';
-
-import { ThemeService, brandColors } from '@design-system/tokens';
+import { type Preview } from '@storybook/angular';
+import { brands } from '@design-system/tokens';
 
 import '@angular/common/locales/global/en';
 import '@angular/common/locales/global/pt';
 import '@angular/common/locales/global/es';
-import { decorators } from './i18n.decorator';
+import { decorators } from './decorator';
 
-const brandItems = Object.keys(brandColors).map(key => ({
+const brandItems = Object.keys(brands).map(key => ({
     value: key,
     title: key.charAt(0).toUpperCase() + key.slice(1),
 }));
@@ -87,27 +71,7 @@ const preview: Preview = {
             },
         },
     },
-    decorators: [
-        applicationConfig({
-            providers: [
-                provideZonelessChangeDetection(),
-                provideHttpClient(),
-                provideTranslateService({
-                    loader: provideTranslateHttpLoader(),
-                }),
-                ThemeService,
-                {
-                    provide: APP_INITIALIZER,
-                    useFactory: (themeService: ThemeService) => () => {
-                        themeService.initializeTokens('default');
-                    },
-                    deps: [ThemeService],
-                    multi: true,
-                },
-            ],
-        }),
-        ...decorators
-    ]
+    decorators
 };
 
 
