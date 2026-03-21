@@ -20,7 +20,7 @@ export class ThemeService {
   /**
    * Switches the active brand theme dynamically.
    */
-  public switchTheme(brand: Brand = 'defaultBrand'): void {
+  public switchTheme(brand: Brand = 'default-brand'): void {
     if (this.currentBrand === brand) return;
     this.currentBrand = brand;
     const root = this.document.documentElement;
@@ -29,7 +29,11 @@ export class ThemeService {
 
     // Apply all tokens recursively
     Object.entries(brandTokens).forEach(([key, value]) => {
-      this.applyTokens(root, this.toKebabCase(key), value);
+      if (key === 'asset') {
+        this.applyAssets(root, this.toKebabCase(key), value);
+      } else {
+        this.applyTokens(root, this.toKebabCase(key), value);
+      }
     });
   }
 
@@ -44,6 +48,38 @@ export class ThemeService {
         const newPrefix = prefix ? `${prefix}-${this.toKebabCase(key)}` : this.toKebabCase(key);
         this.applyTokens(root, newPrefix, value);
       });
+    }
+  }
+
+  private applyAssets(root: HTMLElement, prefix: string, tokens: any): void {
+    if (!tokens || typeof tokens !== 'object') return;
+
+    const fontAssets = tokens.font;
+    if (fontAssets && typeof fontAssets === 'object') {
+      let fontFaceString = '';
+      Object.values(fontAssets).forEach((font: any) => {
+        if (font.name && font.ttf) {
+          fontFaceString += `
+            @font-face {
+              font-family: '${font.name}';
+              src: url('/tokens/${this.currentBrand}/${font.ttf}') format('truetype');
+              font-weight: ${font.weight || 'normal'};
+              font-style: ${font.style || 'normal'};
+              font-display: swap;
+            }
+          `;
+        }
+      });
+
+      if (fontFaceString) {
+        let styleTag = this.document.getElementById('theme-assets') as HTMLStyleElement;
+        if (!styleTag) {
+          styleTag = this.document.createElement('style');
+          styleTag.id = 'theme-assets';
+          this.document.head.appendChild(styleTag);
+        }
+        styleTag.textContent = fontFaceString;
+      }
     }
   }
 

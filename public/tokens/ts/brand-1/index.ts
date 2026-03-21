@@ -1,8 +1,8 @@
-export const defaultBrand = {
+export const brand1 = {
   "color": {
     "brand": {
-      "primary": "#ea4335",
-      "secondary": "#34a853"
+      "primary": "#3b5998",
+      "secondary": "#4267b2"
     },
     "base": {
       "black": "#000000",
@@ -14,36 +14,49 @@ export const defaultBrand = {
       "red": "#ff0000",
       "green": "#00ff00"
     },
-    "primary": "#ea4335",
-    "secondary": "#34a853",
+    "primary": "#3b5998",
+    "secondary": "#4267b2",
     "action": {
-      "primary": "#ea4335",
-      "secondary": "#34a853",
+      "primary": "#3b5998",
+      "secondary": "#4267b2",
       "tertiary": "#999999"
     },
     "font": {
       "base": "#000000",
-      "primary": "#ea4335",
-      "secondary": "#34a853",
+      "primary": "#3b5998",
+      "secondary": "#4267b2",
       "tertiary": "#cccccc"
+    }
+  },
+  "asset": {
+    "font": {
+      "custom": {
+        "name": "Orbitron",
+        "ttf": "assets/fonts/orbitron/Orbitron-Black.ttf",
+        "weight": "400",
+        "style": "normal"
+      }
     }
   },
   "font": {
     "brand": {
       "font": {
         "family": {
-          "headers": "Montserrat, sans-serif",
+          "headers": "Orbitron, sans-serif",
           "base": "Tahoma, Arial, 'Helvetica Neue', sans"
         }
       }
     },
     "family": {
-      "headers": "Montserrat, sans-serif",
+      "headers": "Orbitron, sans-serif",
       "base": "Tahoma, Arial, 'Helvetica Neue', sans"
     },
     "platform": {
       "system": "Tahoma, Arial, 'Helvetica Neue', sans"
     }
+  },
+  "icon": {
+    "logo": "url('/assets/icons/brand-1/logo.svg')"
   },
   "button": {
     "border": {

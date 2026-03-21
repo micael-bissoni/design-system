@@ -1,6 +1,8 @@
 {
   "icon": {
-    "arrow_right": { "value": "url('/assets/icons/brand-1/arrow_right.svg')", "type": "asset" },
-    "arrow_left": { "value": "url('/assets/icons/brand-1/arrow_left.svg')", "type": "asset" }
+    "logo": {
+      "value": "url('/assets/icons/brand-1/logo.svg')",
+      "type": "asset"
+    }
   }
 }

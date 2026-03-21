@@ -28,6 +28,37 @@ export const brand1 = {
       "tertiary": "#cccccc"
     }
   },
+  "asset": {
+    "font": {
+      "custom": {
+        "name": "Orbitron",
+        "ttf": "assets/fonts/orbitron/Orbitron-Black.ttf",
+        "weight": "400",
+        "style": "normal"
+      }
+    }
+  },
+  "font": {
+    "brand": {
+      "font": {
+        "family": {
+          "headers": "Orbitron, sans-serif",
+          "base": "Tahoma, Arial, 'Helvetica Neue', sans"
+        }
+      }
+    },
+    "family": {
+      "headers": "Orbitron, sans-serif",
+      "base": "Tahoma, Arial, 'Helvetica Neue', sans"
+    },
+    "platform": {
+      "system": "Tahoma, Arial, 'Helvetica Neue', sans"
+    }
+  },
+  "icon": {
+    "arrow_right": "url('/assets/icons/brand-1/arrow_right.svg')",
+    "arrow_left": "url('/assets/icons/brand-1/arrow_left.svg')"
+  },
   "button": {
     "border": {
       "radius": "4px"
@@ -36,15 +67,6 @@ export const brand1 = {
       "size": "1"
     },
     "height": "40px"
-  },
-  "font": {
-    "family": {
-      "headers": "Montserrat",
-      "base": "Tahoma, Arial, 'Helvetica Neue', sans"
-    },
-    "platform": {
-      "system": "Tahoma, Arial, 'Helvetica Neue', sans"
-    }
   },
   "size": {
     "font": {

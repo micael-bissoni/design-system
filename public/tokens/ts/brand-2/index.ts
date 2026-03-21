@@ -1,8 +1,8 @@
-export const defaultBrand = {
+export const brand2 = {
   "color": {
     "brand": {
-      "primary": "#ea4335",
-      "secondary": "#34a853"
+      "primary": "#1da1f2",
+      "secondary": "#aab8c2"
     },
     "base": {
       "black": "#000000",
@@ -14,31 +14,41 @@ export const defaultBrand = {
       "red": "#ff0000",
       "green": "#00ff00"
     },
-    "primary": "#ea4335",
-    "secondary": "#34a853",
+    "primary": "#1da1f2",
+    "secondary": "#aab8c2",
     "action": {
-      "primary": "#ea4335",
-      "secondary": "#34a853",
+      "primary": "#1da1f2",
+      "secondary": "#aab8c2",
       "tertiary": "#999999"
     },
     "font": {
       "base": "#000000",
-      "primary": "#ea4335",
-      "secondary": "#34a853",
+      "primary": "#1da1f2",
+      "secondary": "#aab8c2",
       "tertiary": "#cccccc"
+    }
+  },
+  "asset": {
+    "font": {
+      "custom": {
+        "name": "Indie Flower",
+        "ttf": "assets/fonts/Indie_Flower/IndieFlower-Regular.ttf",
+        "weight": "400",
+        "style": "normal"
+      }
     }
   },
   "font": {
     "brand": {
       "font": {
         "family": {
-          "headers": "Montserrat, sans-serif",
+          "headers": "Indie Flower, sans-serif",
           "base": "Tahoma, Arial, 'Helvetica Neue', sans"
         }
       }
     },
     "family": {
-      "headers": "Montserrat, sans-serif",
+      "headers": "Indie Flower, sans-serif",
       "base": "Tahoma, Arial, 'Helvetica Neue', sans"
     },
     "platform": {

@@ -6,7 +6,7 @@ import path from 'path';
 const brands = fs.readdirSync(path.join(process.cwd(), 'tokens/properties/brands')).filter((brand) => !brand.startsWith('.'));
 const platforms = fs.readdirSync(path.join(process.cwd(), 'tokens/properties/platforms')).filter((platform) => !platform.startsWith('.'));
 
-const { androidColors, androidDimens, androidFontDimens, iosMacros, scssVariables, cssFontface } = formats;
+const { androidColors, androidDimens, androidFontDimens, iosMacros, scssVariables } = formats;
 const { web } = transformGroups;
 
 function toBabelCase(str) {
@@ -44,22 +44,17 @@ function getStyleDictionaryConfig(brand, platform) {
     platforms: {
       web: {
         transformGroup: web,
-        buildPath: `tokens/build/web/${brand}/`,
+        buildPath: `public/tokens/web/${brand}/`,
         files: [
           {
             destination: 'tokens.scss',
             format: scssVariables,
           },
-          {
-            destination: 'fonts.css',
-            format: cssFontface,
-            filter: (token) => token.attributes.category === 'asset' && token.attributes.type === 'font',
-          }
         ],
       },
       ts: {
         transformGroup: 'js',
-        buildPath: `tokens/build/ts/${brand}/`,
+        buildPath: `public/tokens/ts/${brand}/`,
         files: [
           {
             destination: 'index.ts',
@@ -69,7 +64,7 @@ function getStyleDictionaryConfig(brand, platform) {
       },
       android: {
         transformGroup: 'android',
-        buildPath: `tokens/build/android/${brand}/`,
+        buildPath: `public/tokens/android/${brand}/`,
         files: [
           {
             destination: 'tokens.colors.xml',
@@ -87,7 +82,7 @@ function getStyleDictionaryConfig(brand, platform) {
       },
       ios: {
         transformGroup: 'ios',
-        buildPath: `tokens/build/ios/${brand}/`,
+        buildPath: `public/tokens/ios/${brand}/`,
         files: [
           {
             destination: 'tokens.h',
@@ -100,17 +95,11 @@ function getStyleDictionaryConfig(brand, platform) {
 }
 
 console.log('Cleaning existing styles...');
-const buildDir = 'tokens/build';
+const buildDir = path.join(process.cwd(), 'public/tokens');
 if (fs.existsSync(buildDir)) {
-  fs.readdirSync(buildDir).forEach((file) => {
-    const filePath = path.join(buildDir, file);
-    if (fs.statSync(filePath).isFile()) {
-      fs.unlinkSync(filePath);
-    }
-  });
-} else {
-  fs.mkdirSync(buildDir, { recursive: true });
+  fs.rmSync(buildDir, { recursive: true, force: true });
 }
+fs.mkdirSync(buildDir, { recursive: true });
 
 console.log('Build started...');
 
@@ -136,13 +125,25 @@ brands.map(function (brand) {
       }
     });
     sd.buildPlatform(platform);
+
+    // Copy assets if they exist for this brand
+    const brandAssetsDir = path.join(process.cwd(), `tokens/properties/brands/${brand}/assets`);
+    const publicBrandAssetsDir = path.join(process.cwd(), `public/tokens/${brand}/assets`);
+
+    if (fs.existsSync(brandAssetsDir)) {
+      console.log(`Copying assets for ${brand}...`);
+      fs.mkdirSync(publicBrandAssetsDir, { recursive: true });
+      fs.cpSync(brandAssetsDir, publicBrandAssetsDir, { recursive: true });
+    }
   });
 });
 
 fs.writeFileSync(
   path.join(process.cwd(), 'tokens/src/lib/tokens.ts'),
-  `${brands.map((brand) => `import {${toBabelCase(brand)}} from '../../build/ts/${brand}';`).join('\n')};
-export const brands = {${brands.map((brand) => toBabelCase(brand)).join(', ')}} as const;
+  `${brands.map((brand) => `import { ${toBabelCase(brand)} } from '../../../public/tokens/ts/${brand}/index';`).join('\n')}
+export const brands = {
+${brands.map((brand) => `  '${brand}': ${toBabelCase(brand)}`).join(',\n')}
+} as const;
 export type Brand = keyof typeof brands;
   `,
 );

@@ -28,6 +28,23 @@ export const brand2 = {
       "tertiary": "#cccccc"
     }
   },
+  "font": {
+    "brand": {
+      "font": {
+        "family": {
+          "headers": "Montserrat, sans-serif",
+          "base": "Tahoma, Arial, 'Helvetica Neue', sans"
+        }
+      }
+    },
+    "family": {
+      "headers": "Montserrat, sans-serif",
+      "base": "Tahoma, Arial, 'Helvetica Neue', sans"
+    },
+    "platform": {
+      "system": "Tahoma, Arial, 'Helvetica Neue', sans"
+    }
+  },
   "button": {
     "border": {
       "radius": "4px"
@@ -36,15 +53,6 @@ export const brand2 = {
       "size": "1"
     },
     "height": "40px"
-  },
-  "font": {
-    "family": {
-      "headers": "Montserrat",
-      "base": "Tahoma, Arial, 'Helvetica Neue', sans"
-    },
-    "platform": {
-      "system": "Tahoma, Arial, 'Helvetica Neue', sans"
-    }
   },
   "size": {
     "font": {

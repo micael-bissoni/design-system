@@ -18,12 +18,20 @@ $color-font-base: #000000;
 $color-font-primary: #3b5998;
 $color-font-secondary: #4267b2;
 $color-font-tertiary: #cccccc;
+$asset-font-custom-name: Orbitron;
+$asset-font-custom-ttf: assets/fonts/orbitron/Orbitron-Black.ttf;
+$asset-font-custom-weight: 400;
+$asset-font-custom-style: normal;
+$font-brand-font-family-headers: Orbitron, sans-serif;
+$font-brand-font-family-base: Tahoma, Arial, 'Helvetica Neue', sans;
+$font-family-headers: Orbitron, sans-serif;
+$font-family-base: Tahoma, Arial, 'Helvetica Neue', sans;
+$font-platform-system: Tahoma, Arial, 'Helvetica Neue', sans;
+$icon-arrow-right: url('/assets/icons/brand-1/arrow_right.svg');
+$icon-arrow-left: url('/assets/icons/brand-1/arrow_left.svg');
 $button-border-radius: 4px;
 $button-text-size: 1;
 $button-height: 40px;
-$font-family-headers: Montserrat;
-$font-family-base: Tahoma, Arial, 'Helvetica Neue', sans;
-$font-platform-system: Tahoma, Arial, 'Helvetica Neue', sans;
 $size-font-small: 0.75; // the small size of the font
 $size-font-medium: 1; // the medium size of the font
 $size-font-large: 2; // the large size of the font
