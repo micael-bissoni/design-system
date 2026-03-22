@@ -6,7 +6,7 @@
           "value": "Orbitron"
         },
         "ttf": {
-          "value": "assets/fonts/orbitron/Orbitron-Black.ttf"
+          "value": "'assets/fonts/orbitron/Orbitron-Black.ttf'"
         },
         "weight": {
           "value": "400"

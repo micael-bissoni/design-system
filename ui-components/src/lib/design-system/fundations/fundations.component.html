@@ -129,4 +129,43 @@
   </div>
   }
 
+  <div class="h-px bg-on-surface-primary/10"></div>
+
+  <!-- Localization Section -->
+  <section class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-8 items-start">
+    <h2 class="text-xl font-bold">
+      {{ 'styleguide.localization.title' | translate }}
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+      <div class="p-6 rounded-3xl border border-on-surface-primary/10 space-y-4 shadow-sm bg-surface-secondary">
+        <h3 class="text-sm font-bold flex items-center gap-2">
+          <ds-icon intent="primary" name="payments"></ds-icon>
+          {{ 'styleguide.localization.currencyTitle' | translate }}
+        </h3>
+        <div class="space-y-2">
+          <p class="text-4xl font-display font-bold text-on-surface-primary">
+            {{ 1250 | currency }}
+          </p>
+          <p class="text-sm text-on-surface-secondary">
+            {{ 'styleguide.localization.currencyDesc' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-3xl border border-on-surface-primary/10 space-y-4 shadow-sm bg-surface-secondary">
+        <h3 class="text-sm font-bold flex items-center gap-2">
+          <ds-icon intent="primary" name="calendar-today"></ds-icon>
+          {{ 'styleguide.localization.dateTitle' | translate }}
+        </h3>
+        <div class="space-y-2">
+          <p class="text-4xl font-display font-bold text-on-surface-primary">
+            {{ today | date: 'longDate' }}
+          </p>
+          <p class="text-sm text-on-surface-secondary">
+            {{ 'styleguide.localization.dateDesc' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

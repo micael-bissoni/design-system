@@ -62,20 +62,19 @@ export const brand1 = {
     }
   },
   "icon": {
-    "content_copy": "url('/tokens/base/assets/icons/content_copy.svg')",
-    "content_paste": "url('/tokens/base/assets/icons/content_paste.svg')",
-    "check_circle": "url('/tokens/base/assets/icons/check_circle.svg')",
+    "content-copy": "url('/tokens/web/assets/icons/content-copy.svg')",
+    "content-paste": "url('/tokens/web/assets/icons/content-paste.svg')",
+    "check-circle": "url('/tokens/web/assets/icons/check-circle.svg')",
     "logo": "url('/tokens/brand-1/assets/icons/logo.svg')"
   },
   "asset": {
     "font": {
       "custom": {
         "name": "Orbitron",
-        "ttf": "assets/fonts/orbitron/Orbitron-Black.ttf",
+        "ttf": "'assets/fonts/orbitron/Orbitron-Black.ttf'",
         "weight": "400",
         "style": "normal"
       }
     }
   }
 } as const;
-        

@@ -8,7 +8,7 @@ const meta: Meta<IconComponent> = {
   argTypes: {
     name: {
       control: 'select',
-      options: ['content_copy', 'content_paste'],
+      options: ['content-copy', 'content-paste'],
     },
     intent: {
       control: 'select',
@@ -26,7 +26,7 @@ type Story = StoryObj<IconComponent>;
 
 export const Primary: Story = {
   args: {
-    name: 'content_copy',
+    name: 'content-copy',
     intent: 'primary',
     size: 'medium',
   },
@@ -34,7 +34,7 @@ export const Primary: Story = {
 
 export const Large: Story = {
   args: {
-    name: 'content_paste',
+    name: 'content-paste',
     intent: 'secondary',
     size: 'large',
   },
@@ -42,7 +42,7 @@ export const Large: Story = {
 
 export const Small: Story = {
   args: {
-    name: 'content_copy',
+    name: 'content-copy',
     intent: 'tertiary',
     size: 'small',
   },

@@ -6,7 +6,7 @@
           "value": "Indie Flower"
         },
         "ttf": {
-          "value": "assets/fonts/Indie_Flower/IndieFlower-Regular.ttf"
+          "value": "'assets/fonts/Indie_Flower/IndieFlower-Regular.ttf'"
         },
         "weight": {
           "value": "400"

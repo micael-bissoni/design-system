@@ -41,7 +41,7 @@ export class ThemeService {
       link.rel = 'stylesheet';
       this.document.head.appendChild(link);
     }
-    link.href = `/tokens/web/${brand}/tokens.css`;
+    link.href = `/tokens/web/${brandTokens}/tokens.css`;
   }
 }
 

@@ -66,12 +66,12 @@ describe('ThemeService', () => {
   });
 
   it('should switch theme and load css file correctly', () => {
-    service.switchTheme('brand-1');
+    service.switchTheme('brand1');
 
-    expect(mockDocument.documentElement.setAttribute).toHaveBeenCalledWith('data-theme', 'brand-1');
+    expect(mockDocument.documentElement.setAttribute).toHaveBeenCalledWith('data-theme', 'brand1');
     expect(mockDocument.createElement).toHaveBeenCalledWith('link');
     expect(mockDocument.head.appendChild).toHaveBeenCalled();
-    
+
     // We expect the link to be updated with the correct path
     const createdLink = mockDocument.createElement.mock.results[0].value;
     expect(createdLink.id).toBe('brand-theme-link');

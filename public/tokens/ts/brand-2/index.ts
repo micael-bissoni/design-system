@@ -62,20 +62,19 @@ export const brand2 = {
     }
   },
   "icon": {
-    "content_copy": "url('/tokens/base/assets/icons/content_copy.svg')",
-    "content_paste": "url('/tokens/base/assets/icons/content_paste.svg')",
-    "check_circle": "url('/tokens/base/assets/icons/check_circle.svg')",
-    "logo": "url('/tokens/base/assets/icons/logo.svg')"
+    "content-copy": "url('/tokens/web/assets/icons/content-copy.svg')",
+    "content-paste": "url('/tokens/web/assets/icons/content-paste.svg')",
+    "check-circle": "url('/tokens/web/assets/icons/check-circle.svg')",
+    "logo": "url('/tokens/brand-2/assets/icons/logo.svg')"
   },
   "asset": {
     "font": {
       "custom": {
         "name": "Indie Flower",
-        "ttf": "assets/fonts/Indie_Flower/IndieFlower-Regular.ttf",
+        "ttf": "'assets/fonts/Indie_Flower/IndieFlower-Regular.ttf'",
         "weight": "400",
         "style": "normal"
       }
     }
   }
 } as const;
-        

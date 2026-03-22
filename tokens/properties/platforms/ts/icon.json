@@ -1,15 +1,15 @@
 {
     "icon": {
-        "content_copy": {
-            "value": "url('/tokens/base/assets/icons/content_copy.svg')",
+        "content-copy": {
+            "value": "url('/tokens/web/assets/icons/content-copy.svg')",
             "type": "asset"
         },
-        "content_paste": {
-            "value": "url('/tokens/base/assets/icons/content_paste.svg')",
+        "content-paste": {
+            "value": "url('/tokens/web/assets/icons/content-paste.svg')",
             "type": "asset"
         },
-        "check_circle": {
-            "value": "url('/tokens/base/assets/icons/check_circle.svg')",
+        "check-circle": {
+            "value": "url('/tokens/web/assets/icons/check-circle.svg')",
             "type": "asset"
         }
     }

@@ -15,23 +15,23 @@ describe('IconComponent', () => {
   });
 
   it('should create', () => {
-    fixture.componentRef.setInput('name', 'content_copy');
+    fixture.componentRef.setInput('name', 'content-copy');
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should render with default intent and size', () => {
-    fixture.componentRef.setInput('name', 'content_copy');
+    fixture.componentRef.setInput('name', 'content-copy');
     fixture.detectChanges();
 
     const icon = fixture.nativeElement.querySelector('[data-testid="ds-icon"]');
     expect(icon.className).toContain('bg-primary');
     expect(icon.className).toContain('w-6 h-6');
-    expect(icon.style.maskImage).toContain('var(--icon-content_copy)');
+    expect(icon.style.maskImage).toContain('var(--icon-content-copy)');
   });
 
   it('should apply custom intent and size', () => {
-    fixture.componentRef.setInput('name', 'content_paste');
+    fixture.componentRef.setInput('name', 'content-paste');
     fixture.componentRef.setInput('intent', 'secondary');
     fixture.componentRef.setInput('size', 'large');
     fixture.detectChanges();
@@ -39,6 +39,6 @@ describe('IconComponent', () => {
     const icon = fixture.nativeElement.querySelector('[data-testid="ds-icon"]');
     expect(icon.className).toContain('bg-secondary');
     expect(icon.className).toContain('w-8 h-8');
-    expect(icon.style.maskImage).toContain('var(--icon-content_paste)');
+    expect(icon.style.maskImage).toContain('var(--icon-content-paste)');
   });
 });

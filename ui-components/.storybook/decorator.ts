@@ -15,8 +15,8 @@ export const decorators = [
                     prefix: '/assets/i18n/',
                     suffix: '.json'
                 }),
-                fallbackLang: 'en',
-                lang: 'en'
+                fallbackLang: 'en-GB',
+                lang: 'en-GB'
             }),
             {
                 provide: LOCALE_ID,

@@ -28,7 +28,7 @@ const preview: Preview = {
         },
         brand: {
             description: 'Global brand theme',
-            defaultValue: 'defaultBrand',
+            defaultValue: 'base',
             toolbar: {
                 title: 'Brand',
                 icon: 'paintbrush',

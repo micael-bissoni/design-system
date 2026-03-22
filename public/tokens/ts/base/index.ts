@@ -62,10 +62,10 @@ export const base = {
     }
   },
   "icon": {
-    "content_copy": "url('/tokens/base/assets/icons/content_copy.svg')",
-    "content_paste": "url('/tokens/base/assets/icons/content_paste.svg')",
-    "check_circle": "url('/tokens/base/assets/icons/check_circle.svg')",
-    "logo": "url('/tokens/base/assets/icons/logo.svg')"
+    "content-copy": "url('/tokens/base/assets/icons/content-copy.svg')",
+    "content-paste": "url('/tokens/base/assets/icons/content-paste.svg')",
+    "check-circle": "url('/tokens/base/assets/icons/check-circle.svg')",
+    "calendar-today": "url('/tokens/base/assets/icons/calendar-today.svg')",
+    "payments": "url('/tokens/base/assets/icons/payments.svg')"
   }
 } as const;
-        

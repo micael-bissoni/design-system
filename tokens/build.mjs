@@ -107,13 +107,29 @@ console.log('Build started...');
 
 const brandFileContent = [];
 
-brands.forEach(function (brand, brandIndex) {
+brands.forEach(function (brand) {
   platforms.forEach(function (platform) {
     console.log('\n==============================================');
     console.log(`\nProcessing: [${platform}] [${brand}]`);
 
-    const sd = new StyleDictionary(getStyleDictionaryConfig(brand, platform));
-    sd.buildPlatform(platform);
+    const sdConfig = getStyleDictionaryConfig(brand, platform);
+    const sd = new StyleDictionary(sdConfig);
+
+    // Register custom format for TypeScript multibrand support
+    sd.registerFormat({
+      name: 'typescript/multibrand',
+      format: async function ({ dictionary }) {
+        const brandName = toBabelCase(brand);
+        const tokens = minify(dictionary.tokens);
+        return `export const ${brandName} = ${JSON.stringify(tokens, null, 2)} as const;\n`;
+      }
+    });
+
+    try {
+      sd.buildPlatform(platform);
+    } catch (error) {
+      console.error(`Error building platform [${platform}] for brand [${brand}]:`, error.message);
+    }
 
     if (platform === 'ts') {
       // Copy assets if they exist for this brand
@@ -128,6 +144,7 @@ brands.forEach(function (brand, brandIndex) {
 
       brandFileContent.push({
         name: toBabelCase(brand),
+        key: brand,
         path: `../../../public/tokens/ts/${brand}/index`
       });
     }
@@ -141,7 +158,7 @@ brandFileContent.forEach(b => {
 
 tokensTsContent += `\nexport const brands = {\n`;
 brandFileContent.forEach(b => {
-  tokensTsContent += `  '${b.name.toLowerCase()}': ${b.name},\n`;
+  tokensTsContent += `  '${b.name.toLowerCase()}': '${b.key}',\n`;
 });
 tokensTsContent += `} as const;\n\n`;
 tokensTsContent += `export type Brand = keyof typeof brands;\n`;

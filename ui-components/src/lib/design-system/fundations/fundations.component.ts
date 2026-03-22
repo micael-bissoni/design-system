@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { IconComponent } from '../../atoms';
 
 @Component({
   selector: 'ds-fundations',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe, IconComponent],
   templateUrl: './fundations.component.html',
 })
 export class FundationsComponent {
