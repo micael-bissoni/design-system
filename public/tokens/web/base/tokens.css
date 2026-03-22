@@ -43,6 +43,7 @@
   --size-font-9xlarge: 80pt; /** the 9xl size of the font */
   --size-font-10xlarge: 88pt; /** the 10xl size of the font */
   --size-font-base: 12pt; /** the base size of the font */
+  --icon-logo: url('/tokens/base/assets/icons/logo.svg');
   --icon-content-copy: url('/tokens/base/assets/icons/content-copy.svg');
   --icon-content-paste: url('/tokens/base/assets/icons/content-paste.svg');
   --icon-check-circle: url('/tokens/base/assets/icons/check-circle.svg');
