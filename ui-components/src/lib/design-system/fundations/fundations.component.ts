@@ -1,15 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { IconComponent } from '../../atoms';
+import { DSDatePipe, DSCurrencyPipe, LocaleService } from '../../utils';
+import { Store } from '@ngrx/store';
+import { selectI18nState } from '../../utils/state/i18n.selectors';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'ds-fundations',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, IconComponent],
+  imports: [CommonModule, TranslatePipe, IconComponent, DSDatePipe, DSCurrencyPipe],
   templateUrl: './fundations.component.html',
 })
 export class FundationsComponent {
+  today = new Date();
+
+  private store = inject(Store);
+  private localeState = this.store.select(selectI18nState);
+
+  locale = this.localeState.pipe(map(state => state.locale));
+  currency = this.localeState.pipe(map(state => state.currency));
 
   colorsSections = [
     {

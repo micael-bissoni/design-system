@@ -1,13 +1,17 @@
 import { applicationConfig, componentWrapperDecorator, moduleMetadata } from "@storybook/angular";
 import { SettingsManagerComponent } from "./settings-manager";
 import { provideTranslateService, TranslateService } from "@ngx-translate/core";
-import { LOCALE_ID, provideZonelessChangeDetection } from "@angular/core";
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, provideZonelessChangeDetection } from "@angular/core";
 import { provideHttpClient } from "@angular/common/http";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LocaleService } from "../src/lib/utils";
+import { provideStore } from "@ngrx/store";
+import { i18nReducer } from "../src/lib/utils/state/i18n.reducer";
 
 export const decorators = [
     applicationConfig({
         providers: [
+            provideStore({ i18n: i18nReducer }),
             provideZonelessChangeDetection(),
             provideHttpClient(),
             provideTranslateService({
@@ -18,23 +22,25 @@ export const decorators = [
                 fallbackLang: 'en-GB',
                 lang: 'en-GB'
             }),
+            LocaleService,
             {
                 provide: LOCALE_ID,
-                useFactory: (translate: TranslateService) => {
-                    console.log("Current language", translate.getCurrentLang());
-                    return translate.getCurrentLang();
-                },
-                deps: [TranslateService],
+                useFactory: (localeService: LocaleService) => localeService.getLocale(),
+                deps: [LocaleService],
             },
-
+            {
+                provide: DEFAULT_CURRENCY_CODE,
+                useFactory: (localeService: LocaleService) => localeService.getCurrency(),
+                deps: [LocaleService],
+            },
         ],
     }),
     moduleMetadata({
         imports: [SettingsManagerComponent],
     }),
     (story: any, context: any) => {
-        const { locale, brand } = context.globals;
+        const { locale, brand, currency } = context.globals;
 
-        return componentWrapperDecorator(SettingsManagerComponent, { locale, brand })(story, context)
+        return componentWrapperDecorator(SettingsManagerComponent, { locale, brand, currency })(story, context)
     },
 ]

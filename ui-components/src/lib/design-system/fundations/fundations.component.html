@@ -143,11 +143,11 @@
           {{ 'styleguide.localization.currencyTitle' | translate }}
         </h3>
         <div class="space-y-2">
-          <p class="text-4xl font-display font-bold text-on-surface-primary">
-            {{ 1250 | currency }}
+          <p class="text-xl font-display font-bold text-on-surface-primary">
+            {{ 1250 | DScurrency }}
           </p>
           <p class="text-sm text-on-surface-secondary">
-            {{ 'styleguide.localization.currencyDesc' | translate }}
+            {{ 'styleguide.localization.currencyDesc' | translate }} [{{ currency }}]
           </p>
         </div>
       </div>
@@ -158,11 +158,11 @@
           {{ 'styleguide.localization.dateTitle' | translate }}
         </h3>
         <div class="space-y-2">
-          <p class="text-4xl font-display font-bold text-on-surface-primary">
-            {{ today | date: 'longDate' }}
+          <p class="text-xl font-display font-bold text-on-surface-primary">
+            {{ today | DSdate: 'longDate' }}
           </p>
           <p class="text-sm text-on-surface-secondary">
-            {{ 'styleguide.localization.dateDesc' | translate }}
+            {{ 'styleguide.localization.dateDesc' | translate }} [{{ locale }}]
           </p>
         </div>
       </div>

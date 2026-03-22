@@ -113,7 +113,7 @@
     "localization": {
       "title": "i18n y Moneda",
       "currencyTitle": "Vista Previa de Moneda",
-      "currencyDesc": "CurrencyPipe estándar usando DEFAULT_CURRENCY_CODE",
+      "currencyDesc": "CurrencyPipe estándar usando",
       "dateTitle": "Vista Previa de Fecha",
       "dateDesc": "Localización usando DatePipe estándar"
     },
