@@ -7,10 +7,16 @@ import { DOCUMENT } from '@angular/common';
 describe('ThemeService', () => {
   let service: ThemeService;
   let mockDocument: {
+    head: {
+      appendChild: ReturnType<typeof vi.fn>;
+    };
+    getElementById: ReturnType<typeof vi.fn>;
+    createElement: ReturnType<typeof vi.fn>;
     documentElement: {
       style: {
         setProperty: ReturnType<typeof vi.fn>;
       };
+      setAttribute: ReturnType<typeof vi.fn>;
     };
   };
 
@@ -28,10 +34,16 @@ describe('ThemeService', () => {
 
   beforeEach(() => {
     mockDocument = {
+      head: {
+        appendChild: vi.fn(),
+      },
+      getElementById: vi.fn(),
+      createElement: vi.fn().mockReturnValue({ id: '', rel: '', href: '' }),
       documentElement: {
         style: {
           setProperty: vi.fn()
-        }
+        },
+        setAttribute: vi.fn()
       }
     };
 
@@ -48,41 +60,21 @@ describe('ThemeService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should set css variables when initializing tokens defaults to defaultBrand', () => {
-    service.initializeTokens('defaultBrand');
-    const setPropertyCalls = mockDocument.documentElement.style.setProperty.mock.calls;
-
-    expect(mockDocument.documentElement.style.setProperty).toHaveBeenCalled();
-    
-    // Check color (flat and nested)
-    const primaryColorCall = setPropertyCalls.find(call => call[0] === '--color-primary');
-    expect(primaryColorCall?.[1]).toBe('#ea4335');
-
-    const brandPrimaryColorCall = setPropertyCalls.find(call => call[0] === '--color-brand-primary');
-    expect(brandPrimaryColorCall?.[1]).toBe('#ea4335');
-
-    // Check font
-    const fontFamilyBaseCall = setPropertyCalls.find(call => call[0] === '--font-family-base');
-    expect(fontFamilyBaseCall?.[1]).toBe("Tahoma, Arial, 'Helvetica Neue', sans");
-
-    // Check size
-    const fontSizeSmallCall = setPropertyCalls.find(call => call[0] === '--size-font-small');
-    expect(fontSizeSmallCall?.[1]).toBe('0.75');
-
-    // Check button
-    const buttonRadiusCall = setPropertyCalls.find(call => call[0] === '--button-border-radius');
-    expect(buttonRadiusCall?.[1]).toBe('4px');
+  it('should set data-theme attribute on root', () => {
+    service.switchTheme('base');
+    expect(mockDocument.documentElement.setAttribute).toHaveBeenCalledWith('data-theme', 'base');
   });
 
-  it('should switch theme correctly between brands', () => {
-    service.initializeTokens('defaultBrand');
-    service.switchTheme('brand1');
+  it('should switch theme and load css file correctly', () => {
+    service.switchTheme('brand-1');
 
-    const setPropertyCalls = mockDocument.documentElement.style.setProperty.mock.calls;
+    expect(mockDocument.documentElement.setAttribute).toHaveBeenCalledWith('data-theme', 'brand-1');
+    expect(mockDocument.createElement).toHaveBeenCalledWith('link');
+    expect(mockDocument.head.appendChild).toHaveBeenCalled();
     
-    // Brand1 might have different values, let's just check it was called differently
-    const primaryColorCalls = setPropertyCalls.filter(call => call[0] === '--color-primary');
-    const lastCall = primaryColorCalls[primaryColorCalls.length - 1];
-    expect(lastCall).toBeTruthy();
+    // We expect the link to be updated with the correct path
+    const createdLink = mockDocument.createElement.mock.results[0].value;
+    expect(createdLink.id).toBe('brand-theme-link');
+    expect(createdLink.href).toBe('/tokens/web/brand-1/tokens.css');
   });
 });
