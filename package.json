@@ -6,6 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "storybook": "npm run build:tokens && nx storybook ui-components",
     "build:tokens": "node tokens/build.mjs"
   },
   "private": true,
