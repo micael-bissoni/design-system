@@ -27,9 +27,10 @@ export class IconComponent {
   name = input.required<string>();
   intent = input<IconVariants['intent']>('primary');
   size = input<IconVariants['size']>('medium');
-  className = input<string>('', { alias: 'class' });
 
-  calculatedClass = computed(() => 
-    cn(iconVariants({ intent: this.intent(), size: this.size() }), this.className())
-  );
+  class = input<string>('');
+
+  get calculatedClass(): string {
+    return cn(iconVariants({ intent: this.intent(), size: this.size() }), this.class());
+  }
 }

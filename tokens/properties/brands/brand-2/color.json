@@ -11,6 +11,24 @@
     "tertiary": {
       "value": "#efa34c",
       "type": "color"
+    },
+    "on": {
+      "primary": {
+        "value": "#f1ed21",
+        "type": "color"
+      },
+      "secondary": {
+        "value": "#21f13e",
+        "type": "color"
+      },
+      "tertiary": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "danger": {
+        "value": "#ffe6c3",
+        "type": "color"
+      }
     }
   }
 }

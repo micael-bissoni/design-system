@@ -9,6 +9,10 @@ export const iconVariants = cva(
         secondary: 'bg-secondary',
         tertiary: 'bg-tertiary',
         inherit: 'bg-current',
+        success: 'bg-success',
+        error: 'bg-error',
+        warning: 'bg-warning',
+        info: 'bg-info',
       },
       size: {
         small: 'w-4 h-4',

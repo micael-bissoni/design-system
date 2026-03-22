@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { Component, inject, input, output, OnDestroy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { ButtonComponent } from '../button/button.component';
 import { Subscription, timer } from 'rxjs';
 import { IconComponent } from '../icon/icon.component';
+import { clipboardVariants, clipboardContainerVariants } from './clipboard.variant';
 
 @Component({
   selector: 'ds-clipboard',
@@ -11,20 +13,32 @@ import { IconComponent } from '../icon/icon.component';
   templateUrl: './clipboard.component.html',
 })
 export class ClipboardComponent implements OnDestroy {
-  @Input() content: string = '';
-  @Output() contentCopied = new EventEmitter<string>();
+  content = input<string>('');
+  contentCopied = output<string>();
 
-  copied = false;
+  clipboard = inject(Clipboard)
+
+  status = signal<'copied' | 'initial'>('initial');
 
   sub?: Subscription;
 
+  clipboardVariants = clipboardVariants;
+  clipboardContainerVariants = clipboardContainerVariants;
+
   onCopy() {
-    navigator.clipboard.writeText(this.content);
-    this.contentCopied.emit(this.content)
-    this.copied = true;
-    this.sub = timer(3000).subscribe(() => {
-      this.copied = false;
-    });
+    if (this.content().trim()) {
+      const success = this.clipboard.copy(this.content());
+
+      if (success) {
+        this.status.set('copied');
+
+        // Cancel any previous timer
+        this.sub?.unsubscribe();
+
+        // Hide notification after 2 seconds using RxJS timer
+        this.sub = timer(400).subscribe(() => this.status.set('initial'));
+      }
+    }
   }
 
   ngOnDestroy() {

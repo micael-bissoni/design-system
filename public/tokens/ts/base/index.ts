@@ -1,4 +1,4 @@
-export const defaultBrand = {
+export const base = {
   "button": {
     "border": {
       "radius": "4px"
@@ -9,30 +9,28 @@ export const defaultBrand = {
     "height": "40px"
   },
   "color": {
-    "base": {
-      "black": "#000000",
-      "gray": {
-        "light": "#cccccc",
-        "medium": "#999999",
-        "dark": "#111111"
-      },
-      "red": "#ff0000",
-      "green": "#00ff00",
-      "blue": "#0000ff"
+    "white": "#ffffff",
+    "black": "#000000",
+    "gray": {
+      "light": "#cccccc",
+      "medium": "#999999",
+      "dark": "#111111"
     },
+    "success": "#22bb33",
+    "warning": "#f0ad4e",
+    "danger": "#bb2124",
+    "info": "#5bc0de",
     "primary": "#ea4335",
     "secondary": "#34a853",
     "tertiary": "#999999",
-    "action": {
-      "primary": "#ea4335",
-      "secondary": "#34a853",
-      "tertiary": "#999999"
-    },
-    "font": {
-      "base": "#000000",
-      "primary": "#ea4335",
-      "secondary": "#34a853",
-      "tertiary": "#cccccc"
+    "on": {
+      "primary": "#ffffff",
+      "secondary": "#ffffff",
+      "tertiary": "#ffffff",
+      "success": "#ffffff",
+      "warning": "#ffffff",
+      "danger": "#ffffff",
+      "info": "#ffffff"
     }
   },
   "font": {
@@ -64,9 +62,10 @@ export const defaultBrand = {
     }
   },
   "icon": {
-    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
-    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')",
-    "logo": "url('/tokens/default-brand/assets/icons/logo.svg')"
+    "content_copy": "url('/tokens/base/assets/icons/content_copy.svg')",
+    "content_paste": "url('/tokens/base/assets/icons/content_paste.svg')",
+    "check_circle": "url('/tokens/base/assets/icons/check_circle.svg')",
+    "logo": "url('/tokens/base/assets/icons/logo.svg')"
   }
 } as const;
         

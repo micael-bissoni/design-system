@@ -1,11 +1,15 @@
 {
     "icon": {
         "content_copy": {
-            "value": "url('/tokens/ts/assets/icons/content_copy.svg')",
+            "value": "url('/tokens/base/assets/icons/content_copy.svg')",
             "type": "asset"
         },
         "content_paste": {
-            "value": "url('/tokens/ts/assets/icons/content_paste.svg')",
+            "value": "url('/tokens/base/assets/icons/content_paste.svg')",
+            "type": "asset"
+        },
+        "check_circle": {
+            "value": "url('/tokens/base/assets/icons/check_circle.svg')",
             "type": "asset"
         }
     }

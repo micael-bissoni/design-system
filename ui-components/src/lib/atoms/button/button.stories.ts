@@ -8,7 +8,7 @@ const meta: Meta<ButtonComponent> = {
   argTypes: {
     intent: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline', 'ghost', 'link'],
+      options: ['primary', 'secondary', 'outline', 'ghost', 'link', 'success', 'danger', 'warning', 'info', 'neutral', 'inverse'],
     },
     size: {
       control: 'select',
@@ -52,15 +52,5 @@ export const Outline: Story = {
   render: (args) => ({
     props: args,
     template: `<ds-button [intent]="intent">Outline Button</ds-button>`,
-  }),
-};
-
-export const Icon: Story = {
-  args: {
-    intent: 'outline',
-  },
-  render: (args) => ({
-    props: args,
-    template: `<ds-button [intent]="intent"></ds-button>`,
   }),
 };

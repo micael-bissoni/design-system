@@ -12,7 +12,7 @@ const meta: Meta<IconComponent> = {
     },
     intent: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'inherit'],
+      options: ['primary', 'secondary', 'tertiary', 'success', 'error', 'warning', 'info', 'inherit'],
     },
     size: {
       control: 'select',

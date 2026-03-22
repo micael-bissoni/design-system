@@ -23,7 +23,7 @@ describe('IconComponent', () => {
   it('should render with default intent and size', () => {
     fixture.componentRef.setInput('name', 'content_copy');
     fixture.detectChanges();
-    
+
     const icon = fixture.nativeElement.querySelector('[data-testid="ds-icon"]');
     expect(icon.className).toContain('bg-primary');
     expect(icon.className).toContain('w-6 h-6');
@@ -35,7 +35,7 @@ describe('IconComponent', () => {
     fixture.componentRef.setInput('intent', 'secondary');
     fixture.componentRef.setInput('size', 'large');
     fixture.detectChanges();
-    
+
     const icon = fixture.nativeElement.querySelector('[data-testid="ds-icon"]');
     expect(icon.className).toContain('bg-secondary');
     expect(icon.className).toContain('w-8 h-8');

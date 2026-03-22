@@ -9,30 +9,28 @@ export const brand1 = {
     "height": "40px"
   },
   "color": {
-    "base": {
-      "black": "#000000",
-      "gray": {
-        "light": "#cccccc",
-        "medium": "#999999",
-        "dark": "#111111"
-      },
-      "red": "#ff0000",
-      "green": "#00ff00",
-      "blue": "#0000ff"
+    "white": "#ffffff",
+    "black": "#000000",
+    "gray": {
+      "light": "#cccccc",
+      "medium": "#999999",
+      "dark": "#111111"
     },
+    "success": "#22bb33",
+    "warning": "#f0ad4e",
+    "danger": "#bb2124",
+    "info": "#5bc0de",
     "primary": "#ec008c",
     "secondary": "#2e3192",
     "tertiary": "#92278f",
-    "action": {
-      "primary": "#ec008c",
-      "secondary": "#2e3192",
-      "tertiary": "#92278f"
-    },
-    "font": {
-      "base": "#000000",
-      "primary": "#ec008c",
-      "secondary": "#2e3192",
-      "tertiary": "#cccccc"
+    "on": {
+      "primary": "#ffffff",
+      "secondary": "#ffffff",
+      "tertiary": "#ffffff",
+      "success": "#ffffff",
+      "warning": "#ffffff",
+      "danger": "#ffffff",
+      "info": "#ffffff"
     }
   },
   "font": {
@@ -64,8 +62,9 @@ export const brand1 = {
     }
   },
   "icon": {
-    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
-    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')",
+    "content_copy": "url('/tokens/base/assets/icons/content_copy.svg')",
+    "content_paste": "url('/tokens/base/assets/icons/content_paste.svg')",
+    "check_circle": "url('/tokens/base/assets/icons/check_circle.svg')",
     "logo": "url('/tokens/brand-1/assets/icons/logo.svg')"
   },
   "asset": {

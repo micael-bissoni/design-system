@@ -1,60 +1,82 @@
 {
   "color": {
-    "base": {
-      "black": {
-        "value": "#000000",
+    "white": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "black": {
+      "value": "#000000",
+      "type": "color"
+    },
+    "gray": {
+      "light": {
+        "value": "#CCCCCC",
         "type": "color"
       },
-      "gray": {
-        "light": {
-          "value": "#CCCCCC",
-          "type": "color"
-        },
-        "medium": {
-          "value": "#999999",
-          "type": "color"
-        },
-        "dark": {
-          "value": "#111111",
-          "type": "color"
-        }
-      },
-      "red": {
-        "value": "#FF0000",
+      "medium": {
+        "value": "#999999",
         "type": "color"
       },
-      "green": {
-        "value": "#00FF00",
-        "type": "color"
-      },
-      "blue": {
-        "value": "#0000FF",
+      "dark": {
+        "value": "#111111",
         "type": "color"
       }
     },
+    "success": {
+      "value": "#22bb33",
+      "type": "color"
+    },
+    "warning": {
+      "value": "#f0ad4e",
+      "type": "color"
+    },
+    "danger": {
+      "value": "#bb2124",
+      "type": "color"
+    },
+    "info": {
+      "value": "#5bc0de",
+      "type": "color"
+    },
     "primary": {
-      "value": "{color.base.blue}",
+      "value": "{color.primary}",
       "type": "color"
     },
     "secondary": {
-      "value": "{color.base.gray.medium}",
+      "value": "{color.secondary}",
       "type": "color"
     },
     "tertiary": {
-      "value": "{color.base.gray.light}",
+      "value": "{color.tertiary}",
       "type": "color"
     },
-    "action": {
+    "on": {
       "primary": {
-        "value": "{color.primary}",
+        "value": "{color.white}",
         "type": "color"
       },
       "secondary": {
-        "value": "{color.secondary}",
+        "value": "{color.white}",
         "type": "color"
       },
       "tertiary": {
-        "value": "{color.tertiary}",
+        "value": "{color.white}",
+        "type": "color"
+      },
+      "success": {
+        "value": "{color.white}",
+        "type": "color"
+      },
+      "warning": {
+        "value": "{color.white}",
+        "type": "color"
+      },
+      "danger": {
+        "value": "{color.white}",
+        "type": "color"
+      },
+      "info": {
+        "value": "{color.white}",
         "type": "color"
       }
     }

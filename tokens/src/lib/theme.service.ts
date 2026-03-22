@@ -20,7 +20,7 @@ export class ThemeService {
   /**
    * Switches the active brand theme dynamically.
    */
-  public switchTheme(brand: Brand = 'default-brand'): void {
+  public switchTheme(brand: Brand = 'base'): void {
     if (this.currentBrand === brand) return;
     this.currentBrand = brand;
     const root = this.document.documentElement;
