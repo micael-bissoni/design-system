@@ -1,17 +1,9 @@
 {
   "font": {
-    "brand": {
-      "font": {
-        "family": {
-          "headers": {
-            "value": "Montserrat, sans-serif",
-            "type": "fontFamily"
-          },
-          "base": {
-            "value": "{font.platform.system}",
-            "type": "fontFamily"
-          }
-        }
+    "family": {
+      "headers": {
+        "value": "Montserrat, sans-serif",
+        "type": "fontFamily"
       }
     }
   }

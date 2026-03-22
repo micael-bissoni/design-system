@@ -1,11 +1,7 @@
 {
   "icon": {
-    "content_copy": {
-      "value": "url('/tokens/default-brand/assets/icons/content_copy.svg')",
-      "type": "asset"
-    },
-    "content_paste": {
-      "value": "url('/tokens/default-brand/assets/icons/content_paste.svg')",
+    "logo": {
+      "value": "url('/tokens/default-brand/assets/icons/logo.svg')",
       "type": "asset"
     }
   }

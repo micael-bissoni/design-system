@@ -1,10 +1,14 @@
 export const brand2 = {
-  "color": {
-    "brand": {
-      "primary": "#e15a3a",
-      "secondary": "#af1736",
-      "tertiary": "#efa34c"
+  "button": {
+    "border": {
+      "radius": "4px"
     },
+    "text": {
+      "size": "12pt"
+    },
+    "height": "40px"
+  },
+  "color": {
     "base": {
       "black": "#000000",
       "gray": {
@@ -31,25 +35,7 @@ export const brand2 = {
       "tertiary": "#cccccc"
     }
   },
-  "asset": {
-    "font": {
-      "custom": {
-        "name": "Indie Flower",
-        "ttf": "assets/fonts/Indie_Flower/IndieFlower-Regular.ttf",
-        "weight": "400",
-        "style": "normal"
-      }
-    }
-  },
   "font": {
-    "brand": {
-      "font": {
-        "family": {
-          "headers": "Indie Flower, sans-serif",
-          "base": "Tahoma, Arial, 'Helvetica Neue', sans"
-        }
-      }
-    },
     "family": {
       "headers": "Indie Flower, sans-serif",
       "base": "Tahoma, Arial, 'Helvetica Neue', sans"
@@ -57,20 +43,6 @@ export const brand2 = {
     "platform": {
       "system": "Tahoma, Arial, 'Helvetica Neue', sans"
     }
-  },
-  "icon": {
-    "logo": "url('/tokens/brand-2/assets/icons/logo.svg')",
-    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
-    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')"
-  },
-  "button": {
-    "border": {
-      "radius": "4px"
-    },
-    "text": {
-      "size": "12pt"
-    },
-    "height": "40px"
   },
   "size": {
     "font": {
@@ -89,6 +61,21 @@ export const brand2 = {
       "9xlarge": "80pt",
       "10xlarge": "88pt",
       "base": "12pt"
+    }
+  },
+  "icon": {
+    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
+    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')",
+    "logo": "url('/tokens/brand-2/assets/icons/logo.svg')"
+  },
+  "asset": {
+    "font": {
+      "custom": {
+        "name": "Indie Flower",
+        "ttf": "assets/fonts/Indie_Flower/IndieFlower-Regular.ttf",
+        "weight": "400",
+        "style": "normal"
+      }
     }
   }
 } as const;

@@ -1,10 +1,14 @@
 export const brand1 = {
-  "color": {
-    "brand": {
-      "primary": "#ec008c",
-      "secondary": "#2e3192",
-      "tertiary": "#92278f"
+  "button": {
+    "border": {
+      "radius": "4px"
     },
+    "text": {
+      "size": "12pt"
+    },
+    "height": "40px"
+  },
+  "color": {
     "base": {
       "black": "#000000",
       "gray": {
@@ -31,25 +35,7 @@ export const brand1 = {
       "tertiary": "#cccccc"
     }
   },
-  "asset": {
-    "font": {
-      "custom": {
-        "name": "Orbitron",
-        "ttf": "assets/fonts/orbitron/Orbitron-Black.ttf",
-        "weight": "400",
-        "style": "normal"
-      }
-    }
-  },
   "font": {
-    "brand": {
-      "font": {
-        "family": {
-          "headers": "Orbitron, sans-serif",
-          "base": "Tahoma, Arial, 'Helvetica Neue', sans"
-        }
-      }
-    },
     "family": {
       "headers": "Orbitron, sans-serif",
       "base": "Tahoma, Arial, 'Helvetica Neue', sans"
@@ -57,20 +43,6 @@ export const brand1 = {
     "platform": {
       "system": "Tahoma, Arial, 'Helvetica Neue', sans"
     }
-  },
-  "icon": {
-    "logo": "url('/tokens/brand-1/assets/icons/logo.svg')",
-    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
-    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')"
-  },
-  "button": {
-    "border": {
-      "radius": "4px"
-    },
-    "text": {
-      "size": "12pt"
-    },
-    "height": "40px"
   },
   "size": {
     "font": {
@@ -89,6 +61,21 @@ export const brand1 = {
       "9xlarge": "80pt",
       "10xlarge": "88pt",
       "base": "12pt"
+    }
+  },
+  "icon": {
+    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
+    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')",
+    "logo": "url('/tokens/brand-1/assets/icons/logo.svg')"
+  },
+  "asset": {
+    "font": {
+      "custom": {
+        "name": "Orbitron",
+        "ttf": "assets/fonts/orbitron/Orbitron-Black.ttf",
+        "weight": "400",
+        "style": "normal"
+      }
     }
   }
 } as const;

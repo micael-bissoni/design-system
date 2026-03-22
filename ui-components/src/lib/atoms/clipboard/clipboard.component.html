@@ -1,7 +1,9 @@
-<div class="relative" (onMouseOver)="onMouseOver()" (onMouseOut)="onMouseOut()">
+<div class="relative group w-fit">
   <ng-content></ng-content>
 
-  <div class="{{ showOverlay ? 'block' : 'hidden' }} absolute top-0 right-0 bg-black/10 w-full h-full">
-    <ds-button (click)="onCopy()" size="small" [style.backgroundImage]="'var(--icon-content_copy)'"></ds-button>
+  <div class="absolute top-1 right-1 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300">
+    <ds-button (click)="onCopy()" size="small">
+      <ds-icon intent="inherit" [name]="copied ? 'content_paste' : 'content_copy'"></ds-icon>
+    </ds-button>
   </div>
 </div>

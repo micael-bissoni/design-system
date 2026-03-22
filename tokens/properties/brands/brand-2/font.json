@@ -18,18 +18,10 @@
     }
   },
   "font": {
-    "brand": {
-      "font": {
-        "family": {
-          "headers": {
-            "value": "{asset.font.custom.name.value}, sans-serif",
-            "type": "fontFamily"
-          },
-          "base": {
-            "value": "{font.platform.system}",
-            "type": "fontFamily"
-          }
-        }
+    "family": {
+      "headers": {
+        "value": "{asset.font.custom.name.value}, sans-serif",
+        "type": "fontFamily"
       }
     }
   }

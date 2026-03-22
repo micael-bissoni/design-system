@@ -33,15 +33,15 @@
       }
     },
     "primary": {
-      "value": "{color.brand.primary}",
+      "value": "{color.base.blue}",
       "type": "color"
     },
     "secondary": {
-      "value": "{color.brand.secondary}",
+      "value": "{color.base.gray.medium}",
       "type": "color"
     },
     "tertiary": {
-      "value": "{color.brand.tertiary}",
+      "value": "{color.base.gray.light}",
       "type": "color"
     },
     "action": {

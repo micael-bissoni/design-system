@@ -1,18 +1,16 @@
 {
   "color": {
-    "brand": {
-      "primary": {
-        "value": "#E15A3A",
-        "type": "color"
-      },
-      "secondary": {
-        "value": "#af1736",
-        "type": "color"
-      },
-      "tertiary": {
-        "value": "#efa34c",
-        "type": "color"
-      }
+    "primary": {
+      "value": "#E15A3A",
+      "type": "color"
+    },
+    "secondary": {
+      "value": "#af1736",
+      "type": "color"
+    },
+    "tertiary": {
+      "value": "#efa34c",
+      "type": "color"
     }
   }
 }

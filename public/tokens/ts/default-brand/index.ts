@@ -1,10 +1,14 @@
 export const defaultBrand = {
-  "color": {
-    "brand": {
-      "primary": "#ea4335",
-      "secondary": "#34a853",
-      "tertiary": "#999999"
+  "button": {
+    "border": {
+      "radius": "4px"
     },
+    "text": {
+      "size": "12pt"
+    },
+    "height": "40px"
+  },
+  "color": {
     "base": {
       "black": "#000000",
       "gray": {
@@ -32,14 +36,6 @@ export const defaultBrand = {
     }
   },
   "font": {
-    "brand": {
-      "font": {
-        "family": {
-          "headers": "Montserrat, sans-serif",
-          "base": "Tahoma, Arial, 'Helvetica Neue', sans"
-        }
-      }
-    },
     "family": {
       "headers": "Montserrat, sans-serif",
       "base": "Tahoma, Arial, 'Helvetica Neue', sans"
@@ -47,19 +43,6 @@ export const defaultBrand = {
     "platform": {
       "system": "Tahoma, Arial, 'Helvetica Neue', sans"
     }
-  },
-  "icon": {
-    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
-    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')"
-  },
-  "button": {
-    "border": {
-      "radius": "4px"
-    },
-    "text": {
-      "size": "12pt"
-    },
-    "height": "40px"
   },
   "size": {
     "font": {
@@ -79,6 +62,11 @@ export const defaultBrand = {
       "10xlarge": "88pt",
       "base": "12pt"
     }
+  },
+  "icon": {
+    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
+    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')",
+    "logo": "url('/tokens/default-brand/assets/icons/logo.svg')"
   }
 } as const;
         

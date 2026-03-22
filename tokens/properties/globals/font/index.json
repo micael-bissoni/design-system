@@ -2,11 +2,11 @@
   "font": {
     "family": {
       "headers": {
-        "value": "{font.brand.font.family.headers}",
+        "value": "{font.platform.system}",
         "type": "fontFamily"
       },
       "base": {
-        "value": "{font.brand.font.family.base}",
+        "value": "{font.platform.system}",
         "type": "fontFamily"
       }
     }

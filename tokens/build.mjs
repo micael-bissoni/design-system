@@ -37,9 +37,9 @@ function minify(obj) {
 function getStyleDictionaryConfig(brand, platform) {
   return {
     source: [
-      `tokens/properties/brands/${brand}/*.json`,
       'tokens/properties/globals/**/*.json',
       `tokens/properties/platforms/${platform}/*.json`,
+      `tokens/properties/brands/${brand}/*.json`,
     ],
     platforms: {
       web: {
@@ -131,9 +131,19 @@ brands.map(function (brand) {
     const publicBrandAssetsDir = path.join(process.cwd(), `public/tokens/${brand}/assets`);
 
     if (fs.existsSync(brandAssetsDir)) {
-      console.log(`Copying assets for ${brand}...`);
+      console.log(`Copying brand assets for ${brand}...`);
       fs.mkdirSync(publicBrandAssetsDir, { recursive: true });
       fs.cpSync(brandAssetsDir, publicBrandAssetsDir, { recursive: true });
+    }
+
+    // Copy assets if they exist for this platform
+    const platformAssetsDir = path.join(process.cwd(), `tokens/properties/platforms/${platform}/assets`);
+    const publicPlatformAssetsDir = path.join(process.cwd(), `public/tokens/${platform}/assets`);
+
+    if (fs.existsSync(platformAssetsDir)) {
+      console.log(`Copying platform assets for ${platform}...`);
+      fs.mkdirSync(publicPlatformAssetsDir, { recursive: true });
+      fs.cpSync(platformAssetsDir, publicPlatformAssetsDir, { recursive: true });
     }
   });
 });
