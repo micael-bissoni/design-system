@@ -6,7 +6,7 @@ import path from 'path';
 const brands = fs.readdirSync(path.join(process.cwd(), 'tokens/properties/brands')).filter((brand) => !brand.startsWith('.'));
 const platforms = fs.readdirSync(path.join(process.cwd(), 'tokens/properties/platforms')).filter((platform) => !platform.startsWith('.'));
 
-const { androidColors, androidDimens, androidFontDimens, iosMacros, scssVariables } = formats;
+const { androidColors, androidDimens, androidFontDimens, iosMacros, cssVariables } = formats;
 const { web } = transformGroups;
 
 function toBabelCase(str) {
@@ -47,8 +47,8 @@ function getStyleDictionaryConfig(brand, platform) {
         buildPath: `public/tokens/web/${brand}/`,
         files: [
           {
-            destination: 'tokens.scss',
-            format: scssVariables,
+            destination: 'tokens.css',
+            format: cssVariables,
           },
         ],
       },
@@ -105,58 +105,52 @@ console.log('Build started...');
 
 // PROCESS THE DESIGN TOKENS FOR THE DIFFEREN BRANDS AND PLATFORMS
 
-brands.map(function (brand) {
-  platforms.map(function (platform) {
+const brandFileContent = [];
+
+brands.forEach(function (brand, brandIndex) {
+  platforms.forEach(function (platform) {
     console.log('\n==============================================');
     console.log(`\nProcessing: [${platform}] [${brand}]`);
 
     const sd = new StyleDictionary(getStyleDictionaryConfig(brand, platform));
-
-    const brandTokens = {};
-    sd.registerFormat({
-      name: 'typescript/multibrand',
-      format: async function ({ dictionary }) {
-        const tokens = dictionary.tokens;
-        const brandName = toBabelCase(brand)
-        brandTokens[brandName] = minify(tokens)
-        console.log(brandName, brandTokens[brandName])
-        return `export const ${brandName} = ${JSON.stringify(brandTokens[brandName], null, 2)} as const;
-        `;
-      }
-    });
     sd.buildPlatform(platform);
 
-    // Copy assets if they exist for this brand
-    const brandAssetsDir = path.join(process.cwd(), `tokens/properties/brands/${brand}/assets`);
-    const publicBrandAssetsDir = path.join(process.cwd(), `public/tokens/${brand}/assets`);
+    if (platform === 'ts') {
+      // Copy assets if they exist for this brand
+      const brandAssetsDir = path.join(process.cwd(), `tokens/properties/brands/${brand}/assets`);
+      const publicBrandAssetsDir = path.join(process.cwd(), `public/tokens/${brand}/assets`);
 
-    if (fs.existsSync(brandAssetsDir)) {
-      console.log(`Copying brand assets for ${brand}...`);
-      fs.mkdirSync(publicBrandAssetsDir, { recursive: true });
-      fs.cpSync(brandAssetsDir, publicBrandAssetsDir, { recursive: true });
-    }
+      if (fs.existsSync(brandAssetsDir)) {
+        console.log(`Copying brand assets for ${brand}...`);
+        fs.mkdirSync(publicBrandAssetsDir, { recursive: true });
+        fs.cpSync(brandAssetsDir, publicBrandAssetsDir, { recursive: true });
+      }
 
-    // Copy assets if they exist for this platform
-    const platformAssetsDir = path.join(process.cwd(), `tokens/properties/platforms/${platform}/assets`);
-    const publicPlatformAssetsDir = path.join(process.cwd(), `public/tokens/${platform}/assets`);
-
-    if (fs.existsSync(platformAssetsDir)) {
-      console.log(`Copying platform assets for ${platform}...`);
-      fs.mkdirSync(publicPlatformAssetsDir, { recursive: true });
-      fs.cpSync(platformAssetsDir, publicPlatformAssetsDir, { recursive: true });
+      brandFileContent.push({
+        name: toBabelCase(brand),
+        path: `../../../public/tokens/ts/${brand}/index`
+      });
     }
   });
 });
 
+let tokensTsContent = '';
+brandFileContent.forEach(b => {
+  tokensTsContent += `import { ${b.name} } from '${b.path}';\n`;
+});
+
+tokensTsContent += `\nexport const brands = {\n`;
+brandFileContent.forEach(b => {
+  tokensTsContent += `  '${b.name.toLowerCase()}': ${b.name},\n`;
+});
+tokensTsContent += `} as const;\n\n`;
+tokensTsContent += `export type Brand = keyof typeof brands;\n`;
+
 fs.writeFileSync(
   path.join(process.cwd(), 'tokens/src/lib/tokens.ts'),
-  `${brands.map((brand) => `import { ${toBabelCase(brand)} } from '../../../public/tokens/ts/${brand}/index';`).join('\n')}
-export const brands = {
-${brands.map((brand) => `  '${brand}': ${toBabelCase(brand)}`).join(',\n')}
-} as const;
-export type Brand = keyof typeof brands;
-  `,
+  tokensTsContent,
 );
 
 console.log('\n==============================================');
+console.log('\nTokens.ts generated successfully!');
 console.log('\nBuild completed!');
