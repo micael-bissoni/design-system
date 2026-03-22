@@ -1,0 +1,7 @@
+<div class="relative" (onMouseOver)="onMouseOver()" (onMouseOut)="onMouseOut()">
+  <ng-content></ng-content>
+
+  <div class="{{ showOverlay ? 'block' : 'hidden' }} absolute top-0 right-0 bg-black/10 w-full h-full">
+    <ds-button (click)="onCopy()" size="small" [style.backgroundImage]="'var(--icon-content_copy)'"></ds-button>
+  </div>
+</div>

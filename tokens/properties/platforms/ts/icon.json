@@ -1,0 +1,12 @@
+{
+    "icon": {
+        "content_copy": {
+            "value": "url('/tokens/ts/assets/icons/content_copy.svg')",
+            "type": "asset"
+        },
+        "content_paste": {
+            "value": "url('/tokens/ts/assets/icons/content_paste.svg')",
+            "type": "asset"
+        }
+    }
+}

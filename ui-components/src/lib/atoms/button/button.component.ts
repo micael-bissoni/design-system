@@ -4,7 +4,7 @@ import { buttonVariants, type ButtonVariants } from './button.variants';
 import { cn } from '../../utils/cn';
 
 @Component({
-  selector: 'lib-button',
+  selector: 'ds-button',
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -19,6 +19,7 @@ export class ButtonComponent {
   intent = input<ButtonVariants['intent']>('primary');
   size = input<ButtonVariants['size']>('medium');
   fullWidth = input<ButtonVariants['fullWidth']>(false);
+
   class = input<string>('');
 
   get calculatedClass(): string {

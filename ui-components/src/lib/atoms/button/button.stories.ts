@@ -31,7 +31,7 @@ export const Primary: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<lib-button [intent]="intent" [size]="size" [fullWidth]="fullWidth">Primary Button</lib-button>`,
+    template: `<ds-button [intent]="intent" [size]="size" [fullWidth]="fullWidth">Primary Button</ds-button>`,
   }),
 };
 
@@ -41,7 +41,7 @@ export const Secondary: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<lib-button [intent]="intent">Secondary Button</lib-button>`,
+    template: `<ds-button [intent]="intent">Secondary Button</ds-button>`,
   }),
 };
 
@@ -51,6 +51,16 @@ export const Outline: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<lib-button [intent]="intent">Outline Button</lib-button>`,
+    template: `<ds-button [intent]="intent">Outline Button</ds-button>`,
+  }),
+};
+
+export const Icon: Story = {
+  args: {
+    intent: 'outline',
+  },
+  render: (args) => ({
+    props: args,
+    template: `<ds-button [intent]="intent"></ds-button>`,
   }),
 };

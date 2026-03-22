@@ -13,12 +13,15 @@
       <h2 class="text-xl font-semibold text-primary">Brand Identity</h2>
     </div>
     <div class="w-full md:w-1/4 flex flex-col items-center justify-center gap-4">
-      <div class="w-48 h-24 bg-contain bg-no-repeat bg-center border border-base-gray-light rounded-lg p-4 shadow-sm" [style.backgroundImage]="'var(--icon-logo)'"></div>
+      <div class="w-48 h-24 bg-contain bg-no-repeat bg-center border border-base-gray-light rounded-lg p-4 shadow-sm"
+        [style.backgroundImage]="'var(--icon-logo)'"></div>
       <span class="text-xs text-base-gray-medium font-mono">--icon-logo</span>
     </div>
     <div class="w-full md:w-2/4">
       <p class="text-base-gray-dark leading-relaxed">
-        Our brand identity is represented by the primary logo, which is dynamically loaded via design tokens. This ensures brand consistency across different platforms and themes while allowing for easy maintenance and brand updates.
+        Our brand identity is represented by the primary logo, which is dynamically loaded via design tokens. This
+        ensures brand consistency across different platforms and themes while allowing for easy maintenance and brand
+        updates.
       </p>
     </div>
   </div>
@@ -29,11 +32,19 @@
       <h2 class="text-xl font-semibold text-primary">Font</h2>
     </div>
     <div class="w-full md:w-1/4 flex items-center justify-center">
-      <div class="text-[8rem] leading-none font-headers text-primary font-light">Aa<span class="text-secondary">.</span></div>
+      <div class="text-4xl leading-none font-headers ">
+        <span
+          class="text-primary font-light hover:text-primary/50 transition-transform duration-300 ease-in-out">A</span>
+        <span class="text-secondary hover:text-primary/50 transition-transform duration-300 ease-in-out">a</span>
+        <span class="text-tertiary hover:text-primary/50 transition-transform duration-300 ease-in-out">.</span>
+      </div>
     </div>
     <div class="w-full md:w-2/4">
       <p class="text-base-gray-dark leading-relaxed">
-        Our typography is based on variables defined in the system. The headers font uses the configured <strong>headers</strong> family, blending contemporary aesthetic with strong legibility. The <strong>base</strong> font ensures accessibility and elegant reading across all UI elements fitting seamlessly into both bold and minimalist design systems.
+        Our typography is based on variables defined in the system. The headers font uses the configured
+        <strong>headers</strong> family, blending contemporary aesthetic with strong legibility. The
+        <strong>base</strong> font ensures accessibility and elegant reading across all UI elements fitting seamlessly
+        into both bold and minimalist design systems.
       </p>
     </div>
   </div>
@@ -63,9 +74,15 @@
     </div>
     <div class="w-full md:w-5/12 relative min-h-[250px] hidden md:block">
       <!-- Decorative geometric shapes similar to image -->
-      <div class="absolute top-0 right-10 w-32 h-24 bg-action-primary rounded-xl transform rotate-12 opacity-80 shadow-lg"></div>
-      <div class="absolute top-16 right-32 w-32 h-20 bg-action-tertiary rounded-xl transform -rotate-12 opacity-80 shadow-lg"></div>
-      <div class="absolute bottom-10 right-20 w-32 h-20 bg-action-secondary rounded-xl transform rotate-6 shadow-lg"></div>
+      <div
+        class="absolute top-0 right-10 w-32 h-24 bg-action-primary rounded-xl transform rotate-12 hover:rotate-0 hover:scale-110 transition-transform duration-300 ease-in-out opacity-80 shadow-lg">
+      </div>
+      <div
+        class="absolute top-16 right-32 w-32 h-20 bg-action-tertiary rounded-xl transform -rotate-12 hover:rotate-0 hover:scale-110 transition-transform duration-300 ease-in-out opacity-80 shadow-lg">
+      </div>
+      <div
+        class="absolute bottom-10 right-20 w-32 h-20 bg-action-secondary rounded-xl transform rotate-6 hover:rotate-0 hover:scale-110 transition-transform duration-300 ease-in-out shadow-lg">
+      </div>
     </div>
   </div>
 
@@ -78,14 +95,17 @@
       <div class="relative w-32 h-32 rounded-full border-4 border-base-gray-light flex items-center justify-center">
         <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center opacity-80">
           <div class="w-16 h-16 rounded-full bg-action-secondary flex items-center justify-center opacity-90">
-             <div class="w-8 h-8 rounded-full bg-base-black opacity-40"></div>
+            <div class="w-8 h-8 rounded-full bg-base-black opacity-40"></div>
           </div>
         </div>
       </div>
     </div>
     <div class="w-full md:w-2/4">
       <p class="text-base-gray-dark leading-relaxed">
-        The color system uses a balanced combination of our brand tokens including primary and secondary intents. It features a progression of base grays, creating a calm, trustworthy visual identity. These are paired with a grayscale that ranges from deep black to light gray, offering strong contrast for typography and interface elements.
+        The color system uses a balanced combination of our brand tokens including primary and secondary intents. It
+        features a progression of base grays, creating a calm, trustworthy visual identity. These are paired with a
+        grayscale that ranges from deep black to light gray, offering strong contrast for typography and interface
+        elements.
       </p>
     </div>
   </div>

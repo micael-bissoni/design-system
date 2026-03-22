@@ -59,23 +59,36 @@ export const brand2 = {
     }
   },
   "icon": {
-    "logo": "url('/tokens/brand-2/assets/icons/logo.svg')"
+    "logo": "url('/tokens/brand-2/assets/icons/logo.svg')",
+    "content_copy": "url('/tokens/ts/assets/icons/content_copy.svg')",
+    "content_paste": "url('/tokens/ts/assets/icons/content_paste.svg')"
   },
   "button": {
     "border": {
       "radius": "4px"
     },
     "text": {
-      "size": "1"
+      "size": "12pt"
     },
     "height": "40px"
   },
   "size": {
     "font": {
-      "small": "0.75",
-      "medium": "1",
-      "large": "2",
-      "base": "1"
+      "xsmall": "8pt",
+      "small": "10pt",
+      "medium": "12pt",
+      "large": "14pt",
+      "xlarge": "18pt",
+      "2xlarge": "24pt",
+      "3xlarge": "32pt",
+      "4xlarge": "40pt",
+      "5xlarge": "48pt",
+      "6xlarge": "56pt",
+      "7xlarge": "64pt",
+      "8xlarge": "72pt",
+      "9xlarge": "80pt",
+      "10xlarge": "88pt",
+      "base": "12pt"
     }
   }
 } as const;
