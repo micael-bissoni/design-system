@@ -29,13 +29,15 @@
   },
   "styleguide": {
     "title": "Guía de Estilo",
+    "subtitle": "Fundamentos e Identidad de Marca",
     "font": {
       "title": "Fuente",
-      "description1": "La escala tipográfica se calcula sistemáticamente para establecer una jerarquía clara. Al utilizar pesos variados e interlineado rítmico, garantizamos una lectura armoniosa.",
-      "descriptionSans": "La fuente Sans-Serif se utiliza para el cuerpo de texto y la interfaz, garantizando una legibilidad superior y un aspecto moderno y profesional.",
-      "descriptionMono": "La fuente Monoespaciada se reserva para datos técnicos, tokens y código, donde la precisión del alineamiento es vital para la claridad.",
-      "usageSans": "Uso para el cuerpo de texto, etiquetas de interfaz y botones.",
-      "usageDisplay": "Uso para títulos a gran escala, números de impacto y elementos de marca."
+      "usageDisplay": "Uso para títulos a gran escala, números de impacto y elementos de marca.",
+      "descriptionFoundations": "Nuestra tipografía se basa en variables definidas en el sistema. La fuente de los encabezados utiliza la familia configurada, combinando una estética contemporánea con una fuerte legibilidad. La fuente base garantiza la accesibilidad y una lectura elegante en todos los elementos de la interfaz, encajando a la perfección tanto en sistemas de diseño audaces como minimalistas."
+    },
+    "brand": {
+      "title": "Identidad de Marca",
+      "description": "Nuestra identidad de marca está representada por el logotipo principal, que se carga dinámicamente mediante tokens de diseño. Esto garantiza la coherencia de la marca en diferentes plataformas y temas, al tiempo que permite un fácil mantenimiento y actualizaciones."
     },
     "headline": {
       "title": "Titulares",
@@ -48,67 +50,35 @@
       "bold": "Negrita",
       "semiBold": "Seminegrita",
       "medium": "Media",
-      "regular": "Regular"
+      "regular": "Regular",
+      "labels": {
+        "large": "Grande",
+        "medium": "Medio",
+        "base": "Base",
+        "small": "Pequeño"
+      }
     },
     "color": {
       "title": "Sistema de Colores",
-      "description1": "Nuestro sistema de colores está meticulosamente estructurado en torno a los principios del diseño atómico, utilizando una estructura jerárquica de roles Primario, Secundario y Terciario. Esto garantiza un peso visual óptimo, accesibilidad (cumplimiento de WCAG) y una voz de marca coherente en todos los puntos de contacto digitales.",
-      "description2": "Estos se combinan con una escala de grises que va desde el negro profundo hasta el plata y el gris claro, ofreciendo un fuerte contraste para la tipografía y los elementos de la interfaz.",
-      "brandContext": "Contexto de Marca",
-      "corePrimary": "Primario Core",
-      "coreSecondary": "Secundario Core",
-      "coreTertiary": "Terciario Core",
-      "feedbackState": "Feedback y Estado"
+      "feedbackState": "Feedback y Estado",
+      "descriptionFoundations": "El sistema de colores utiliza una combinación equilibrada de nuestros tokens de marca, incluyendo intenciones primarias y secundarias. Presenta una progresión de grises base, creando una identidad visual tranquila y confiable. Estos se combinan con una escala de grises que va desde el negro profundo hasta el gris claro, ofreciendo un fuerte contraste para la tipografía y los elementos de la interfaz."
     },
-    "radius": {
-      "title": "Radio de Borde",
-      "xs": "Extra Pequeño",
-      "sm": "Pequeño",
-      "md": "Medio (Por defecto)",
-      "lg": "Grande",
-      "xl": "Extra Grande",
-      "2xl": "2X Grande",
-      "3xl": "3X Grande",
-      "full": "Total",
-      "usage": {
-        "sm": "Elementos pequeños como casillas de verificación o insignias pequeñas.",
-        "md": "Componentes estándar como botones y campos de entrada.",
-        "lg": "Componentes más grandes como tarjetas y modales.",
-        "xl": "Contenedores grandes o secciones hero.",
-        "2xl": "Esquinas muy redondeadas para diseños modernos.",
-        "3xl": "Redondeo extremo para contenedores anchos.",
-        "full": "Elementos circulares como avatares o insignias de píldora."
-      }
-    },
-    "spacing": {
-      "title": "Espaciado",
-      "xs": "xs",
-      "sm": "sm",
-      "md": "md",
-      "lg": "lg",
-      "xl": "xl",
-      "usage": {
-        "xs": "Espaciado estrecho entre iconos relacionados o texto pequeño.",
-        "sm": "Acolchado estándar para componentes pequeños.",
-        "md": "Espaciado general entre secciones o acolchado grande.",
-        "lg": "Amplio margen de maniobra para los diseños principales.",
-        "xl": "Márgenes exteriores generosos."
-      }
-    },
-    "shadow": {
-      "title": "Sombras",
-      "sm": "Pequeña",
-      "md": "Media",
-      "lg": "Grande",
-      "xl": "Extra Grande",
-      "2xl": "2X Grande",
-      "usage": {
-        "sm": "Elevación sutil para tarjetas pequeñas o estados de desplazamiento.",
-        "md": "Elevación estándar para componentes de interfaz.",
-        "lg": "Alta elevación para menús y menús desplegables.",
-        "xl": "Profundidad para modales y superposiciones.",
-        "2xl": "Prominencia máxima para elementos superpuestos."
-      }
+    "colors": {
+      "brand": "Marca",
+      "status": "Estado",
+      "neutrals": "Neutrales",
+      "primary": "Primario",
+      "secondary": "Secundario",
+      "tertiary": "Terciario",
+      "success": "Éxito",
+      "warning": "Advertencia",
+      "danger": "Peligro",
+      "info": "Información",
+      "white": "Blanco",
+      "black": "Negro",
+      "grayLight": "Gris Claro",
+      "grayMedium": "Gris Medio",
+      "grayDark": "Gris Oscuro"
     },
     "localization": {
       "title": "i18n y Moneda",
@@ -116,61 +86,6 @@
       "currencyDesc": "CurrencyPipe estándar usando",
       "dateTitle": "Vista Previa de Fecha",
       "dateDesc": "Localización usando DatePipe estándar"
-    },
-    "tokens": {
-      "surface": "Superficie",
-      "surfaceDesc": "Define dónde 'viven' los elementos. Es la base de su diseño.",
-      "onSurface": "Contenido",
-      "onSurfaceDesc": "Colores para textos, iconos y bordes que se asientan sobre las superficies.",
-      "action": "Acción",
-      "actionDesc": "Cualquier cosa sobre la que el usuario pueda hacer clic o interactuar.",
-      "feedback": "Feedback",
-      "feedbackDesc": "Indica el estado del sistema.",
-      "surfacePrimary": "Superficie Primaria",
-      "surfaceSecondary": "Superficie Secundaria",
-      "surfaceTertiary": "Superficie Terciaria",
-      "surfaceInverse": "Superficie Inversa",
-      "onSurfacePrimary": "Sobre Superficie Primaria",
-      "onSurfaceSecondary": "Sobre Superficie Secundaria",
-      "onSurfaceTertiary": "Sobre Superficie Terciaria",
-      "onSurfaceInverse": "Sobre Superficie Inversa",
-      "outlineVariant": "Contorno Variante",
-      "primary": "Primario",
-      "primaryHover": "Primario Hover",
-      "primaryActive": "Primario Activo",
-      "onActionPrimary": "Sobre Acción Primaria",
-      "actionDisabled": "Acción Desactivada",
-      "success": "Éxito",
-      "successLight": "Éxito Claro",
-      "warning": "Advertencia",
-      "warningLight": "Advertencia Clara",
-      "error": "Error",
-      "errorLight": "Error Claro",
-      "usage": {
-        "surfacePrimary": "Fondo de la aplicación principal.",
-        "surfaceSecondary": "Fondo secundario para tarjetas, barras laterales o secciones.",
-        "surfaceTertiary": "Fondo terciario para entradas o contenedores anidados.",
-        "surfaceInverse": "Fondo de alto contraste para información sobre herramientas o notificaciones.",
-        "onSurfacePrimary": "Texto e iconos de alto énfasis.",
-        "onSurfaceSecondary": "Texto de énfasis medio e información meta.",
-        "onSurfaceTertiary": "Texto de bajo énfasis y estados deshabilitados.",
-        "onSurfaceInverse": "Texto e iconos en superficies inversas.",
-        "primary": "Acción primaria y estados activos.",
-        "primaryHover": "Estado de desplazamiento para acciones primarias.",
-        "primaryActive": "Estado activo/presionado para acciones primarias.",
-        "onActionPrimary": "Texto/Iconos en botones de acción primaria.",
-        "actionDisabled": "Estado deshabilitado para acciones.",
-        "success": "Mensajes de éxito y estados completados.",
-        "warning": "Mensajes de advertencia y estado que requieren atención.",
-        "error": "Mensajes de error y fallos críticos.",
-        "info": "Información neutra y consejos útiles."
-      }
-    },
-    "nomenclature": {
-      "title": "La Regla del Prefijo",
-      "rule": "[Categoría] - [Papel] - [Estado]",
-      "example": "Ejemplo: action-primary-hover",
-      "description": "Para mantener la organización en su Figma o código, utilice siempre este orden de nomenclatura."
     }
   },
   "atoms": {

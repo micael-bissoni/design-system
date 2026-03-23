@@ -24,75 +24,75 @@ export class FundationsComponent {
 
   colorsSections = [
     {
-      name: 'Brand',
+      name: 'styleguide.colors.brand',
       colors: [
         {
-          name: 'Primary',
+          name: 'styleguide.colors.primary',
           value: 'bg-primary',
           onValue: 'text-on-primary',
         },
         {
-          name: 'Secondary',
+          name: 'styleguide.colors.secondary',
           value: 'bg-secondary',
           onValue: 'text-on-secondary',
         },
         {
-          name: 'Tertiary',
+          name: 'styleguide.colors.tertiary',
           value: 'bg-tertiary',
           onValue: 'text-on-tertiary',
         },
       ]
     },
     {
-      name: 'Status',
+      name: 'styleguide.colors.status',
       colors: [
         {
-          name: 'Success',
+          name: 'styleguide.colors.success',
           value: 'bg-success',
           onValue: 'text-on-success',
         },
         {
-          name: 'Warning',
+          name: 'styleguide.colors.warning',
           value: 'bg-warning',
           onValue: 'text-on-warning',
         },
         {
-          name: 'Danger',
+          name: 'styleguide.colors.danger',
           value: 'bg-danger',
           onValue: 'text-on-danger',
         },
         {
-          name: 'Info',
+          name: 'styleguide.colors.info',
           value: 'bg-info',
           onValue: 'text-on-info',
         },
       ]
     },
     {
-      name: 'Neutrals',
+      name: 'styleguide.colors.neutrals',
       colors: [
         {
-          name: 'White',
+          name: 'styleguide.colors.white',
           value: 'bg-white',
           onValue: 'text-on-white',
         },
         {
-          name: 'Black',
+          name: 'styleguide.colors.black',
           value: 'bg-black',
           onValue: 'text-on-black',
         },
         {
-          name: 'Gray Light',
+          name: 'styleguide.colors.grayLight',
           value: 'bg-gray-light',
           onValue: 'text-on-gray-light',
         },
         {
-          name: 'Gray Medium',
+          name: 'styleguide.colors.grayMedium',
           value: 'bg-gray-medium',
           onValue: 'text-on-gray-medium',
         },
         {
-          name: 'Gray Dark',
+          name: 'styleguide.colors.grayDark',
           value: 'bg-gray-dark',
           onValue: 'text-on-gray-dark',
         },

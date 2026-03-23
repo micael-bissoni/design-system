@@ -29,13 +29,14 @@
   },
   "styleguide": {
     "title": "Style guide",
+    "subtitle": "Foundations & Brand Identity",
     "font": {
       "title": "Font",
-      "description1": "The type scale is systematically calculated to establish a clear information hierarchy. By leveraging varied weights and rhythmic leading, we ensure a harmonious reading experience.",
-      "descriptionSans": "The Sans-Serif font is used for body text and UI elements, ensuring superior legibility and a modern, professional look across all screen sizes.",
-      "descriptionMono": "The Monospace font is reserved for technical data, tokens, and code snippets, where character alignment precision is vital for clarity.",
-      "usageSans": "Use for body text, UI labels, and buttons.",
-      "usageDisplay": "Use for large-scale titles, impact numbers, and brand elements."
+      "descriptionFoundations": "Our typography is based on variables defined in the system. The headers font uses the configured headers family, blending contemporary aesthetic with strong legibility. The base font ensures accessibility and elegant reading across all UI elements fitting seamlessly into both bold and minimalist design systems."
+    },
+    "brand": {
+      "title": "Brand Identity",
+      "description": "Our brand identity is represented by the primary logo, which is dynamically loaded via design tokens. This ensures brand consistency across different platforms and themes while allowing for easy maintenance and brand updates."
     },
     "headline": {
       "title": "Headlines",
@@ -48,67 +49,34 @@
       "bold": "Bold",
       "semiBold": "Semi Bold",
       "medium": "Medium",
-      "regular": "Regular"
+      "regular": "Regular",
+      "labels": {
+        "large": "Large",
+        "medium": "Medium",
+        "base": "Base",
+        "small": "Small"
+      }
     },
     "color": {
       "title": "Color system",
-      "description1": "Our color system is meticulously architected around atomic design principles, utilizing a hierarchical structure of Primary, Secondary, and Tertiary roles. This ensures optimal visual weight, accessibility (WCAG compliance), and a consistent brand voice across all digital touchpoints.",
-      "description2": "These are paired with a grayscale that ranges from deep black through silver and light grey, offering strong contrast for typography and interface elements.",
-      "brandContext": "Brand Context",
-      "corePrimary": "Core Primary",
-      "coreSecondary": "Core Secondary",
-      "coreTertiary": "Core Tertiary",
-      "feedbackState": "Feedback & State"
+      "descriptionFoundations": "The color system uses a balanced combination of our brand tokens including primary and secondary intents. It features a progression of base grays, creating a calm, trustworthy visual identity. These are paired with a grayscale that ranges from deep black to light gray, offering strong contrast for typography and interface elements."
     },
-    "radius": {
-      "title": "Border Radius",
-      "xs": "Extra Small",
-      "sm": "Small",
-      "md": "Medium (Default)",
-      "lg": "Large",
-      "xl": "Extra Large",
-      "2xl": "2X Large",
-      "3xl": "3X Large",
-      "full": "Full",
-      "usage": {
-        "sm": "Small elements like checkboxes or small badges.",
-        "md": "Standard components like buttons and input fields.",
-        "lg": "Larger components like cards and modals.",
-        "xl": "Large containers or hero sections.",
-        "2xl": "Very rounded corners for modern designs.",
-        "3xl": "Extreme rounding for wide containers.",
-        "full": "Circular elements like avatars or pill badges."
-      }
-    },
-    "spacing": {
-      "title": "Spacing",
-      "xs": "xs",
-      "sm": "sm",
-      "md": "md",
-      "lg": "lg",
-      "xl": "xl",
-      "usage": {
-        "xs": "Tight spacing between related icons or small text.",
-        "sm": "Standard padding for small components.",
-        "md": "General spacing between sections or large padding.",
-        "lg": "Wide breathing room for main layouts.",
-        "xl": "Generous outer margins."
-      }
-    },
-    "shadow": {
-      "title": "Shadows",
-      "sm": "Small",
-      "md": "Medium",
-      "lg": "Large",
-      "xl": "Extra Large",
-      "2xl": "2X Large",
-      "usage": {
-        "sm": "Subtle elevation for small cards or hover states.",
-        "md": "Standard elevation for interface components.",
-        "lg": "High elevation for menus and dropdowns.",
-        "xl": "Depth for modals and overlays.",
-        "2xl": "Maximum prominence for overlay elements."
-      }
+    "colors": {
+      "brand": "Brand",
+      "status": "Status",
+      "neutrals": "Neutrals",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "tertiary": "Tertiary",
+      "success": "Success",
+      "warning": "Warning",
+      "danger": "Danger",
+      "info": "Info",
+      "white": "White",
+      "black": "Black",
+      "grayLight": "Gray Light",
+      "grayMedium": "Gray Medium",
+      "grayDark": "Gray Dark"
     },
     "localization": {
       "title": "i18n & Currency",
@@ -116,61 +84,6 @@
       "currencyDesc": "Standard CurrencyPipe using",
       "dateTitle": "Date Preview",
       "dateDesc": "Localization using standard DatePipe"
-    },
-    "tokens": {
-      "surface": "Surface",
-      "surfaceDesc": "Defines where elements 'live'. It's the base of your layout.",
-      "onSurface": "Content",
-      "onSurfaceDesc": "Colors for text, icons, and borders that sit on top of surfaces.",
-      "action": "Action",
-      "actionDesc": "Everything the user can click or interact with.",
-      "feedback": "Feedback",
-      "feedbackDesc": "Indicates system status.",
-      "surfacePrimary": "Surface Primary",
-      "surfaceSecondary": "Surface Secondary",
-      "surfaceTertiary": "Surface Tertiary",
-      "surfaceInverse": "Surface Inverse",
-      "onSurfacePrimary": "On Surface Primary",
-      "onSurfaceSecondary": "On Surface Secondary",
-      "onSurfaceTertiary": "On Surface Tertiary",
-      "onSurfaceInverse": "On Surface Inverse",
-      "outlineVariant": "Outline Variant",
-      "primary": "Primary",
-      "primaryHover": "Primary Hover",
-      "primaryActive": "Primary Active",
-      "onActionPrimary": "On Action Primary",
-      "actionDisabled": "Action Disabled",
-      "success": "Success",
-      "successLight": "Success Light",
-      "warning": "Warning",
-      "warningLight": "Warning Light",
-      "error": "Error",
-      "errorLight": "Error Light",
-      "usage": {
-        "surfacePrimary": "Main application background.",
-        "surfaceSecondary": "Secondary background for cards, sidebars, or sections.",
-        "surfaceTertiary": "Tertiary background for inputs or nested containers.",
-        "surfaceInverse": "High contrast background for tooltips or notifications.",
-        "onSurfacePrimary": "High emphasis text and icons.",
-        "onSurfaceSecondary": "Medium emphasis text and meta information.",
-        "onSurfaceTertiary": "Low emphasis text and disabled states.",
-        "onSurfaceInverse": "Text and icons on inverse surfaces.",
-        "primary": "Primary action and active states.",
-        "primaryHover": "Hover state for primary actions.",
-        "primaryActive": "Active/Pressed state for primary actions.",
-        "onActionPrimary": "Text/Icons on primary action buttons.",
-        "actionDisabled": "Disabled state for actions.",
-        "success": "Success messages and completed states.",
-        "warning": "Warning messages and status requiring attention.",
-        "error": "Error messages and critical failures.",
-        "info": "Neutral information and helpful tips."
-      }
-    },
-    "nomenclature": {
-      "title": "The Prefix Rule",
-      "rule": "[Category] - [Role] - [State]",
-      "example": "Example: action-primary-hover",
-      "description": "To maintain organization in your Figma or code, always use this naming order."
     }
   },
   "atoms": {
