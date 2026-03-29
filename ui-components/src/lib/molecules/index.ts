@@ -1,4 +1,4 @@
-export * from './dock-nav-item/dock-nav-item.component';
+export * from './navigation-bar-item/navigation-bar-item.component';
 export * from './search-bar/search-bar.component';
 export * from './pagination/pagination.component';
 export * from './data-grid-header/data-grid-header.component';

@@ -19,6 +19,18 @@
         "payments": {
             "value": "url('/tokens/base/assets/icons/payments.svg')",
             "type": "asset"
+        },
+        "corporate-fare": {
+            "value": "url('/tokens/base/assets/icons/corporate-fare.svg')",
+            "type": "asset"
+        },
+        "management": {
+            "value": "url('/tokens/base/assets/icons/management.svg')",
+            "type": "asset"
+        },
+        "location_on": {
+            "value": "url('/tokens/base/assets/icons/location_on.svg')",
+            "type": "asset"
         }
     }
 }

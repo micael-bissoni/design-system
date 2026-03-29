@@ -33,10 +33,10 @@ export const FullTemplate: Story = {
       avatarSrc: '',
     },
     navigationItems: [
-      { id: '1', label: 'Dashboard', route: '/dashboard', active: true },
-      { id: '2', label: 'Projects', route: '/projects' },
-      { id: '3', label: 'Tasks', route: '/tasks' },
-      { id: '4', label: 'Team', route: '/team' },
+      { id: '1', label: 'Dashboard', route: '/dashboard', active: true, icon: 'dashboard' },
+      { id: '2', label: 'Projects', route: '/projects', icon: 'folder' },
+      { id: '3', label: 'Tasks', route: '/tasks', icon: 'task' },
+      { id: '4', label: 'Team', route: '/team', icon: 'group' },
     ],
   },
   render: (args) => ({

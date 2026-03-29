@@ -1,13 +1,14 @@
-import { Component, ChangeDetectionStrategy, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NavigationItem, UserProfile } from './main-template.types';
 import { AvatarComponent } from '../../atoms';
+import { NavigationBarComponent } from '../../organisms';
 
 @Component({
   selector: 'ds-main-template',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, AvatarComponent],
+  imports: [CommonModule, TranslatePipe, AvatarComponent, NavigationBarComponent],
   template: `
     <div
       class="grid h-screen w-full overflow-hidden
@@ -23,31 +24,14 @@ import { AvatarComponent } from '../../atoms';
         <ng-content select="[navigation]"></ng-content>
         
         @if (!asideSlot()) {
-          <div class="p-6 flex flex-col h-full">
-            <!-- App Logo/Name -->
-            <div class="mb-6 flex items-center gap-3 border-b border-gray-light pb-4">
-              <div class="w-8 h-8 bg-contain bg-no-repeat bg-center rounded-lg p-4 shadow-sm"
-                [style.backgroundImage]="'var(--icon-logo)'"></div>
-              <span class="text-on-primary font-headers font-bold text-xl tracking-tight uppercase">
-                {{ appName() || 'TREVVO' | translate }}
-              </span>
-            </div>
-
-            <!-- Nav Items -->
-            <nav class="flex flex-col gap-1">
-              @for (item of navigationItems(); track item.id) {
-                <div 
-                  class="px-4 py-2.5 rounded-md text-sm font-medium cursor-pointer transition-all mt-1"
-                  [ngClass]="{
-                    'bg-white text-primary border-l-2 border-white': item.active,
-                    'text-on-primary hover:text-primary hover:bg-white hover:ml-2': !item.active,
-                  }"
-                >
-                  {{ item.label | translate }}
-                </div>
-              }
-            </nav>
-          </div>
+          <ds-navigation-bar 
+            [navigationItems]="navigationItems()"
+            [appName]="appName()"
+            [selectedCount]="selectedCount()"
+            (addSelected)="addSelected.emit()"
+            (editSelected)="editSelected.emit()"
+            (deleteSelected)="deleteSelected.emit()"
+          />
         }
       </aside>
 
@@ -66,14 +50,14 @@ import { AvatarComponent } from '../../atoms';
             </h1>
 
             @if (user(); as u) {
-              <div class="flex gap-4 items-center">
+              <div class="flex gap-4 items-center p-2">
                 <ds-avatar 
                   [src]="u.avatarSrc" 
                   [firstName]="u.firstName" 
                   [lastName]="u.lastName"
                   size="md"
                 />
-                <div class="flex flex-col">
+                <div class="hidden sm:flex flex-col">
                   <span class="text-sm font-bold text-primary leading-none">
                     {{ u.firstName }} {{ u.lastName }}
                   </span>
@@ -109,4 +93,10 @@ export class MainTemplateComponent {
   title = input<string>('');
   navigationItems = input<NavigationItem[]>([]);
   user = input<UserProfile | null>(null);
+  selectedCount = input<number>(0);
+
+  // Outputs forwarded to NavigationBar
+  addSelected = output<void>();
+  editSelected = output<void>();
+  deleteSelected = output<void>();
 }

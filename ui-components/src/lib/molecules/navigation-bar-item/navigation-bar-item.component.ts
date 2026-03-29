@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'ds-dock-nav-item',
+  selector: 'ds-navigation-bar-item',
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -20,13 +20,13 @@ import { CommonModule } from '@angular/common';
         <ng-content></ng-content>
       </span>
       @if (active()) {
-        <div class="absolute -bottom-2 w-1.5 h-1.5 bg-primary rounded-full"></div>
+        <div class="absolute -bottom-2 w-1.5 h-1.5 bg-primary rounded-full md:hidden"></div>
       }
     </button>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DockNavItemComponent {
+export class NavigationBarItemComponent {
   active = input<boolean>(false);
   select = output<void>();
 }

@@ -8,7 +8,16 @@ const meta: Meta<IconComponent> = {
   argTypes: {
     name: {
       control: 'select',
-      options: ['content-copy', 'content-paste'],
+      options: [
+        'content-copy',
+        'content-paste',
+        'check-circle',
+        'calendar-today',
+        'payments',
+        'corporate-fare',
+        'management',
+        'location_on',
+      ],
     },
     intent: {
       control: 'select',
@@ -40,10 +49,18 @@ export const Large: Story = {
   },
 };
 
-export const Small: Story = {
+export const CorporateFare: Story = {
   args: {
-    name: 'content-copy',
-    intent: 'tertiary',
-    size: 'small',
+    name: 'corporate-fare',
+    intent: 'primary',
+    size: 'large',
+  },
+};
+
+export const Management: Story = {
+  args: {
+    name: 'management',
+    intent: 'secondary',
+    size: 'large',
   },
 };
