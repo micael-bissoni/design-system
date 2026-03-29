@@ -51,9 +51,23 @@ npm run storybook
 ### 3. Generate New Component
 Use the **Component Factory** skill for step-by-step guidance.
 
+### 4. Generate NPM Package
+To build the design tokens, build the library, and generate an installable npm package (`.tgz`), run:
+```sh
+npm run package
+```
+This will output a tarball file (e.g., `design-system-ui-components-0.0.1.tgz`) in `dist/ui-components/`.
+
 ## ⚙️ Installation
 
-To use the Trevvo Design System in your Angular project, you can install it directly from GitHub:
+### Install Local Package in Microfrontends
+After generating the package as shown above, you can install it in your microfrontend by pointing `npm install` to the created tarball:
+
+```sh
+npm install ../path-to-your-clone/design-system/dist/ui-components/design-system-ui-components-0.0.1.tgz
+```
+
+*(Alternatively)* To install directly from GitHub:
 
 ```sh
 npm install git+https://github.com/micael-bissoni/design-system.git --save
