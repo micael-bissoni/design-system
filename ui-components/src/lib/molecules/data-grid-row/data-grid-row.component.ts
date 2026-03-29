@@ -1,27 +1,34 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BadgeComponent } from '../../atoms';
 import { type DataGridRecord, type DataGridColumn } from '../../organisms/data-grid/data-grid.types';
 
 @Component({
   selector: 'ds-data-grid-row',
   standalone: true,
-  imports: [CommonModule, BadgeComponent],
+  imports: [CommonModule],
   template: `
     <div class="group">
       <!-- Mobile Card -->
-      <div class="lg:hidden p-6 border-b border-gray-light/50 flex flex-col gap-4">
-        <div class="flex justify-between items-center">
-          <span class="text-[10px] font-mono text-gray-medium">{{ record().id }}</span>
-          <ds-badge [intent]="getStatusIntent(record().estado)">{{ record().estado }}</ds-badge>
-        </div>
-        <h3 class="text-lg font-black text-gray-dark leading-tight">{{ record().nome }}</h3>
-        <div class="flex justify-between items-center pt-2 border-t border-gray-light/50">
-          <span class="text-[10px] font-black text-gray-medium uppercase tracking-widest">{{ record().pais }}</span>
-          <span class="text-[10px] font-mono text-gray-medium bg-gray-light px-2 py-1 rounded-lg">
-            {{ record().dataInicio }} — {{ record().dataFim }}
-          </span>
-        </div>
+      <div class="lg:hidden p-4 border-b border-gray-light/50 flex flex-col gap-3">
+        @for (col of columns(); track col.id) {
+          <div class="flex justify-between items-start gap-4 p-2 rounded-lg bg-gray-light/5">
+            <span class="text-[10px] font-black text-gray-medium uppercase tracking-widest mt-1 whitespace-nowrap">{{ col.label }}</span>
+            <div class="flex flex-col items-end text-right overflow-hidden flex-1">
+              @if (col.cellComponent) {
+                <ng-container *ngComponentOutlet="col.cellComponent; inputs: getCellInputs(col)" />
+              } @else {
+                <span 
+                  class="text-sm font-medium text-gray-dark truncate w-full"
+                  [class.text-[10px]]="col.id === 'id' || col.key === 'id'"
+                  [class.font-mono]="col.id === 'id' || col.key === 'id'"
+                  [class.text-gray-medium]="col.id === 'id' || col.key === 'id'"
+                >
+                  {{ getValue(col) }}
+                </span>
+              }
+            </div>
+          </div>
+        }
       </div>
 
       <!-- Desktop Row -->
@@ -59,14 +66,6 @@ export class DataGridRowComponent {
   record = input.required<DataGridRecord>();
   columns = input<DataGridColumn[]>([]);
   gridTemplateColumns = input<string>('');
-
-  getStatusIntent(status: string): any {
-    const s = status.toLowerCase();
-    if (s.includes('sucedido') || s.includes('ativo') || s.includes('sucesso') || s.includes('active')) return 'success';
-    if (s.includes('pendente') || s.includes('waiting')) return 'warning';
-    if (s.includes('cancelado') || s.includes('erro') || s.includes('error') || s.includes('inactive')) return 'danger';
-    return 'neutral';
-  }
 
   getValue(col: DataGridColumn): any {
     if (col.key) return (this.record() as any)[col.key];
