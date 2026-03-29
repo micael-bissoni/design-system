@@ -9,3 +9,4 @@ export * from './datagrid-cell-designation/datagrid-cell-designation.component';
 export * from './datagrid-cell-mercado/datagrid-cell-mercado.component';
 export * from './datagrid-cell-status/datagrid-cell-status.component';
 export * from './datagrid-cell-validade/datagrid-cell-validade.component';
+export * from './avatar/avatar.component';
