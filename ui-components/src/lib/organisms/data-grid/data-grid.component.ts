@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input, output, signal } f
 import { CommonModule } from '@angular/common';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DataGridHeaderComponent, PaginationComponent, SearchBarComponent, DataGridRowComponent, DataGridColumnComponent, DataGridFilterComponent } from '../../molecules';
-import { type DataGridRecord } from './data-grid.types';
+import { type DataGridRecord, type DataGridColumn } from './data-grid.types';
 import { type FilterState } from '../../molecules/data-grid-filter/data-grid-filter.types';
 
 @Component({
@@ -48,11 +48,19 @@ import { type FilterState } from '../../molecules/data-grid-filter/data-grid-fil
         <div class="h-full flex flex-col bg-white lg:rounded-[32px] border border-gray-light shadow-sm overflow-hidden relative">
           
           <!-- DESKTOP HEADER -->
-          <div class="hidden lg:grid grid-cols-[1fr_150px_180px_120px] border-b border-gray-light bg-gray-light/50">
-            <ds-data-grid-column>Designação</ds-data-grid-column>
-            <ds-data-grid-column>Mercado</ds-data-grid-column>
-            <ds-data-grid-column align="center">Validade</ds-data-grid-column>
-            <ds-data-grid-column align="center">Estado</ds-data-grid-column>
+          <div 
+            class="hidden lg:grid border-b border-gray-light bg-gray-light/50"
+            [style.grid-template-columns]="gridTemplateColumns()"
+          >
+            @for (col of columns(); track col.id) {
+              <ds-data-grid-column [align]="col.align || 'left'">
+                @if (col.headerComponent) {
+                  <ng-container *ngComponentOutlet="col.headerComponent; inputs: { label: col.label }" />
+                } @else {
+                  {{ col.label }}
+                }
+              </ds-data-grid-column>
+            }
           </div>
 
           <!-- VIRTUAL SCROLL -->
@@ -63,6 +71,8 @@ import { type FilterState } from '../../molecules/data-grid-filter/data-grid-fil
             <ds-data-grid-row 
               *cdkVirtualFor="let row of filteredData(); trackBy: trackById" 
               [record]="row"
+              [columns]="columns()"
+              [gridTemplateColumns]="gridTemplateColumns()"
             />
           </cdk-virtual-scroll-viewport>
 
@@ -92,8 +102,9 @@ export class DataGridComponent {
   actionLabel = input<string>('');
   searchPlaceholder = input<string>('Pesquisa global inteligente...');
   data = input<DataGridRecord[]>([]);
+  columns = input<DataGridColumn[]>([]);
   pageSize = input<number>(10);
-  isMobile = signal<boolean>(false); // This could be handled by a service or MediaQuery
+  isMobile = signal<boolean>(false); 
 
   actionClicked = output<void>();
   searchChange = output<string>();
@@ -102,10 +113,12 @@ export class DataGridComponent {
   searchTerm = signal('');
   page = signal(0);
 
+  gridTemplateColumns = computed(() => {
+    return this.columns().map(col => col.width || '1fr').join(' ');
+  });
+
   filteredData = computed(() => {
     const list = this.data();
-    
-    // Filtering is now handled on the backend
     const start = this.page() * this.pageSize();
     return list.slice(start, start + this.pageSize());
   });
@@ -153,7 +166,6 @@ export class DataGridComponent {
   }
 
   constructor() {
-    // Simple mobile detection for example purposes
     if (typeof window !== 'undefined') {
       const checkMobile = () => this.isMobile.set(window.innerWidth < 1024);
       checkMobile();
@@ -161,3 +173,4 @@ export class DataGridComponent {
     }
   }
 }
+

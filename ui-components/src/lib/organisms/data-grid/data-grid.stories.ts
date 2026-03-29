@@ -2,7 +2,8 @@ import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
 import { DataGridComponent } from './data-grid.component';
-import { type DataGridRecord } from './data-grid.types';
+import { type DataGridRecord, type DataGridColumn } from './data-grid.types';
+import { DesignationCellComponent, MercadoCellComponent, StatusCellComponent, ValidadeCellComponent } from '../../molecules/data-grid-cells';
 
 const mockData: DataGridRecord[] = [
   { id: 'REG-001', nome: 'Distribuição Lisboa Norte', pais: 'Portugal', dataInicio: '01 Jan 2024', dataFim: '31 Dez 2024', estado: 'Ativo' },
@@ -16,6 +17,42 @@ const mockData: DataGridRecord[] = [
   { id: 'REG-009', nome: 'Hub Amsterdão Porto', pais: 'Holanda', dataInicio: '15 Set 2024', dataFim: '15 Set 2025', estado: 'Cancelado' },
   { id: 'REG-010', nome: 'Gestão Roma Sul', pais: 'Itália', dataInicio: '01 Out 2024', dataFim: '01 Out 2025', estado: 'Ativo' },
   { id: 'REG-011', nome: 'Distribuição Lisboa Sul', pais: 'Portugal', dataInicio: '10 Nov 2024', dataFim: '10 Nov 2025', estado: 'Ativo' },
+];
+
+const mockColumns: DataGridColumn[] = [
+  {
+    id: 'designacao',
+    label: 'Designação',
+    key: 'id',
+    width: '1fr',
+    cellComponent: DesignationCellComponent,
+    cellConfig: (record) => ({ id: record.id, name: record.nome })
+  },
+  {
+    id: 'mercado',
+    label: 'Mercado',
+    key: 'pais',
+    width: '150px',
+    cellComponent: MercadoCellComponent,
+    cellConfig: (record) => ({ pais: record.pais })
+  },
+  {
+    id: 'validade',
+    label: 'Validade',
+    width: '180px',
+    align: 'center',
+    cellComponent: ValidadeCellComponent,
+    cellConfig: (record) => ({ dataInicio: record.dataInicio, dataFim: record.dataFim })
+  },
+  {
+    id: 'estado',
+    label: 'Estado',
+    key: 'estado',
+    width: '120px',
+    align: 'center',
+    cellComponent: StatusCellComponent,
+    cellConfig: (record) => ({ status: record.estado })
+  }
 ];
 
 const meta: Meta<DataGridComponent> = {
@@ -44,6 +81,7 @@ export const Default: Story = {
     subtitle: 'Gestão operacional da plataforma Trevvo',
     actionLabel: 'Novo Registo',
     data: mockData,
+    columns: mockColumns,
     pageSize: 5,
   },
   render: (args) => ({
@@ -55,6 +93,7 @@ export const Default: Story = {
           [subtitle]="subtitle" 
           [actionLabel]="actionLabel"
           [data]="data"
+          [columns]="columns"
           [pageSize]="pageSize"
         ></ds-data-grid>
       </div>
@@ -67,5 +106,6 @@ export const Empty: Story = {
     title: 'Sem Dados',
     subtitle: 'Nenhum registo encontrado no sistema',
     data: [],
+    columns: mockColumns,
   },
 };

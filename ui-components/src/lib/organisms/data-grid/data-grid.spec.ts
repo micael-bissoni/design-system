@@ -12,6 +12,11 @@ describe('DataGridComponent', () => {
     { id: '3', nome: 'Item 3', pais: 'FR', dataInicio: '2021-01-01', dataFim: '2021-12-31', estado: 'Cancelado' },
   ];
 
+  const mockColumns = [
+    { id: 'id', label: 'ID', key: 'id', width: '100px' },
+    { id: 'nome', label: 'Nome', key: 'nome', width: '1fr' }
+  ];
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DataGridComponent],
@@ -21,8 +26,10 @@ describe('DataGridComponent', () => {
     component = fixture.componentInstance;
     fixture.componentRef.setInput('title', 'Test Data Grid');
     fixture.componentRef.setInput('data', mockData);
+    fixture.componentRef.setInput('columns', mockColumns);
     fixture.detectChanges();
   });
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
