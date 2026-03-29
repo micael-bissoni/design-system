@@ -7,6 +7,15 @@ const meta: Meta<FundationsComponent> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    controls: {
+      disable: true,
+    },
+    actions: {
+      disable: true,
+    },
+    docs: {
+      disable: true,
+    },
   },
 };
 

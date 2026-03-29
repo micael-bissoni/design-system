@@ -20,7 +20,8 @@ Each component directory MUST contain:
 - **Change Detection**: MUST use `ChangeDetectionStrategy.OnPush`.
 - **Selector Prefix**: MUST use the `default-` prefix.
 - **Strict Typing**: No `any` allowed. Use specific types or interfaces.
-- **Signals**: Prefer Angular Signals for `@Input` and `@Output` (or standard decorators if version-limited, but design for Signals).
+- **Signals**: Prefer Angular Signals for `input()` and `output()` (or standard decorators if version-limited, but design for Signals).
+- **Forms**: Components that function as inputs MUST follow [Form Component Standards](file:///Users/micaelbissoni/Projects/trevvo/design-system/.agents/rules/form-components.md).
 
 ## 3. Design Token Integration
 - **Semantic Tokens Only**: Never use hex codes or standard Tailwind palette colors (e.g., `bg-blue-500`).

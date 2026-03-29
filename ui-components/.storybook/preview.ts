@@ -67,7 +67,7 @@ const preview: Preview = {
     parameters: {
         options: {
             storySort: {
-                order: ['Design System', ['Introduction', 'Foundations', '*'], '*'],
+                order: ['Design System', 'Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages', ['Introduction', 'Foundations', '*'], '*'],
             },
         },
     },
