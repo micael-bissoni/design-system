@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DataGridHeaderComponent, PaginationComponent, SearchBarComponent, DataGridRowComponent, DataGridColumnComponent, DataGridFilterComponent } from '../../molecules';
 import { type DataGridRecord, type DataGridColumn } from './data-grid.types';
 import { type FilterState } from '../../molecules/data-grid-filter/data-grid-filter.types';
+import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ds-data-grid',
@@ -16,7 +17,8 @@ import { type FilterState } from '../../molecules/data-grid-filter/data-grid-fil
     PaginationComponent,
     DataGridRowComponent,
     DataGridColumnComponent,
-    DataGridFilterComponent
+    DataGridFilterComponent,
+    ReactiveFormsModule
   ],
   template: `
     <main class="flex-1 grid grid-rows-[auto_1fr] overflow-hidden w-full h-full">
@@ -112,6 +114,12 @@ export class DataGridComponent {
 
   searchTerm = signal('');
   page = signal(0);
+  
+  private fb = inject(FormBuilder);
+  
+  gridForm = this.fb.group({
+    rows: this.fb.array<FormGroup>([])
+  });
 
   gridTemplateColumns = computed(() => {
     return this.columns().map(col => col.width || '1fr').join(' ');
@@ -166,6 +174,22 @@ export class DataGridComponent {
   }
 
   constructor() {
+    effect(() => {
+      const records = this.data();
+      const rowsArray = this.gridForm.controls.rows;
+      rowsArray.clear();
+      records.forEach(record => {
+        rowsArray.push(this.fb.group({
+          id: [record.id],
+          nome: [record.nome || ''],
+          pais: [record.pais || ''],
+          estado: [record.estado || ''],
+          dataInicio: [record.dataInicio || ''],
+          dataFim: [record.dataFim || ''],
+        }));
+      });
+    });
+
     if (typeof window !== 'undefined') {
       const checkMobile = () => this.isMobile.set(window.innerWidth < 1024);
       checkMobile();
