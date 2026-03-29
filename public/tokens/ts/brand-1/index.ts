@@ -65,7 +65,7 @@ export const brand1 = {
     "content-copy": "url('/tokens/web/assets/icons/content-copy.svg')",
     "content-paste": "url('/tokens/web/assets/icons/content-paste.svg')",
     "check-circle": "url('/tokens/web/assets/icons/check-circle.svg')",
-    "logo": "url('/tokens/brand-1/assets/icons/logo.svg')"
+    "logo": "url('/tokens/brand-1/assets/logo.svg')"
   },
   "asset": {
     "font": {

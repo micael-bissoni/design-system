@@ -28,8 +28,8 @@
             "value": "url('/tokens/base/assets/icons/management.svg')",
             "type": "asset"
         },
-        "location_on": {
-            "value": "url('/tokens/base/assets/icons/location_on.svg')",
+        "location-on": {
+            "value": "url('/tokens/base/assets/icons/location-on.svg')",
             "type": "asset"
         }
     }

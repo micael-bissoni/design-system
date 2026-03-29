@@ -19,13 +19,20 @@ import { IconComponent } from '../../atoms/icon/icon.component';
                bg-white/95 backdrop-blur-xl rounded-[40px] shadow-[0_25px_60px_rgba(0,0,0,0.15)] border border-white
                md:flex-col md:items-stretch md:h-full md:p-6 md:bg-primary md:rounded-none md:shadow-none md:border-none"
       >
-        <!-- App Logo/Name (Desktop only) -->
-        <div class="hidden md:flex items-center gap-3 border-b border-white/20 pb-6 mb-6">
-          <div class="w-8 h-8 bg-contain bg-no-repeat bg-center rounded-lg p-4 shadow-sm"
-               [style.backgroundImage]="'var(--icon-logo)'"></div>
-          <span class="text-white font-headers font-bold text-xl tracking-tight uppercase">
-            {{ appName() | translate }}
-          </span>
+        <!-- Mobile Logo -->
+        <div 
+          class="hidden min-[367px]:flex items-center ml-1 xl:mb-4"
+          data-testid="navbar-mobile-logo"
+        >
+          <div class="w-14 h-14 bg-primary rounded-full shadow-lg border border-gray-light flex items-center justify-center active:scale-90 transition-all overflow-hidden">
+            <div 
+              class="w-8 h-8 bg-contain bg-no-repeat bg-center"
+              [style.backgroundImage]="'var(--icon-logo)'"
+            ></div>
+            </div>
+            <span class="hidden md:flex text-on-primary ml-2 font-headers font-bold text-xl tracking-tight uppercase">
+              {{ appName() | translate }}
+            </span>
         </div>
 
         <div class="flex-1 flex flex-row justify-around items-center px-4 md:flex-col md:justify-start md:items-stretch md:px-0 md:gap-1">
@@ -34,8 +41,8 @@ import { IconComponent } from '../../atoms/icon/icon.component';
             @for (item of navigationItems(); track item.id) {
               <div 
                 class="px-4 py-2.5 rounded-md text-sm font-medium cursor-pointer transition-all
-                       flex items-center gap-2
-                       md:mt-1"
+                       flex items-center justify-center gap-2
+                       md:justify-start md:mt-1"
                 [ngClass]="{
                   'bg-primary text-on-primary md:bg-white md:text-primary md:border-l-2 md:border-white': item.active,
                   'text-gray-dark hover:bg-gray-light md:text-on-primary md:hover:text-primary md:hover:bg-white md:hover:ml-2': !item.active,
@@ -44,7 +51,7 @@ import { IconComponent } from '../../atoms/icon/icon.component';
                 @if (item.icon) {
                   <ds-icon [name]="item.icon" [intent]="'inherit'" [size]="'small'"></ds-icon>
                 }
-                <span>{{ item.label | translate }}</span>
+                <span class="hidden md:inline">{{ item.label | translate }}</span>
               </div>
             }
           </nav>
@@ -78,7 +85,7 @@ import { IconComponent } from '../../atoms/icon/icon.component';
                 class="absolute -top-4 -right-1 bg-black text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-xl border-2 border-white z-10 animate-bounce
                        md:static md:mb-2 md:text-xs md:py-1 md:w-full md:text-center md:bg-white md:text-primary"
               >
-                {{ selectedCount() }} {{ (selectedCount() === 1 ? 'ITEM_SELECTED' : 'ITEMS_SELECTED') | translate }}
+                {{ selectedCount() }}<span class="hidden md:inline">&nbsp;{{ (selectedCount() === 1 ? 'ITEM_SELECTED' : 'ITEMS_SELECTED') | translate }}</span>
               </div>
               <div class="flex gap-2 w-full">
                 <button 

@@ -25,8 +25,9 @@ export const Default: Story = {
   args: {
     selectedCount: 0,
     navigationItems: [
-      { id: '1', label: 'Regions', active: true, icon: 'location_on' },
+      { id: '1', label: 'Regions', active: true, icon: 'location-on' },
       { id: '2', label: 'Entities', active: false, icon: 'corporate-fare' },
+      { id: '3', label: 'Management', active: false, icon: 'management' },
     ],
     appName: 'TREVVO',
   },

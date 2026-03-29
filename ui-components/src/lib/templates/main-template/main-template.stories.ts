@@ -9,10 +9,8 @@ const meta: Meta<MainTemplateComponent> = {
     appName: { control: 'text' },
     title: { control: 'text' },
     navigationItems: { control: 'object' },
+    selectedCount: { control: 'number' },
     user: { control: 'object' },
-    headerSlot: { control: 'text' },
-    asideSlot: { control: 'text' },
-    contentSlot: { control: 'text' },
   },
 };
 
@@ -33,10 +31,9 @@ export const FullTemplate: Story = {
       avatarSrc: '',
     },
     navigationItems: [
-      { id: '1', label: 'Dashboard', route: '/dashboard', active: true, icon: 'dashboard' },
-      { id: '2', label: 'Projects', route: '/projects', icon: 'folder' },
-      { id: '3', label: 'Tasks', route: '/tasks', icon: 'task' },
-      { id: '4', label: 'Team', route: '/team', icon: 'group' },
+      { id: '1', label: 'Regions', active: true, icon: 'location-on' },
+      { id: '2', label: 'Entities', active: false, icon: 'corporate-fare' },
+      { id: '3', label: 'Management', active: false, icon: 'management' },
     ],
   },
   render: (args) => ({

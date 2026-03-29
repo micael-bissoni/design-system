@@ -1,15 +1,15 @@
 {
   "color": {
     "primary": {
-      "value": "#EA4335",
+      "value": "#010413",
       "type": "color"
     },
     "secondary": {
-      "value": "#34A853",
+      "value": "#234a70",
       "type": "color"
     },
     "tertiary": {
-      "value": "#999999",
+      "value": "#f958a8",
       "type": "color"
     }
   }

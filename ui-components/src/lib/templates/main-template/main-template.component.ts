@@ -83,17 +83,14 @@ import { NavigationBarComponent } from '../../organisms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainTemplateComponent {
-  // Generic slots (backward compatibility)
-  headerSlot = input<string>('');
-  asideSlot = input<string>('');
-  contentSlot = input<string>('');
-
   // Specialized inputs
   appName = input<string>('TREVVO');
   title = input<string>('');
   navigationItems = input<NavigationItem[]>([]);
   user = input<UserProfile | null>(null);
   selectedCount = input<number>(0);
+  headerSlot = input<boolean>(false);
+  asideSlot = input<boolean>(false);
 
   // Outputs forwarded to NavigationBar
   addSelected = output<void>();

@@ -16,7 +16,7 @@ const meta: Meta<IconComponent> = {
         'payments',
         'corporate-fare',
         'management',
-        'location_on',
+        'location-on',
       ],
     },
     intent: {

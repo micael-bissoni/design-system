@@ -1,7 +1,7 @@
 {
   "icon": {
     "logo": {
-      "value": "url('/tokens/brand-2/assets/icons/logo.svg')",
+      "value": "url('/tokens/brand-2/assets/logo.svg')",
       "type": "asset"
     }
   }

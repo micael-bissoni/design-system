@@ -98,4 +98,9 @@ describe('NavigationBarComponent', () => {
     
     expect(hostFixture.nativeElement.textContent).toContain('Test Navigation');
   });
+
+  it('should render the mobile logo', () => {
+    const mobileLogo = fixture.nativeElement.querySelector('[data-testid="navbar-mobile-logo"]');
+    expect(mobileLogo).toBeTruthy();
+  });
 });

@@ -20,9 +20,9 @@ export const base = {
     "warning": "#f0ad4e",
     "danger": "#bb2124",
     "info": "#5bc0de",
-    "primary": "#ea4335",
-    "secondary": "#34a853",
-    "tertiary": "#999999",
+    "primary": "#010413",
+    "secondary": "#234a70",
+    "tertiary": "#f958a8",
     "on": {
       "primary": "#ffffff",
       "secondary": "#ffffff",
@@ -66,6 +66,9 @@ export const base = {
     "content-paste": "url('/tokens/base/assets/icons/content-paste.svg')",
     "check-circle": "url('/tokens/base/assets/icons/check-circle.svg')",
     "calendar-today": "url('/tokens/base/assets/icons/calendar-today.svg')",
-    "payments": "url('/tokens/base/assets/icons/payments.svg')"
+    "payments": "url('/tokens/base/assets/icons/payments.svg')",
+    "corporate-fare": "url('/tokens/base/assets/icons/corporate-fare.svg')",
+    "management": "url('/tokens/base/assets/icons/management.svg')",
+    "location-on": "url('/tokens/base/assets/icons/location-on.svg')"
   }
 } as const;
