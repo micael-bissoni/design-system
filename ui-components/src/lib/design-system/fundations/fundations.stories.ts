@@ -4,7 +4,7 @@ import { FundationsComponent } from './fundations.component';
 const meta: Meta<FundationsComponent> = {
   title: 'Design System/Fundations',
   component: FundationsComponent,
-  tags: ['autodocs'],
+  tags: ['!autodocs'],
   parameters: {
     layout: 'fullscreen',
     controls: {

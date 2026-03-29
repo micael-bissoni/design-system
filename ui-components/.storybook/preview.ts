@@ -12,6 +12,7 @@ const brandItems = Object.keys(brands).map(key => ({
 }));
 
 const preview: Preview = {
+    tags: ['autodocs'],
     globalTypes: {
         theme: {
             description: 'Global color mode',
@@ -65,6 +66,12 @@ const preview: Preview = {
         },
     },
     parameters: {
+        docs: {
+            toc: true, // Enable Table of Contents
+            source: {
+                type: 'dynamic', // Show dynamic source code
+            },
+        },
         options: {
             storySort: {
                 order: ['Design System', 'Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages', ['Introduction', 'Foundations', '*'], '*'],

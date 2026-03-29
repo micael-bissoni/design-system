@@ -1,11 +1,20 @@
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 import type { StorybookConfig } from '@storybook/angular';
 
 const config: StorybookConfig = {
   stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],
-  addons: [],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-docs",
+    "@storybook/addon-a11y"
+  ],
   framework: {
-    name: '@storybook/angular',
+    name: "@storybook/angular",
     options: {},
+  },
+  docs: {
+    defaultName: 'Docs',
   },
   staticDirs: ['../../public'],
 };
