@@ -3,7 +3,9 @@
   "compilerOptions": {
     "emitDecoratorMetadata": true
   },
-  "exclude": ["../**/*.spec.ts"],
+  "exclude": [
+    "../**/*.spec.ts"
+  ],
   "include": [
     "../src/**/*.stories.ts",
     "../src/**/*.stories.js",
@@ -11,6 +13,7 @@
     "../src/**/*.stories.tsx",
     "../src/**/*.stories.mdx",
     "*.js",
-    "*.ts"
+    "*.ts",
+    "../src/lib/design-system/settings-manager.ts"
   ]
 }

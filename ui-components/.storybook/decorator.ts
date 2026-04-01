@@ -1,5 +1,5 @@
 import { applicationConfig, componentWrapperDecorator, moduleMetadata } from "@storybook/angular";
-import { SettingsManagerComponent } from "./settings-manager";
+import { SettingsManagerComponent } from "../src/lib/design-system/settings-manager";
 import { provideTranslateService, TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, provideZonelessChangeDetection } from "@angular/core";
 import { provideHttpClient } from "@angular/common/http";

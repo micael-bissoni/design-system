@@ -3,7 +3,7 @@
 import { Component, forwardRef, inject, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { ThemeService, type Brand } from "@design-system/tokens";
 import { TranslateDirective, TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { LocaleService } from "../src/lib/utils";
+import { LocaleService } from "../utils";
 
 @Component({
     standalone: true,
