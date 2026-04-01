@@ -17,9 +17,9 @@ import { NavigationBarComponent } from '../../organisms';
     >
       <aside
         id="side-nav-slot"
-        class="row-start-3 col-start-1
+        class="row-start-3 col-start-1 h-24 md:h-auto
                md:col-start-1 md:row-start-1 md:row-span-2
-               overflow-y-auto bg-primary border-r border-primary"
+               overflow-y-auto md:bg-primary md:border-r md:border-primary"
       >
         <ng-content select="[navigation]"></ng-content>
         
