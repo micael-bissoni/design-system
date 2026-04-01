@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { cn } from '../../utils/cn';
 import { inputVariants, type InputVariants } from './input.variants';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-input',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, TranslatePipe, ReactiveFormsModule],
   template: `
     <input
       [type]="type()"
-      [placeholder]="placeholder()"
+      [placeholder]="placeholder() | translate"
       [value]="internalValue()"
       [disabled]="disabled()"
       (input)="onInput($event)"
@@ -55,9 +56,9 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: (value: string) => void = () => {};
+  onChange: (value: string) => void = () => { };
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onTouched: () => void = () => {};
+  onTouched: () => void = () => { };
 
   get calculatedClass(): string {
     return cn(inputVariants({ variant: this.variant() }), this.class());

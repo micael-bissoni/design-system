@@ -2,21 +2,22 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BadgeComponent } from '../badge/badge.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-datagrid-cell-status',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BadgeComponent],
+  imports: [CommonModule, ReactiveFormsModule, BadgeComponent, TranslatePipe],
   template: `
     <div class="flex flex-col">
       @if (editMode() && control()) {
         <select [formControl]="control()!" class="form-select text-xs px-2 py-1 rounded-md border border-gray-light bg-white focus:outline-none focus:ring-1 focus:ring-primary">
-          <option value="Ativo">Ativo</option>
-          <option value="Inativo">Inativo</option>
-          <option value="Pendente">Pendente</option>
-          <option value="Rejeitado">Rejeitado</option>
-          <option value="Cancelado">Cancelado</option>
-          <option value="Erro">Erro</option>
+          <option value="Ativo">{{ 'atoms.datagridCellStatus.active' | translate }}</option>
+          <option value="Inativo">{{ 'atoms.datagridCellStatus.inactive' | translate }}</option>
+          <option value="Pendente">{{ 'atoms.datagridCellStatus.pending' | translate }}</option>
+          <option value="Rejeitado">{{ 'atoms.datagridCellStatus.rejected' | translate }}</option>
+          <option value="Cancelado">{{ 'atoms.datagridCellStatus.canceled' | translate }}</option>
+          <option value="Erro">{{ 'atoms.datagridCellStatus.error' | translate }}</option>
         </select>
       } @else {
         <ds-badge [intent]="intent()">{{ control()?.value || status() }}</ds-badge>

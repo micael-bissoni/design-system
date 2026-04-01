@@ -4,9 +4,12 @@
     "notifications": "Notifications",
     "settings": "Settings",
     "pdf": "PDF",
+    "add": "Add",
+    "empty": "No results",
     "cancel": "Cancel",
     "edit": "Edit",
     "support": "Support",
+    "export": "Export",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "back": "Back",
@@ -25,7 +28,10 @@
       "tier3": "Tier 3 (20% Off)"
     },
     "optional": "Optional",
-    "remove": "Remove"
+    "remove": "Remove",
+    "itemSelected": "Item Selected",
+    "itemsSelected": "Items Selected",
+    "appName": "TREVVO"
   },
   "styleguide": {
     "title": "Style guide",
@@ -97,6 +103,20 @@
       "silver": "Silver",
       "bronze": "Bronze",
       "platinum": "Platinum"
+    },
+    "datagridCellDesignation": {
+      "placeholder": "Designation Name"
+    },
+    "datagridCellLocation": {
+      "placeholder": "Country"
+    },
+    "datagridCellStatus": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "canceled": "Canceled",
+      "error": "Error"
     }
   },
   "molecules": {
@@ -196,9 +216,30 @@
       "disclaimer": "By signing below, you authorize the procurement of the items listed above and confirm that the pricing and tier discounts are accurate to your account agreement.",
       "license": "License",
       "timestamp": "Timestamp"
+    },
+    "dataGridFilter": {
+      "title": "Organization Filters",
+      "clear": "Clear",
+      "confirm": "Confirm",
+      "regionsLabel": "Active Regions",
+      "statusLabel": "Status",
+      "statusOptions": {
+        "all": "All",
+        "active": "Active",
+        "pending": "Pending"
+      }
     }
   },
   "organisms": {
+    "dataGrid": {
+      "title": "Active Campaigns",
+      "subtitle": "Operational management of the platform",
+      "placeholder": "Search campaigns...",
+      "pagination": {
+        "range": "{{start}} - {{end}} of {{total}}",
+        "empty": "0 - 0 of 0"
+      }
+    },
     "login": {
       "brand": "Pharma Clean",
       "welcomeTitle": "Welcome back",
@@ -325,6 +366,11 @@
     }
   },
   "templates": {
+    "mainTemplate": {
+      "entities": "Entities",
+      "regions": "Regions",
+      "users": "Users"
+    },
     "orderReview": {
       "title": "Review & Sign Order",
       "orderIdLabel": "Order ID",

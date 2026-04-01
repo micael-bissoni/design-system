@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { DataGridHeaderComponent } from './data-grid-header.component';
 
 const meta: Meta<DataGridHeaderComponent> = {
-  title: 'Molecules/DataGridHeader',
+  title: 'Organisms/DataGrid/Molecules/DataGridHeader',
   component: DataGridHeaderComponent,
   tags: ['autodocs'],
   argTypes: {
@@ -17,15 +17,15 @@ type Story = StoryObj<DataGridHeaderComponent>;
 
 export const Default: Story = {
   args: {
-    title: 'Gestão Operacional',
-    subtitle: 'Controlo total dos fluxos da plataforma',
-    actionLabel: 'Exportar Dados',
+    title: 'organisms.dataGrid.title',
+    subtitle: 'organisms.dataGrid.subtitle',
+    actionLabel: 'common.export',
   },
 };
 
 export const Minimal: Story = {
   args: {
-    title: 'Lista de Utilizadores',
+    title: 'organisms.dataGrid.title',
     subtitle: '',
     actionLabel: '',
   },

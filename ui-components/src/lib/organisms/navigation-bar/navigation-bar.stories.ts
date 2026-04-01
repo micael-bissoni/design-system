@@ -37,8 +37,8 @@ export const WithSelections: Story = {
   args: {
     selectedCount: 3,
     navigationItems: [
-      { id: '1', label: 'Regions', active: true },
-      { id: '2', label: 'Entities', active: false },
+      { id: '1', label: 'templates.mainTemplate.regions', active: true },
+      { id: '2', label: 'templates.mainTemplate.entities', active: false },
     ],
     appName: 'TREVVO',
   },

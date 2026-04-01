@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, effect, forwardRef, input, output, 
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { cn } from '../../utils/cn';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-radio',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   template: `
     <div 
       (click)="select()" 
@@ -25,7 +26,7 @@ import { cn } from '../../utils/cn';
         }
       </div>
       @if (label()) {
-        <span class="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors">{{label()}}</span>
+        <span class="text-sm font-bold text-slate-600 group-hover:text-primary transition-colors">{{label() | translate}}</span>
       }
     </div>
   `,

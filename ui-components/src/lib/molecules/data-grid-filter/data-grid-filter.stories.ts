@@ -6,7 +6,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { CheckboxGroupComponent, RadioGroupComponent } from '../index';
 
 const meta: Meta<DataGridFilterComponent> = {
-  title: 'Molecules/DataGridFilter',
+  title: 'Organisms/DataGrid/Molecules/DataGridFilter',
   component: DataGridFilterComponent,
   tags: ['autodocs'],
   decorators: [

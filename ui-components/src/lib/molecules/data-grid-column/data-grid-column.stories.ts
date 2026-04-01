@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { DataGridColumnComponent } from './data-grid-column.component';
 
 const meta: Meta<DataGridColumnComponent> = {
-  title: 'Molecules/DataGridColumn',
+  title: 'Organisms/DataGrid/Molecules/DataGridColumn',
   component: DataGridColumnComponent,
   tags: ['autodocs'],
   argTypes: {
@@ -22,7 +22,7 @@ export const Left: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<ds-data-grid-column [align]="align">Designação</ds-data-grid-column>`,
+    template: `<ds-data-grid-column [align]="align">{{ 'organisms.dataGrid.column.designation' | translate }}</ds-data-grid-column>`,
   }),
 };
 
@@ -32,7 +32,7 @@ export const Center: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<ds-data-grid-column [align]="align">Validade</ds-data-grid-column>`,
+    template: `<ds-data-grid-column [align]="align">Validate</ds-data-grid-column>`,
   }),
 };
 

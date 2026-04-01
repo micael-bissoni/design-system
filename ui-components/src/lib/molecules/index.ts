@@ -7,4 +7,3 @@ export * from './data-grid-row/data-grid-row.component';
 export * from './data-grid-filter/data-grid-filter.component';
 export * from './checkbox-group/checkbox-group.component';
 export * from './radio-group/radio-group.component';
-export * from './data-grid-cells';

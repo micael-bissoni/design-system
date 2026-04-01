@@ -5,11 +5,12 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { cn } from '../../utils/cn';
 import { CheckboxGroupComponent, RadioGroupComponent } from '../../molecules';
 import { type FilterConfig, type FilterState } from './data-grid-filter.types';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-data-grid-filter',
   standalone: true,
-  imports: [CommonModule, OverlayModule, A11yModule],
+  imports: [CommonModule, OverlayModule, A11yModule, TranslatePipe],
   template: `
     <button 
       cdkOverlayOrigin 
@@ -36,7 +37,7 @@ import { type FilterConfig, type FilterState } from './data-grid-filter.types';
         data-testid="ds-data-grid-filter-menu"
       >
         <div class="flex-1 overflow-auto p-8 custom-scrollbar">
-          <h3 class="text-lg font-black text-slate-800 mb-6 tracking-tight">Filtros de Organização</h3>
+          <h3 class="text-lg font-black text-slate-800 mb-6 tracking-tight">{{ 'molecules.dataGridFilter.title' | translate }}</h3>
           
           <div #filterContainer></div>
         </div>
@@ -47,13 +48,13 @@ import { type FilterConfig, type FilterState } from './data-grid-filter.types';
             (click)="resetFilters()" 
             class="flex-1 py-3 text-[10px] font-black uppercase text-slate-400 hover:text-red-500 tracking-widest transition-colors"
           >
-            Limpar
+            {{ 'molecules.dataGridFilter.clear' | translate }}
           </button>
           <button 
             (click)="applyFilters()" 
             class="flex-[2] py-3 bg-[#008a7c] text-white text-[10px] font-black uppercase rounded-2xl shadow-lg active:scale-95 tracking-widest transition-all hover:bg-[#007065]"
           >
-            Confirmar
+            {{ 'molecules.dataGridFilter.confirm' | translate }}
           </button>
         </div>
       </div>
@@ -79,8 +80,8 @@ export class DataGridFilterComponent {
   cn = cn;
   
   configs = input<FilterConfig[]>([
-    { id: 'regions', label: 'Regiões Ativas', component: CheckboxGroupComponent, options: ['Lisboa', 'Porto', 'Madrid'] },
-    { id: 'status', label: 'Estado', component: RadioGroupComponent, options: ['Todos', 'Ativa', 'Pendente'] }
+    { id: 'regions', label: 'molecules.dataGridFilter.regionsLabel', component: CheckboxGroupComponent, options: ['Lisboa', 'Porto', 'Madrid'] },
+    { id: 'status', label: 'molecules.dataGridFilter.statusLabel', component: RadioGroupComponent, options: ['molecules.dataGridFilter.statusOptions.all', 'molecules.dataGridFilter.statusOptions.active', 'molecules.dataGridFilter.statusOptions.pending'] }
   ]);
 
   filtersApplied = output<FilterState>();
@@ -94,18 +95,18 @@ export class DataGridFilterComponent {
   // Persisted state
   appliedState = signal<FilterState>({
     regions: new Set(),
-    status: 'Todos'
+    status: 'molecules.dataGridFilter.statusOptions.all'
   });
 
   // Temporary state for the interactive menu
   tempState = signal<FilterState>({
     regions: new Set(),
-    status: 'Todos'
+    status: 'molecules.dataGridFilter.statusOptions.all'
   });
 
   hasActiveFilters = computed(() => {
     const s = this.appliedState();
-    return (s['regions'] as Set<string>).size > 0 || s['status'] !== 'Todos';
+    return (s['regions'] as Set<string>).size > 0 || s['status'] !== 'molecules.dataGridFilter.statusOptions.all';
   });
 
   triggerClass = computed(() => cn(
@@ -130,7 +131,7 @@ export class DataGridFilterComponent {
     this.configs().forEach(config => {
       const controlRef = this.filterContainer!.createComponent(config.component as Type<any>);
       
-      const val = currentTemp[config.id] ?? (config.id === 'regions' ? new Set() : 'Todos');
+      const val = currentTemp[config.id] ?? (config.id === 'regions' ? new Set() : 'molecules.dataGridFilter.statusOptions.all');
       
       // Passing inputs to dynamically rendered component
       controlRef.setInput('label', config.label);
@@ -157,7 +158,7 @@ export class DataGridFilterComponent {
   resetFilters() {
     const reset: FilterState = {
       regions: new Set(),
-      status: 'Todos'
+      status: 'molecules.dataGridFilter.statusOptions.all'
     };
     this.tempState.set(reset);
     this.appliedState.set(reset);

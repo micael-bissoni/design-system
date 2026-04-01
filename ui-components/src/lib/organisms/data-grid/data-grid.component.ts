@@ -5,15 +5,17 @@ import { DataGridHeaderComponent, PaginationComponent, SearchBarComponent, DataG
 import { type DataGridRecord, type DataGridColumn } from './data-grid.types';
 import { type FilterState } from '../../molecules/data-grid-filter/data-grid-filter.types';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-data-grid',
   standalone: true,
   imports: [
-    CommonModule, 
-    ScrollingModule, 
-    DataGridHeaderComponent, 
-    SearchBarComponent, 
+    CommonModule,
+    TranslatePipe,
+    ScrollingModule,
+    DataGridHeaderComponent,
+    SearchBarComponent,
     PaginationComponent,
     DataGridRowComponent,
     DataGridColumnComponent,
@@ -57,9 +59,9 @@ import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule } from '@angular
             @for (col of columns(); track col.id) {
               <ds-data-grid-column [align]="col.align || 'left'">
                 @if (col.headerComponent) {
-                  <ng-container *ngComponentOutlet="col.headerComponent; inputs: { label: col.label }" />
+                  <ng-container *ngComponentOutlet="col.headerComponent; inputs: { label: (col.label | translate) }" />
                 } @else {
-                  {{ col.label }}
+                  {{ col.label | translate }}
                 }
               </ds-data-grid-column>
             }
@@ -76,11 +78,17 @@ import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule } from '@angular
               [columns]="columns()"
               [gridTemplateColumns]="gridTemplateColumns()"
             />
-          </cdk-virtual-scroll-viewport>
 
+            </cdk-virtual-scroll-viewport>
+            @if (filteredData().length === 0) {
+              <div class="flex items-center justify-center h-full min-h-[300px]">
+                <p>{{ 'common.empty' | translate }}</p>
+              </div>
+            } 
+          
           <!-- PAGINATION -->
           <ds-pagination 
-            [rangeLabel]="pageRange()"
+            [rangeLabel]="pageRangeProps().key | translate:pageRangeProps().params"
             [prevDisabled]="page() === 0"
             [nextDisabled]="isLastPage()"
             (prev)="prevPage()"
@@ -102,11 +110,11 @@ export class DataGridComponent {
   title = input.required<string>();
   subtitle = input<string>('');
   actionLabel = input<string>('');
-  searchPlaceholder = input<string>('Pesquisa global inteligente...');
+  searchPlaceholder = input<string>('');
   data = input<DataGridRecord[]>([]);
   columns = input<DataGridColumn[]>([]);
   pageSize = input<number>(10);
-  isMobile = signal<boolean>(false); 
+  isMobile = signal<boolean>(false);
 
   actionClicked = output<void>();
   searchChange = output<string>();
@@ -114,9 +122,9 @@ export class DataGridComponent {
 
   searchTerm = signal('');
   page = signal(0);
-  
+
   private fb = inject(FormBuilder);
-  
+
   gridForm = this.fb.group({
     rows: this.fb.array<FormGroup>([])
   });
@@ -131,13 +139,16 @@ export class DataGridComponent {
     return list.slice(start, start + this.pageSize());
   });
 
-  pageRange = computed(() => {
+  pageRangeProps = computed(() => {
     const total = this.data().length;
-    if (total === 0) return '0 - 0 de 0';
+    if (total === 0) return { key: 'organisms.dataGrid.pagination.empty', params: {} };
     const start = this.page() * this.pageSize() + 1;
     let end = (this.page() + 1) * this.pageSize();
     if (end > total) end = total;
-    return `${start} - ${end} de ${total}`;
+    return { 
+      key: 'organisms.dataGrid.pagination.range', 
+      params: { start, end, total } 
+    };
   });
 
   isLastPage = computed(() => {
@@ -158,7 +169,7 @@ export class DataGridComponent {
 
   onSearch(term: string) {
     this.searchTerm.set(term);
-    this.page.set(0); 
+    this.page.set(0);
     this.searchChange.emit(term);
   }
 

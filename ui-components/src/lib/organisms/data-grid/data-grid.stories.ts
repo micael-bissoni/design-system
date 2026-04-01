@@ -3,7 +3,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
 import { DataGridComponent } from './data-grid.component';
 import { type DataGridRecord, type DataGridColumn } from './data-grid.types';
-import { DesignationCellComponent, MercadoCellComponent, StatusCellComponent, ValidadeCellComponent } from '../../molecules/data-grid-cells';
+import { DatagridCellDesignationComponent, DatagridCellStatusComponent } from '../../atoms';
+import { DatagridCellLocationComponent } from '../../atoms/datagrid-cell-location/datagrid-cell-location.component';
+import { DatagridCellValidateComponent } from '../../atoms/datagrid-cell-validate/datagrid-cell-validate.component';
 
 const mockData: DataGridRecord[] = [
   { id: 'REG-001', nome: 'Distribuição Lisboa Norte', pais: 'Portugal', dataInicio: '01 Jan 2024', dataFim: '31 Dez 2024', estado: 'Ativo' },
@@ -25,23 +27,23 @@ const mockColumns: DataGridColumn[] = [
     label: 'Designação',
     key: 'id',
     width: '1fr',
-    cellComponent: DesignationCellComponent,
+    cellComponent: DatagridCellDesignationComponent,
     cellConfig: (record) => ({ id: record.id, name: record.nome })
   },
   {
-    id: 'mercado',
-    label: 'Mercado',
+    id: 'location',
+    label: 'location',
     key: 'pais',
     width: '150px',
-    cellComponent: MercadoCellComponent,
+    cellComponent: DatagridCellLocationComponent,
     cellConfig: (record) => ({ pais: record.pais })
   },
   {
-    id: 'validade',
-    label: 'Validade',
+    id: 'validate',
+    label: 'Validate',
     width: '180px',
     align: 'center',
-    cellComponent: ValidadeCellComponent,
+    cellComponent: DatagridCellValidateComponent,
     cellConfig: (record) => ({ dataInicio: record.dataInicio, dataFim: record.dataFim })
   },
   {
@@ -50,7 +52,7 @@ const mockColumns: DataGridColumn[] = [
     key: 'estado',
     width: '120px',
     align: 'center',
-    cellComponent: StatusCellComponent,
+    cellComponent: DatagridCellStatusComponent,
     cellConfig: (record) => ({ status: record.estado })
   }
 ];
@@ -59,11 +61,6 @@ const meta: Meta<DataGridComponent> = {
   title: 'Organisms/DataGrid',
   component: DataGridComponent,
   tags: ['autodocs'],
-  decorators: [
-    moduleMetadata({
-      imports: [OverlayModule, A11yModule],
-    }),
-  ],
   argTypes: {
     title: { control: 'text' },
     subtitle: { control: 'text' },
@@ -77,9 +74,10 @@ type Story = StoryObj<DataGridComponent>;
 
 export const Default: Story = {
   args: {
-    title: 'Campanhas Ativas',
-    subtitle: 'Gestão operacional da plataforma Trevvo',
-    actionLabel: 'Novo Registo',
+    title: 'organisms.dataGrid.title',
+    subtitle: 'organisms.dataGrid.subtitle',
+    actionLabel: 'common.export',
+    searchPlaceholder: 'organisms.dataGrid.searchPlaceholder',
     data: mockData,
     columns: mockColumns,
     pageSize: 5,
@@ -92,6 +90,7 @@ export const Default: Story = {
           [title]="title" 
           [subtitle]="subtitle" 
           [actionLabel]="actionLabel"
+          [searchPlaceholder]="searchPlaceholder"
           [data]="data"
           [columns]="columns"
           [pageSize]="pageSize"

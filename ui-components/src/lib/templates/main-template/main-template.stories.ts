@@ -1,5 +1,9 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
 import { MainTemplateComponent } from './main-template.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { DataGridComponent } from '../../organisms';
+import * as DataGridStories from '../../organisms/data-grid/data-grid.stories';
 
 const meta: Meta<MainTemplateComponent> = {
   title: 'Templates/MainTemplate',
@@ -21,7 +25,7 @@ type Story = StoryObj<MainTemplateComponent>;
  * Story demonstrating the full template capability using modern inputs.
  * These inputs support internationalization through the TranslatePipe.
  */
-export const FullTemplate: Story = {
+export const Empty: Story = {
   args: {
     appName: 'TREVVO',
     title: 'Dashboard Overview',
@@ -31,9 +35,9 @@ export const FullTemplate: Story = {
       avatarSrc: '',
     },
     navigationItems: [
-      { id: '1', label: 'Regions', active: true, icon: 'location-on' },
-      { id: '2', label: 'Entities', active: false, icon: 'corporate-fare' },
-      { id: '3', label: 'Management', active: false, icon: 'management' },
+      { id: '1', label: 'templates.mainTemplate.regions', active: true, icon: 'location-on' },
+      { id: '2', label: 'templates.mainTemplate.entities', active: false, icon: 'corporate-fare' },
+      { id: '3', label: 'templates.mainTemplate.users', active: false, icon: 'management' },
     ],
   },
   render: (args) => ({
@@ -45,7 +49,57 @@ export const FullTemplate: Story = {
         [user]="user" 
         [navigationItems]="navigationItems"
       >
-      <div class="flex justify-center items-center w-full h-full text-secondary">content</div>
+      <div class="flex justify-center items-center w-full h-full text-secondary">{{ 'common.empty' | translate }}</div>
+      </ds-main-template>
+    `,
+  }),
+};
+
+export const Datagrid: Story = {
+  decorators: [
+    moduleMetadata({
+      imports: [DataGridComponent],
+    })
+  ],
+  args: {
+    appName: 'TREVVO',
+    title: 'Dashboard Overview',
+    user: {
+      firstName: 'Micael',
+      lastName: 'Bissoni',
+      avatarSrc: '',
+    },
+    navigationItems: [
+      { id: '1', label: 'templates.mainTemplate.regions', active: true, icon: 'location-on' },
+      { id: '2', label: 'templates.mainTemplate.entities', active: false, icon: 'corporate-fare' },
+      { id: '3', label: 'templates.mainTemplate.users', active: false, icon: 'management' },
+    ],
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      dataGridTitle: DataGridStories.Default.args?.title,
+      dataGridActionLabel: DataGridStories.Default.args?.actionLabel,
+      dataGridSubtitle: DataGridStories.Default.args?.subtitle,
+      dataGridColumns: DataGridStories.Default.args?.columns,
+      dataGridData: DataGridStories.Default.args?.data,
+      dataGridPageSize: DataGridStories.Default.args?.pageSize,
+    },
+    template: `
+      <ds-main-template 
+        [appName]="appName" 
+        [title]="title" 
+        [user]="user" 
+        [navigationItems]="navigationItems"
+      >
+        <ds-data-grid 
+          [title]="dataGridTitle" 
+          [subtitle]="dataGridSubtitle" 
+          [actionLabel]="dataGridActionLabel"
+          [data]="dataGridData"
+          [columns]="dataGridColumns"
+          [pageSize]="dataGridPageSize"
+        ></ds-data-grid>
       </ds-main-template>
     `,
   }),

@@ -1,6 +1,6 @@
 import { applicationConfig, componentWrapperDecorator, moduleMetadata } from "@storybook/angular";
 import { SettingsManagerComponent } from "./settings-manager";
-import { provideTranslateService, TranslateService } from "@ngx-translate/core";
+import { provideTranslateService, TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, provideZonelessChangeDetection } from "@angular/core";
 import { provideHttpClient } from "@angular/common/http";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
@@ -38,7 +38,7 @@ export const decorators = [
         ],
     }),
     moduleMetadata({
-        imports: [SettingsManagerComponent],
+        imports: [SettingsManagerComponent, TranslatePipe],
     }),
     (story: any, context: any) => {
         const { locale, brand, currency } = context.globals;

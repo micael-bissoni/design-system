@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, effect, forwardRef, input, output, 
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxComponent } from '../../atoms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-checkbox-group',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CheckboxComponent],
+  imports: [CommonModule, ReactiveFormsModule, CheckboxComponent, TranslatePipe],
   template: `
     <div 
       class="mb-8 last:mb-0"
@@ -14,12 +15,12 @@ import { CheckboxComponent } from '../../atoms';
       [class.pointer-events-none]="internalDisabled()"
     >
       @if (label()) {
-        <label class="label-industrial text-primary mb-4 block font-bold text-xs uppercase tracking-widest">{{label()}}</label>
+        <label class="label-industrial text-primary mb-4 block font-bold text-xs uppercase tracking-widest">{{label() | translate}}</label>
       }
       <div class="space-y-3">
         @for (option of options(); track option) {
           <ds-checkbox 
-            [label]="option"
+            [label]="option | translate"
             [checked]="internalValue().has(option)"
             (checkedChange)="toggleOption(option)"
             [disabled]="internalDisabled()"

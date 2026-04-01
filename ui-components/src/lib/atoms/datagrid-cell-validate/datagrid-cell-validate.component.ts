@@ -4,7 +4,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from '../input/input.component';
 
 @Component({
-  selector: 'ds-datagrid-cell-validade',
+  selector: 'ds-datagrid-cell-validate',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, InputComponent],
   template: `
@@ -22,7 +22,7 @@ import { InputComponent } from '../input/input.component';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DatagridCellValidadeComponent {
+export class DatagridCellValidateComponent {
   dataInicio = input<string>('');
   dataFim = input<string>('');
   editMode = input<boolean>(false);

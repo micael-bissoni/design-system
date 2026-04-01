@@ -1,15 +1,15 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { DatagridCellValidadeComponent } from './datagrid-cell-validade.component';
+import { DatagridCellValidateComponent } from './datagrid-cell-validate.component';
 import { FormControl } from '@angular/forms';
 
-const meta: Meta<DatagridCellValidadeComponent> = {
-  title: 'Organisms/DataGrid/Molecules/DataGridRow/Atoms/DatagridCellValidade',
-  component: DatagridCellValidadeComponent,
+const meta: Meta<DatagridCellValidateComponent> = {
+  title: 'Organisms/DataGrid/Molecules/DataGridRow/Atoms/DatagridCellValidate',
+  component: DatagridCellValidateComponent,
   tags: ['autodocs'],
 };
 
 export default meta;
-type Story = StoryObj<DatagridCellValidadeComponent>;
+type Story = StoryObj<DatagridCellValidateComponent>;
 
 export const Default: Story = {
   args: {

@@ -31,7 +31,7 @@ import { IconComponent } from '../../atoms/icon/icon.component';
             ></div>
             </div>
             <span class="hidden md:flex text-on-primary ml-2 font-headers font-bold text-xl tracking-tight uppercase">
-              {{ appName() | translate }}
+              {{ 'common.appName' | translate }}
             </span>
         </div>
 
@@ -72,7 +72,7 @@ import { IconComponent } from '../../atoms/icon/icon.component';
               <svg class="w-8 h-8 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-width="3" d="M12 4v16m8-8H4"></path>
               </svg>
-              <span class="hidden md:inline ml-2">{{ 'ADD_NEW' | translate }}</span>
+              <span class="hidden md:inline ml-2">{{ 'common.add' | translate }}</span>
             </button>
           } @else {
             <div 
@@ -85,7 +85,7 @@ import { IconComponent } from '../../atoms/icon/icon.component';
                 class="absolute -top-4 -right-1 bg-black text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-xl border-2 border-white z-10 animate-bounce
                        md:static md:mb-2 md:text-xs md:py-1 md:w-full md:text-center md:bg-white md:text-primary"
               >
-                {{ selectedCount() }}<span class="hidden md:inline">&nbsp;{{ (selectedCount() === 1 ? 'ITEM_SELECTED' : 'ITEMS_SELECTED') | translate }}</span>
+                {{ selectedCount() }}<span class="hidden md:inline">&nbsp;{{ (selectedCount() === 1 ? 'common.itemSelected' : 'common.itemsSelected') | translate }}</span>
               </div>
               <div class="flex gap-2 w-full">
                 <button 

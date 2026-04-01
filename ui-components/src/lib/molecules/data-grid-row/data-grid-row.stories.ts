@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { DataGridRowComponent } from './data-grid-row.component';
 import { type DataGridColumn } from '../../organisms/data-grid/data-grid.types';
-import { 
-  DatagridCellDesignationComponent, 
-  DatagridCellMercadoComponent, 
-  DatagridCellStatusComponent, 
-  DatagridCellValidadeComponent 
+import {
+  DatagridCellDesignationComponent,
+  DatagridCellLocationComponent,
+  DatagridCellStatusComponent,
+  DatagridCellValidateComponent
 } from '../../atoms';
 
 const mockColumns: DataGridColumn[] = [
@@ -18,19 +18,19 @@ const mockColumns: DataGridColumn[] = [
     cellConfig: (record) => ({ id: record.id, name: record.nome })
   },
   {
-    id: 'mercado',
-    label: 'Mercado',
+    id: 'location',
+    label: 'location',
     key: 'pais',
     width: '150px',
-    cellComponent: DatagridCellMercadoComponent,
+    cellComponent: DatagridCellLocationComponent,
     cellConfig: (record) => ({ pais: record.pais })
   },
   {
-    id: 'validade',
-    label: 'Validade',
+    id: 'validate',
+    label: 'Validate',
     width: '180px',
     align: 'center',
-    cellComponent: DatagridCellValidadeComponent,
+    cellComponent: DatagridCellValidateComponent,
     cellConfig: (record) => ({ dataInicio: record.dataInicio, dataFim: record.dataFim })
   },
   {
@@ -45,7 +45,7 @@ const mockColumns: DataGridColumn[] = [
 ];
 
 const meta: Meta<DataGridRowComponent> = {
-  title: 'Molecules/DataGridRow',
+  title: 'Organisms/DataGrid/Molecules/DataGridRow',
   component: DataGridRowComponent,
   tags: ['autodocs'],
 };
@@ -55,13 +55,13 @@ type Story = StoryObj<DataGridRowComponent>;
 
 export const Default: Story = {
   args: {
-    record: { 
-      id: 'REG-001', 
-      nome: 'Distribuição Lisboa Norte', 
-      pais: 'Portugal', 
-      dataInicio: '01 Jan 2024', 
-      dataFim: '31 Dez 2024', 
-      estado: 'Ativo' 
+    record: {
+      id: 'REG-001',
+      nome: 'Distribuição Lisboa Norte',
+      pais: 'Portugal',
+      dataInicio: '01 Jan 2024',
+      dataFim: '31 Dez 2024',
+      estado: 'Ativo'
     },
     columns: mockColumns,
     gridTemplateColumns: 'minmax(250px, 1fr) 150px 180px 120px'
@@ -78,13 +78,13 @@ export const Default: Story = {
 
 export const Pending: Story = {
   args: {
-    record: { 
-      id: 'REG-002', 
-      nome: 'Logística Madrid Central', 
-      pais: 'Espanha', 
-      dataInicio: '15 Fev 2024', 
-      dataFim: '15 Fev 2025', 
-      estado: 'Pendente' 
+    record: {
+      id: 'REG-002',
+      nome: 'Logística Madrid Central',
+      pais: 'Espanha',
+      dataInicio: '15 Fev 2024',
+      dataFim: '15 Fev 2025',
+      estado: 'Pendente'
     },
     columns: mockColumns,
     gridTemplateColumns: 'minmax(250px, 1fr) 150px 180px 120px'
@@ -101,13 +101,13 @@ export const Pending: Story = {
 
 export const Cancelled: Story = {
   args: {
-    record: { 
-      id: 'REG-003', 
-      nome: 'Operação Paris Quest', 
-      pais: 'França', 
-      dataInicio: '10 Mar 2024', 
-      dataFim: '10 Mar 2025', 
-      estado: 'Cancelado' 
+    record: {
+      id: 'REG-003',
+      nome: 'Operação Paris Quest',
+      pais: 'França',
+      dataInicio: '10 Mar 2024',
+      dataFim: '10 Mar 2025',
+      estado: 'Cancelado'
     },
     columns: mockColumns,
     gridTemplateColumns: 'minmax(250px, 1fr) 150px 180px 120px'

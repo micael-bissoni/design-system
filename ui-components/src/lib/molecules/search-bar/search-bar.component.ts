@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, forwardRef, input, output, signal }
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { IconComponent, InputComponent } from '../../atoms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-search-bar',
   standalone: true,
-  imports: [CommonModule, IconComponent, InputComponent, ReactiveFormsModule],
+  imports: [CommonModule, TranslatePipe, IconComponent, InputComponent, ReactiveFormsModule],
   template: `
     <div 
       class="flex bg-white rounded-2xl border border-gray-light p-1.5 shadow-sm focus-within:ring-4 focus-within:ring-primary/5 transition-all w-full"
@@ -37,7 +38,7 @@ import { IconComponent, InputComponent } from '../../atoms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBarComponent implements ControlValueAccessor {
-  placeholder = input<string>('Search...');
+  placeholder = input<string>('');
   value = input<string>('');
 
   valueChange = output<string>();
@@ -46,9 +47,9 @@ export class SearchBarComponent implements ControlValueAccessor {
   disabled = signal<boolean>(false);
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: (value: string) => void = () => {};
+  onChange: (value: string) => void = () => { };
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onTouched: () => void = () => {};
+  onTouched: () => void = () => { };
 
   onValueChange(val: string) {
     this.internalValue.set(val);

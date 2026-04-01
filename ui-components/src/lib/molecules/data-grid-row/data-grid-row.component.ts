@@ -1,18 +1,19 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { type DataGridRecord, type DataGridColumn } from '../../organisms/data-grid/data-grid.types';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-data-grid-row',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   template: `
     <div class="group">
       <!-- Mobile Card -->
       <div class="lg:hidden p-4 border-b border-gray-light/50 flex flex-col gap-3">
         @for (col of columns(); track col.id) {
           <div class="flex justify-between items-start gap-4 p-2 rounded-lg bg-gray-light/5">
-            <span class="text-[10px] font-black text-gray-medium uppercase tracking-widest mt-1 whitespace-nowrap">{{ col.label }}</span>
+            <span class="text-[10px] font-black text-gray-medium uppercase tracking-widest mt-1 whitespace-nowrap">{{ col.label | translate }}</span>
             <div class="flex flex-col items-end text-right overflow-hidden flex-1">
               @if (col.cellComponent) {
                 <ng-container *ngComponentOutlet="col.cellComponent; inputs: getCellInputs(col)" />
