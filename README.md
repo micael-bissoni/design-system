@@ -91,7 +91,7 @@ module.exports = {
   presets: [require('@design-system/tokens/tailwind.preset')],
   content: [
     "./src/**/*.{html,ts}",
-    "./node_modules/@design-system/ui-components/**/*.{mjs,js,ts}"
+    "./node_modules/@trevvo/design-system/**/*.{mjs,js,ts}"
   ],
   // ...
 }
@@ -101,7 +101,7 @@ module.exports = {
 Import the standalone components directly into your Angular modules or components:
 
 ```typescript
-import { ButtonComponent } from '@design-system/ui-components';
+import { ButtonComponent } from '@trevvo/design-system';
 
 @Component({
   standalone: true,
@@ -157,7 +157,7 @@ export const appConfig: ApplicationConfig = {
 Register the `LocaleService` and provide the required NgRx store states if your MFE needs to be locale-aware.
 
 ```typescript
-import { LocaleService, i18nReducer } from '@design-system/ui-components';
+import { LocaleService, i18nReducer } from '@trevvo/design-system';
 
 // In your Store providers
 provideStore({ i18n: i18nReducer })

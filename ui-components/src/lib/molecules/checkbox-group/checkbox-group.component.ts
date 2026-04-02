@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, effect, forwardRef, input, output, signal, untracked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { CheckboxComponent } from '../../atoms';
+import { CheckboxComponent } from '../../atoms/checkbox/checkbox.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

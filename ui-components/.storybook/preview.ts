@@ -1,5 +1,5 @@
 import { type Preview } from '@storybook/angular';
-import { brands } from '@design-system/tokens';
+import { brands } from '@trevvo/design-system/tokens';
 
 import '@angular/common/locales/global/en';
 import '@angular/common/locales/global/pt';

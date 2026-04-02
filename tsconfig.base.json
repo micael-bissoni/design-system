@@ -6,14 +6,23 @@
     "experimentalDecorators": true,
     "target": "es2022",
     "module": "preserve",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@design-system/ui-components": ["ui-components/src/index.ts"],
-      "@design-system/tokens": ["tokens/src/index.ts"],
-      "@trevvo/tokens": ["tokens/src/index.ts"]
+      "@trevvo/design-system/components": [
+        "ui-components/src/index.ts"
+      ],
+      "@trevvo/design-system/tokens": [
+        "ui-components/tokens/src/index.ts"
+      ],
     },
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

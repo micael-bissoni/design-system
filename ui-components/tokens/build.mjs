@@ -3,8 +3,8 @@ import { formats, transformGroups } from 'style-dictionary/enums';
 import fs from 'fs';
 import path from 'path';
 
-const brands = fs.readdirSync(path.join(process.cwd(), 'tokens/properties/brands')).filter((brand) => !brand.startsWith('.'));
-const platforms = fs.readdirSync(path.join(process.cwd(), 'tokens/properties/platforms')).filter((platform) => !platform.startsWith('.'));
+const brands = fs.readdirSync(path.join(process.cwd(), 'ui-components/tokens/properties/brands')).filter((brand) => !brand.startsWith('.'));
+const platforms = fs.readdirSync(path.join(process.cwd(), 'ui-components/tokens/properties/platforms')).filter((platform) => !platform.startsWith('.'));
 
 const { androidColors, androidDimens, androidFontDimens, iosMacros, cssVariables } = formats;
 const { web } = transformGroups;
@@ -37,9 +37,9 @@ function minify(obj) {
 function getStyleDictionaryConfig(brand, platform) {
   return {
     source: [
-      'tokens/properties/globals/**/*.json',
-      `tokens/properties/platforms/${platform}/*.json`,
-      `tokens/properties/brands/${brand}/*.json`,
+      'ui-components/tokens/properties/globals/**/*.json',
+      `ui-components/tokens/properties/platforms/${platform}/*.json`,
+      `ui-components/tokens/properties/brands/${brand}/*.json`,
     ],
     platforms: {
       web: {
@@ -54,7 +54,7 @@ function getStyleDictionaryConfig(brand, platform) {
       },
       ts: {
         transformGroup: 'js',
-        buildPath: `public/tokens/ts/${brand}/`,
+        buildPath: `ui-components/tokens/src/lib/generated/${brand}/`,
         files: [
           {
             destination: 'index.ts',
@@ -101,6 +101,12 @@ if (fs.existsSync(buildDir)) {
 }
 fs.mkdirSync(buildDir, { recursive: true });
 
+const internalTsDir = path.join(process.cwd(), 'ui-components/tokens/src/lib/generated');
+if (fs.existsSync(internalTsDir)) {
+  fs.rmSync(internalTsDir, { recursive: true, force: true });
+}
+fs.mkdirSync(internalTsDir, { recursive: true });
+
 console.log('Build started...');
 
 // PROCESS THE DESIGN TOKENS FOR THE DIFFEREN BRANDS AND PLATFORMS
@@ -133,7 +139,7 @@ brands.forEach(function (brand) {
 
     if (platform === 'ts') {
       // Copy assets if they exist for this brand
-      const brandAssetsDir = path.join(process.cwd(), `tokens/properties/brands/${brand}/assets`);
+      const brandAssetsDir = path.join(process.cwd(), `ui-components/tokens/properties/brands/${brand}/assets`);
       const publicBrandAssetsDir = path.join(process.cwd(), `public/tokens/${brand}/assets`);
 
       if (fs.existsSync(brandAssetsDir)) {
@@ -145,7 +151,7 @@ brands.forEach(function (brand) {
       brandFileContent.push({
         name: toBabelCase(brand),
         key: brand,
-        path: `../../../public/tokens/ts/${brand}/index`
+        path: `./generated/${brand}/index`
       });
     }
   });
@@ -164,7 +170,7 @@ tokensTsContent += `} as const;\n\n`;
 tokensTsContent += `export type Brand = keyof typeof brands;\n`;
 
 fs.writeFileSync(
-  path.join(process.cwd(), 'tokens/src/lib/tokens.ts'),
+  path.join(process.cwd(), 'ui-components/tokens/src/lib/tokens.ts'),
   tokensTsContent,
 );
 

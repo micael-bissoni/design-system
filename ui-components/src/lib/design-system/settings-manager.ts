@@ -1,13 +1,12 @@
 // settings-manager.component.ts
 
-import { Component, forwardRef, inject, Input, OnChanges, SimpleChanges } from "@angular/core";
-import { ThemeService, type Brand } from "@design-system/tokens";
-import { TranslateDirective, TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { LocaleService } from "../utils";
+import { Component, inject, Input, OnChanges, SimpleChanges } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
+import { LocaleService } from "../utils/locale.service";
+import { ThemeService, type Brand } from "@trevvo/design-system/tokens";
 
 @Component({
     standalone: true,
-    imports: [TranslatePipe, TranslateDirective],
     selector: "sb-settings-manager",
     template: `
     <div>

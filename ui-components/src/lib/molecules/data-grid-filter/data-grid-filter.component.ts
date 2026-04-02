@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
 import { cn } from '../../utils/cn';
-import { CheckboxGroupComponent, RadioGroupComponent } from '../../molecules';
+import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
+import { RadioGroupComponent } from '../radio-group/radio-group.component';
 import { type FilterConfig, type FilterState } from './data-grid-filter.types';
 import { TranslatePipe } from '@ngx-translate/core';
 

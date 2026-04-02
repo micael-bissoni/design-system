@@ -1,7 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, input, output, signal, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { DataGridHeaderComponent, PaginationComponent, SearchBarComponent, DataGridRowComponent, DataGridColumnComponent, DataGridFilterComponent } from '../../molecules';
+import { DataGridHeaderComponent } from '../../molecules/data-grid-header/data-grid-header.component';
+import { PaginationComponent } from '../../molecules/pagination/pagination.component';
+import { SearchBarComponent } from '../../molecules/search-bar/search-bar.component';
+import { DataGridRowComponent } from '../../molecules/data-grid-row/data-grid-row.component';
+import { DataGridColumnComponent } from '../../molecules/data-grid-column/data-grid-column.component';
+import { DataGridFilterComponent } from '../../molecules/data-grid-filter/data-grid-filter.component';
 import { type DataGridRecord, type DataGridColumn } from './data-grid.types';
 import { type FilterState } from '../../molecules/data-grid-filter/data-grid-filter.types';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';

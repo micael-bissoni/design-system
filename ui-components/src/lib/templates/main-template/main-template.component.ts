@@ -2,8 +2,8 @@ import { Component, ChangeDetectionStrategy, input, output } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NavigationItem, UserProfile } from './main-template.types';
-import { AvatarComponent } from '../../atoms';
-import { NavigationBarComponent } from '../../organisms';
+import { AvatarComponent } from '../../atoms/avatar/avatar.component';
+import { NavigationBarComponent } from '../../organisms/navigation-bar/navigation-bar.component';
 
 @Component({
   selector: 'ds-main-template',

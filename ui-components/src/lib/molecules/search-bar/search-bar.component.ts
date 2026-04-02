@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, forwardRef, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { IconComponent, InputComponent } from '../../atoms';
-import { TranslatePipe } from '@ngx-translate/core';
+import { InputComponent } from '../../atoms/input/input.component';
 
 @Component({
   selector: 'ds-search-bar',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, IconComponent, InputComponent, ReactiveFormsModule],
+  imports: [CommonModule, InputComponent, ReactiveFormsModule],
   template: `
     <div 
       class="flex bg-white rounded-2xl border border-gray-light p-1.5 shadow-sm focus-within:ring-4 focus-within:ring-primary/5 transition-all w-full"

@@ -9,5 +9,5 @@ export interface NavigationItem {
 export interface UserProfile {
   firstName: string;
   lastName: string;
-  avatarSrc?: string;
+  avatarSrc: string | null;
 }

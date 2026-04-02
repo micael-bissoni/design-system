@@ -1,0 +1,16 @@
+{
+  "name": "tokens",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ui-components/tokens/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "node ui-components/tokens/build.mjs"
+        ]
+      }
+    }
+  }
+}
