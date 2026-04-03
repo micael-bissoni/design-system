@@ -62,10 +62,10 @@ export const brand2 = {
     }
   },
   "icon": {
-    "content-copy": "url('/tokens/web/assets/icons/content-copy.svg')",
-    "content-paste": "url('/tokens/web/assets/icons/content-paste.svg')",
-    "check-circle": "url('/tokens/web/assets/icons/check-circle.svg')",
-    "logo": "url('/tokens/brand-2/assets/logo.svg')"
+    "content-copy": "url('/tokens/web/web/assets/icons/content-copy.svg')",
+    "content-paste": "url('/tokens/web/web/assets/icons/content-paste.svg')",
+    "check-circle": "url('/tokens/web/web/assets/icons/check-circle.svg')",
+    "logo": "url('/tokens/web/brand-2/assets/logo.svg')"
   },
   "asset": {
     "font": {

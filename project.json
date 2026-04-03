@@ -21,7 +21,13 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "dist"
+            "input": "dist/tokens",
+            "output": "tokens"
+          },
+          {
+            "glob": "**/*",
+            "input": "design-system/i18n",
+            "output": "assets/i18n"
           }
         ],
         "styles": [

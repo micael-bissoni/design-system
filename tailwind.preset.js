@@ -27,6 +27,7 @@ module.exports = {
       fontFamily: {
         headers: 'var(--font-family-headers)',
         base: 'var(--font-family-base)',
+        system: 'var(--font-platform-system)',
       },
       fontSize: {
         xsmall: 'var(--size-font-xsmall)',
@@ -44,10 +45,14 @@ module.exports = {
         '9xl': 'var(--size-font-9xlarge)',
         '10xl': 'var(--size-font-10xlarge)',
         base: 'var(--size-font-base)',
+        button: 'var(--button-text-size)',
       },
       borderRadius: {
         button: 'var(--button-border-radius)',
       },
+      height: {
+        button: 'var(--button-height)',
+      }
     },
   },
   corePlugins: {

@@ -62,13 +62,13 @@ export const base = {
     }
   },
   "icon": {
-    "content-copy": "url('/tokens/base/assets/icons/content-copy.svg')",
-    "content-paste": "url('/tokens/base/assets/icons/content-paste.svg')",
-    "check-circle": "url('/tokens/base/assets/icons/check-circle.svg')",
-    "calendar-today": "url('/tokens/base/assets/icons/calendar-today.svg')",
-    "payments": "url('/tokens/base/assets/icons/payments.svg')",
-    "corporate-fare": "url('/tokens/base/assets/icons/corporate-fare.svg')",
-    "management": "url('/tokens/base/assets/icons/management.svg')",
-    "location-on": "url('/tokens/base/assets/icons/location-on.svg')"
+    "content-copy": "url('/tokens/web/base/assets/icons/content-copy.svg')",
+    "content-paste": "url('/tokens/web/base/assets/icons/content-paste.svg')",
+    "check-circle": "url('/tokens/web/base/assets/icons/check-circle.svg')",
+    "calendar-today": "url('/tokens/web/base/assets/icons/calendar-today.svg')",
+    "payments": "url('/tokens/web/base/assets/icons/payments.svg')",
+    "corporate-fare": "url('/tokens/web/base/assets/icons/corporate-fare.svg')",
+    "management": "url('/tokens/web/base/assets/icons/management.svg')",
+    "location-on": "url('/tokens/web/base/assets/icons/location-on.svg')"
   }
 } as const;
