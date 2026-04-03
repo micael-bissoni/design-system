@@ -1,0 +1,34 @@
+{
+  "name": "components",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "design-system/components/src",
+  "prefix": "ds",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "design-system/components/ng-package.json",
+        "tsConfig": "design-system/components/tsconfig.lib.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "design-system/components/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "options": {}
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

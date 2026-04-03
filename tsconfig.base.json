@@ -13,10 +13,10 @@
     "baseUrl": ".",
     "paths": {
       "@trevvo/design-system/components": [
-        "ui-components/src/index.ts"
+        "design-system/components/src/index.ts"
       ],
       "@trevvo/design-system/tokens": [
-        "ui-components/tokens/src/index.ts"
+        "design-system/tokens/src/index.ts"
       ],
     },
     "skipLibCheck": true

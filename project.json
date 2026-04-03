@@ -1,5 +1,5 @@
 {
-  "name": "@trevvo/design-system",
+  "name": "design-system",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "includedScripts": [],
   "projectType": "application",
@@ -21,7 +21,7 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "public"
+            "input": "dist"
           }
         ],
         "styles": [
@@ -80,6 +80,64 @@
         "buildTarget": "design-system:build",
         "staticFilePath": "dist/design-system/browser",
         "spa": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "design-system/.storybook",
+        "browserTarget": "design-system:build",
+        "compodoc": false,
+        "experimentalZoneless": true
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": [
+        "{options.outputDir}"
+      ],
+      "options": {
+        "outputDir": "dist/storybook/design-system",
+        "configDir": "design-system/.storybook",
+        "browserTarget": "design-system:build",
+        "compodoc": false,
+        "experimentalZoneless": true,
+        "styles": [
+          "styles/styles.scss"
+        ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c design-system/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "options": {
+        "buildTarget": "design-system:build-storybook",
+        "staticFilePath": "dist/storybook/design-system",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "design-system:build-storybook:ci"
+        }
       }
     }
   }

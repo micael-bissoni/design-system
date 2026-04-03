@@ -21,9 +21,9 @@ We leverage:
 
 The monorepo is organized as follows:
 - `tokens/`: The "Single Source of Truth" for design values.
-- `ui-components/`: The core library of reusable Angular components.
+- `design-system/`: The core library of reusable Angular components.
 - `.agents/`: Specialized AI rules, skills, and workflows to maintain architectural integrity.
-- `public/`: Assets, branding tokens, and internationalization files.
+- `dist/`: Build artifacts, branding tokens, and internationalization files.
 
 ---
 
@@ -56,7 +56,7 @@ To build the design tokens, build the library, and generate an installable npm p
 ```sh
 npm run package
 ```
-This will output a tarball file (e.g., `design-system-ui-components-0.0.1.tgz`) in `dist/ui-components/`.
+This will output a tarball file (e.g., `design-system-design-system-0.0.1.tgz`) in `dist/design-system/`.
 
 ## ⚙️ Installation
 
@@ -64,7 +64,7 @@ This will output a tarball file (e.g., `design-system-ui-components-0.0.1.tgz`) 
 After generating the package as shown above, you can install it in your microfrontend by pointing `npm install` to the created tarball:
 
 ```sh
-npm install ../path-to-your-clone/design-system/dist/ui-components/design-system-ui-components-0.0.1.tgz
+npm install ../path-to-your-clone/design-system/dist/design-system/design-system-design-system-0.0.1.tgz
 ```
 
 *(Alternatively)* To install directly from GitHub:

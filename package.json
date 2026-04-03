@@ -1,14 +1,14 @@
 {
-  "name": "@trevvo/design-system",
-  "version": "0.1.2",
+  "name": "@trevvo/design-system-workspace",
+  "version": "0.1.7",
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build": "nx build",
-    "package": "npm run build:tokens && nx build ui-components && cd dist/ui-components && npm pack",
+    "build": "npm run build:tokens && nx build design-system",
+    "package": "npm run build && cd dist && npm pack",
     "test": "nx test",
-    "storybook": "npm run build:tokens && nx storybook ui-components",
-    "build:tokens": "node ui-components/tokens/build.mjs"
+    "storybook": "npm run build:tokens && nx storybook design-system",
+    "build:tokens": "node design-system/tokens/build.mjs"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +57,7 @@
     "autoprefixer": "^10.4.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-storybook": "10.3.3",
     "jsdom": "^27.1.0",
     "jsonc-eslint-parser": "^2.1.0",
     "ng-packagr": "~21.2.0",
@@ -67,13 +68,12 @@
     "resolve-url-loader": "^5.0.0",
     "storybook": "^10.3.3",
     "style-dictionary": "^4.4.0",
-    "tailwindcss": "^3.0.2",
+    "tailwindcss": "^3.4.19",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
-    "vitest": "^4.0.8",
-    "eslint-plugin-storybook": "10.3.3"
+    "vitest": "^4.0.8"
   },
   "nx": {
     "includedScripts": []

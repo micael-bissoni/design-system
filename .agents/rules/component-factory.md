@@ -3,7 +3,7 @@
 Any AI Agent or Developer creating UI components in this repository MUST follow these structural and architectural rules.
 
 ## 1. Directory Structure
-Components must be placed in the appropriate Atomic Design directory within `ui-components/src/lib/`:
+Components must be placed in the appropriate Atomic Design directory within `design-system/components/lib/`:
 - **Atoms**: `atoms/<component-name>/`
 - **Molecules**: `molecules/<component-name>/`
 - **Organisms**: `organisms/<component-name>/`

@@ -13,6 +13,25 @@
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "nxCloudId": "69b5b1e87d4fe39d945473a9",
+  "plugins": [
+    {
+      "options": {
+        "buildTargetName": "build",
+        "serveTargetName": "serve",
+        "testTargetName": "test"
+      },
+      "plugin": "@nx/angular/plugin"
+    },
+    {
+      "options": {
+        "buildStorybookTargetName": "build-storybook",
+        "staticStorybookTargetName": "static-storybook",
+        "storybookTargetName": "storybook",
+        "testStorybookTargetName": "test-storybook"
+      },
+      "plugin": "@nx/storybook/plugin"
+    }
+  ],
   "targetDefaults": {
     "@angular/build:application": {
       "cache": true,

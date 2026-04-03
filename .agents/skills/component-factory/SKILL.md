@@ -65,7 +65,7 @@ export const Default: Story = {
 ## Workflow: Component Creation
 
 1.  **Categorize**: Is it an Atom, Molecule, or Organism?
-2.  **Scaffold**: Run `npx nx g @nx/angular:component <name> --project=ui-components --directory=libs/ui-components/src/lib/<category>/<name> --standalone --changeDetection=OnPush --style=scss`.
+2.  **Scaffold**: Run `npx nx g @nx/angular:component <name> --project=design-system --directory=libs/design-system/components/lib/<category>/<name> --standalone --changeDetection=OnPush --style=scss`.
 3.  **Apply Tokens**: Update the HTML/SCSS using ONLY semantic tokens from the `atomic-ui-architect` skill.
 4.  **Inject Providers**: Add `ThemeService` and `LocaleService` if the component requires dynamic branding or localization.
 5.  **Storybook setup**: Create the story and ensure it has the correct decorators to mock the environment.
