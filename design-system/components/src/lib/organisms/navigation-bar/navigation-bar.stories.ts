@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { NavigationBarComponent } from './navigation-bar.component';
 import { NavigationBarItemComponent } from '../../molecules/navigation-bar-item/navigation-bar-item.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 const meta: Meta<NavigationBarComponent> = {
   title: 'Organisms/NavigationBar',
@@ -10,7 +10,7 @@ const meta: Meta<NavigationBarComponent> = {
   tags: ['autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [NavigationBarItemComponent, TranslateModule.forRoot()],
+      imports: [NavigationBarItemComponent, TranslatePipe],
     }),
   ],
   argTypes: {

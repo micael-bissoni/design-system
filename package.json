@@ -8,7 +8,8 @@
     "package": "npm run build && cd dist/design-system && npm pack",
     "test": "nx test",
     "storybook": "npm run build:tokens && nx storybook design-system",
-    "build:tokens": "node design-system/tokens/build.mjs"
+    "build:tokens": "node design-system/tokens/build.mjs",
+    "commit": "cz"
   },
   "private": true,
   "dependencies": {
@@ -55,6 +56,8 @@
     "@typescript-eslint/utils": "^8.40.0",
     "angular-eslint": "^21.0.1",
     "autoprefixer": "^10.4.0",
+    "commitizen": "^4.3.1",
+    "commitizen-emoji": "^1.0.5",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-storybook": "10.3.3",

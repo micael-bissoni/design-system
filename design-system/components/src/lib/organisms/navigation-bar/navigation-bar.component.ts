@@ -31,7 +31,7 @@ import { IconComponent } from '../../atoms/icon/icon.component';
             ></div>
             </div>
             <span class="hidden md:flex text-on-primary ml-2 font-headers font-bold text-xl tracking-tight uppercase">
-              {{ 'common.appName' | translate }}
+              {{ appName() }}
             </span>
         </div>
 
