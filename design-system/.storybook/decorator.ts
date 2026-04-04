@@ -1,13 +1,13 @@
 import { applicationConfig, componentWrapperDecorator, moduleMetadata } from "@storybook/angular";
-import { SettingsManagerComponent } from "../components/src/lib/design-system/settings-manager";
+import { SettingsManagerComponent } from "@trevvo/design-system";
 import { provideTranslateService, TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, provideZonelessChangeDetection } from "@angular/core";
 import { provideHttpClient } from "@angular/common/http";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { LocaleService } from "../components/src/lib/utils";
+import { LocaleService } from "@trevvo/design-system";
 import { provideStore } from "@ngrx/store";
-import { i18nReducer } from "../components/src/lib/utils/state/i18n.reducer";
+import { i18nReducer } from "@trevvo/design-system";
 
 export const decorators = [
     applicationConfig({

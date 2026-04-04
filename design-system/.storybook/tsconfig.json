@@ -3,6 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@trevvo/design-system": [
+        "../src/index.ts"
+      ],
       "@trevvo/design-system/components": [
         "../components/src/index.ts"
       ],

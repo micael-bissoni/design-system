@@ -13,7 +13,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/design-system",
+        "outputPath": "dist/apps/design-system",
         "index": "src/index.html",
         "browser": "./src/main.ts",
         "tsConfig": "tsconfig.app.json",
@@ -21,7 +21,7 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "dist/tokens",
+            "input": "design-system/tokens/assets",
             "output": "tokens"
           },
           {
@@ -84,7 +84,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "design-system:build",
-        "staticFilePath": "dist/design-system/browser",
+        "staticFilePath": "dist/apps/design-system/browser",
         "spa": true
       }
     },

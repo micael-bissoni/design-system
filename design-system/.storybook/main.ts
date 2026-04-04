@@ -16,7 +16,7 @@ const config: StorybookConfig = {
   docs: {
     defaultName: 'Docs',
   },
-  staticDirs: ['../../dist/design-system/browser/tokens'],
+  staticDirs: ['../tokens/assets/web'],
 };
 
 export default config;

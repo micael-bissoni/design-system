@@ -1,6 +1,6 @@
 {
   "name": "components",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "design-system/components/src",
   "prefix": "ds",
   "projectType": "library",
@@ -12,12 +12,12 @@
         "{workspaceRoot}/dist/{projectRoot}"
       ],
       "options": {
-        "project": "design-system/components/ng-package.json",
-        "tsConfig": "design-system/components/tsconfig.lib.json"
+        "project": "design-system/ng-package.json",
+        "tsConfig": "design-system/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "design-system/components/tsconfig.lib.prod.json"
+          "tsConfig": "design-system/tsconfig.lib.prod.json"
         },
         "development": {}
       },

@@ -44,7 +44,7 @@ function getStyleDictionaryConfig(brand, platform) {
     platforms: {
       web: {
         transformGroup: web,
-        buildPath: `dist/tokens/web/${brand}/`, // Pointing directly to library assets
+        buildPath: `design-system/tokens/assets/web/${brand}/`, // Pointing directly to library assets
         files: [
           {
             destination: 'tokens.css',
@@ -65,7 +65,7 @@ function getStyleDictionaryConfig(brand, platform) {
       },
       android: {
         transformGroup: 'android',
-        buildPath: `dist/tokens/android/${brand}/`,
+        buildPath: `design-system/tokens/assets/android/${brand}/`,
         files: [
           {
             destination: 'tokens.colors.xml',
@@ -83,7 +83,7 @@ function getStyleDictionaryConfig(brand, platform) {
       },
       ios: {
         transformGroup: 'ios',
-        buildPath: `dist/tokens/ios/${brand}/`,
+        buildPath: `design-system/tokens/assets/ios/${brand}/`,
         files: [
           {
             destination: 'tokens.h',
@@ -96,7 +96,7 @@ function getStyleDictionaryConfig(brand, platform) {
 }
 
 console.log('Cleaning existing styles...');
-const buildDir = path.join(process.cwd(), 'dist/tokens');
+const buildDir = path.join(process.cwd(), 'design-system/tokens/assets');
 if (fs.existsSync(buildDir)) {
   fs.rmSync(buildDir, { recursive: true, force: true });
 }
@@ -141,7 +141,7 @@ brands.forEach(function (brand) {
     if (platform === 'ts') {
       // Copy assets if they exist for this brand
       const brandAssetsDir = path.join(process.cwd(), `design-system/tokens/properties/brands/${brand}/assets`);
-      const publicBrandAssetsDir = path.join(process.cwd(), `dist/tokens/web/${brand}/assets`);
+      const publicBrandAssetsDir = path.join(process.cwd(), `design-system/tokens/assets/web/${brand}/assets`);
 
       if (fs.existsSync(brandAssetsDir)) {
         console.log(`Copying brand assets for ${brand}...`);
@@ -161,6 +161,7 @@ brands.forEach(function (brand) {
 let tokensTsContent = '';
 brandFileContent.forEach(b => {
   tokensTsContent += `import { ${b.name} } from '${b.path}';\n`;
+  tokensTsContent += `export { ${b.name} };\n`;
 });
 
 tokensTsContent += `\nexport const brands = {\n`;
