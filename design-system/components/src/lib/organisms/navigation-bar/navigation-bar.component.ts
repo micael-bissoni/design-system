@@ -78,8 +78,8 @@ import { IconComponent } from '../../atoms/icon/icon.component';
           } @else {
             <div 
               data-testid="navbar-action-group"
-              class="flex items-center gap-2 relative bg-gray-light p-1.5 rounded-full border border-gray-light/50 animate-slide-in
-                     md:flex-col md:w-full md:bg-transparent md:border-none md:p-0"
+              class="flex items-center gap-2 relative bg-gray-light p-0 md:p-1.5 rounded-full border border-gray-light/50 animate-slide-in
+                     md:flex-col md:w-full md:bg-transparent md:border-none"
             >
               <div 
                 data-testid="navbar-counter"

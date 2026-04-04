@@ -9,7 +9,7 @@ import { InputComponent } from '../../atoms/input/input.component';
   imports: [CommonModule, InputComponent, ReactiveFormsModule],
   template: `
     <div 
-      class="flex bg-white rounded-2xl border border-gray-light p-1.5 shadow-sm focus-within:ring-4 focus-within:ring-primary/5 transition-all w-full"
+      class="flex bg-white rounded-2xl border border-gray-light p-0 md:p-1.5 shadow-sm focus-within:ring-4 focus-within:ring-primary/5 transition-all w-full"
       data-testid="ds-search-bar"
     >
       <div class="p-2.5 text-gray-medium">

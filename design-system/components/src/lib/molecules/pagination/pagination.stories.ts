@@ -7,8 +7,12 @@ const meta: Meta<PaginationComponent> = {
   tags: ['autodocs'],
   argTypes: {
     rangeLabel: { control: 'text' },
+    currentPage: { control: 'number' },
     prevDisabled: { control: 'boolean' },
     nextDisabled: { control: 'boolean' },
+  },
+  args: {
+    goToPage: (page: number) => console.log('Go to page:', page),
   },
 };
 
@@ -18,6 +22,7 @@ type Story = StoryObj<PaginationComponent>;
 export const Default: Story = {
   args: {
     rangeLabel: '1 - 10 de 150',
+    currentPage: 1,
     prevDisabled: false,
     nextDisabled: false,
   },

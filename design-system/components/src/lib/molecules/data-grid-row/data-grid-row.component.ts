@@ -10,7 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   template: `
     <div class="group">
       <!-- Mobile Card -->
-      <div class="lg:hidden p-4 border-b border-gray-light/50 flex flex-col gap-3">
+      <div class="lg:hidden p-0 md:p-4 border-b border-gray-light/50 flex flex-col gap-3">
         @for (col of columns(); track col.id) {
           <div class="flex justify-between items-start gap-4 p-2 rounded-lg bg-gray-light/5">
             <span class="text-[10px] font-black text-gray-medium uppercase tracking-widest mt-1 whitespace-nowrap">{{ col.label | translate }}</span>

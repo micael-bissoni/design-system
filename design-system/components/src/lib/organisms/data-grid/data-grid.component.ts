@@ -30,7 +30,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   template: `
     <main class="flex-1 grid grid-rows-[auto_1fr] overflow-hidden w-full h-full">
       <!-- HEADER & SEARCH -->
-      <div class="p-6 lg:p-10 pb-4">
+      <div class="px-0 md:px-6 lg:px-10 pb-4">
         <ds-data-grid-header 
           [title]="title()" 
           [subtitle]="subtitle()" 
