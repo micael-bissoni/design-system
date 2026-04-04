@@ -8,6 +8,7 @@ const meta: Meta<PaginationComponent> = {
   argTypes: {
     rangeLabel: { control: 'text' },
     currentPage: { control: 'number' },
+    totalPages: { control: 'number' },
     prevDisabled: { control: 'boolean' },
     nextDisabled: { control: 'boolean' },
   },
@@ -23,6 +24,7 @@ export const Default: Story = {
   args: {
     rangeLabel: '1 - 10 de 150',
     currentPage: 1,
+    totalPages: 15,
     prevDisabled: false,
     nextDisabled: false,
   },

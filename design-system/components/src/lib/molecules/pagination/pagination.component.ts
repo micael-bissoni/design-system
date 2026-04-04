@@ -52,6 +52,7 @@ import { InputComponent } from '../../atoms';
 export class PaginationComponent {
   rangeLabel = input.required<string>();
   currentPage = input<number>(1);
+  totalPages = input<number>(1);
   prevDisabled = input<boolean>(false);
   nextDisabled = input<boolean>(false);
 
@@ -60,9 +61,15 @@ export class PaginationComponent {
   goToPage = output<number>();
 
   onPageChange(value: string) {
-    const page = parseInt(value, 10);
-    if (!isNaN(page)) {
-      this.goToPage.emit(page);
+    let page = parseInt(value, 10);
+    if (isNaN(page)) return;
+
+    if (page < 1) {
+      page = 1;
+    } else if (page > this.totalPages()) {
+      page = this.totalPages();
     }
+
+    this.goToPage.emit(page);
   }
 }
