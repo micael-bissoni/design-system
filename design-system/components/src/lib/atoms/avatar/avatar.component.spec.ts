@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AvatarComponent } from './avatar.component';
+import { describe, beforeEach, it, expect, afterEach } from 'vitest';
 
 describe('AvatarComponent', () => {
   let component: AvatarComponent;
@@ -12,6 +13,10 @@ describe('AvatarComponent', () => {
 
     fixture = TestBed.createComponent(AvatarComponent);
     component = fixture.componentInstance;
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   it('should create', () => {
@@ -39,8 +44,7 @@ describe('AvatarComponent', () => {
     fixture.componentRef.setInput('size', 'lg');
     fixture.detectChanges();
     const container = fixture.nativeElement.querySelector('div');
-    // We will define size 'lg' as w-12 h-12 for this test
-    // User snippet uses w-10 h-10 which we'll call 'md'
-    expect(container.className).toContain('w-12 h-12');
+    expect(container.className).toContain('w-12');
+    expect(container.className).toContain('h-12');
   });
 });

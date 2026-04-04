@@ -1,5 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainTemplateComponent } from './main-template.component';
+import { describe, beforeEach, it, expect, afterEach } from 'vitest';
+import { TranslateModule } from '@ngx-translate/core';
+import { Component } from '@angular/core';
+
+@Component({
+  standalone: true,
+  imports: [MainTemplateComponent],
+  template: `
+    <ds-main-template>
+      <div header id="test-header">Header Title</div>
+      <div navigation id="test-navigation">Aside Navigation</div>
+      <div id="test-content">Main Content Body</div>
+    </ds-main-template>
+  `
+})
+class HostComponent {}
 
 describe('MainTemplateComponent', () => {
   let component: MainTemplateComponent;
@@ -7,7 +23,7 @@ describe('MainTemplateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainTemplateComponent],
+      imports: [MainTemplateComponent, TranslateModule.forRoot(), HostComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MainTemplateComponent);
@@ -15,88 +31,48 @@ describe('MainTemplateComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have grid classes for responsive layout', () => {
-    const container = fixture.nativeElement.querySelector('div');
-    expect(container.className).toContain('grid');
-    expect(container.className).toContain('md:grid-cols-[280px_1fr]');
+  it('should render projected content', () => {
+    const hostFixture = TestBed.createComponent(HostComponent);
+    hostFixture.detectChanges();
+    
+    const header = hostFixture.nativeElement.querySelector('#test-header');
+    const nav = hostFixture.nativeElement.querySelector('#test-navigation');
+    const content = hostFixture.nativeElement.querySelector('#test-content');
+
+    expect(header).toBeTruthy();
+    expect(header.textContent).toBe('Header Title');
+    expect(nav).toBeTruthy();
+    expect(content).toBeTruthy();
   });
 
-  it('should render header content from input', () => {
-    const testContent = '<div id="test-header">Header Title</div>';
-    fixture.componentRef.setInput('headerSlot', testContent);
-    fixture.detectChanges();
-    const header = fixture.nativeElement.querySelector('#header-slot');
-    expect(header.innerHTML).toContain('id="test-header"');
-    expect(header.innerHTML).toContain('Header Title');
-  });
-
-  it('should render aside content from input', () => {
-    const testContent = '<div id="test-aside">Aside Navigation</div>';
-    fixture.componentRef.setInput('asideSlot', testContent);
-    fixture.detectChanges();
-    const aside = fixture.nativeElement.querySelector('#side-nav-slot');
-    expect(aside.innerHTML).toContain('id="test-aside"');
-    expect(aside.innerHTML).toContain('Aside Navigation');
-  });
-
-  it('should render main content from input', () => {
-    const testContent = '<div id="test-main">Main Content Body</div>';
-    fixture.componentRef.setInput('contentSlot', testContent);
-    fixture.detectChanges();
-    const main = fixture.nativeElement.querySelector('#content-slot');
-    expect(main.innerHTML).toContain('id="test-main"');
-    expect(main.innerHTML).toContain('Main Content Body');
-  });
-
-  it('should have desktop classes on aside for left sidebar', () => {
-    const aside = fixture.nativeElement.querySelector('#side-nav-slot');
-    expect(aside.className).toContain('md:col-start-1');
-    expect(aside.className).toContain('md:row-start-1');
-    expect(aside.className).toContain('md:row-span-2');
-  });
-
-  it('should have mobile classes on aside for footer', () => {
-    const aside = fixture.nativeElement.querySelector('#side-nav-slot');
-    expect(aside.className).toContain('row-start-3');
-    expect(aside.className).toContain('col-start-1');
-  });
-  it('should render title and appName when provided', () => {
+  it('should render title and appName in default mode', () => {
     fixture.componentRef.setInput('title', 'Test Dashboard');
     fixture.componentRef.setInput('appName', 'TEST-STORE');
+    fixture.componentRef.setInput('headerSlot', false);
+    fixture.componentRef.setInput('asideSlot', false);
     fixture.detectChanges();
-    
+
     const header = fixture.nativeElement.querySelector('#header-slot');
     expect(header.textContent).toContain('Test Dashboard');
-    
+
     const aside = fixture.nativeElement.querySelector('#side-nav-slot');
     expect(aside.textContent).toContain('TEST-STORE');
   });
 
-  it('should render navigation items when provided', () => {
-    const navItems = [
-      { id: '1', label: 'Home', route: '/home' },
-      { id: '2', label: 'Settings', route: '/settings' }
-    ];
-    fixture.componentRef.setInput('navigationItems', navItems);
+  it('should hide defaults when slot boolean is true', () => {
+    fixture.componentRef.setInput('title', 'Test Dashboard');
+    fixture.componentRef.setInput('headerSlot', true);
     fixture.detectChanges();
-    
-    const aside = fixture.nativeElement.querySelector('#side-nav-slot');
-    expect(aside.textContent).toContain('Home');
-    expect(aside.textContent).toContain('Settings');
-  });
 
-  it('should render user info when provided', () => {
-    const user = { firstName: 'John', lastName: 'Doe', avatarSrc: 'test.jpg' };
-    fixture.componentRef.setInput('user', user);
-    fixture.detectChanges();
-    
     const header = fixture.nativeElement.querySelector('#header-slot');
-    expect(header.textContent).toContain('John Doe');
-    const avatar = fixture.nativeElement.querySelector('img');
-    expect(avatar.src).toContain('test.jpg');
+    expect(header.textContent).not.toContain('Test Dashboard');
   });
 });

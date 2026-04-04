@@ -40,7 +40,7 @@ import { TranslatePipe } from '@ngx-translate/core';
         <div class="flex-1 overflow-auto p-8 custom-scrollbar">
           <h3 class="text-lg font-black text-slate-800 mb-6 tracking-tight">{{ 'molecules.dataGridFilter.title' | translate }}</h3>
           
-          <div #filterContainer></div>
+          <div #filterContainer class="grid grid-cols-2 gap-1"></div>
         </div>
 
         <!-- ACTIONS -->
@@ -79,7 +79,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class DataGridFilterComponent {
   cn = cn;
-  
+
   configs = input<FilterConfig[]>([
     { id: 'regions', label: 'molecules.dataGridFilter.regionsLabel', component: CheckboxGroupComponent, options: ['Lisboa', 'Porto', 'Madrid'] },
     { id: 'status', label: 'molecules.dataGridFilter.statusLabel', component: RadioGroupComponent, options: ['molecules.dataGridFilter.statusOptions.all', 'molecules.dataGridFilter.statusOptions.active', 'molecules.dataGridFilter.statusOptions.pending'] }
@@ -112,8 +112,8 @@ export class DataGridFilterComponent {
 
   triggerClass = computed(() => cn(
     'flex items-center justify-center w-12 h-12 rounded-xl transition-all border outline-none',
-    this.hasActiveFilters() 
-      ? 'border-[#008a7c] bg-[#008a7c]/5 text-[#008a7c]' 
+    this.hasActiveFilters()
+      ? 'border-[#008a7c] bg-[#008a7c]/5 text-[#008a7c]'
       : 'bg-slate-50 text-slate-500 border-slate-100 hover:bg-[#008a7c]/10'
   ));
 
@@ -130,10 +130,10 @@ export class DataGridFilterComponent {
     const currentTemp = this.tempState();
 
     this.configs().forEach(config => {
-      const controlRef = this.filterContainer!.createComponent(config.component as Type<any>);
-      
+      const controlRef = this.filterContainer!.createComponent(config.component as Type<unknown>);
+
       const val = currentTemp[config.id] ?? (config.id === 'regions' ? new Set() : 'molecules.dataGridFilter.statusOptions.all');
-      
+
       // Passing inputs to dynamically rendered component
       controlRef.setInput('label', config.label);
       controlRef.setInput('options', config.options);

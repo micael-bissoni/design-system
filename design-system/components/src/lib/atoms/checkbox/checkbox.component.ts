@@ -45,16 +45,14 @@ export class CheckboxComponent implements ControlValueAccessor {
   label = input<string>('');
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
-  
+
   internalChecked = signal<boolean>(false);
   internalDisabled = signal<boolean>(false);
 
   checkedChange = output<boolean>();
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: (value: boolean) => void = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onTouched: () => void = () => {};
+  onChange: (value: boolean) => void = () => { };
+  onTouched: () => void = () => { };
 
   constructor() {
     effect(() => {

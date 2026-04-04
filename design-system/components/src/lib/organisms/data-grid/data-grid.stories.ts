@@ -66,6 +66,9 @@ const meta: Meta<DataGridComponent> = {
     subtitle: { control: 'text' },
     actionLabel: { control: 'text' },
     pageSize: { control: 'number' },
+    filtersChange: { action: 'filtersChange' },
+    searchChange: { action: 'searchChange' },
+    actionClicked: { action: 'actionClicked' },
   },
 };
 

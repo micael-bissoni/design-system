@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridComponent } from './data-grid.component';
 import { type DataGridRecord } from './data-grid.types';
+import { describe, beforeEach, it, expect, vi, afterEach } from 'vitest';
+import { TranslateModule } from '@ngx-translate/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DataGridComponent', () => {
   let component: DataGridComponent;
@@ -19,7 +22,7 @@ describe('DataGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DataGridComponent],
+      imports: [DataGridComponent, TranslateModule.forRoot(), NoopAnimationsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DataGridComponent);
@@ -30,6 +33,9 @@ describe('DataGridComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -47,16 +53,28 @@ describe('DataGridComponent', () => {
     expect(component.page()).toBe(0);
   });
 
-  it('should calculate page range correctly', () => {
-    expect(component.pageRange()).toBe('1 - 3 de 3');
+  it('should calculate page range parameters correctly', () => {
+    const range = component.pageRangeProps();
+    expect(range.params.start).toBe(1);
+    expect(range.params.end).toBe(3);
+    expect(range.params.total).toBe(3);
   });
 
-  it('should navigate pages when clicking next/prev', () => {
+  it('should navigate pages and update parameters correctly when clicking next/prev', () => {
     fixture.componentRef.setInput('pageSize', 1);
     fixture.detectChanges();
-    expect(component.pageRange()).toBe('1 - 1 de 3');
+    
+    let range = component.pageRangeProps();
+    expect(range.params.start).toBe(1);
+    expect(range.params.end).toBe(1);
+    expect(range.params.total).toBe(3);
+
     component.nextPage();
     fixture.detectChanges();
-    expect(component.pageRange()).toBe('2 - 2 de 3');
+    
+    range = component.pageRangeProps();
+    expect(range.params.start).toBe(2);
+    expect(range.params.end).toBe(2);
+    expect(range.params.total).toBe(3);
   });
 });

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IconComponent } from './icon.component';
+import { describe, beforeEach, it, expect, afterEach } from 'vitest';
 
 describe('IconComponent', () => {
   let component: IconComponent;
@@ -14,6 +15,10 @@ describe('IconComponent', () => {
     component = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
   it('should create', () => {
     fixture.componentRef.setInput('name', 'content-copy');
     fixture.detectChanges();
@@ -26,7 +31,8 @@ describe('IconComponent', () => {
 
     const icon = fixture.nativeElement.querySelector('[data-testid="ds-icon"]');
     expect(icon.className).toContain('bg-primary');
-    expect(icon.className).toContain('w-6 h-6');
+    expect(icon.className).toContain('w-6');
+    expect(icon.className).toContain('h-6');
     expect(icon.style.maskImage).toContain('var(--icon-content-copy)');
   });
 
@@ -38,7 +44,8 @@ describe('IconComponent', () => {
 
     const icon = fixture.nativeElement.querySelector('[data-testid="ds-icon"]');
     expect(icon.className).toContain('bg-secondary');
-    expect(icon.className).toContain('w-8 h-8');
+    expect(icon.className).toContain('w-8');
+    expect(icon.className).toContain('h-8');
     expect(icon.style.maskImage).toContain('var(--icon-content-paste)');
   });
 });

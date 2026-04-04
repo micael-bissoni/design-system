@@ -10,14 +10,14 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [CommonModule, ReactiveFormsModule, CheckboxComponent, TranslatePipe],
   template: `
     <div 
-      class="mb-8 last:mb-0"
+      class="mb-8"
       [class.opacity-50]="internalDisabled()"
       [class.pointer-events-none]="internalDisabled()"
     >
       @if (label()) {
         <label class="label-industrial text-primary mb-4 block font-bold text-xs uppercase tracking-widest">{{label() | translate}}</label>
       }
-      <div class="space-y-3">
+      <div class="grid grid-cols-2 gap-1">
         @for (option of options(); track option) {
           <ds-checkbox 
             [label]="option | translate"
@@ -61,20 +61,20 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: (value: Set<string>) => void = () => {};
+  onChange: (value: Set<string>) => void = () => { };
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onTouched: () => void = () => {};
+  onTouched: () => void = () => { };
 
   toggleOption(option: string) {
     if (this.internalDisabled()) return;
-    
+
     const next = new Set(this.internalValue());
     if (next.has(option)) {
       next.delete(option);
     } else {
       next.add(option);
     }
-    
+
     this.internalValue.set(next);
     this.onChange(next);
     this.onTouched();

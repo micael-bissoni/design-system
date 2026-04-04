@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxGroupComponent } from './checkbox-group.component';
+import { describe, beforeEach, it, expect, afterEach } from 'vitest';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('CheckboxGroupComponent', () => {
   let component: CheckboxGroupComponent;
@@ -8,13 +10,17 @@ describe('CheckboxGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CheckboxGroupComponent, ReactiveFormsModule],
+      imports: [CheckboxGroupComponent, ReactiveFormsModule, TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CheckboxGroupComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('options', ['A', 'B', 'C']);
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   it('should create', () => {

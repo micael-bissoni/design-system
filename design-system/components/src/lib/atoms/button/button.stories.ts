@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { ButtonComponent } from './button.component';
+import { userEvent, within } from '@storybook/testing-library';
 
 const meta: Meta<ButtonComponent> = {
   title: 'Atoms/Button',
@@ -33,6 +34,11 @@ export const Primary: Story = {
     props: args,
     template: `<ds-button [intent]="intent" [size]="size" [fullWidth]="fullWidth">Primary Button</ds-button>`,
   }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
+    await userEvent.click(button);
+  }
 };
 
 export const Secondary: Story = {

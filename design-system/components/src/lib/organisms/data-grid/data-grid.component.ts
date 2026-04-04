@@ -53,7 +53,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       </div>
 
       <!-- TABLE / LIST -->
-      <div class="px-6 lg:px-10 pb-8 overflow-hidden h-full">
+      <div class="px-0 md:px-6 lg:px-10 pb-8 overflow-hidden h-full">
         <div class="h-full flex flex-col bg-white lg:rounded-[32px] border border-gray-light shadow-sm overflow-hidden relative">
           
           <!-- DESKTOP HEADER -->
@@ -150,9 +150,9 @@ export class DataGridComponent {
     const start = this.page() * this.pageSize() + 1;
     let end = (this.page() + 1) * this.pageSize();
     if (end > total) end = total;
-    return { 
-      key: 'organisms.dataGrid.pagination.range', 
-      params: { start, end, total } 
+    return {
+      key: 'organisms.dataGrid.pagination.range',
+      params: { start, end, total }
     };
   });
 

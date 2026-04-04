@@ -16,8 +16,8 @@ export interface DataGridColumn {
   key?: keyof DataGridRecord;
   width?: string; // Value like '1fr', '150px', etc.
   align?: 'left' | 'center' | 'right';
-  headerComponent?: Type<any>;
-  cellComponent?: Type<any>;
-  cellConfig?: (record: DataGridRecord) => Record<string, any>;
+  headerComponent?: Type<unknown>;
+  cellComponent?: Type<unknown>;
+  cellConfig?: (record: DataGridRecord) => Record<string, unknown>;
 }
 

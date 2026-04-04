@@ -25,7 +25,9 @@
     },
     "test": {
       "executor": "@nx/angular:unit-test",
-      "options": {}
+      "options": {
+        "tsConfig": "design-system/tsconfig.spec.json"
+      }
     },
     "lint": {
       "executor": "@nx/eslint:lint"

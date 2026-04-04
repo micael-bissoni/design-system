@@ -40,6 +40,7 @@ import { IconComponent } from '../../atoms/icon/icon.component';
           <nav class="flex flex-row gap-4 md:flex-col md:gap-1">
             @for (item of navigationItems(); track item.id) {
               <div 
+                data-testid="navigation-bar-item"
                 class="px-4 py-2.5 rounded-md text-sm font-medium cursor-pointer transition-all
                        flex items-center justify-center gap-2
                        md:justify-start md:mt-1"

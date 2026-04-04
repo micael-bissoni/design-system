@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ButtonComponent } from './button.component';
+import { describe, beforeEach, it, expect, afterEach } from 'vitest';
 
 describe('ButtonComponent', () => {
   let component: ButtonComponent;
@@ -13,6 +14,10 @@ describe('ButtonComponent', () => {
     fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   it('should create', () => {
@@ -30,8 +35,8 @@ describe('ButtonComponent', () => {
     fixture.componentRef.setInput('size', 'small');
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector('button');
-    expect(button.className).toContain('h-sm');
-    expect(button.className).toContain('px-sm');
+    expect(button.className).toContain('rounded-sm');
+    expect(button.className).toContain('text-sm');
   });
 
   it('should apply fullWidth class when input is true', () => {

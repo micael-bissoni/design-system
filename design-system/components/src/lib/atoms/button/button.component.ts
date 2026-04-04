@@ -10,6 +10,7 @@ import { cn } from '../../utils/cn';
   template: `
     <button
       [class]="calculatedClass"
+      role="button"
     >
       <ng-content />
     </button>

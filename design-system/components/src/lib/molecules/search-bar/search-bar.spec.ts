@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar.component';
 import { InputComponent } from '../../atoms';
+import { describe, beforeEach, it, expect, afterEach } from 'vitest';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
@@ -9,12 +11,16 @@ describe('SearchBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchBarComponent, InputComponent, ReactiveFormsModule],
+      imports: [SearchBarComponent, InputComponent, ReactiveFormsModule, TranslateModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SearchBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   it('should create', () => {

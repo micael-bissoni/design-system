@@ -3,6 +3,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { NavigationBarComponent } from './navigation-bar.component';
 import { NavigationBarItemComponent } from '../../molecules/navigation-bar-item/navigation-bar-item.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { userEvent, within } from '@storybook/testing-library';
 
 const meta: Meta<NavigationBarComponent> = {
   title: 'Organisms/NavigationBar',
@@ -25,12 +26,17 @@ export const Default: Story = {
   args: {
     selectedCount: 0,
     navigationItems: [
-      { id: '1', label: 'Regions', active: true, icon: 'location-on' },
-      { id: '2', label: 'Entities', active: false, icon: 'corporate-fare' },
-      { id: '3', label: 'Management', active: false, icon: 'management' },
+      { id: '1', label: 'templates.mainTemplate.regions', active: true, icon: 'location-on' },
+      { id: '2', label: 'templates.mainTemplate.entities', active: false, icon: 'corporate-fare' },
+      { id: '3', label: 'templates.mainTemplate.users', active: false, icon: 'management' },
     ],
     appName: 'TREVVO',
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByTestId('navbar-add-button');
+    await userEvent.click(button);
+  }
 };
 
 export const WithSelections: Story = {

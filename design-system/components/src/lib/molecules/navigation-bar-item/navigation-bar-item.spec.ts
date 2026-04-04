@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DockNavItemComponent } from './dock-nav-item.component';
-import { vi } from 'vitest';
+import { NavigationBarItemComponent } from './navigation-bar-item.component';
+import { describe, beforeEach, it, expect, vi } from 'vitest';
 
-describe('DockNavItemComponent', () => {
-  let component: DockNavItemComponent;
-  let fixture: ComponentFixture<DockNavItemComponent>;
+describe('NavigationBarItemComponent', () => {
+  let component: NavigationBarItemComponent;
+  let fixture: ComponentFixture<NavigationBarItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DockNavItemComponent],
+      imports: [NavigationBarItemComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DockNavItemComponent);
+    fixture = TestBed.createComponent(NavigationBarItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,26 +20,26 @@ describe('DockNavItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should apply active classes and show badge when active is true', () => {
+  it('should apply active classes and show dot when active is true', () => {
     fixture.componentRef.setInput('active', true);
     fixture.detectChanges();
 
     const button = fixture.nativeElement.querySelector('button');
-    const badge = fixture.nativeElement.querySelector('.bg-primary.rounded-full');
+    const dot = fixture.nativeElement.querySelector('.bg-primary.rounded-full');
 
     expect(button.className).toContain('text-primary');
-    expect(badge).toBeTruthy();
+    expect(dot).toBeTruthy();
   });
 
-  it('should apply inactive classes and hide badge when active is false', () => {
+  it('should apply inactive classes and hide dot when active is false', () => {
     fixture.componentRef.setInput('active', false);
     fixture.detectChanges();
 
     const button = fixture.nativeElement.querySelector('button');
-    const badge = fixture.nativeElement.querySelector('.bg-primary.rounded-full');
+    const dot = fixture.nativeElement.querySelector('.bg-primary.rounded-full');
 
     expect(button.className).toContain('text-gray-medium');
-    expect(badge).toBeFalsy();
+    expect(dot).toBeFalsy();
   });
 
   it('should emit select event when clicked', () => {

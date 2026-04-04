@@ -10,20 +10,21 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [CommonModule, ReactiveFormsModule, RadioComponent, TranslatePipe],
   template: `
     <div 
-      class="mb-8 last:mb-0"
+      class="mb-8"
       [class.opacity-50]="internalDisabled()"
       [class.pointer-events-none]="internalDisabled()"
     >
       @if (label()) {
         <label class="label-industrial text-primary mb-4 block font-bold text-xs uppercase tracking-widest">{{label() | translate}}</label>
       }
-      <div class="space-y-3">
+      <div class="grid grid-cols-2 gap-1" role="radio-group">
         @for (option of options(); track option) {
           <ds-radio 
             [label]="option | translate"
             [checked]="internalValue() === option"
             (checkedChange)="selectOption(option)"
             [disabled]="internalDisabled()"
+            role="radio"
           />
         }
       </div>
@@ -61,13 +62,13 @@ export class RadioGroupComponent implements ControlValueAccessor {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: (value: string) => void = () => {};
+  onChange: (value: string) => void = () => { };
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onTouched: () => void = () => {};
+  onTouched: () => void = () => { };
 
   selectOption(option: string) {
     if (this.internalDisabled()) return;
-    
+
     this.internalValue.set(option);
     this.onChange(option);
     this.onTouched();

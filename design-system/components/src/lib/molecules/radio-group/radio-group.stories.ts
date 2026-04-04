@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { RadioGroupComponent } from './radio-group.component';
+import { userEvent, within } from '@storybook/testing-library';
 
 const meta: Meta<RadioGroupComponent> = {
   title: 'Molecules/RadioGroup',
@@ -22,7 +23,7 @@ export const Default: Story = {
     options: ['Option 1', 'Option 2', 'Option 3'],
     disabled: false,
     value: '',
-  },
+  }
 };
 
 export const Preselected: Story = {
