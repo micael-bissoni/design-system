@@ -1,10 +1,14 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { Component, importProvidersFrom, inject } from '@angular/core';
-import { provideStore } from '@ngrx/store';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { Component, inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { FundationsComponent, i18nReducer } from '@trevvo/design-system/components';
+import { FundationsComponent, provideDesignSystem } from '@trevvo/design-system/components';
+import { provideStore } from '@ngrx/store';
+
+import '@angular/common/locales/global/en';
+import '@angular/common/locales/global/pt';
+import '@angular/common/locales/global/es';
 
 @Component({
   selector: 'app-root',
@@ -17,32 +21,20 @@ import { FundationsComponent, i18nReducer } from '@trevvo/design-system/componen
   `,
 })
 export class AppComponent {
-  private translate = inject(TranslateService);
   constructor() {
-    this.translate.setDefaultLang('en-GB');
-    this.translate.use('en-GB');
-  }
-}
 
-// Translation loader factory
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader();
+  }
 }
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideStore(),
     provideHttpClient(withFetch()),
-    provideStore({
-      i18n: i18nReducer
-    }),
-    importProvidersFrom(
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
-        },
-      })
-    ),
+    provideDesignSystem({
+      defaultLocale: 'pt-PT',
+      defaultCurrency: 'EUR',
+      defaultBrand: 'brand1',
+      assetsUrl: './assets/i18n/' // Option to share url from another app assets
+    })
   ],
 }).catch((err) => console.error(err));

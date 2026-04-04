@@ -56,7 +56,7 @@ To build the design tokens, build the library, and generate an installable npm p
 ```sh
 npm run package
 ```
-This will output a tarball file (e.g., `design-system-design-system-0.0.1.tgz`) in `dist/design-system/`.
+This will output a tarball file (e.g., `design-system-design-system-0.1.9.tgz`) in `dist/design-system/`.
 
 ## ⚙️ Installation
 
@@ -64,7 +64,7 @@ This will output a tarball file (e.g., `design-system-design-system-0.0.1.tgz`) 
 After generating the package as shown above, you can install it in your microfrontend by pointing `npm install` to the created tarball:
 
 ```sh
-npm install ../path-to-your-clone/design-system/dist/design-system/design-system-design-system-0.0.1.tgz
+npm install ../path-to-your-clone/design-system/dist/design-system/design-system-design-system-0.1.9.tgz
 ```
 
 *(Alternatively)* To install directly from GitHub:
@@ -154,16 +154,62 @@ export const appConfig: ApplicationConfig = {
 ```
 
 ### 3. Internationalization (i18n)
-Register the `LocaleService` and provide the required NgRx store states if your MFE needs to be locale-aware.
+The design system includes built-in state management and translation support.
+
+#### Recommended Provider
+Use the `provideDesignSystem` helper to configure the core features in your `app.config.ts`. This simplifies the setup by initializing the theme, locale, and translations in one place.
 
 ```typescript
-import { LocaleService, i18nReducer } from '@trevvo/design-system';
+import { provideDesignSystem } from '@trevvo/design-system';
+import { provideHttpClient } from '@angular/common/http';
 
-// In your Store providers
-provideStore({ i18n: i18nReducer })
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideHttpClient(), // Required for translation loading
+    provideDesignSystem({
+      defaultLocale: 'pt-PT',
+      defaultCurrency: 'EUR',
+      defaultBrand: 'brand-1',
+      assetsUrl: './assets/i18n/' // Option to share url from another app assets
+    })
+  ]
+};
+```
+
+#### Shared Assets URL
+If your application hosts the design system translation files in a different location (e.g., in a microfrontend's shared assets folder), you can specify the `assetsUrl` in the configuration. The library will look for `[locale].json` files at that path.
+
+#### Switching at Runtime
+You can still use the `LocaleService` and `ThemeService` to change settings dynamically:
+
+```typescript
+import { LocaleService } from '@trevvo/design-system';
+import { ThemeService } from '@trevvo/design-system/tokens';
+
+@Component({ ... })
+export class MyComponent {
+  private localeService = inject(LocaleService);
+  private themeService = inject(ThemeService);
+
+  updateSettings() {
+    this.localeService.setLocale('es-ES');
+    this.themeService.initializeTokens('brand-2');
+  }
+}
 ```
 
 ---
+
+## 📝 Changelog
+
+### v0.1.9 (Current)
+- ✨ **New Provider**: Added `provideDesignSystem` for unified initialization of theme, locale, and translations.
+- 🔧 **i18n Optimization**: Switched to `setFallbackLang` for better translation fallback handling and developer experience.
+- 🚀 **Store Initializer**: Added root store provision via `provideStore()` to ensure reactive state management.
+- 🧱 **Foundations**: Integrated `ds-fundations` into the application root for core styling hooks.
+
+---
+
 
 ## 🤝 Co-Creators
 
