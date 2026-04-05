@@ -19,7 +19,8 @@
       "regionalManager": "Regional Manager",
       "supervisor": "Supervisor",
       "pharmacist": "Pharmacist",
-      "assistant": "Assistant"
+      "assistant": "Assistant",
+      "administrator": "Administrator"
     },
     "units": "units",
     "discount": {
@@ -31,7 +32,8 @@
     "remove": "Remove",
     "itemSelected": "Item Selected",
     "itemsSelected": "Items Selected",
-    "appName": "TREVVO"
+    "appName": "TREVVO",
+    "guest": "Guest"
   },
   "styleguide": {
     "title": "Style guide",
@@ -279,6 +281,7 @@
       "portalName": "Supervisor Portal",
       "mainContentArea": "Main Content Area",
       "description": "The sidebar is sticky and collapses/scrolls correctly.",
+      "collapse": "Collapse",
       "links": {
         "dashboard": "Dashboard",
         "teamReports": "Team Reports",

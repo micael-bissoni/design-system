@@ -15,3 +15,6 @@ export * from './datagrid-cell-status/datagrid-cell-status.component';
 export * from './datagrid-cell-validate/datagrid-cell-validate.component';
 export * from './avatar/avatar.component';
 export * from './avatar/avatar.variants';
+export * from './select/select.component';
+export * from './textarea/textarea.component';
+export * from './divider/divider.component';

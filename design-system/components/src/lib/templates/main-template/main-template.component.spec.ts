@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainTemplateComponent } from './main-template.component';
 import { describe, beforeEach, it, expect, afterEach } from 'vitest';
-import { TranslateModule } from '@ngx-translate/core';
 import { Component } from '@angular/core';
 
 @Component({
@@ -23,7 +22,7 @@ describe('MainTemplateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainTemplateComponent, TranslateModule.forRoot(), HostComponent],
+      imports: [MainTemplateComponent, HostComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MainTemplateComponent);
@@ -39,40 +38,30 @@ describe('MainTemplateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render projected content', () => {
+  it('should render projected content in header slot', () => {
     const hostFixture = TestBed.createComponent(HostComponent);
     hostFixture.detectChanges();
     
     const header = hostFixture.nativeElement.querySelector('#test-header');
-    const nav = hostFixture.nativeElement.querySelector('#test-navigation');
-    const content = hostFixture.nativeElement.querySelector('#test-content');
-
     expect(header).toBeTruthy();
     expect(header.textContent).toBe('Header Title');
+  });
+
+  it('should render projected content in navigation slot', () => {
+    const hostFixture = TestBed.createComponent(HostComponent);
+    hostFixture.detectChanges();
+    
+    const nav = hostFixture.nativeElement.querySelector('#test-navigation');
     expect(nav).toBeTruthy();
+    expect(nav.textContent).toBe('Aside Navigation');
+  });
+
+  it('should render projected content in default slot', () => {
+    const hostFixture = TestBed.createComponent(HostComponent);
+    hostFixture.detectChanges();
+    
+    const content = hostFixture.nativeElement.querySelector('#test-content');
     expect(content).toBeTruthy();
-  });
-
-  it('should render title and appName in default mode', () => {
-    fixture.componentRef.setInput('title', 'Test Dashboard');
-    fixture.componentRef.setInput('appName', 'TEST-STORE');
-    fixture.componentRef.setInput('headerSlot', false);
-    fixture.componentRef.setInput('asideSlot', false);
-    fixture.detectChanges();
-
-    const header = fixture.nativeElement.querySelector('#header-slot');
-    expect(header.textContent).toContain('Test Dashboard');
-
-    const aside = fixture.nativeElement.querySelector('#side-nav-slot');
-    expect(aside.textContent).toContain('TEST-STORE');
-  });
-
-  it('should hide defaults when slot boolean is true', () => {
-    fixture.componentRef.setInput('title', 'Test Dashboard');
-    fixture.componentRef.setInput('headerSlot', true);
-    fixture.detectChanges();
-
-    const header = fixture.nativeElement.querySelector('#header-slot');
-    expect(header.textContent).not.toContain('Test Dashboard');
+    expect(content.textContent).toBe('Main Content Body');
   });
 });

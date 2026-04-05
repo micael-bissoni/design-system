@@ -19,7 +19,8 @@
       "regionalManager": "Gerente Regional",
       "supervisor": "Supervisor",
       "pharmacist": "Farmacéutico",
-      "assistant": "Asistente"
+      "assistant": "Asistente",
+      "administrator": "Administrador"
     },
     "units": "unidades",
     "discount": {
@@ -31,7 +32,8 @@
     "remove": "Eliminar",
     "itemSelected": "Elemento Seleccionado",
     "itemsSelected": "Elementos Seleccionados",
-    "appName": "TREVVO"
+    "appName": "TREVVO",
+    "guest": "Invitado"
   },
   "styleguide": {
     "title": "Guía de Estilo",
@@ -281,6 +283,7 @@
       "portalName": "Portal de Supervisor",
       "mainContentArea": "Área de Contenido Principal",
       "description": "La barra lateral está fija y se contrae/desplaza correctamente.",
+      "collapse": "Colapsar",
       "links": {
         "dashboard": "Panel",
         "teamReports": "Informes del Equipo",
