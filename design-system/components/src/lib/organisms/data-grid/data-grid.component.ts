@@ -7,10 +7,11 @@ import { SearchBarComponent } from '../../molecules/search-bar/search-bar.compon
 import { DataGridRowComponent } from '../../molecules/data-grid-row/data-grid-row.component';
 import { DataGridColumnComponent } from '../../molecules/data-grid-column/data-grid-column.component';
 import { DataGridFilterComponent } from '../../molecules/data-grid-filter/data-grid-filter.component';
-import { type DataGridRecord, type DataGridColumn } from './data-grid.types';
+import { type DataGridRecord, type DataGridColumn, type DataGridNestedConfig } from './data-grid.types';
 import { type FilterState } from '../../molecules/data-grid-filter/data-grid-filter.types';
-import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
+import { NestedTableComponent } from '../../molecules/nested-table/nested-table.component';
 
 @Component({
   selector: 'ds-data-grid',
@@ -25,7 +26,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataGridRowComponent,
     DataGridColumnComponent,
     DataGridFilterComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NestedTableComponent
   ],
   template: `
     <main class="flex-1 grid grid-rows-[auto_1fr] overflow-hidden w-full h-full">
@@ -38,17 +40,28 @@ import { TranslatePipe } from '@ngx-translate/core';
           (actionClicked)="actionClicked.emit()"
         />
 
-        <div class="flex gap-4">
+        <div class="flex flex-col md:flex-row gap-4">
           <ds-search-bar 
             [placeholder]="searchPlaceholder()"
             [value]="searchTerm()"
             (valueChange)="onSearch($event)"
             class="flex-1"
           />
-          <ds-data-grid-filter 
-            (filtersApplied)="onFiltersApplied($event)"
-            (filtersReset)="onFiltersReset()"
-          />
+          <div class="flex gap-2">
+            <ds-data-grid-filter 
+              (filtersApplied)="onFiltersApplied($event)"
+              (filtersReset)="onFiltersReset()"
+            />
+            <button 
+              (click)="addRow.emit()"
+              class="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors shadow-sm"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              <span class="text-xs font-bold uppercase tracking-wider">{{ 'common.add' | translate }}</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -57,10 +70,13 @@ import { TranslatePipe } from '@ngx-translate/core';
         <div class="h-full flex flex-col bg-white lg:rounded-[32px] border border-gray-light shadow-sm overflow-hidden relative">
           
           <!-- DESKTOP HEADER -->
-          <div 
+          <header 
             class="hidden lg:grid border-b border-gray-light bg-gray-light/50"
             [style.grid-template-columns]="gridTemplateColumns()"
           >
+            @if (nestedConfig()) {
+              <div class="w-full"></div>
+            }
             @for (col of columns(); track col.id) {
               <ds-data-grid-column [align]="col.align || 'left'">
                 @if (col.headerComponent) {
@@ -70,26 +86,45 @@ import { TranslatePipe } from '@ngx-translate/core';
                 }
               </ds-data-grid-column>
             }
-          </div>
+          </header>
 
-          <!-- VIRTUAL SCROLL -->
-          <cdk-virtual-scroll-viewport 
-            [itemSize]="isMobile() ? 150 : 72" 
-            class="flex-1 custom-scrollbar w-full"
-          >
-            <ds-data-grid-row 
-              *cdkVirtualFor="let row of filteredData(); trackBy: trackById" 
-              [record]="row"
-              [columns]="columns()"
-              [gridTemplateColumns]="gridTemplateColumns()"
-            />
+          <!-- SCROLLABLE AREA -->
+          <div class="flex-1 custom-scrollbar w-full overflow-y-auto">
+            @for (row of filteredData(); track trackById($index, row)) {
+              <ds-data-grid-row 
+                [record]="row"
+                [columns]="columns()"
+                [gridTemplateColumns]="gridTemplateColumns()"
+                [expandable]="!!nestedConfig()"
+                [expanded]="expandedRows().has(row.id)"
+                (toggleExpand)="onToggleExpand(row.id)"
+              >
+                <!-- NESTED CONTENT -->
+                @if (nestedConfig()) {
+                  <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                      <h4 class="text-xs font-black uppercase tracking-widest text-gray-medium">
+                        {{ 'organisms.dataGrid.nesting.title' | translate }}
+                      </h4>
+                    </div>
+                    <ds-nested-table 
+                      [columns]="nestedConfig()!.columns"
+                      [data]="row[nestedConfig()!.dataKey] || []"
+                      [nestedConfig]="nestedConfig()!.nestedConfig"
+                      (nestedAddRow)="nestedAddRow.emit({ parentRow: row })"
+                      (nestedRemoveRow)="nestedRemoveRow.emit({ row: $event, parentRow: row })"
+                    />
+                  </div>
+                }
+              </ds-data-grid-row>
+            }
 
-            </cdk-virtual-scroll-viewport>
             @if (filteredData().length === 0) {
               <div class="flex items-center justify-center h-full min-h-[300px]">
-                <p>{{ 'common.empty' | translate }}</p>
+                <p class="text-gray-medium italic">{{ 'common.empty' | translate }}</p>
               </div>
-            } 
+            }
+          </div>
           
           <!-- PAGINATION -->
           <ds-pagination 
@@ -119,14 +154,21 @@ export class DataGridComponent {
   data = input<DataGridRecord[]>([]);
   columns = input<DataGridColumn[]>([]);
   pageSize = input<number>(10);
+  nestedConfig = input<DataGridNestedConfig | null>(null);
   isMobile = signal<boolean>(false);
 
   actionClicked = output<void>();
   searchChange = output<string>();
   filtersChange = output<FilterState>();
+  
+  addRow = output<void>();
+  removeRow = output<DataGridRecord>();
+  nestedAddRow = output<{ parentRow: DataGridRecord }>();
+  nestedRemoveRow = output<{ row: any; parentRow: DataGridRecord }>();
 
   searchTerm = signal('');
   page = signal(0);
+  expandedRows = signal<Set<string>>(new Set());
 
   private fb = inject(FormBuilder);
 
@@ -135,7 +177,8 @@ export class DataGridComponent {
   });
 
   gridTemplateColumns = computed(() => {
-    return this.columns().map(col => col.width || '1fr').join(' ');
+    const cols = this.columns().map(col => col.width || '1fr').join(' ');
+    return this.nestedConfig() ? `64px ${cols}` : cols;
   });
 
   filteredData = computed(() => {
@@ -162,6 +205,17 @@ export class DataGridComponent {
 
   trackById(_: number, item: DataGridRecord): string {
     return item.id;
+  }
+
+  onToggleExpand(id: string): void {
+    const current = this.expandedRows();
+    const next = new Set(current);
+    if (next.has(id)) {
+      next.delete(id);
+    } else {
+      next.add(id);
+    }
+    this.expandedRows.set(next);
   }
 
   nextPage(): void {
@@ -197,11 +251,11 @@ export class DataGridComponent {
       records.forEach(record => {
         rowsArray.push(this.fb.group({
           id: [record.id],
-          nome: [record.nome || ''],
-          pais: [record.pais || ''],
-          estado: [record.estado || ''],
-          dataInicio: [record.dataInicio || ''],
-          dataFim: [record.dataFim || ''],
+          nome: [record['nome'] || ''],
+          pais: [record['pais'] || ''],
+          estado: [record['estado'] || ''],
+          dataInicio: [record['dataInicio'] || ''],
+          dataFim: [record['dataFim'] || ''],
         }));
       });
     });

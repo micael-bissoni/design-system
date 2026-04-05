@@ -2,22 +2,23 @@ import { Type } from '@angular/core';
 
 export interface DataGridRecord {
   id: string;
-  nome: string;
-  pais: string;
-  dataInicio: string;
-  dataFim: string;
-  estado: string;
-  [key: string]: string | number | boolean;
+  [key: string]: any;
 }
 
 export interface DataGridColumn {
   id: string;
   label: string;
-  key?: keyof DataGridRecord;
-  width?: string; // Value like '1fr', '150px', etc.
+  key?: string;
+  width?: string;
   align?: 'left' | 'center' | 'right';
   headerComponent?: Type<unknown>;
   cellComponent?: Type<unknown>;
-  cellConfig?: (record: DataGridRecord) => Record<string, unknown>;
+  cellConfig?: (record: any) => Record<string, unknown>;
+}
+
+export interface DataGridNestedConfig {
+  columns: DataGridColumn[];
+  dataKey: string;
+  nestedConfig?: DataGridNestedConfig;
 }
 

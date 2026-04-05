@@ -111,3 +111,118 @@ export const Empty: Story = {
     columns: mockColumns,
   },
 };
+
+export const Expandable: Story = {
+  args: {
+    title: 'Projetos Detalhados',
+    subtitle: 'Exemplo de expansão com tabelas aninhadas',
+    data: [
+      { 
+        id: 'PRJ-1', client: 'Alpha Corp', status: 'Ativo',
+        tasks: [ { desc: 'UI Design', hours: '40h' }, { desc: 'Frontend Dev', hours: '120h' } ]
+      },
+      { 
+        id: 'PRJ-2', client: 'Beta Systems', status: 'Pendente',
+        tasks: [ { desc: 'Backend Dev', hours: '60h' } ]
+      }
+    ],
+    columns: [
+      { id: 'id', label: 'ID', key: 'id', width: '100px' },
+      { id: 'client', label: 'Cliente', key: 'client', width: '1fr' },
+      { id: 'status', label: 'Status', key: 'status', width: '120px' }
+    ],
+    nestedConfig: {
+      dataKey: 'tasks',
+      columns: [
+        { id: 'desc', label: 'Tarefa', key: 'desc' },
+        { id: 'hours', label: 'Esforço', key: 'hours' }
+      ]
+    },
+    pageSize: 5,
+    addRow: () => alert('Add Row clicked!'),
+    nestedAddRow: (ev: any) => alert(`Add Nested to ${ev.parentRow.id}`),
+  },
+};
+export const MultiLevel: Story = {
+  args: {
+    title: 'Hierarquia de Organizações',
+    subtitle: 'Navegação por múltiplos níveis de dados (Organizações > Grupos > Subgrupos > Entidades > Utilizadores)',
+    data: [
+      {
+        id: 'ORG-1',
+        nome: 'Trevvo Global',
+        groups: [
+          {
+            id: 'GRP-1',
+            nome: 'Operações Europa',
+            subgroups: [
+              {
+                id: 'SUB-1',
+                nome: 'Portugal & Espanha',
+                entities: [
+                  {
+                    id: 'ENT-1',
+                    nome: 'Logística Lisboa',
+                    users: [
+                      { id: 'USR-1', nome: 'Ana Silva', role: 'Admin' },
+                      { id: 'USR-2', nome: 'Pedro Santos', role: 'Operador' }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    columns: [
+      { id: 'id', label: 'ID', key: 'id', width: '100px' },
+      { id: 'nome', label: 'Organização', key: 'nome', width: '1fr' }
+    ],
+    nestedConfig: {
+      dataKey: 'groups',
+      columns: [
+        { id: 'id', label: 'ID', key: 'id' },
+        { id: 'nome', label: 'Grupo de Entidades', key: 'nome' }
+      ],
+      nestedConfig: {
+        dataKey: 'subgroups',
+        columns: [
+          { id: 'id', label: 'ID', key: 'id' },
+          { id: 'nome', label: 'Subgrupo', key: 'nome' }
+        ],
+        nestedConfig: {
+          dataKey: 'entities',
+          columns: [
+            { id: 'id', label: 'ID', key: 'id' },
+            { id: 'nome', label: 'Entidade', key: 'nome' }
+          ],
+          nestedConfig: {
+            dataKey: 'users',
+            columns: [
+              { id: 'id', label: 'ID', key: 'id' },
+              { id: 'nome', label: 'Utilizador', key: 'nome' },
+              { id: 'role', label: 'Cargo', key: 'role' }
+            ]
+          }
+        }
+      }
+    },
+    pageSize: 5
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="h-[90vh] w-full bg-slate-50 p-4 lg:p-10">
+        <ds-data-grid 
+          [title]="title" 
+          [subtitle]="subtitle" 
+          [data]="data"
+          [columns]="columns"
+          [nestedConfig]="nestedConfig"
+          [pageSize]="pageSize"
+        ></ds-data-grid>
+      </div>
+    `,
+  }),
+};
