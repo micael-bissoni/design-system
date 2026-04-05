@@ -447,5 +447,8 @@
       "objective2": "Revisar Acuerdo de Nivel 2",
       "objective3": "Recopilar Comentarios sobre el Último Pedido"
     }
+  },
+  "dashboard": {
+    "welcome": "Bienvenido de nuevo"
   }
 }

@@ -445,5 +445,8 @@
       "objective2": "Review Tier 2 Agreement",
       "objective3": "Collect Feedback on Last Order"
     }
+  },
+  "dashboard": {
+    "welcome": "Welcome back"
   }
 }

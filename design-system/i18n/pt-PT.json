@@ -449,5 +449,8 @@
       "objective2": "Rever Acordo de Nível 2",
       "objective3": "Recolher Feedback do Último Pedido"
     }
+  },
+  "dashboard": {
+    "welcome": "Bem-vindo de volta"
   }
 }
