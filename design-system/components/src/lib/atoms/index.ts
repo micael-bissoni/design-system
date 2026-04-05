@@ -18,3 +18,4 @@ export * from './avatar/avatar.variants';
 export * from './select/select.component';
 export * from './textarea/textarea.component';
 export * from './divider/divider.component';
+export * from './chart/chart.component';
