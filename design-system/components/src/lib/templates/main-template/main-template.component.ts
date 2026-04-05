@@ -13,7 +13,7 @@ import { NavigationBarComponent } from '../../organisms/navigation-bar/navigatio
     <div
       class="grid h-screen w-full overflow-hidden
              grid-cols-1 grid-rows-[auto_1fr_auto]
-             md:grid-cols-[280px_1fr] md:grid-rows-[80px_1fr]"
+             md:grid-cols-[var(--ds-sidebar-width,280px)_1fr] md:grid-rows-[80px_1fr]"
     >
       <aside
         id="side-nav-slot"
@@ -31,6 +31,7 @@ import { NavigationBarComponent } from '../../organisms/navigation-bar/navigatio
             (addSelected)="addSelected.emit()"
             (editSelected)="editSelected.emit()"
             (deleteSelected)="deleteSelected.emit()"
+            (itemSelected)="itemSelected.emit($event)"
           />
         }
       </aside>
@@ -96,4 +97,5 @@ export class MainTemplateComponent {
   addSelected = output<void>();
   editSelected = output<void>();
   deleteSelected = output<void>();
+  itemSelected = output<NavigationItem>();
 }

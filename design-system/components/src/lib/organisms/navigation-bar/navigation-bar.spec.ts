@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationBarComponent } from './navigation-bar.component';
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { describe, beforeEach, it, expect, vi } from 'vitest';
 
 @Component({
   template: `
@@ -81,6 +82,18 @@ describe('NavigationBarComponent', () => {
     deleteButton.click();
 
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should emit itemSelected when a navigation item is clicked', () => {
+    const spy = vi.spyOn(component.itemSelected, 'emit');
+    const items = [{ id: '1', label: 'Home', active: false }];
+    fixture.componentRef.setInput('navigationItems', items);
+    fixture.detectChanges();
+
+    const navItem = fixture.nativeElement.querySelector('[data-testid="navigation-bar-item"]');
+    navItem.click();
+
+    expect(spy).toHaveBeenCalledWith(items[0]);
   });
 
   it('should render navigation item icons if provided', () => {

@@ -22,13 +22,12 @@ Create a set of high-fidelity, reusable components optimized for dashboard inter
 ### 🦠 Organisms
 | Component | Purpose | Status |
 | :--- | :--- | :--- |
-| **Sidebar** | Responsive navigation drawer with collapse functionality. | ✅ Done |
-| **TopBar** | Global header with search, notifications, and user menu. | ✅ Done |
+| **NavigationBar** | Integrated vertical/horizontal navigation with responsive layout. | ✅ Done |
 
 ### 🖼️ Templates
 | Component | Purpose | Status |
 | :--- | :--- | :--- |
-| **DashboardLayout** | Full-page layout combining Sidebar and TopBar. | ✅ Done |
+| **DashboardLayout** | Full-page layout utilizing the NavigationBar. | ✅ Done |
 
 ## 🛠️ Standards Applied
 - **Atomic Design**: Strict separation between Atoms, Molecules, Organisms, and Templates.

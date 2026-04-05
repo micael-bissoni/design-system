@@ -40,13 +40,14 @@ import { IconComponent } from '../../atoms/icon/icon.component';
           <nav class="flex flex-row gap-4 md:flex-col md:gap-1">
             @for (item of navigationItems(); track item.id) {
               <div 
+                (click)="onItemClick(item)"
                 data-testid="navigation-bar-item"
-                class="px-4 py-2.5 rounded-md text-sm font-medium cursor-pointer transition-all
+                class="px-4 py-2.5 rounded-md text-sm cursor-pointer transition-all
                        flex items-center justify-center gap-2
-                       md:justify-start md:mt-1"
+                       md:justify-start md:mt-1 font-bold tracking-tight lowercase"
                 [ngClass]="{
                   'bg-primary text-on-primary md:bg-white md:text-primary md:border-l-2 md:border-white': item.active,
-                  'text-gray-dark hover:bg-gray-light md:text-on-primary md:hover:text-primary md:hover:bg-white md:hover:ml-2': !item.active,
+                  'text-gray-dark hover:bg-gray-light md:text-on-primary md:hover:text-primary md:hover:bg-white md:hover:ml-2 opacity-70 hover:opacity-100': !item.active,
                 }"
               >
                 @if (item.icon) {
@@ -128,4 +129,9 @@ export class NavigationBarComponent {
   deleteSelected = output<void>();
   addSelected = output<void>();
   editSelected = output<void>();
+  itemSelected = output<NavigationItem>();
+
+  onItemClick(item: NavigationItem) {
+    this.itemSelected.emit(item);
+  }
 }

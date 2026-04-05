@@ -15,8 +15,6 @@ const meta: Meta<DashboardLayoutComponent> = {
   ],
   argTypes: {
     appName: { control: 'text' },
-    searchPlaceholder: { control: 'text' },
-    hasNotifications: { control: 'boolean' },
   },
 };
 
@@ -31,35 +29,27 @@ const items = [
   { id: 'settings', label: 'Settings', icon: 'cog', active: false },
 ];
 
-const user = {
-  firstName: 'Micael',
-  lastName: 'Bissoni',
-  avatarSrc: 'https://i.pravatar.cc/150?u=micael',
-};
-
 export const Default: Story = {
   args: {
     appName: 'TREVVO',
+    title: 'dashboard.welcome',
     navigationItems: items,
-    user,
-    hasNotifications: true,
+    user: {
+      firstName: 'John',
+      lastName: 'Doe',
+      avatarSrc: 'https://i.pravatar.cc/150?u=john',
+    },
   },
   render: (args) => ({
     props: args,
     template: `
       <ds-dashboard-layout 
         [appName]="appName" 
+        [title]="title"
         [navigationItems]="navigationItems" 
-        [user]="user" 
-        [hasNotifications]="hasNotifications"
+        [user]="user"
       >
         <div class="space-y-8">
-          <!-- Header info -->
-          <div class="flex flex-col gap-1">
-            <h1 class="text-3xl font-black text-gray-dark tracking-tighter">Bienvenido de nuevo, Micael</h1>
-            <p class="text-gray-medium">Aquí tienes un resumen de lo que ha pasado en los últimos 30 días.</p>
-          </div>
-
           <!-- Quick Stats Grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <ds-stat-card 

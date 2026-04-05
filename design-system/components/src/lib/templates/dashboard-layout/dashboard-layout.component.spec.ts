@@ -34,17 +34,10 @@ describe('DashboardLayoutComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should toggle sidebar', () => {
-    expect(component.isSidebarCollapsed()).toBeFalsy();
-    component.isSidebarCollapsed.set(true);
+  it('should handle selectedCount correctly', () => {
+    expect(component.selectedCount()).toBe(0);
+    fixture.componentRef.setInput('selectedCount', 5);
     fixture.detectChanges();
-    expect(component.isSidebarCollapsed()).toBeTruthy();
-  });
-
-  it('should open mobile menu', () => {
-    expect(component.isMobileMenuOpen()).toBeFalsy();
-    component.isMobileMenuOpen.set(true);
-    fixture.detectChanges();
-    expect(component.isMobileMenuOpen()).toBeTruthy();
+    expect(component.selectedCount()).toBe(5);
   });
 });
