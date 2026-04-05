@@ -202,7 +202,7 @@ export class MyComponent {
 
 ## 📝 Changelog
 
-### v0.1.9 (Current)
+### v0.2.2 (Current)
 - ✨ **New Provider**: Added `provideDesignSystem` for unified initialization of theme, locale, and translations.
 - 🔧 **i18n Optimization**: Switched to `setFallbackLang` for better translation fallback handling and developer experience.
 - 🚀 **Store Initializer**: Added root store provision via `provideStore()` to ensure reactive state management.

@@ -37,7 +37,7 @@ import { TranslatePipe } from '@ngx-translate/core';
             [class.text-right]="col.align === 'right'"
           >
             @if (col.cellComponent) {
-              <ng-container *ngComponentOutlet="col.cellComponent; inputs: getCellInputs(col)" />
+              <ng-container *ngComponentOutlet="col.cellComponent || null; inputs: getCellInputs(col)" />
             } @else {
               <span 
                 class="truncate text-gray-dark"
@@ -63,7 +63,7 @@ import { TranslatePipe } from '@ngx-translate/core';
             </span>
             <div class="truncate">
               @if (columns()[0]?.cellComponent) {
-                <ng-container *ngComponentOutlet="columns()[0].cellComponent; inputs: getCellInputs(columns()[0])" />
+                <ng-container *ngComponentOutlet="columns()[0].cellComponent || null; inputs: getCellInputs(columns()[0])" />
               } @else {
                 <span class="text-sm font-bold text-gray-dark truncate block">
                   {{ getValue(columns()[0]) }}
@@ -97,7 +97,7 @@ import { TranslatePipe } from '@ngx-translate/core';
               <div class="truncate">
                 @if (col.cellComponent) {
                   <div class="scale-90 origin-left">
-                    <ng-container *ngComponentOutlet="col.cellComponent; inputs: getCellInputs(col)" />
+                    <ng-container *ngComponentOutlet="col.cellComponent || null; inputs: getCellInputs(col)" />
                   </div>
                 } @else {
                   <span class="text-xs font-semibold text-gray-dark truncate block">
