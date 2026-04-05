@@ -1,53 +1,99 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { NavigationItem, UserProfile } from './main-template.types';
+import { AvatarComponent } from '../../atoms/avatar/avatar.component';
+import { NavigationBarComponent } from '../../organisms/navigation-bar/navigation-bar.component';
 
 @Component({
   selector: 'ds-main-template',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe, AvatarComponent, NavigationBarComponent],
   template: `
-    <div class="grid h-screen w-full overflow-hidden
-                grid-cols-1 grid-rows-[auto_1fr]
-                md:grid-cols-[var(--sidebar-width,280px)_1fr] md:grid-rows-[var(--header-height,80px)_1fr]
-                bg-[#F8FAFC] font-sans">
-      
-      <!-- Aside / Navigation (Desktop) -->
-      <aside id="main-aside" 
-             class="hidden md:flex flex-shrink-0 md:col-start-1 md:row-start-1 md:row-span-2 
-                    bg-white border-r border-slate-200 overflow-y-auto">
+    <div
+      class="grid h-screen w-full overflow-hidden
+             grid-cols-1 grid-rows-[auto_1fr_auto]
+             md:grid-cols-[280px_1fr] md:grid-rows-[80px_1fr]"
+    >
+      <aside
+        id="side-nav-slot"
+        class="row-start-3 col-start-1 h-24 md:h-auto
+               md:col-start-1 md:row-start-1 md:row-span-2
+               overflow-y-auto md:bg-primary md:border-r md:border-primary"
+      >
         <ng-content select="[navigation]"></ng-content>
+        
+        @if (!asideSlot()) {
+          <ds-navigation-bar 
+            [navigationItems]="navigationItems()"
+            [appName]="appName()"
+            [selectedCount]="selectedCount()"
+            (addSelected)="addSelected.emit()"
+            (editSelected)="editSelected.emit()"
+            (deleteSelected)="deleteSelected.emit()"
+          />
+        }
       </aside>
 
-      <!-- Header -->
-      <header id="main-header"
-              class="row-start-1 col-start-1 md:col-start-2 md:row-start-1
-                     flex items-center px-6 z-10 bg-white border-b border-slate-200">
+      <header
+        id="header-slot"
+        class="row-start-1 col-start-1
+               md:col-start-2 md:row-start-1
+               flex items-center px-6 z-10 bg-surface-primary border-b border-gray-light"
+      >
         <ng-content select="[header]"></ng-content>
+        
+        @if (!headerSlot()) {
+          <div class="flex justify-between items-center w-full">
+            <h1 class="text-xl font-headers font-bold text-primary">
+              {{ title() | translate }}
+            </h1>
+
+            @if (user(); as u) {
+              <div class="flex gap-4 items-center p-2">
+                <ds-avatar 
+                  [src]="u.avatarSrc" 
+                  [firstName]="u.firstName" 
+                  [lastName]="u.lastName"
+                  size="md"
+                />
+                <div class="hidden sm:flex flex-col">
+                  <span class="text-sm font-bold text-primary leading-none">
+                    {{ u.firstName }} {{ u.lastName }}
+                  </span>
+                </div>
+              </div>
+            }
+          </div>
+        }
+
       </header>
 
-      <!-- Main Content -->
-      <main id="main-content"
-            class="row-start-2 col-start-1 md:col-start-2 md:row-start-2
-                   overflow-y-auto p-4 sm:p-6 lg:p-10 bg-[#F1F5F9] custom-scrollbar">
-        <div class="max-w-[1600px] mx-auto">
-          <ng-content></ng-content>
-        </div>
+      <!-- Main Content (Center right for Desktop, Center for Mobile) -->
+      <main
+        id="content-slot"
+        class="row-start-2 col-start-1
+               md:col-start-2 md:row-start-2
+               overflow-auto bg-surface-secondary"
+      >
+        <ng-content></ng-content>
       </main>
     </div>
   `,
-  styles: [`
-    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
-    
-    :host {
-      display: block;
-      height: 100vh;
-    }
-  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainTemplateComponent {
-  // Empty base template - layout only
+  // Specialized inputs
+  appName = input<string>('TREVVO');
+  title = input<string>('');
+  navigationItems = input<NavigationItem[]>([]);
+  user = input<UserProfile | null>(null);
+  selectedCount = input<number>(0);
+  headerSlot = input<boolean>(false);
+  asideSlot = input<boolean>(false);
+
+  // Outputs forwarded to NavigationBar
+  addSelected = output<void>();
+  editSelected = output<void>();
+  deleteSelected = output<void>();
 }
