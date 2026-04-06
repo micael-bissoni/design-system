@@ -35,9 +35,9 @@ export const Empty: Story = {
       avatarSrc: '',
     },
     navigationItems: [
-      { id: '1', label: 'templates.mainTemplate.regions', active: true, icon: 'location-on' },
-      { id: '2', label: 'templates.mainTemplate.entities', active: false, icon: 'corporate-fare' },
-      { id: '3', label: 'templates.mainTemplate.users', active: false, icon: 'management' },
+      { id: '1', label: 'templates.mainTemplate.regions', icon: 'location-on', route: '/regions' },
+      { id: '2', label: 'templates.mainTemplate.entities', icon: 'corporate-fare', route: '/entities' },
+      { id: '3', label: 'templates.mainTemplate.users', icon: 'management', route: '/users' },
     ],
   },
   render: (args) => ({
@@ -70,9 +70,9 @@ export const Datagrid: Story = {
       avatarSrc: '',
     },
     navigationItems: [
-      { id: '1', label: 'templates.mainTemplate.regions', active: true, icon: 'location-on' },
-      { id: '2', label: 'templates.mainTemplate.entities', active: false, icon: 'corporate-fare' },
-      { id: '3', label: 'templates.mainTemplate.users', active: false, icon: 'management' },
+      { id: '1', label: 'templates.mainTemplate.regions', icon: 'location-on', route: '/regions' },
+      { id: '2', label: 'templates.mainTemplate.entities', icon: 'corporate-fare', route: '/entities' },
+      { id: '3', label: 'templates.mainTemplate.users', icon: 'management', route: '/users' },
     ],
   },
   render: (args) => ({

@@ -44,7 +44,7 @@ describe('NavigationBarComponent', () => {
       { id: '1', label: 'Home', active: true },
     ]);
     fixture.detectChanges();
-    const navItems = fixture.nativeElement.querySelectorAll('nav div');
+    const navItems = fixture.nativeElement.querySelectorAll('ds-navigation-bar-item');
     expect(navItems.length).toBe(1);
     expect(navItems[0].textContent).toContain('Home');
   });

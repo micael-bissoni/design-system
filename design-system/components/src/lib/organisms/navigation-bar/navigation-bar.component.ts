@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NavigationItem } from '../../templates/main-template/main-template.types';
 import { IconComponent } from '../../atoms/icon/icon.component';
+import { RouterModule } from '@angular/router';
+import { NavigationBarItemComponent } from '../../molecules/navigation-bar-item/navigation-bar-item.component';
 
 @Component({
   selector: 'ds-navigation-bar',
   standalone: true,
-  imports: [CommonModule, TranslatePipe, IconComponent],
+  imports: [CommonModule, RouterModule, TranslatePipe, IconComponent, NavigationBarItemComponent],
   template: `
     <div 
       class="z-[100] transition-all duration-300
@@ -39,22 +41,18 @@ import { IconComponent } from '../../atoms/icon/icon.component';
           <!-- Navigation Items -->
           <nav class="flex flex-row gap-4 md:flex-col md:gap-1">
             @for (item of navigationItems(); track item.id) {
-              <div 
-                (click)="onItemClick(item)"
+              <ds-navigation-bar-item 
+                #rla="routerLinkActive"
+                [active]="rla.isActive"
+                [label]="item.label"
+                [icon]="item.icon || ''"
+                [routerLink]="item.route"
+                routerLinkActive="bg-primary text-primary md:bg-white md:text-white"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (select)="onItemClick(item)"
                 data-testid="navigation-bar-item"
-                class="px-4 py-2.5 rounded-md text-sm cursor-pointer transition-all
-                       flex items-center justify-center gap-2
-                       md:justify-start md:mt-1 font-bold tracking-tight lowercase"
-                [ngClass]="{
-                  'bg-primary text-on-primary md:bg-white md:text-primary md:border-l-2 md:border-white': item.active,
-                  'text-gray-dark hover:bg-gray-light md:text-on-primary md:hover:text-primary md:hover:bg-white md:hover:ml-2 opacity-70 hover:opacity-100': !item.active,
-                }"
-              >
-                @if (item.icon) {
-                  <ds-icon [name]="item.icon" [intent]="'inherit'" [size]="'small'"></ds-icon>
-                }
-                <span class="hidden md:inline">{{ item.label | translate }}</span>
-              </div>
+                class="text-gray-dark md:text-on-primary"
+              />
             }
           </nav>
           

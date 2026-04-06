@@ -1,13 +1,13 @@
 import { applicationConfig, componentWrapperDecorator, moduleMetadata } from "@storybook/angular";
 import { SettingsManagerComponent } from "@trevvo/design-system";
 import { provideTranslateService, TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { DEFAULT_CURRENCY_CODE, LOCALE_ID, provideZonelessChangeDetection } from "@angular/core";
+import { Component, DEFAULT_CURRENCY_CODE, LOCALE_ID, provideZonelessChangeDetection } from "@angular/core";
 import { provideHttpClient } from "@angular/common/http";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { LocaleService } from "@trevvo/design-system";
 import { provideStore } from "@ngrx/store";
-import { i18nReducer } from "@trevvo/design-system";
+import { i18nReducer } from "@trevvo/design-system"
 
 export const decorators = [
     applicationConfig({
@@ -38,7 +38,10 @@ export const decorators = [
         ],
     }),
     moduleMetadata({
-        imports: [SettingsManagerComponent, TranslatePipe],
+        imports: [
+            SettingsManagerComponent,
+            TranslatePipe
+        ],
     }),
     (story: any, context: any) => {
         const { locale, brand, currency } = context.globals;
