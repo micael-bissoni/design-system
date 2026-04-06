@@ -230,6 +230,10 @@
         "active": "Ativa",
         "pending": "Pendente"
       }
+    },
+    "inputPassword": {
+      "showPassword": "Mostrar senha",
+      "hidePassword": "Ocultar senha"
     }
   },
   "organisms": {
@@ -243,23 +247,17 @@
       }
     },
     "login": {
-      "brand": "Pharma Clean",
-      "welcomeTitle": "Bem-vindo de volta",
-      "welcomeDesc": "Por favor, insira suas credenciais para acessar o portal de vendas.",
       "email": "Email",
-      "emailPlaceholder": "nome@pharmaclean.com",
+      "emailPlaceholder": "utilizador@pharma.com",
       "password": "Senha",
-      "passwordPlaceholder": "Insira sua senha",
-      "forgotPassword": "Esqueceu a senha?",
-      "loginBtn": "Entrar no Dashboard",
+      "passwordPlaceholder": "••••",
+      "forgotPassword": "Esqueceu-se?",
+      "loginBtn": "Entrar",
       "loadingBtn": "A entrar...",
-      "needAccount": "Precisa de uma conta?",
-      "accountRestricted": "O registro de contas é restrito. Por favor, entre em contato com o seu administrador regional para solicitar credenciais de acesso.",
-      "requestAccess": "Solicitar Acesso",
-      "precisionTitle": "Precisão em cada detalhe.",
-      "precisionDesc": "Acesse a ferramenta central de automação da força de vendas para representantes da Pharma Clean.",
-      "complianceVerified": "Conformidade Verificada",
-      "securePortal": "Portal Seguro"
+      "errors": {
+        "emailInvalid": "É necessário um email válido",
+        "passwordRequired": "A senha é obrigatória"
+      }
     },
     "nexusDock": {
       "regions": "Regiões",
@@ -413,6 +411,18 @@
         "followUp": "Acompanhamento",
         "samples": "Amostras"
       }
+    },
+    "login": {
+      "brandTitle": "Capacitando a Saúde com Inteligência de Dados.",
+      "brandSubtitle": "Gira a sua rede farmacêutica através da nossa plataforma segura e unificada.",
+      "feature1Title": "Gestão Unificada",
+      "feature1Desc": "Controle todas as operações num só lugar.",
+      "feature2Title": "Conformidade Primeiro",
+      "feature2Desc": "Ambiente auditado e rastreável.",
+      "welcome": "Bem-vindo de volta",
+      "subtitle": "Inicie sessão para gerir a sua organização.",
+      "helpText": "Precisa de ajuda?",
+      "contactSupport": "Contactar Suporte"
     },
     "productCatalog": {
       "allProducts": "Todos os Produtos",

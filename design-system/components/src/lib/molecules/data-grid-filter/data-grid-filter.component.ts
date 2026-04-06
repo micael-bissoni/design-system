@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal, ViewChild, ViewContainerRef, Type } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal, ViewChild, ViewContainerRef, Type, inject, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -7,6 +7,8 @@ import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.compone
 import { RadioGroupComponent } from '../radio-group/radio-group.component';
 import { type FilterConfig, type FilterState } from './data-grid-filter.types';
 import { TranslatePipe } from '@ngx-translate/core';
+import { timer } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'ds-data-grid-filter',
@@ -78,6 +80,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataGridFilterComponent {
+  private readonly destroyRef = inject(DestroyRef);
   cn = cn;
 
   configs = input<FilterConfig[]>([
@@ -111,7 +114,7 @@ export class DataGridFilterComponent {
   });
 
   triggerClass = computed(() => cn(
-    'flex items-center justify-center w-12 h-12 rounded-xl transition-all border outline-none',
+    'flex items-center justify-center w-12 h-12 rounded-xl transition-all border outline-none focus:ring-4 focus:ring-primary/20',
     this.hasActiveFilters()
       ? 'border-[#008a7c] bg-[#008a7c]/5 text-[#008a7c]'
       : 'bg-slate-50 text-slate-500 border-slate-100 hover:bg-[#008a7c]/10'
@@ -119,8 +122,10 @@ export class DataGridFilterComponent {
 
   onOverlayOpen() {
     this.isFilterMenuOpen.set(true);
-    // Use setTimeout to ensure ViewContainerRef is available after overlay renders
-    setTimeout(() => this.renderFilters(), 0);
+    // Use RxJS timer to ensure ViewContainerRef is available after overlay renders
+    timer(0)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.renderFilters());
   }
 
   renderFilters() {

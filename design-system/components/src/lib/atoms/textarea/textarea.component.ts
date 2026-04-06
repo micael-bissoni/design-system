@@ -50,7 +50,7 @@ export class TextareaComponent implements ControlValueAccessor {
 
   calculatedClass = computed(() => 
     cn(
-      'w-full bg-white border border-gray-light rounded-lg px-4 py-3 text-sm outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all disabled:bg-gray-light/10 disabled:cursor-not-allowed text-gray-dark font-medium shadow-sm hover:border-gray-medium min-h-[100px] resize-y',
+      'w-full bg-primary/10 border-none rounded-xl px-4 py-4 text-sm outline-none focus:ring-4 focus:ring-primary/20 transition-all disabled:bg-gray-light/10 disabled:cursor-not-allowed text-gray-dark font-base shadow-sm hover:bg-primary/[0.15] min-h-[120px] resize-y',
       this.class()
     )
   );

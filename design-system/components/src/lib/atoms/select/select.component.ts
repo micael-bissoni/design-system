@@ -59,7 +59,7 @@ export class SelectComponent implements ControlValueAccessor {
 
   calculatedClass = computed(() => 
     cn(
-      'w-full bg-white border border-gray-light rounded-lg px-4 py-2.5 text-sm appearance-none outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all cursor-pointer disabled:bg-gray-light/10 disabled:cursor-not-allowed text-gray-dark font-medium shadow-sm hover:border-gray-medium',
+      'w-full bg-primary/10 border-none rounded-xl px-4 h-14 text-sm appearance-none outline-none focus:ring-4 focus:ring-primary/20 transition-all cursor-pointer disabled:bg-gray-light/10 disabled:cursor-not-allowed text-gray-dark font-base shadow-sm hover:bg-primary/[0.15]',
       this.class()
     )
   );

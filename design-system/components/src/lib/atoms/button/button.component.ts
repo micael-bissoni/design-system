@@ -10,6 +10,7 @@ import { cn } from '../../utils/cn';
   template: `
     <button
       [class]="calculatedClass"
+      [disabled]="disabled()"
       role="button"
     >
       <ng-content />
@@ -20,6 +21,7 @@ export class ButtonComponent {
   intent = input<ButtonVariants['intent']>('primary');
   size = input<ButtonVariants['size']>('medium');
   fullWidth = input<ButtonVariants['fullWidth']>(false);
+  disabled = input<boolean>(false);
 
   class = input<string>('');
 

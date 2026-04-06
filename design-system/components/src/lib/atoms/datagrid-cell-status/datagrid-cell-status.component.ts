@@ -11,7 +11,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   template: `
     <div class="flex flex-col">
       @if (editMode() && control()) {
-        <select [formControl]="control()!" class="form-select text-xs px-2 py-1 rounded-md border border-gray-light bg-white focus:outline-none focus:ring-1 focus:ring-primary">
+        <select [formControl]="control()!" class="form-select text-xs px-2 py-1 rounded-md border border-gray-light bg-white focus:outline-none focus:ring-4 focus:ring-primary/20">
           <option value="Ativo">{{ 'atoms.datagridCellStatus.active' | translate }}</option>
           <option value="Inativo">{{ 'atoms.datagridCellStatus.inactive' | translate }}</option>
           <option value="Pendente">{{ 'atoms.datagridCellStatus.pending' | translate }}</option>

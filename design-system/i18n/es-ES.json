@@ -232,6 +232,10 @@
         "active": "Activa",
         "pending": "Pendiente"
       }
+    },
+    "inputPassword": {
+      "showPassword": "Mostrar contraseña",
+      "hidePassword": "Ocultar contraseña"
     }
   },
   "organisms": {
@@ -245,23 +249,17 @@
       }
     },
     "login": {
-      "brand": "Pharma Clean",
-      "welcomeTitle": "Bienvenido de nuevo",
-      "welcomeDesc": "Por favor, introduzca sus credenciales para acceder al portal de ventas.",
       "email": "Email",
-      "emailPlaceholder": "nombre@pharmaclean.com",
+      "emailPlaceholder": "usuario@pharma.com",
       "password": "Contraseña",
-      "passwordPlaceholder": "Introduzca su contraseña",
-      "forgotPassword": "¿Olvidó su contraseña?",
-      "loginBtn": "Iniciar sesión en el panel",
-      "loadingBtn": "Iniciando sesión...",
-      "needAccount": "¿Necesita una cuenta?",
-      "accountRestricted": "El registro de cuentas está restringido. Póngase en contacto con su administrador regional para solicitar credenciales de acceso.",
-      "requestAccess": "Solicitar acceso",
-      "precisionTitle": "Precisión en cada detalle.",
-      "precisionDesc": "Acceda a la herramienta central de automatización de fuerza de ventas para los representantes de Pharma Clean.",
-      "complianceVerified": "Cumplimiento verificado",
-      "securePortal": "Portal Seguro"
+      "passwordPlaceholder": "••••",
+      "forgotPassword": "¿La olvidaste?",
+      "loginBtn": "Entrar",
+      "loadingBtn": "Entrando...",
+      "errors": {
+        "emailInvalid": "Se requiere un email válido",
+        "passwordRequired": "La contraseña es obligatoria"
+      }
     },
     "cartSidebar": {
       "currentOrder": "Pedido Actual",
@@ -411,6 +409,18 @@
         "followUp": "Seguimiento",
         "samples": "Muestras"
       }
+    },
+    "login": {
+      "brandTitle": "Potenciando la Salud con Inteligencia de Datos.",
+      "brandSubtitle": "Gestione su red farmacéutica a través de nuestra plataforma segura y unificada.",
+      "feature1Title": "Gestión Unificada",
+      "feature1Desc": "Controle todas las operaciones en un solo lugar.",
+      "feature2Title": "Cumplimiento Primero",
+      "feature2Desc": "Entorno auditado y trazable.",
+      "welcome": "Bienvenido de nuevo",
+      "subtitle": "Inicie sesión para gestionar su organización.",
+      "helpText": "¿Necesitas ayuda?",
+      "contactSupport": "Contactar Soporte"
     },
     "productCatalog": {
       "allProducts": "Todos los Productos",

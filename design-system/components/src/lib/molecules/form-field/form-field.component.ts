@@ -2,14 +2,16 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { IconComponent } from '../../atoms/icon/icon.component';
+
 @Component({
   selector: 'ds-form-field',
   standalone: true,
-  imports: [CommonModule, TranslatePipe],
+  imports: [CommonModule, TranslatePipe, IconComponent],
   template: `
     <div class="flex flex-col gap-1.5 w-full" data-testid="ds-form-field">
       @if (label()) {
-        <label [for]="id()" class="text-sm font-bold text-gray-dark select-none">
+        <label [for]="id()" class="text-[10px] font-extrabold text-gray-medium uppercase tracking-[0.2em] px-1 select-none group-focus-within:text-primary transition-all duration-300">
           {{ label() | translate }}
           @if (required()) {
             <span class="text-danger ml-0.5" aria-hidden="true">*</span>
@@ -17,7 +19,12 @@ import { TranslatePipe } from '@ngx-translate/core';
         </label>
       }
       
-      <div class="relative flex flex-col">
+      <div class="relative flex flex-col group">
+        @if (prefixIcon()) {
+          <div class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-medium transition-colors group-focus-within:text-primary opacity-80 z-10 pointer-events-none">
+            <ds-icon [name]="prefixIcon()" size="small" class="w-5 h-5"></ds-icon>
+          </div>
+        }
         <ng-content></ng-content>
       </div>
 
@@ -44,5 +51,6 @@ export class FormFieldComponent {
   label = input<string>('');
   error = input<string>('');
   hint = input<string>('');
+  prefixIcon = input<string>('');
   required = input<boolean>(false);
 }

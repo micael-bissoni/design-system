@@ -17,6 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       [disabled]="disabled()"
       (input)="onInput($event)"
       (blur)="onBlur()"
+      (keydown.enter)="onEnterPressed.emit()"
       [class]="calculatedClass"
       data-testid="ds-input"
     />
@@ -36,10 +37,13 @@ export class InputComponent implements ControlValueAccessor {
   value = input<string>('');
   disabledInput = input<boolean>(false, { alias: 'disabled' });
   variant = input<InputVariants['variant']>('default');
+  hasIcon = input<boolean>(false);
+  hasSuffix = input<boolean>(false);
   class = input<string>('');
 
   valueChange = output<string>();
   onBlurEvent = output<void>();
+  onEnterPressed = output<void>();
 
   internalValue = signal<string>('');
   disabled = signal<boolean>(false);
@@ -61,7 +65,12 @@ export class InputComponent implements ControlValueAccessor {
   onTouched: () => void = () => { };
 
   get calculatedClass(): string {
-    return cn(inputVariants({ variant: this.variant() }), this.class());
+    const defaultClasses = inputVariants({ variant: this.variant() });
+    const paddingClasses = cn(
+      this.hasIcon() ? 'pl-14' : 'pl-5',
+      this.hasSuffix() ? 'pr-14' : 'pr-5'
+    );
+    return cn(defaultClasses, paddingClasses, this.class());
   }
 
   onInput(event: Event) {

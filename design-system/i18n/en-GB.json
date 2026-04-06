@@ -230,6 +230,10 @@
         "active": "Active",
         "pending": "Pending"
       }
+    },
+    "inputPassword": {
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
     }
   },
   "organisms": {
@@ -243,23 +247,17 @@
       }
     },
     "login": {
-      "brand": "Pharma Clean",
-      "welcomeTitle": "Welcome back",
-      "welcomeDesc": "Please enter your credentials to access the sales portal.",
       "email": "Email",
-      "emailPlaceholder": "name@pharmaclean.com",
+      "emailPlaceholder": "user@pharma.com",
       "password": "Password",
-      "passwordPlaceholder": "Enter your password",
-      "forgotPassword": "Forgot password?",
-      "loginBtn": "Login to Dashboard",
-      "loadingBtn": "Signing in...",
-      "needAccount": "Need an account?",
-      "accountRestricted": "Account registration is restricted. Please contact your regional administrator to request access credentials.",
-      "requestAccess": "Request Access",
-      "precisionTitle": "Precision in every detail.",
-      "precisionDesc": "Access the central sales force automation tool for Pharma Clean representatives.",
-      "complianceVerified": "Compliance Verified",
-      "securePortal": "Secure Portal"
+      "passwordPlaceholder": "••••",
+      "forgotPassword": "Forgot it?",
+      "loginBtn": "Sign In",
+      "loadingBtn": "Sign in...",
+      "errors": {
+        "emailInvalid": "Valid email is required",
+        "passwordRequired": "Password is required"
+      }
     },
     "cartSidebar": {
       "currentOrder": "Current Order",
@@ -409,6 +407,18 @@
         "followUp": "Follow-up",
         "samples": "Samples"
       }
+    },
+    "login": {
+      "brandTitle": "Empowering Healthcare with Data Intelligence.",
+      "brandSubtitle": "Manage your pharma network through our secure and unified platform.",
+      "feature1Title": "Unified Management",
+      "feature1Desc": "Control all operations in one place.",
+      "feature2Title": "Compliance First",
+      "feature2Desc": "Audited and traceable environment.",
+      "welcome": "Welcome back",
+      "subtitle": "Sign in to manage your organization.",
+      "helpText": "Need help?",
+      "contactSupport": "Contact Support"
     },
     "productCatalog": {
       "allProducts": "All Products",
