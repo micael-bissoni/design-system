@@ -49,9 +49,11 @@ export const Default: Story = {
   args: {
     selectedCount: 0,
     navigationItems: [
-      { id: '1', label: 'templates.mainTemplate.regions', icon: 'location-on', route: '/regions' },
-      { id: '2', label: 'templates.mainTemplate.entities', icon: 'corporate-fare', route: '/entities' },
-      { id: '3', label: 'templates.mainTemplate.users', icon: 'management', route: '/users' },
+      { id: '1', label: 'common.navigation.dashboard', icon: 'management', route: '/customerService' },
+      { id: '2', label: 'common.navigation.hierarchy', icon: 'corporate-fare', route: '/customerService/hierarchy' },
+      { id: '3', label: 'common.navigation.profiles', icon: 'management', route: '/customerService/profiles' },
+      { id: '4', label: 'common.navigation.team', icon: 'management', route: '/customerService/team' },
+      { id: '5', label: 'common.navigation.compliance', icon: 'check-circle', route: '/customerService/compliance' }
     ],
     appName: 'TREVVO',
   },
@@ -95,3 +97,18 @@ export const WithActiveRoute: Story = {
     }
   }
 };
+
+export const CustomerService: Story = {
+  args: {
+    selectedCount: 0,
+    navigationItems: [
+      { id: '1', label: 'common.navigation.dashboard', icon: 'management', route: '/customerService' },
+      { id: '2', label: 'common.navigation.hierarchy', icon: 'corporate-fare', route: '/customerService/hierarchy' },
+      { id: '3', label: 'common.navigation.profiles', icon: 'management', route: '/customerService/profiles' },
+      { id: '4', label: 'common.navigation.team', icon: 'management', route: '/customerService/team' },
+      { id: '5', label: 'common.navigation.compliance', icon: 'check-circle', route: '/customerService/compliance' }
+    ],
+    appName: 'TREVVO',
+  }
+};
+

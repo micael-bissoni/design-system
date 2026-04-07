@@ -25,7 +25,7 @@ import { map } from 'rxjs';
       @if (icon()) {
         <ds-icon [name]="icon()" [intent]="'inherit'" [size]="'small'"></ds-icon>
       }
-      <span class="text-[10px] md:text-sm">{{ label() | translate }}</span>
+      <span class="text-[10px] md:text-sm capitalize">{{ label() | translate }}</span>
       @if (active() && !isDesktop()) {
         <div class="absolute -bottom-2 w-1.5 h-1.5 bg-primary rounded-full md:hidden"></div>
       }

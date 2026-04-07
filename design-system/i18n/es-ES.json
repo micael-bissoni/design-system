@@ -33,7 +33,14 @@
     "itemSelected": "Elemento Seleccionado",
     "itemsSelected": "Elementos Seleccionados",
     "appName": "TREVVO",
-    "guest": "Invitado"
+    "guest": "Invitado",
+    "navigation": {
+      "dashboard": "Panel",
+      "hierarchy": "Jerarquía",
+      "profiles": "Perfiles",
+      "team": "Equipo",
+      "compliance": "Cumplimiento"
+    }
   },
   "styleguide": {
     "title": "Guía de Estilo",
@@ -366,6 +373,25 @@
         "tierDiscount": "Descuento por Nivel",
         "subtotal": "Subtotal"
       }
+    },
+    "createAccount": {
+      "name": "Nombre Completo",
+      "namePlaceholder": "Juan Pérez",
+      "email": "Email",
+      "emailPlaceholder": "usuario@pharma.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "••••",
+      "confirmPassword": "Confirmar Contraseña",
+      "confirmPasswordPlaceholder": "••••",
+      "createBtn": "Crear Cuenta",
+      "loadingBtn": "Creando...",
+      "successMsg": "¡Cuenta creada con éxito!",
+      "errors": {
+        "nameRequired": "El nombre es obligatorio",
+        "emailInvalid": "Se requiere un email válido",
+        "passwordRequired": "La contraseña es obligatoria",
+        "passwordsDontMatch": "Las contraseñas no coinciden"
+      }
     }
   },
   "templates": {
@@ -421,6 +447,14 @@
       "subtitle": "Inicie sesión para gestionar su organización.",
       "helpText": "¿Necesitas ayuda?",
       "contactSupport": "Contactar Soporte"
+    },
+    "createAccount": {
+      "brandTitle": "Uniéndose a la próxima generación de logística farmacéutica.",
+      "brandSubtitle": "Comience a transformar su red de salud hoy mismo.",
+      "welcome": "Crear Cuenta",
+      "subtitle": "Rellene sus datos para empezar.",
+      "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+      "loginNow": "Inicia sesión aquí"
     },
     "productCatalog": {
       "allProducts": "Todos los Productos",

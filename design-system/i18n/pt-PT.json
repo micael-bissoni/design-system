@@ -33,7 +33,14 @@
     "itemSelected": "Item Selecionado",
     "itemsSelected": "Itens Selecionados",
     "appName": "TREVVO",
-    "guest": "Convidado"
+    "guest": "Convidado",
+    "navigation": {
+      "dashboard": "Dashboard",
+      "hierarchy": "Hierarquia",
+      "profiles": "Perfis",
+      "team": "Equipa",
+      "compliance": "Conformidade"
+    }
   },
   "styleguide": {
     "title": "Guia de Estilo",
