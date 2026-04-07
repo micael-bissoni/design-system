@@ -69,6 +69,10 @@ const meta: Meta<DataGridComponent> = {
     filtersChange: { action: 'filtersChange' },
     searchChange: { action: 'searchChange' },
     actionClicked: { action: 'actionClicked' },
+    addRow: { action: 'addRow' },
+    removeRow: { action: 'removeRow' },
+    nestedAddRow: { action: 'nestedAddRow' },
+    nestedRemoveRow: { action: 'nestedRemoveRow' },
   },
 };
 
@@ -97,6 +101,13 @@ export const Default: Story = {
           [data]="data"
           [columns]="columns"
           [pageSize]="pageSize"
+          (actionClicked)="actionClicked($event)"
+          (searchChange)="searchChange($event)"
+          (filtersChange)="filtersChange($event)"
+          (addRow)="addRow($event)"
+          (removeRow)="removeRow($event)"
+          (nestedAddRow)="nestedAddRow($event)"
+          (nestedRemoveRow)="nestedRemoveRow($event)"
         ></ds-data-grid>
       </div>
     `,
@@ -139,8 +150,6 @@ export const Expandable: Story = {
       ]
     },
     pageSize: 5,
-    addRow: () => alert('Add Row clicked!'),
-    nestedAddRow: (ev: any) => alert(`Add Nested to ${ev.parentRow.id}`),
   },
 };
 export const MultiLevel: Story = {
@@ -221,6 +230,13 @@ export const MultiLevel: Story = {
           [columns]="columns"
           [nestedConfig]="nestedConfig"
           [pageSize]="pageSize"
+          (actionClicked)="actionClicked($event)"
+          (searchChange)="searchChange($event)"
+          (filtersChange)="filtersChange($event)"
+          (addRow)="addRow($event)"
+          (removeRow)="removeRow($event)"
+          (nestedAddRow)="nestedAddRow($event)"
+          (nestedRemoveRow)="nestedRemoveRow($event)"
         ></ds-data-grid>
       </div>
     `,

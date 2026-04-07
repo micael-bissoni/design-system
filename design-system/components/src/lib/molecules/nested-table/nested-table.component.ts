@@ -75,6 +75,8 @@ import { type DataGridColumn, type DataGridNestedConfig } from '../../organisms/
                       [data]="row[nestedConfig()!.dataKey] || []"
                       [nestedConfig]="nestedConfig()!.nestedConfig"
                       [level]="level() + 1"
+                      (nestedAddRow)="nestedAddRow.emit($event ? $event : { parentRow: row })"
+                      (nestedRemoveRow)="nestedRemoveRow.emit($event)"
                     />
                   </td>
                 </tr>
@@ -142,6 +144,8 @@ import { type DataGridColumn, type DataGridNestedConfig } from '../../organisms/
                   [data]="row[nestedConfig()!.dataKey] || []"
                   [nestedConfig]="nestedConfig()!.nestedConfig"
                   [level]="level() + 1"
+                  (nestedAddRow)="nestedAddRow.emit($event ? $event : { parentRow: row })"
+                  (nestedRemoveRow)="nestedRemoveRow.emit($event)"
                 />
               </div>
             }
@@ -176,7 +180,7 @@ export class NestedTableComponent {
   nestedConfig = input<DataGridNestedConfig | undefined>();
   level = input<number>(1);
 
-  nestedAddRow = output<void>();
+  nestedAddRow = output<any>();
   nestedRemoveRow = output<any>();
 
   expandedRows = signal<Set<number>>(new Set());
