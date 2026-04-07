@@ -251,6 +251,18 @@
       "pagination": {
         "range": "{{start}} - {{end}} de {{total}}",
         "empty": "0 - 0 de 0"
+      },
+      "columns": {
+        "entityName": "Nome da Entidade",
+        "masterKey": "Chave Mestre (EIK)",
+        "category": "Categoria",
+        "status": "Estado",
+        "unitName": "Nome da Unidade",
+        "eik": "EIK",
+        "type": "Tipo"
+      },
+      "nesting": {
+        "title": "Aninhamento"
       }
     },
     "login": {

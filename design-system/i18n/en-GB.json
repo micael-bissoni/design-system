@@ -251,6 +251,18 @@
       "pagination": {
         "range": "{{start}} - {{end}} of {{total}}",
         "empty": "0 - 0 of 0"
+      },
+      "columns": {
+        "entityName": "Entity Name",
+        "masterKey": "Master Key (EIK)",
+        "category": "Category",
+        "status": "Status",
+        "unitName": "Unit Name",
+        "eik": "EIK",
+        "type": "Type"
+      },
+      "nesting": {
+        "title": "Nesting"
       }
     },
     "login": {

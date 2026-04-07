@@ -253,6 +253,18 @@
       "pagination": {
         "range": "{{start}} - {{end}} de {{total}}",
         "empty": "0 - 0 de 0"
+      },
+      "columns": {
+        "entityName": "Nombre de la Entidad",
+        "masterKey": "Clave Maestra (EIK)",
+        "category": "Categoría",
+        "status": "Estado",
+        "unitName": "Nombre de la Unidad",
+        "eik": "EIK",
+        "type": "Tipo"
+      },
+      "nesting": {
+        "title": "Anidamiento"
       }
     },
     "login": {
