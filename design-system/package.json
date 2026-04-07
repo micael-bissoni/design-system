@@ -1,6 +1,6 @@
 {
   "name": "@trevvo/design-system",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "peerDependencies": {
     "@angular/animations": "~21.2.0",
     "@angular/cdk": "~21.2.0",
