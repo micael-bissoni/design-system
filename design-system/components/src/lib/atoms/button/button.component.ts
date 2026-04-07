@@ -20,13 +20,19 @@ import { cn } from '../../utils/cn';
 export class ButtonComponent {
   intent = input<ButtonVariants['intent']>('primary');
   size = input<ButtonVariants['size']>('medium');
+  shape = input<ButtonVariants['shape']>('standard');
   fullWidth = input<ButtonVariants['fullWidth']>(false);
   disabled = input<boolean>(false);
 
   class = input<string>('');
 
   get calculatedClass(): string {
-    return cn(buttonVariants({ intent: this.intent(), size: this.size(), fullWidth: this.fullWidth() }), this.class());
+    return cn(buttonVariants({ 
+      intent: this.intent(), 
+      size: this.size(), 
+      shape: this.shape(),
+      fullWidth: this.fullWidth() 
+    }), this.class());
   }
 }
 

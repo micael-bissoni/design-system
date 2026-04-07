@@ -11,7 +11,7 @@ import { type DataGridRecord, type DataGridColumn, type DataGridNestedConfig } f
 import { type FilterState } from '../../molecules/data-grid-filter/data-grid-filter.types';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
-import { NestedTableComponent } from '../../molecules/nested-table/nested-table.component';
+import { NestedDatagridComponent } from '../../molecules/nested-datagrid/nested-datagrid.component';
 
 @Component({
   selector: 'ds-data-grid',
@@ -27,7 +27,7 @@ import { NestedTableComponent } from '../../molecules/nested-table/nested-table.
     DataGridColumnComponent,
     DataGridFilterComponent,
     ReactiveFormsModule,
-    NestedTableComponent
+    NestedDatagridComponent
   ],
   template: `
     <main class="flex-1 grid grid-rows-[auto_1fr] overflow-hidden w-full h-full">
@@ -107,7 +107,7 @@ import { NestedTableComponent } from '../../molecules/nested-table/nested-table.
                         {{ 'organisms.dataGrid.nesting.title' | translate }}
                       </h4>
                     </div>
-                    <ds-nested-table 
+                    <ds-nested-datagrid 
                       [columns]="nestedConfig()!.columns"
                       [data]="row[nestedConfig()!.dataKey] || []"
                       [nestedConfig]="nestedConfig()!.nestedConfig"

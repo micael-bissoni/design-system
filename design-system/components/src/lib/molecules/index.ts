@@ -12,5 +12,5 @@ export * from './card/card.component';
 export * from './card/card.variants';
 export * from './stat-card/stat-card.component';
 export * from './form-field/form-field.component';
-export * from './nested-table/nested-table.component';
+export * from './nested-datagrid/nested-datagrid.component';
 export * from './input-password/input-password.component';

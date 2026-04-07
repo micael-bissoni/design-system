@@ -35,7 +35,8 @@ describe('ButtonComponent', () => {
     fixture.componentRef.setInput('size', 'small');
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector('button');
-    expect(button.className).toContain('rounded-sm');
+    expect(button.className).toContain('px-2');
+    expect(button.className).toContain('py-1');
     expect(button.className).toContain('text-sm');
   });
 
@@ -44,5 +45,13 @@ describe('ButtonComponent', () => {
     fixture.detectChanges();
     const button = fixture.nativeElement.querySelector('button');
     expect(button.className).toContain('w-full');
+  });
+
+  it('should apply circle shape classes', () => {
+    fixture.componentRef.setInput('shape', 'circle');
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector('button');
+    expect(button.className).toContain('rounded-full');
+    expect(button.className).toContain('aspect-square');
   });
 });

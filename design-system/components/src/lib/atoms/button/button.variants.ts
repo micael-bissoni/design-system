@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const buttonVariants = cva(
-    'inline-flex items-center py-2 px-4 rounded-button justify-center font-base font-medium transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]',
+    'inline-flex items-center justify-center font-base font-medium transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]',
     {
         variants: {
             intent: {
@@ -17,9 +17,14 @@ export const buttonVariants = cva(
                 info: 'bg-info text-on-info border border-info hover:bg-info/90',
             },
             size: {
-                small: 'text-sm rounded-sm',
-                medium: 'text-md rounded-md',
-                large: 'text-lg rounded-lg',
+                small: 'text-sm px-2 py-1',
+                medium: 'text-md px-4 py-2',
+                large: 'text-lg px-6 py-3',
+                icon: 'p-1 h-auto w-auto aspect-square text-sm'
+            },
+            shape: {
+                standard: 'rounded-button',
+                circle: 'rounded-full aspect-square'
             },
             fullWidth: {
                 true: 'w-full',
@@ -29,6 +34,7 @@ export const buttonVariants = cva(
         defaultVariants: {
             intent: 'primary',
             size: 'medium',
+            shape: 'standard',
             fullWidth: false,
         }
     }

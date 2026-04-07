@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { type DataGridColumn, type DataGridNestedConfig } from '../../organisms/data-grid/data-grid.types';
+import { ButtonComponent } from '../../atoms/button/button.component';
 
 @Component({
-  selector: 'ds-nested-table',
+  selector: 'ds-nested-datagrid',
   standalone: true,
-  imports: [CommonModule, NestedTableComponent],
+  imports: [CommonModule, NestedDatagridComponent, ButtonComponent],
   template: `
     <div 
       class="w-full overflow-hidden rounded-xl border border-gray-light shadow-sm transition-colors"
@@ -23,15 +24,17 @@ import { type DataGridColumn, type DataGridNestedConfig } from '../../organisms/
                 <th class="px-4 py-3">{{ col.label }}</th>
               }
               <th class="px-4 py-3 text-right">
-                <button 
-                  (click)="nestedAddRow.emit()"
-                  class="rounded-full p-1 text-primary-600 transition hover:bg-primary-50"
+                <ds-button 
+                  intent="ghost"
+                  size="icon"
+                  shape="circle"
+                  (click)="nestedAddRow.emit(null)"
                   title="Add Row"
                 >
                   <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
-                </button>
+                </ds-button>
               </th>
             </tr>
           </thead>
@@ -56,21 +59,24 @@ import { type DataGridColumn, type DataGridNestedConfig } from '../../organisms/
                   <td class="whitespace-nowrap px-4 py-2 text-gray-dark font-medium underline decoration-primary-200/30 underline-offset-4 decoration-1 decoration-dashed">{{ row[col.key || ''] }}</td>
                 }
                 <td class="px-4 py-2 text-right">
-                  <button 
+                  <ds-button 
+                    intent="danger"
+                    size="icon"
+                    shape="circle"
+                    class="bg-transparent border-none shadow-none text-red-500 hover:bg-red-50"
                     (click)="nestedRemoveRow.emit(row)"
-                    class="rounded-full p-1 text-red-500 transition hover:bg-red-50"
                     title="Remove Row"
                   >
                     <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
-                  </button>
+                  </ds-button>
                 </td>
               </tr>
               @if (expandedRows().has($index) && nestedConfig()) {
                 <tr>
                   <td [attr.colspan]="columns().length + 3" class="p-3">
-                    <ds-nested-table 
+                    <ds-nested-datagrid 
                       [columns]="nestedConfig()!.columns"
                       [data]="row[nestedConfig()!.dataKey] || []"
                       [nestedConfig]="nestedConfig()!.nestedConfig"
@@ -139,7 +145,7 @@ import { type DataGridColumn, type DataGridNestedConfig } from '../../organisms/
             <!-- NESTED CONTENT (MOBILE) -->
             @if (expandedRows().has($index) && nestedConfig()) {
               <div class="mt-2 pl-2 border-l-2 py-1" [ngStyle]="getBorderStyle()">
-                <ds-nested-table 
+                <ds-nested-datagrid 
                   [columns]="nestedConfig()!.columns"
                   [data]="row[nestedConfig()!.dataKey] || []"
                   [nestedConfig]="nestedConfig()!.nestedConfig"
@@ -159,22 +165,23 @@ import { type DataGridColumn, type DataGridNestedConfig } from '../../organisms/
 
       <!-- MOBILE ADD ACTION (FOOTER) -->
       <div class="lg:hidden p-2 border-t border-gray-light/30 bg-gray-light/5 flex justify-center">
-         <button 
-            (click)="nestedAddRow.emit()"
-            class="flex items-center gap-1.5 px-3 py-1.5 bg-primary-100 text-primary-700 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-sm"
+          <ds-button 
+            intent="tertiary"
+            size="small"
+            (click)="nestedAddRow.emit(null)"
           >
-            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-3 w-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
             Adicionar Registo
-          </button>
+          </ds-button>
       </div>
 
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NestedTableComponent {
+export class NestedDatagridComponent {
   columns = input.required<DataGridColumn[]>();
   data = input.required<any[]>();
   nestedConfig = input<DataGridNestedConfig | undefined>();
