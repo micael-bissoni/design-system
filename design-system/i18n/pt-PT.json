@@ -368,6 +368,25 @@
         "tierDiscount": "Desconto de Nível",
         "subtotal": "Subtotal"
       }
+    },
+    "createAccount": {
+      "name": "Nome Completo",
+      "namePlaceholder": "João Silva",
+      "email": "Email",
+      "emailPlaceholder": "utilizador@pharma.com",
+      "password": "Senha",
+      "passwordPlaceholder": "••••",
+      "confirmPassword": "Confirmar Senha",
+      "confirmPasswordPlaceholder": "••••",
+      "createBtn": "Criar Conta",
+      "loadingBtn": "A criar...",
+      "successMsg": "Conta criada com sucesso!",
+      "errors": {
+        "nameRequired": "O nome é obrigatório",
+        "emailInvalid": "Email inválido",
+        "passwordRequired": "A senha é obrigatória",
+        "passwordsDontMatch": "As senhas não coincidem"
+      }
     }
   },
   "templates": {
@@ -423,6 +442,14 @@
       "subtitle": "Inicie sessão para gerir a sua organização.",
       "helpText": "Precisa de ajuda?",
       "contactSupport": "Contactar Suporte"
+    },
+    "createAccount": {
+      "brandTitle": "Junte-se à próxima geração de logística farmacêutica.",
+      "brandSubtitle": "Comece hoje mesmo a transformar a sua rede de saúde.",
+      "welcome": "Criar Conta",
+      "subtitle": "Preencha os seus dados para começar.",
+      "alreadyHaveAccount": "Já tem uma conta?",
+      "loginNow": "Inicie sessão aqui"
     },
     "productCatalog": {
       "allProducts": "Todos os Produtos",

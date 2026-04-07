@@ -364,6 +364,25 @@
         "tierDiscount": "Tier Discount",
         "subtotal": "Subtotal"
       }
+    },
+    "createAccount": {
+      "name": "Full Name",
+      "namePlaceholder": "John Doe",
+      "email": "Email",
+      "emailPlaceholder": "user@pharma.com",
+      "password": "Password",
+      "passwordPlaceholder": "••••",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "••••",
+      "createBtn": "Create Account",
+      "loadingBtn": "Creating...",
+      "successMsg": "Account created successfully!",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailInvalid": "Valid email is required",
+        "passwordRequired": "Password is required",
+        "passwordsDontMatch": "Passwords do not match"
+      }
     }
   },
   "templates": {
@@ -419,6 +438,14 @@
       "subtitle": "Sign in to manage your organization.",
       "helpText": "Need help?",
       "contactSupport": "Contact Support"
+    },
+    "createAccount": {
+      "brandTitle": "Joining the next generation of pharma logistics.",
+      "brandSubtitle": "Start transforming your healthcare network today.",
+      "welcome": "Create Account",
+      "subtitle": "Fill in your details to get started.",
+      "alreadyHaveAccount": "Already have an account?",
+      "loginNow": "Sign in here"
     },
     "productCatalog": {
       "allProducts": "All Products",
