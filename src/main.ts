@@ -69,9 +69,9 @@ export class AppComponent {
     ]);
   }
 
-  onAddNested(event: { parentRow: any }) {
+  onAddNested(event: { parentRow: Record<string, unknown> }) {
     this.tableData.update(data => {
-      const index = data.findIndex(r => r.id === event.parentRow.id);
+      const index = data.findIndex(r => String(r.id) === String(event.parentRow['id']));
       if (index === -1) return data;
       
       const newData = [...data];

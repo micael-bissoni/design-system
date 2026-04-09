@@ -148,7 +148,10 @@ export class DataGridFilterComponent {
       const instance = controlRef.instance as { valueChange?: { subscribe: (fn: (v: unknown) => void) => void } };
       if (instance.valueChange) {
         instance.valueChange.subscribe((newValue: unknown) => {
-          this.tempState.update(s => ({ ...s, [config.id]: newValue as any }));
+          this.tempState.update(s => ({ 
+            ...s, 
+            [config.id]: newValue as string | Set<string> 
+          }));
         });
       }
     });

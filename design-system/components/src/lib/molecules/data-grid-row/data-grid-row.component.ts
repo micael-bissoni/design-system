@@ -51,6 +51,21 @@ import { TranslatePipe } from '@ngx-translate/core';
             }
           </div>
         }
+
+        <!-- ADD NESTED BUTTON (RIGHT SIDE) -->
+        @if (expandable()) {
+          <div class="pr-6 flex items-center justify-end h-full">
+            <button 
+              (click)="onAddRow()"
+              class="p-1.5 rounded-lg bg-primary-50 text-primary-600 hover:bg-primary-100 transition-all opacity-0 group-hover:opacity-100"
+              title="Add Nested Row"
+            >
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+            </button>
+          </div>
+        }
       </div>
 
       <!-- Mobile Card -->
@@ -74,6 +89,15 @@ import { TranslatePipe } from '@ngx-translate/core';
 
           <div class="flex items-center gap-2">
             @if (expandable()) {
+              <button 
+                (click)="onAddRow()"
+                class="p-2.5 rounded-xl bg-primary-50 text-primary-600 transition-all hover:bg-primary-100"
+                title="Add Nested Row"
+              >
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </button>
               <button 
                 (click)="onToggleExpand()"
                 class="p-2.5 rounded-xl bg-gray-light/20 text-gray-medium transition-all"
@@ -130,20 +154,24 @@ export class DataGridRowComponent {
   expanded = input<boolean>(false);
 
   toggleExpand = output<void>();
+  nestedAddRow = output<{ parentRow: DataGridRecord }>();
 
   onToggleExpand(): void {
     this.toggleExpand.emit();
   }
 
-  getValue(col: DataGridColumn): any {
+  onAddRow(): void {
+    this.nestedAddRow.emit({ parentRow: this.record() });
+  }
+
+  getValue(col: DataGridColumn): unknown {
     if (col.key) return this.record()[col.key];
     return '';
   }
 
-  getCellInputs(col: DataGridColumn): Record<string, any> {
+  getCellInputs(col: DataGridColumn): Record<string, unknown> {
     if (col.cellConfig) {
-      const config = col.cellConfig(this.record());
-      return { ...config };
+      return col.cellConfig(this.record());
     }
     return { record: this.record() };
   }

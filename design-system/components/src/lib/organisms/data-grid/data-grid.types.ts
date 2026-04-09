@@ -2,7 +2,7 @@ import { Type } from '@angular/core';
 
 export interface DataGridRecord {
   id: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface DataGridColumn {
@@ -13,7 +13,7 @@ export interface DataGridColumn {
   align?: 'left' | 'center' | 'right';
   headerComponent?: Type<unknown>;
   cellComponent?: Type<unknown>;
-  cellConfig?: (record: any) => Record<string, unknown>;
+  cellConfig?: (record: DataGridRecord) => Record<string, unknown>;
 }
 
 export interface DataGridNestedConfig {

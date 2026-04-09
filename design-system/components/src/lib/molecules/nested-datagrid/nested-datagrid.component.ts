@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { type DataGridColumn, type DataGridNestedConfig } from '../../organisms/data-grid/data-grid.types';
+import { type DataGridColumn, type DataGridNestedConfig, type DataGridRecord } from '../../organisms/data-grid/data-grid.types';
 import { ButtonComponent } from '../../atoms/button/button.component';
 
 @Component({
@@ -23,26 +23,14 @@ import { ButtonComponent } from '../../atoms/button/button.component';
               @for (col of columns(); track col.id) {
                 <th class="px-4 py-3">{{ col.label }}</th>
               }
-              <th class="px-4 py-3 text-right">
-                <ds-button 
-                  intent="ghost"
-                  size="icon"
-                  shape="circle"
-                  (click)="nestedAddRow.emit(null)"
-                  title="Add Row"
-                >
-                  <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </ds-button>
-              </th>
+              <th class="px-4 py-3 text-right"></th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-light/10">
             @for (row of data(); track $index) {
               <tr class="transition hover:bg-gray-light/5">
                 <td class="px-4 py-2 w-8">
-                  @if (nestedConfig() && row[nestedConfig()!.dataKey]?.length) {
+                  @if (nestedConfig()) {
                     <button 
                       (click)="toggleRow($index)"
                       class="p-1 rounded hover:bg-gray-light/50 transition-transform duration-200"
@@ -58,7 +46,21 @@ import { ButtonComponent } from '../../atoms/button/button.component';
                 @for (col of columns(); track col.id) {
                   <td class="whitespace-nowrap px-4 py-2 text-gray-dark font-medium underline decoration-primary-200/30 underline-offset-4 decoration-1 decoration-dashed">{{ row[col.key || ''] }}</td>
                 }
-                <td class="px-4 py-2 text-right">
+                <td class="px-4 py-2 text-right flex items-center justify-end gap-1">
+                  @if (nestedConfig()) {
+                    <ds-button 
+                      intent="ghost"
+                      size="icon"
+                      shape="circle"
+                      class="bg-transparent border-none shadow-none text-primary-500 hover:bg-primary-50"
+                      (click)="nestedAddRow.emit({ parentRow: row })"
+                      title="Add Nested Row"
+                    >
+                      <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                    </ds-button>
+                  }
                   <ds-button 
                     intent="danger"
                     size="icon"
@@ -78,7 +80,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
                   <td [attr.colspan]="columns().length + 3" class="p-3">
                     <ds-nested-datagrid 
                       [columns]="nestedConfig()!.columns"
-                      [data]="row[nestedConfig()!.dataKey] || []"
+                      [data]="getNestedData(row)"
                       [nestedConfig]="nestedConfig()!.nestedConfig"
                       [level]="level() + 1"
                       (nestedAddRow)="nestedAddRow.emit($event ? $event : { parentRow: row })"
@@ -110,7 +112,18 @@ import { ButtonComponent } from '../../atoms/button/button.component';
                 </span>
               </div>
               <div class="flex items-center gap-1">
-                @if (nestedConfig() && row[nestedConfig()!.dataKey]?.length) {
+                @if (nestedConfig()) {
+                  <button 
+                    (click)="nestedAddRow.emit({ parentRow: row })"
+                    class="p-2 rounded-lg bg-primary-50 text-primary-500 shadow-sm border border-primary-100"
+                    title="Add Nested Row"
+                  >
+                    <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                  </button>
+                }
+                @if (nestedConfig()) {
                   <button 
                     (click)="toggleRow($index)"
                     class="p-2 rounded-lg bg-white/60 text-gray-medium shadow-sm border border-gray-light/20"
@@ -147,7 +160,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
               <div class="mt-2 pl-2 border-l-2 py-1" [ngStyle]="getBorderStyle()">
                 <ds-nested-datagrid 
                   [columns]="nestedConfig()!.columns"
-                  [data]="row[nestedConfig()!.dataKey] || []"
+                  [data]="getNestedData(row)"
                   [nestedConfig]="nestedConfig()!.nestedConfig"
                   [level]="level() + 1"
                   (nestedAddRow)="nestedAddRow.emit($event ? $event : { parentRow: row })"
@@ -163,34 +176,27 @@ import { ButtonComponent } from '../../atoms/button/button.component';
         }
       </div>
 
-      <!-- MOBILE ADD ACTION (FOOTER) -->
-      <div class="lg:hidden p-2 border-t border-gray-light/30 bg-gray-light/5 flex justify-center">
-          <ds-button 
-            intent="tertiary"
-            size="small"
-            (click)="nestedAddRow.emit(null)"
-          >
-            <svg class="h-3 w-3 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            Adicionar Registo
-          </ds-button>
-      </div>
-
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NestedDatagridComponent {
   columns = input.required<DataGridColumn[]>();
-  data = input.required<any[]>();
+  data = input.required<DataGridRecord[]>();
   nestedConfig = input<DataGridNestedConfig | undefined>();
   level = input<number>(1);
 
-  nestedAddRow = output<any>();
-  nestedRemoveRow = output<any>();
+  nestedAddRow = output<{ parentRow: DataGridRecord } | null>();
+  nestedRemoveRow = output<DataGridRecord>();
 
   expandedRows = signal<Set<number>>(new Set());
+
+  getNestedData(row: DataGridRecord): DataGridRecord[] {
+    const config = this.nestedConfig();
+    if (!config) return [];
+    const val = row[config.dataKey];
+    return Array.isArray(val) ? (val as DataGridRecord[]) : [];
+  }
 
   // Calculates background style dynamically
   getBgStyle(): Record<string, string> {

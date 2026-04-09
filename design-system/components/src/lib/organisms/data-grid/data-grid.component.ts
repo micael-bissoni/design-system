@@ -86,18 +86,22 @@ import { NestedDatagridComponent } from '../../molecules/nested-datagrid/nested-
                 }
               </ds-data-grid-column>
             }
+            @if (nestedConfig()) {
+              <div class="w-full"></div>
+            }
           </header>
 
           <!-- SCROLLABLE AREA -->
           <div class="flex-1 custom-scrollbar w-full overflow-y-auto">
             @for (row of filteredData(); track trackById($index, row)) {
-              <ds-data-grid-row 
+            <ds-data-grid-row 
                 [record]="row"
                 [columns]="columns()"
                 [gridTemplateColumns]="gridTemplateColumns()"
                 [expandable]="!!nestedConfig()"
                 [expanded]="expandedRows().has(row.id)"
                 (toggleExpand)="onToggleExpand(row.id)"
+                (nestedAddRow)="nestedAddRow.emit($event)"
               >
                 <!-- NESTED CONTENT -->
                 @if (nestedConfig()) {
@@ -109,9 +113,9 @@ import { NestedDatagridComponent } from '../../molecules/nested-datagrid/nested-
                     </div>
                     <ds-nested-datagrid 
                       [columns]="nestedConfig()!.columns"
-                      [data]="row[nestedConfig()!.dataKey] || []"
+                      [data]="getNestedData(row)"
                       [nestedConfig]="nestedConfig()!.nestedConfig"
-                      (nestedAddRow)="nestedAddRow.emit({ parentRow: row })"
+                      (nestedAddRow)="nestedAddRow.emit($event ? $event : { parentRow: row })"
                       (nestedRemoveRow)="nestedRemoveRow.emit({ row: $event, parentRow: row })"
                     />
                   </div>
@@ -164,11 +168,18 @@ export class DataGridComponent {
   addRow = output<void>();
   removeRow = output<DataGridRecord>();
   nestedAddRow = output<{ parentRow: DataGridRecord }>();
-  nestedRemoveRow = output<{ row: any; parentRow: DataGridRecord }>();
+  nestedRemoveRow = output<{ row: Record<string, unknown>; parentRow: DataGridRecord }>();
 
   searchTerm = signal('');
   page = signal(0);
   expandedRows = signal<Set<string>>(new Set());
+
+  getNestedData(row: DataGridRecord): DataGridRecord[] {
+    const config = this.nestedConfig();
+    if (!config) return [];
+    const val = row[config.dataKey];
+    return Array.isArray(val) ? (val as DataGridRecord[]) : [];
+  }
 
   private fb = inject(FormBuilder);
 
@@ -178,7 +189,7 @@ export class DataGridComponent {
 
   gridTemplateColumns = computed(() => {
     const cols = this.columns().map(col => col.width || '1fr').join(' ');
-    return this.nestedConfig() ? `64px ${cols}` : cols;
+    return this.nestedConfig() ? `64px ${cols} 80px` : cols;
   });
 
   filteredData = computed(() => {
