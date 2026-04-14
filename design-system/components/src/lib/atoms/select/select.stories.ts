@@ -16,23 +16,23 @@ export default meta;
 type Story = StoryObj<SelectComponent>;
 
 const options = [
-  { label: 'English', value: 'en' },
-  { label: 'Portuguese', value: 'pt' },
-  { label: 'Spanish', value: 'es' },
-  { label: 'French', value: 'fr' },
+  { label: 'atoms.select.languages.en', value: 'en' },
+  { label: 'atoms.select.languages.pt', value: 'pt' },
+  { label: 'atoms.select.languages.es', value: 'es' },
+  { label: 'atoms.select.languages.fr', value: 'fr' },
 ];
 
 export const Default: Story = {
   args: {
     options,
-    placeholder: 'Select a language',
+    placeholder: 'atoms.select.placeholder',
   },
 };
 
 export const WithValue: Story = {
   args: {
     options,
-    placeholder: 'Select a language',
+    placeholder: 'atoms.select.placeholder',
   },
   render: (args) => ({
     props: args,
@@ -47,7 +47,7 @@ export const WithValue: Story = {
 export const Disabled: Story = {
   args: {
     options,
-    placeholder: 'Select a language',
+    placeholder: 'atoms.select.placeholder',
   },
   render: (args) => ({
     props: args,

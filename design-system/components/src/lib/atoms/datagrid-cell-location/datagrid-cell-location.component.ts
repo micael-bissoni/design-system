@@ -14,7 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
         <ds-input [formControl]="control()!" [placeholder]="'atoms.datagridCellLocation.placeholder' | translate" />
       } @else {
         <div class="text-xs font-black text-gray-medium uppercase truncate">
-          {{ control()?.value || pais() }}
+          {{ (control()?.value || pais()) | translate }}
         </div>
       }
     </div>

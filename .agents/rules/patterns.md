@@ -74,12 +74,21 @@ All data-driven or entity services across both frontend and backend layers MUST 
 Queries and retrieval of data via `find` MUST use the **POST** HTTP method (rather than GET) to accommodate complex payloads without URL limitations.
 All filtering, sorting, and pagination parameters MUST be passed explicitly via **the request body**.
 
+## 9. Internationalization (i18n)
+All UI code must support multiple languages.
+
+*   **Zero Hardcoding:** Never use literal strings for UI text.
+*   **Structured Keys:** Follow the defined JSON hierarchy in `design-system/i18n/`.
+*   **Tooling:** Use `TranslatePipe` in templates and pass translation keys to component inputs.
+*   **Specific Rules:** Refer to the [`i18n.md`](./i18n.md) rule for detailed standards.
+
 ## AI Agent Directives
 When prompted to build, create, alter, refactor, or analyze code:
 1.  **Strict TDD Enforcement:** Whenever asked to create or alter something, YOU MUST use TDD. You MUST update or create the tests FIRST before creating or modifying any component or logic.
 2.  **Storybook Enforcement:** If the component being created or altered belongs to the UI library (`/frontend/libs/ui`), YOU MUST also create or update its corresponding Storybook (`.stories.ts`) file.
-3.  **Analyze Context:** Determine which layer of DDD or which Atomic Design level the request targets.
-4.  **Verify Types:** Ensure 100% strict typing without `any`.
-5.  **Implement Cleanly:** Apply SOLID principles to the generated code.
-6.  **No Branches Without Task IDs:** Never create a git branch without a specific task ID provided in the prompt.
-7.  **Service Conventions:** When writing or modifying services, enforce the 4 base methods (`create`, `update`, `remove`, `find`) and use POST with body payload for the `find` method.
+3.  **Strict i18n Enforcement:** All UI components MUST BE internationalized. Ensure no hardcoded strings are introduced and all new keys are correctly added to all locale files.
+4.  **Analyze Context:** Determine which layer of DDD or which Atomic Design level the request targets.
+5.  **Verify Types:** Ensure 100% strict typing without `any`.
+6.  **Implement Cleanly:** Apply SOLID principles to the generated code.
+7.  **No Branches Without Task IDs:** Never create a git branch without a specific task ID provided in the prompt.
+8.  **Service Conventions:** When writing or modifying services, enforce the 4 base methods (`create`, `update`, `remove`, `find`) and use POST with body payload for the `find` method.

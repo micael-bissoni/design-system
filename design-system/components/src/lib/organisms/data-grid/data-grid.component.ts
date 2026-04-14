@@ -10,7 +10,7 @@ import { DataGridFilterComponent } from '../../molecules/data-grid-filter/data-g
 import { type DataGridRecord, type DataGridColumn, type DataGridNestedConfig } from './data-grid.types';
 import { type FilterState } from '../../molecules/data-grid-filter/data-grid-filter.types';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { NestedDatagridComponent } from '../../molecules/nested-datagrid/nested-datagrid.component';
 
 @Component({
@@ -18,7 +18,7 @@ import { NestedDatagridComponent } from '../../molecules/nested-datagrid/nested-
   standalone: true,
   imports: [
     CommonModule,
-    TranslatePipe,
+    TranslateModule,
     ScrollingModule,
     DataGridHeaderComponent,
     SearchBarComponent,
@@ -80,7 +80,7 @@ import { NestedDatagridComponent } from '../../molecules/nested-datagrid/nested-
             @for (col of columns(); track col.id) {
               <ds-data-grid-column [align]="col.align || 'left'">
                 @if (col.headerComponent) {
-                  <ng-container *ngComponentOutlet="col.headerComponent; inputs: { label: (col.label | translate) }" />
+                  <ng-container *ngComponentOutlet="col.headerComponent; inputs: { label: col.label }" />
                 } @else {
                   {{ col.label | translate }}
                 }
@@ -278,4 +278,3 @@ export class DataGridComponent {
     }
   }
 }
-

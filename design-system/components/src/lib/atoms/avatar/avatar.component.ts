@@ -3,16 +3,18 @@ import { CommonModule } from '@angular/common';
 import { avatarVariants, type AvatarVariants } from './avatar.variants';
 import { cn } from '../../utils/cn';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'ds-avatar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <div [class]="rootClasses()">
       @if (src()) {
         <img
           [src]="src()"
-          [alt]="alt()"
+          [alt]="alt() | translate"
           class="h-full w-full object-cover"
         />
       } @else {
@@ -28,7 +30,7 @@ export class AvatarComponent {
   src = input<string | null>(null);
   firstName = input<string | null>(null);
   lastName = input<string | null>(null);
-  alt = input<string>('Avatar');
+  alt = input<string>('atoms.avatar.alt');
   size = input<AvatarVariants['size']>('md');
   variant = input<AvatarVariants['variant']>('primary');
   customClass = input<string>('', { alias: 'class' });

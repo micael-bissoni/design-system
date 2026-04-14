@@ -7,6 +7,7 @@
     "add": "Adicionar",
     "empty": "Sem resultados",
     "cancel": "Cancelar",
+    "save": "Guardar",
     "edit": "Editar",
     "support": "Suporte",
     "export": "Exportar",
@@ -34,6 +35,7 @@
     "itemsSelected": "Itens Selecionados",
     "appName": "TREVVO",
     "guest": "Convidado",
+    "noData": "Nenhum dado encontrado.",
     "navigation": {
       "dashboard": "Dashboard",
       "hierarchy": "Hierarquia",
@@ -102,6 +104,9 @@
     }
   },
   "atoms": {
+    "avatar": {
+      "alt": "Avatar do utilizador"
+    },
     "signaturePad": {
       "placeholder": "Assine aqui",
       "authorization": "Autorização necessária"
@@ -126,6 +131,15 @@
       "rejected": "Rejeitado",
       "canceled": "Cancelado",
       "error": "Erro"
+    },
+    "select": {
+      "placeholder": "Selecione um idioma",
+      "languages": {
+        "en": "Inglês",
+        "pt": "Português",
+        "es": "Espanhol",
+        "fr": "Francês"
+      }
     }
   },
   "molecules": {
@@ -390,7 +404,7 @@
     },
     "createAccount": {
       "name": "Nome Completo",
-      "namePlaceholder": "João Silva",
+      "namePlaceholder": "John Doe",
       "email": "Email",
       "emailPlaceholder": "utilizador@pharma.com",
       "password": "Senha",
@@ -401,11 +415,112 @@
       "loadingBtn": "A criar...",
       "successMsg": "Conta criada com sucesso!",
       "errors": {
-        "nameRequired": "O nome é obrigatório",
-        "emailInvalid": "Email inválido",
+        "nameRequired": "Nome é obrigatório",
+        "emailInvalid": "É necessário um email válido",
         "passwordRequired": "A senha é obrigatória",
         "passwordsDontMatch": "As senhas não coincidem"
       }
+    },
+    "nestedForm": {
+      "editTitle": "Editar Registo"
+    },
+    "entityForm": {
+      "sections": {
+        "identification": "Identificação Base",
+        "contactAndLocation": "Contactos e Localização"
+      },
+      "fields": {
+        "eik": "EIK (Entity Identification Key)",
+        "type": "Tipo de Entidade",
+        "name": "Nome / Designação Social",
+        "nif": "NIF",
+        "isActive": "Ativo / Inativo",
+        "email": "E-mail Principal",
+        "phone": "Telefone",
+        "contactPerson": "Pessoa de Contacto",
+        "address": "Morada",
+        "postalCode": "Código Postal",
+        "district": "Distrito",
+        "county": "Concelho"
+      },
+      "placeholders": {
+        "eik": "Ex: ENT-001",
+        "type": "Selecione o tipo",
+        "name": "Nome social completo",
+        "nif": "9 dígitos",
+        "email": "email@exemplo.com",
+        "phone": "+351 ...",
+        "contactPerson": "Nome do responsável",
+        "address": "Rua, número, andar...",
+        "postalCode": "0000-000",
+        "district": "Selecione o distrito",
+        "county": "Selecione o concelho"
+      },
+      "types": {
+        "lab": "Laboratório",
+        "ware": "Armazenista",
+        "pharm": "Farmácia"
+      },
+      "errors": {
+        "required": "Campo obrigatório",
+        "pattern": "Formato inválido",
+        "email": "E-mail inválido",
+        "nifInvalid": "NIF inválido (algoritmo)",
+        "invalid": "Valor inválido"
+      }
+    },
+    "geographyForm": {
+      "fields": {
+        "name": "Nome da Regionalização",
+        "type": "Tipo / Nível",
+        "parentRegion": "Região Pai",
+        "externalCode": "Código Externo",
+        "description": "Descrição",
+        "isActive": "Ativo / Inativo"
+      },
+      "placeholders": {
+        "name": "Ex: ARS Norte",
+        "type": "Selecione o nível",
+        "parentRegion": "Pesquisar região superior",
+        "externalCode": "Código oficial",
+        "description": "Notas sobre a abrangência geográfica"
+      },
+      "types": {
+        "ars": "ARS",
+        "aces": "ACES",
+        "district": "Distrito",
+        "county": "Concelho"
+      },
+      "errors": {
+        "required": "Campo obrigatório",
+        "invalid": "Valor inválido"
+      }
+    },
+    "clusterForm": {
+      "fields": {
+        "name": "Nome do Cluster",
+        "type": "Tipo de Cluster",
+        "segmentationCriteria": "Critério de Segmentação",
+        "associatedEntities": "Entidades Associadas",
+        "isActive": "Ativo / Inativo"
+      },
+      "placeholders": {
+        "name": "Ex: Farmácias Top Vendas",
+        "type": "Selecione o tipo",
+        "criteria": "Descreva o porquê deste cluster"
+      },
+      "types": {
+        "commercial": "Comercial",
+        "financial": "Financeiro",
+        "logistic": "Logístico"
+      },
+      "errors": {
+        "required": "Campo obrigatório",
+        "invalid": "Valor inválido"
+      },
+      "saveBtn": "Guardar Cluster",
+      "loadingBtn": "A guardar...",
+      "cancelBtn": "Cancelar"
     }
   },
   "templates": {
@@ -504,6 +619,12 @@
       "objective1": "Apresentar Nova Linha de Antibióticos",
       "objective2": "Rever Acordo de Nível 2",
       "objective3": "Recolher Feedback do Último Pedido"
+    },
+    "masterData": {
+      "footer": "Sistema de Gestão de Dados Mestre Trevvo",
+      "entitySubtitle": "Gerencie as informações base e de contacto das suas entidades parceiras.",
+      "geographySubtitle": "Gerencie regiões geográficas e hierarquias administrativas.",
+      "clusterSubtitle": "Gerencie clusters e grupos para operações direcionadas."
     }
   },
   "dashboard": {

@@ -7,7 +7,7 @@ import { InputComponent } from '../../atoms/input/input.component';
 import { ButtonComponent } from '../../atoms/button/button.component';
 import { InputPasswordComponent } from '../../molecules/input-password/input-password.component';
 import { FormFieldComponent } from '../../molecules/form-field/form-field.component';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-login-form',
@@ -20,7 +20,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ButtonComponent,
     InputPasswordComponent,
     FormFieldComponent,
-    TranslatePipe
+    TranslateModule
   ],
   providers: [
     {
@@ -40,7 +40,7 @@ import { TranslatePipe } from '@ngx-translate/core';
         <ds-input 
           type="email" 
           formControlName="email"
-          placeholder="user@pharma.com"
+          placeholder="organisms.login.emailPlaceholder"
           [hasIcon]="true"
           (onEnterPressed)="onSignIn.emit()"
         ></ds-input>
@@ -60,7 +60,7 @@ import { TranslatePipe } from '@ngx-translate/core';
         
         <ds-input-password
           formControlName="password"
-          placeholder="••••"
+          placeholder="organisms.login.passwordPlaceholder"
           (onEnterPressed)="onSignIn.emit()"
         ></ds-input-password>
       </ds-form-field>

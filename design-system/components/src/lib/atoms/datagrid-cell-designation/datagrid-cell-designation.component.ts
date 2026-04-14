@@ -14,7 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       @if (editMode() && control()) {
         <ds-input [formControl]="control()!" [placeholder]="'atoms.datagridCellDesignation.placeholder' | translate" />
       } @else {
-        <span class="font-bold text-gray-dark truncate max-w-[300px]">{{ control()?.value || name() }}</span>
+        <span class="font-bold text-gray-dark truncate max-w-[300px]">{{ (control()?.value || name()) | translate }}</span>
       }
     </div>
   `,

@@ -1,3 +1,6 @@
+import { applicationConfig } from "@storybook/angular";
+import { importProvidersFrom } from "@angular/core";
+
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -6,6 +9,9 @@ import { type DataGridRecord, type DataGridColumn } from './data-grid.types';
 import { DatagridCellDesignationComponent, DatagridCellStatusComponent } from '../../atoms';
 import { DatagridCellLocationComponent } from '../../atoms/datagrid-cell-location/datagrid-cell-location.component';
 import { DatagridCellValidateComponent } from '../../atoms/datagrid-cell-validate/datagrid-cell-validate.component';
+import { NestedDatagridFormComponent } from '../nested-datagrid-form/nested-datagrid-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 const mockData: DataGridRecord[] = [
   { id: 'REG-001', nome: 'Distribuição Lisboa Norte', pais: 'Portugal', dataInicio: '01 Jan 2024', dataFim: '31 Dez 2024', estado: 'Ativo' },
@@ -61,6 +67,14 @@ const meta: Meta<DataGridComponent> = {
   title: 'Organisms/DataGrid',
   component: DataGridComponent,
   tags: ['autodocs'],
+  decorators: [
+    applicationConfig({
+      providers: [importProvidersFrom(TranslateModule.forRoot())],
+    }),
+    moduleMetadata({
+      imports: [OverlayModule, A11yModule, NestedDatagridFormComponent, ReactiveFormsModule],
+    }),
+  ],
   argTypes: {
     title: { control: 'text' },
     subtitle: { control: 'text' },
@@ -238,6 +252,43 @@ export const MultiLevel: Story = {
           (nestedAddRow)="nestedAddRow($event)"
           (nestedRemoveRow)="nestedRemoveRow($event)"
         ></ds-data-grid>
+      </div>
+    `,
+  }),
+};
+
+export const WithForm: Story = {
+  args: {
+    ...Expandable.args,
+    title: 'DataGrid com Formulário Hierárquico',
+    subtitle: 'Clique no ícone de adicionar na linha para abrir o editor do formulário.'
+  },
+  render: (args) => ({
+    props: {
+      ...args,
+      onNestedAdd: (event: { parentRow: DataGridRecord }) => {
+        console.log('Parent Row selected:', event.parentRow);
+        alert(`Abrindo formulário para adicionar item em: ${event.parentRow['client'] || event.parentRow['desc'] || event.parentRow['id']}`);
+      }
+    },
+    template: `
+      <div class="h-[90vh] w-full bg-slate-50 p-4 lg:p-10 space-y-8">
+        <ds-data-grid 
+          [title]="title" 
+          [subtitle]="subtitle" 
+          [data]="data" 
+          [columns]="columns"
+          [nestedConfig]="nestedConfig"
+          (nestedAddRow)="onNestedAdd($event)"
+        ></ds-data-grid>
+
+        <div class="p-8 bg-white rounded-[32px] border border-gray-light shadow-sm">
+          <h4 class="text-xs font-black uppercase tracking-widest text-gray-medium mb-6">Preview do Form Component Isolado</h4>
+          <ds-nested-datagrid-form 
+            [columns]="nestedConfig.columns"
+            [nestedConfig]="nestedConfig.nestedConfig"
+          ></ds-nested-datagrid-form>
+        </div>
       </div>
     `,
   }),

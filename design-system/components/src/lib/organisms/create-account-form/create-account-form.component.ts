@@ -40,7 +40,7 @@ import { TranslateModule } from '@ngx-translate/core';
         <ds-input 
           type="text" 
           formControlName="name"
-          [placeholder]="'organisms.createAccount.namePlaceholder' | translate"
+          placeholder="organisms.createAccount.namePlaceholder"
           [hasIcon]="true"
         ></ds-input>
       </ds-form-field>
@@ -54,7 +54,7 @@ import { TranslateModule } from '@ngx-translate/core';
         <ds-input 
           type="email" 
           formControlName="email"
-          [placeholder]="'organisms.createAccount.emailPlaceholder' | translate"
+          placeholder="organisms.createAccount.emailPlaceholder"
           [hasIcon]="true"
         ></ds-input>
       </ds-form-field>
@@ -67,7 +67,7 @@ import { TranslateModule } from '@ngx-translate/core';
       >
         <ds-input-password
           formControlName="password"
-          [placeholder]="'organisms.createAccount.passwordPlaceholder' | translate"
+          placeholder="organisms.createAccount.passwordPlaceholder"
         ></ds-input-password>
       </ds-form-field>
 
@@ -79,7 +79,7 @@ import { TranslateModule } from '@ngx-translate/core';
       >
         <ds-input-password
           formControlName="confirmPassword"
-          [placeholder]="'organisms.createAccount.confirmPasswordPlaceholder' | translate"
+          placeholder="organisms.createAccount.confirmPasswordPlaceholder"
           (onEnterPressed)="onSubmit()"
         ></ds-input-password>
       </ds-form-field>

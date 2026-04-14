@@ -67,7 +67,7 @@ interface EditingRow {
             @for (col of currentEditingColumns(); track col.id) {
               <ds-form-field [label]="col.label">
                 <ds-input 
-                  [placeholder]="col.label | translate"
+                  [placeholder]="col.label"
                   [(ngModel)]="tempRowData[col.key || '']"
                   [ngModelOptions]="{standalone: true}"
                 />

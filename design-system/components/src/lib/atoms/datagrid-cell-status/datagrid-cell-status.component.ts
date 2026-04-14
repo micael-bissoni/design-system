@@ -20,7 +20,7 @@ import { TranslatePipe } from '@ngx-translate/core';
           <option value="Erro">{{ 'atoms.datagridCellStatus.error' | translate }}</option>
         </select>
       } @else {
-        <ds-badge [intent]="intent()">{{ control()?.value || status() }}</ds-badge>
+        <ds-badge [intent]="intent()">{{ (control()?.value || status()) | translate }}</ds-badge>
       }
     </div>
   `,

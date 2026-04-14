@@ -6,6 +6,7 @@
     "pdf": "PDF",
     "add": "Añadir",
     "cancel": "Cancelar",
+    "save": "Guardar",
     "edit": "Editar",
     "support": "Soporte",
     "export": "Exportar",
@@ -34,6 +35,7 @@
     "itemsSelected": "Elementos Seleccionados",
     "appName": "TREVVO",
     "guest": "Invitado",
+    "noData": "Ningún dato encontrado.",
     "navigation": {
       "dashboard": "Panel",
       "hierarchy": "Jerarquía",
@@ -104,6 +106,9 @@
     }
   },
   "atoms": {
+    "avatar": {
+      "alt": "Avatar del usuario"
+    },
     "signaturePad": {
       "placeholder": "Firme aquí",
       "authorization": "Autorización requerida"
@@ -128,6 +133,15 @@
       "rejected": "Rechazado",
       "canceled": "Cancelado",
       "error": "Error"
+    },
+    "select": {
+      "placeholder": "Seleccione un idioma",
+      "languages": {
+        "en": "Inglés",
+        "pt": "Portugués",
+        "es": "Español",
+        "fr": "Francés"
+      }
     }
   },
   "molecules": {
@@ -404,6 +418,107 @@
         "passwordRequired": "La contraseña es obligatoria",
         "passwordsDontMatch": "Las contraseñas no coinciden"
       }
+    },
+    "nestedForm": {
+      "editTitle": "Editar Registro"
+    },
+    "entityForm": {
+      "sections": {
+        "identification": "Identificación Base",
+        "contactAndLocation": "Contactos y Ubicación"
+      },
+      "fields": {
+        "eik": "EIK (Entity Identification Key)",
+        "type": "Tipo de Entidad",
+        "name": "Nombre / Razón Social",
+        "nif": "NIF",
+        "isActive": "Activo / Inactivo",
+        "email": "Correo Electrónico Principal",
+        "phone": "Teléfono",
+        "contactPerson": "Persona de Contacto",
+        "address": "Dirección",
+        "postalCode": "Código Postal",
+        "district": "Distrito",
+        "county": "Municipio"
+      },
+      "placeholders": {
+        "eik": "Ej: ENT-001",
+        "type": "Seleccione el tipo",
+        "name": "Nombre social completo",
+        "nif": "9 dígitos",
+        "email": "correo@ejemplo.com",
+        "phone": "+34 ...",
+        "contactPerson": "Nombre del responsable",
+        "address": "Calle, número, piso...",
+        "postalCode": "0000-000",
+        "district": "Seleccione el distrito",
+        "county": "Seleccione el municipio"
+      },
+      "types": {
+        "lab": "Laboratorio",
+        "ware": "Almacenista",
+        "pharm": "Farmacia"
+      },
+      "errors": {
+        "required": "Campo obligatorio",
+        "pattern": "Formato inválido",
+        "email": "Correo inválido",
+        "nifInvalid": "NIF inválido (algoritmo)",
+        "invalid": "Valor inválido"
+      }
+    },
+    "geographyForm": {
+      "fields": {
+        "name": "Nombre de Regionalización",
+        "type": "Tipo / Nivel",
+        "parentRegion": "Región Padre",
+        "externalCode": "Código Externo",
+        "description": "Descripción",
+        "isActive": "Activo / Inactivo"
+      },
+      "placeholders": {
+        "name": "Ej: Región Norte",
+        "type": "Seleccione el nivel",
+        "parentRegion": "Buscar región superior",
+        "externalCode": "Código oficial",
+        "description": "Notas sobre el alcance geográfico"
+      },
+      "types": {
+        "ars": "ARS",
+        "aces": "ACES",
+        "district": "Distrito",
+        "county": "Municipio"
+      },
+      "errors": {
+        "required": "Campo obligatorio",
+        "invalid": "Valor inválido"
+      }
+    },
+    "clusterForm": {
+      "fields": {
+        "name": "Nombre del Cluster",
+        "type": "Tipo de Cluster",
+        "segmentationCriteria": "Criterio de Segmentación",
+        "associatedEntities": "Entidades Asociadas",
+        "isActive": "Activo / Inactivo"
+      },
+      "placeholders": {
+        "name": "Ej: Farmacias Top Ventas",
+        "type": "Seleccione el tipo",
+        "criteria": "Describa por qué existe este cluster"
+      },
+      "types": {
+        "commercial": "Comercial",
+        "financial": "Financiero",
+        "logistic": "Logístico"
+      },
+      "errors": {
+        "required": "Campo obligatorio",
+        "invalid": "Valor inválido"
+      },
+      "saveBtn": "Guardar Cluster",
+      "loadingBtn": "Guardando...",
+      "cancelBtn": "Cancelar"
     }
   },
   "templates": {
@@ -502,6 +617,12 @@
       "objective1": "Presentar Nueva Línea de Antibióticos",
       "objective2": "Revisar Acuerdo de Nivel 2",
       "objective3": "Recopilar Comentarios sobre el Último Pedido"
+    },
+    "masterData": {
+      "footer": "Sistema de Gestión de Datos Maestros Trevvo",
+      "entitySubtitle": "Gestione la información base y los detalles de contacto de sus entidades asociadas.",
+      "geographySubtitle": "Gestione regiones geográficas y jerarquías administrativas.",
+      "clusterSubtitle": "Gestione clusters y grupos para operaciones dirigidas."
     }
   },
   "dashboard": {

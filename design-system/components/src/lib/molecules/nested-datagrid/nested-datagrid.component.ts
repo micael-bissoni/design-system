@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, input, output, signal } from '@angu
 import { CommonModule } from '@angular/common';
 import { type DataGridColumn, type DataGridNestedConfig, type DataGridRecord } from '../../organisms/data-grid/data-grid.types';
 import { ButtonComponent } from '../../atoms/button/button.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'ds-nested-datagrid',
   standalone: true,
-  imports: [CommonModule, NestedDatagridComponent, ButtonComponent],
+  imports: [CommonModule, NestedDatagridComponent, ButtonComponent, TranslateModule],
   template: `
     <div 
       class="w-full overflow-hidden rounded-xl border border-gray-light shadow-sm transition-colors"
@@ -21,7 +22,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
               <th class="px-4 py-3 w-8"></th>
               <th class="px-4 py-3 w-8">#</th>
               @for (col of columns(); track col.id) {
-                <th class="px-4 py-3">{{ col.label }}</th>
+                <th class="px-4 py-3">{{ col.label | translate }}</th>
               }
               <th class="px-4 py-3 text-right"></th>
             </tr>
@@ -54,7 +55,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
                       shape="circle"
                       class="bg-transparent border-none shadow-none text-primary-500 hover:bg-primary-50"
                       (click)="nestedAddRow.emit({ parentRow: row })"
-                      title="Add Nested Row"
+                      [title]="'common.add' | translate"
                     >
                       <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -67,7 +68,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
                     shape="circle"
                     class="bg-transparent border-none shadow-none text-red-500 hover:bg-red-50"
                     (click)="nestedRemoveRow.emit(row)"
-                    title="Remove Row"
+                    [title]="'common.remove' | translate"
                   >
                     <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -92,7 +93,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
             } @empty {
               <tr>
                 <td [attr.colspan]="columns().length + 3" class="px-4 py-8 text-center text-gray-medium italic">
-                  Nenhum dado encontrado.
+                  {{ 'common.noData' | translate }}
                 </td>
               </tr>
             }
@@ -116,7 +117,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
                   <button 
                     (click)="nestedAddRow.emit({ parentRow: row })"
                     class="p-2 rounded-lg bg-primary-50 text-primary-500 shadow-sm border border-primary-100"
-                    title="Add Nested Row"
+                    [title]="'common.add' | translate"
                   >
                     <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -137,6 +138,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
                 <button 
                   (click)="nestedRemoveRow.emit(row)"
                   class="p-2 rounded-lg bg-red-50 text-red-500 shadow-sm border border-red-100"
+                  [title]="'common.remove' | translate"
                 >
                   <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -149,7 +151,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
             <div class="grid grid-cols-2 gap-x-4 gap-y-1">
               @for (col of columns().slice(1); track col.id) {
                 <div class="flex flex-col gap-0.5">
-                  <span class="text-[8px] font-black uppercase text-gray-lightest tracking-wider">{{ col.label }}</span>
+                  <span class="text-[8px] font-black uppercase text-gray-lightest tracking-wider">{{ col.label | translate }}</span>
                   <span class="text-[10px] text-gray-medium truncate">{{ row[col.key || ''] }}</span>
                 </div>
               }
@@ -171,7 +173,7 @@ import { ButtonComponent } from '../../atoms/button/button.component';
           </div>
         } @empty {
           <div class="px-4 py-6 text-center text-gray-medium text-xs italic">
-            Nenhum dado encontrado.
+            {{ 'common.noData' | translate }}
           </div>
         }
       </div>
