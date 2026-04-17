@@ -14,3 +14,5 @@ export * from './stat-card/stat-card.component';
 export * from './form-field/form-field.component';
 export * from './nested-datagrid/nested-datagrid.component';
 export * from './input-password/input-password.component';
+export * from './modal/modal.component';
+export * from './toast/toast.component';

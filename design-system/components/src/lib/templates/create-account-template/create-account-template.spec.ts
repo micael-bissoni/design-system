@@ -11,8 +11,8 @@ describe('CreateAccountTemplateComponent', () => {
       imports: [ReactiveFormsModule, TranslateModule.forRoot(), CreateAccountFormComponent],
     });
 
-    expect(screen.getByText(/templates.createAccount.welcome/i)).toBeInTheDocument();
-    expect(screen.getByRole('form')).toBeInTheDocument();
+    expect(screen.getByText(/templates.createAccount.welcome/i)).toBeDefined();
+    expect(screen.getByRole('form')).toBeDefined();
   });
 
   it('should render brand content on desktop', async () => {
@@ -20,6 +20,6 @@ describe('CreateAccountTemplateComponent', () => {
       imports: [ReactiveFormsModule, TranslateModule.forRoot(), CreateAccountFormComponent],
     });
     
-    expect(screen.getByText(/templates.createAccount.brandTitle/i)).toBeInTheDocument();
+    expect(screen.getByText(/templates.createAccount.brandTitle/i)).toBeDefined();
   });
 });
