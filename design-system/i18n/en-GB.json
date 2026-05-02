@@ -255,6 +255,12 @@
     "inputPassword": {
       "showPassword": "Show password",
       "hidePassword": "Hide password"
+    },
+    "fileUpload": {
+      "label": "Upload file",
+      "drop": "Drop to upload",
+      "change": "Change file",
+      "remove": "Remove file"
     }
   },
   "organisms": {
@@ -423,34 +429,26 @@
     "entityForm": {
       "sections": {
         "identification": "Base Identification",
-        "contactAndLocation": "Contacts and Location"
+        "identificationSubtitle": "Main entity information"
       },
       "fields": {
         "eik": "EIK (Entity Identification Key)",
         "type": "Entity Type",
         "name": "Name / Social Designation",
-        "nif": "Tax ID (NIF)",
+        "abbreviation": "Abbreviation",
+        "vat": "VAT Number",
         "isActive": "Active / Inactive",
-        "email": "Primary E-mail",
-        "phone": "Phone",
-        "contactPerson": "Contact Person",
-        "address": "Address",
-        "postalCode": "Postal Code",
-        "district": "District",
-        "county": "County"
+        "logo": "Logo"
       },
       "placeholders": {
         "eik": "Ex: ENT-001",
         "type": "Select type",
         "name": "Full social name",
-        "nif": "9 digits",
-        "email": "email@example.com",
-        "phone": "+351 ...",
-        "contactPerson": "Responsible name",
-        "address": "Street, number, floor...",
-        "postalCode": "0000-000",
-        "district": "Select district",
-        "county": "Select county"
+        "abbreviation": "Ex: TREV",
+        "vat": "Enter VAT"
+      },
+      "hints": {
+        "logoFormat": "Accepted formats: PNG, JPG or SVG (Max. 2MB)"
       },
       "types": {
         "lab": "Laboratory",
@@ -460,63 +458,11 @@
       "errors": {
         "required": "Required field",
         "pattern": "Invalid format",
-        "email": "Invalid e-mail",
-        "nifInvalid": "Invalid NIF (algorithm)",
+        "vatInvalid": "Invalid VAT number",
+        "minLength": "Minimum length not met",
+        "maxLength": "Maximum length exceeded",
         "invalid": "Invalid value"
       }
-    },
-    "geographyForm": {
-      "fields": {
-        "name": "Regionalisation Name",
-        "type": "Type / Level",
-        "parentRegion": "Parent Region",
-        "externalCode": "External Code",
-        "description": "Description",
-        "isActive": "Active / Inactive"
-      },
-      "placeholders": {
-        "name": "Ex: North Region",
-        "type": "Select level",
-        "parentRegion": "Search parent region",
-        "externalCode": "Official code",
-        "description": "Notes on geographical scope"
-      },
-      "types": {
-        "ars": "ARS",
-        "aces": "ACES",
-        "district": "District",
-        "county": "County"
-      },
-      "errors": {
-        "required": "Required field",
-        "invalid": "Invalid value"
-      }
-    },
-    "clusterForm": {
-      "fields": {
-        "name": "Cluster Name",
-        "type": "Cluster Type",
-        "segmentationCriteria": "Segmentation Criteria",
-        "associatedEntities": "Associated Entities",
-        "isActive": "Active / Inactive"
-      },
-      "placeholders": {
-        "name": "Ex: Top Sales Pharmacies",
-        "type": "Select type",
-        "criteria": "Describe why this cluster exists"
-      },
-      "types": {
-        "commercial": "Commercial",
-        "financial": "Financial",
-        "logistic": "Logistics"
-      },
-      "errors": {
-        "required": "Required field",
-        "invalid": "Invalid value"
-      },
-      "saveBtn": "Save Cluster",
-      "loadingBtn": "Saving...",
-      "cancelBtn": "Cancel"
     }
   },
   "templates": {

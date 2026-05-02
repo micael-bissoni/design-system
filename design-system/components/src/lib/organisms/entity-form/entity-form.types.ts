@@ -1,10 +1,9 @@
-export type EntityType = 'Laboratório' | 'Armazenista' | 'Farmácia';
-
 export interface EntityData {
   eik: string;
-  type: EntityType | string;
+  type: string;
   name: string;
-  nif: string;
+  abbreviation: string;
+  vat: string;
   isActive: boolean;
   logo?: string;
 }

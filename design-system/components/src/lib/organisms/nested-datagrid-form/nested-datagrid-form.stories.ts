@@ -10,7 +10,7 @@ const meta: Meta<NestedDatagridFormComponent> = {
   component: NestedDatagridFormComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, ReactiveFormsModule, FormsModule, TranslateModule.forRoot()],
+      imports: [CommonModule, ReactiveFormsModule, FormsModule, TranslateModule],
     }),
   ],
   argTypes: {

@@ -257,6 +257,12 @@
     "inputPassword": {
       "showPassword": "Mostrar contraseña",
       "hidePassword": "Ocultar contraseña"
+    },
+    "fileUpload": {
+      "label": "Cargar archivo",
+      "drop": "Suelta para cargar",
+      "change": "Cambiar archivo",
+      "remove": "Eliminar archivo"
     }
   },
   "organisms": {
@@ -425,34 +431,26 @@
     "entityForm": {
       "sections": {
         "identification": "Identificación Base",
-        "contactAndLocation": "Contactos y Ubicación"
+        "identificationSubtitle": "Información principal de la entidad"
       },
       "fields": {
         "eik": "EIK (Entity Identification Key)",
         "type": "Tipo de Entidad",
         "name": "Nombre / Razón Social",
-        "nif": "NIF",
+        "abbreviation": "Abreviatura",
+        "vat": "VAT / NIF",
         "isActive": "Activo / Inactivo",
-        "email": "Correo Electrónico Principal",
-        "phone": "Teléfono",
-        "contactPerson": "Persona de Contacto",
-        "address": "Dirección",
-        "postalCode": "Código Postal",
-        "district": "Distrito",
-        "county": "Municipio"
+        "logo": "Logotipo"
       },
       "placeholders": {
         "eik": "Ej: ENT-001",
         "type": "Seleccione el tipo",
         "name": "Nombre social completo",
-        "nif": "9 dígitos",
-        "email": "correo@ejemplo.com",
-        "phone": "+34 ...",
-        "contactPerson": "Nombre del responsable",
-        "address": "Calle, número, piso...",
-        "postalCode": "0000-000",
-        "district": "Seleccione el distrito",
-        "county": "Seleccione el municipio"
+        "abbreviation": "Ej: TREV",
+        "vat": "9 dígitos"
+      },
+      "hints": {
+        "logoFormat": "Formatos aceptados: PNG, JPG o SVG (Máx. 2MB)"
       },
       "types": {
         "lab": "Laboratorio",
@@ -462,63 +460,11 @@
       "errors": {
         "required": "Campo obligatorio",
         "pattern": "Formato inválido",
-        "email": "Correo inválido",
-        "nifInvalid": "NIF inválido (algoritmo)",
+        "vatInvalid": "VAT inválido (algoritmo)",
+        "minLength": "Longitud mínima no alcanzada",
+        "maxLength": "Longitud máxima excedida",
         "invalid": "Valor inválido"
       }
-    },
-    "geographyForm": {
-      "fields": {
-        "name": "Nombre de Regionalización",
-        "type": "Tipo / Nivel",
-        "parentRegion": "Región Padre",
-        "externalCode": "Código Externo",
-        "description": "Descripción",
-        "isActive": "Activo / Inactivo"
-      },
-      "placeholders": {
-        "name": "Ej: Región Norte",
-        "type": "Seleccione el nivel",
-        "parentRegion": "Buscar región superior",
-        "externalCode": "Código oficial",
-        "description": "Notas sobre el alcance geográfico"
-      },
-      "types": {
-        "ars": "ARS",
-        "aces": "ACES",
-        "district": "Distrito",
-        "county": "Municipio"
-      },
-      "errors": {
-        "required": "Campo obligatorio",
-        "invalid": "Valor inválido"
-      }
-    },
-    "clusterForm": {
-      "fields": {
-        "name": "Nombre del Cluster",
-        "type": "Tipo de Cluster",
-        "segmentationCriteria": "Criterio de Segmentación",
-        "associatedEntities": "Entidades Asociadas",
-        "isActive": "Activo / Inactivo"
-      },
-      "placeholders": {
-        "name": "Ej: Farmacias Top Ventas",
-        "type": "Seleccione el tipo",
-        "criteria": "Describa por qué existe este cluster"
-      },
-      "types": {
-        "commercial": "Comercial",
-        "financial": "Financiero",
-        "logistic": "Logístico"
-      },
-      "errors": {
-        "required": "Campo obligatorio",
-        "invalid": "Valor inválido"
-      },
-      "saveBtn": "Guardar Cluster",
-      "loadingBtn": "Guardando...",
-      "cancelBtn": "Cancelar"
     }
   },
   "templates": {

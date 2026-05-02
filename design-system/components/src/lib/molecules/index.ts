@@ -16,3 +16,4 @@ export * from './nested-datagrid/nested-datagrid.component';
 export * from './input-password/input-password.component';
 export * from './modal/modal.component';
 export * from './toast/toast.component';
+export * from './file-upload/file-upload.component';

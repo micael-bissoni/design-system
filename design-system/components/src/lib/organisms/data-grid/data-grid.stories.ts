@@ -1,5 +1,4 @@
-import { applicationConfig } from "@storybook/angular";
-import { importProvidersFrom } from "@angular/core";
+
 
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -34,7 +33,7 @@ const mockColumns: DataGridColumn[] = [
     key: 'id',
     width: '1fr',
     cellComponent: DatagridCellDesignationComponent,
-    cellConfig: (record) => ({ id: record.id, name: record.nome })
+    cellConfig: (record) => ({ id: record["id"], name: record["nome"] })
   },
   {
     id: 'location',
@@ -42,7 +41,7 @@ const mockColumns: DataGridColumn[] = [
     key: 'pais',
     width: '150px',
     cellComponent: DatagridCellLocationComponent,
-    cellConfig: (record) => ({ pais: record.pais })
+    cellConfig: (record) => ({ pais: record["pais"] })
   },
   {
     id: 'validate',
@@ -50,7 +49,7 @@ const mockColumns: DataGridColumn[] = [
     width: '180px',
     align: 'center',
     cellComponent: DatagridCellValidateComponent,
-    cellConfig: (record) => ({ dataInicio: record.dataInicio, dataFim: record.dataFim })
+    cellConfig: (record) => ({ dataInicio: record["dataInicio"], dataFim: record["dataFim"] })
   },
   {
     id: 'estado',
@@ -59,7 +58,7 @@ const mockColumns: DataGridColumn[] = [
     width: '120px',
     align: 'center',
     cellComponent: DatagridCellStatusComponent,
-    cellConfig: (record) => ({ status: record.estado })
+    cellConfig: (record) => ({ status: record["estado"] })
   }
 ];
 
@@ -68,11 +67,8 @@ const meta: Meta<DataGridComponent> = {
   component: DataGridComponent,
   tags: ['autodocs'],
   decorators: [
-    applicationConfig({
-      providers: [importProvidersFrom(TranslateModule.forRoot())],
-    }),
     moduleMetadata({
-      imports: [OverlayModule, A11yModule, NestedDatagridFormComponent, ReactiveFormsModule],
+      imports: [OverlayModule, A11yModule, NestedDatagridFormComponent, ReactiveFormsModule, TranslateModule],
     }),
   ],
   argTypes: {
@@ -142,13 +138,13 @@ export const Expandable: Story = {
     title: 'Projetos Detalhados',
     subtitle: 'Exemplo de expansão com tabelas aninhadas',
     data: [
-      { 
+      {
         id: 'PRJ-1', client: 'Alpha Corp', status: 'Ativo',
-        tasks: [ { desc: 'UI Design', hours: '40h' }, { desc: 'Frontend Dev', hours: '120h' } ]
+        tasks: [{ desc: 'UI Design', hours: '40h' }, { desc: 'Frontend Dev', hours: '120h' }]
       },
-      { 
+      {
         id: 'PRJ-2', client: 'Beta Systems', status: 'Pendente',
-        tasks: [ { desc: 'Backend Dev', hours: '60h' } ]
+        tasks: [{ desc: 'Backend Dev', hours: '60h' }]
       }
     ],
     columns: [

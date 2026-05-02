@@ -3,10 +3,15 @@ import { moduleMetadata, applicationConfig } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { HttpClientModule } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { importProvidersFrom } from '@angular/core';
 import { EntityFormComponent } from './entity-form.component';
+import { type SelectOption } from '../../atoms/select/select.component';
+
+const entityTypeOptions: SelectOption[] = [
+  { label: 'organisms.entityForm.types.lab', value: 'Laboratório' },
+  { label: 'organisms.entityForm.types.ware', value: 'Armazenista' },
+  { label: 'organisms.entityForm.types.pharm', value: 'Farmácia' }
+];
 
 const meta: Meta<EntityFormComponent> = {
   title: 'Organisms/EntityForm',
@@ -15,7 +20,6 @@ const meta: Meta<EntityFormComponent> = {
     applicationConfig({
       providers: [
         provideAnimations(),
-        importProvidersFrom(TranslateModule.forRoot(), HttpClientModule),
       ],
     }),
     moduleMetadata({
@@ -29,6 +33,9 @@ const meta: Meta<EntityFormComponent> = {
     onSave: { action: 'onSave' },
     onCancel: { action: 'onCancel' },
   },
+  args: {
+    entityTypeOptions
+  }
 };
 
 export default meta;
@@ -40,7 +47,11 @@ export const Default: Story = {
     template: `
       <div class="p-8 bg-gray-50 min-h-screen flex items-center justify-center">
         <div class="w-full max-w-4xl">
-          <ds-entity-form (onSave)="onSave($event)" (onCancel)="onCancel()"></ds-entity-form>
+          <ds-entity-form 
+            [entityTypeOptions]="entityTypeOptions"
+            (onSave)="onSave($event)" 
+            (onCancel)="onCancel()">
+          </ds-entity-form>
         </div>
       </div>
     `,
@@ -53,7 +64,12 @@ export const Prefilled: Story = {
     template: `
       <div class="p-8 bg-gray-50 min-h-screen flex items-center justify-center">
         <div class="w-full max-w-4xl">
-          <ds-entity-form [ngModel]="entityData" (onSave)="onSave($event)" (onCancel)="onCancel()"></ds-entity-form>
+          <ds-entity-form 
+            [entityTypeOptions]="entityTypeOptions"
+            [ngModel]="entityData" 
+            (onSave)="onSave($event)" 
+            (onCancel)="onCancel()">
+          </ds-entity-form>
         </div>
       </div>
     `,
@@ -64,7 +80,7 @@ export const Prefilled: Story = {
       eik: 'LAB-772',
       type: 'Laboratório',
       name: 'Laboratório Central de Análises',
-      nif: '253634020',
+      vat: '253634020',
       isActive: true,
       logo: 'https://placehold.co/400x400?text=LAB'
     }

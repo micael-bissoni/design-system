@@ -9,7 +9,7 @@ const meta: Meta<InputPasswordComponent> = {
   component: InputPasswordComponent,
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule, TranslateModule.forRoot()],
+      imports: [ReactiveFormsModule, TranslateModule],
     }),
     applicationConfig({
         providers: [
