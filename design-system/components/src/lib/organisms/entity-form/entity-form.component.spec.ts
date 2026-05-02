@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { describe, beforeEach, it, expect, vi, afterEach } from 'vitest';
 import { EntityFormComponent } from './entity-form.component';
+import { type EntityData } from './entity-form.types';
 
 describe('EntityFormComponent', () => {
   let component: EntityFormComponent;
@@ -33,20 +34,34 @@ describe('EntityFormComponent', () => {
 
   it('should initialize with default values', () => {
     expect(component.entityForm.get('identification.isActive')?.value).toBe(true);
+    expect(component.entityForm.get('identification.logo')?.value).toBe('');
   });
 
-  it('should validate EIK as mandatory', () => {
+  it('should validate EIK as mandatory and correct pattern', () => {
     const eikControl = component.entityForm.get('identification.eik');
     eikControl?.setValue('');
     expect(eikControl?.valid).toBe(false);
-    expect(eikControl?.errors?.['required']).toBeTruthy();
+    
+    eikControl?.setValue('invalid eik');
+    expect(eikControl?.valid).toBe(false);
+    
+    eikControl?.setValue('EIK-123');
+    expect(eikControl?.valid).toBe(true);
   });
 
-  it('should validate NIF length', () => {
+  it('should validate NIF with custom algorithm', () => {
     const nifControl = component.entityForm.get('identification.nif');
+    
+    // Invalid length
     nifControl?.setValue('123');
     expect(nifControl?.valid).toBe(false);
+    
+    // Invalid check digit (hypothetical)
     nifControl?.setValue('123456789');
+    expect(nifControl?.errors?.['nifInvalid']).toBeTruthy();
+    
+    // Valid Portuguese NIF (Consumer)
+    nifControl?.setValue('253634020'); 
     expect(nifControl?.valid).toBe(true);
   });
 
@@ -54,6 +69,7 @@ describe('EntityFormComponent', () => {
     const emailControl = component.entityForm.get('contactAndLocation.email');
     emailControl?.setValue('invalid-email');
     expect(emailControl?.valid).toBe(false);
+    
     emailControl?.setValue('test@example.com');
     expect(emailControl?.valid).toBe(true);
   });
@@ -61,13 +77,14 @@ describe('EntityFormComponent', () => {
   it('should emit onSave when form is valid', () => {
     const spy = vi.spyOn(component.onSave, 'emit');
     
-    component.entityForm.patchValue({
+    const validData: EntityData = {
       identification: {
         eik: 'EIK123',
         type: 'Farmácia',
         name: 'Farmácia Central',
-        nif: '123456789',
-        isActive: true
+        nif: '253634020',
+        isActive: true,
+        logo: 'logo.png'
       },
       contactAndLocation: {
         email: 'contato@farmacia.com',
@@ -78,9 +95,20 @@ describe('EntityFormComponent', () => {
         district: 'Lisboa',
         county: 'Lisboa'
       }
-    });
+    };
 
+    component.entityForm.patchValue(validData);
     component.submit();
-    expect(spy).toHaveBeenCalled();
+    
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+      identification: expect.objectContaining({ eik: 'EIK123' })
+    }));
+  });
+
+  it('should mark all fields as touched on invalid submit', () => {
+    component.entityForm.patchValue({ identification: { eik: '' } });
+    component.submit();
+    
+    expect(component.entityForm.get('identification.eik')?.touched).toBe(true);
   });
 });

@@ -3,20 +3,80 @@ import { moduleMetadata, applicationConfig } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { importProvidersFrom } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { EntityFormComponent } from './entity-form.component';
 
 const meta: Meta<EntityFormComponent> = {
-  title: 'Organisms/MasterData/EntityForm',
+  title: 'Organisms/EntityForm',
   component: EntityFormComponent,
   decorators: [
+    applicationConfig({
+      providers: [
+        provideAnimations(),
+        importProvidersFrom(TranslateModule.forRoot(), HttpClientModule),
+      ],
+    }),
     moduleMetadata({
-      imports: [CommonModule, ReactiveFormsModule],
+      imports: [CommonModule, ReactiveFormsModule, TranslateModule],
     }),
   ],
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    onSave: { action: 'onSave' },
+    onCancel: { action: 'onCancel' },
+  },
 };
 
 export default meta;
 type Story = StoryObj<EntityFormComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="p-8 bg-gray-50 min-h-screen flex items-center justify-center">
+        <div class="w-full max-w-4xl">
+          <ds-entity-form (onSave)="onSave($event)" (onCancel)="onCancel()"></ds-entity-form>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const Prefilled: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="p-8 bg-gray-50 min-h-screen flex items-center justify-center">
+        <div class="w-full max-w-4xl">
+          <ds-entity-form [ngModel]="entityData" (onSave)="onSave($event)" (onCancel)="onCancel()"></ds-entity-form>
+        </div>
+      </div>
+    `,
+  }),
+  args: {
+    // @ts-ignore - ngModel is handled by CVA
+    entityData: {
+      identification: {
+        eik: 'LAB-772',
+        type: 'Laboratório',
+        name: 'Laboratório Central de Análises',
+        nif: '500123456',
+        isActive: true,
+        logo: 'https://placehold.co/400x400?text=LAB'
+      },
+      contactAndLocation: {
+        email: 'contato@labcentral.pt',
+        phone: '+351 210 000 000',
+        contactPerson: 'Dra. Maria Silva',
+        address: 'Avenida da Liberdade, 100',
+        postalCode: '1250-147',
+        district: 'Lisboa',
+        county: 'Lisboa'
+      }
+    }
+  }
+};
