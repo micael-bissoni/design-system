@@ -33,12 +33,12 @@ describe('EntityFormComponent', () => {
   });
 
   it('should initialize with default values', () => {
-    expect(component.entityForm.get('identification.isActive')?.value).toBe(true);
-    expect(component.entityForm.get('identification.logo')?.value).toBe('');
+    expect(component.entityForm.get('isActive')?.value).toBe(true);
+    expect(component.entityForm.get('logo')?.value).toBe('');
   });
 
   it('should validate EIK as mandatory and correct pattern', () => {
-    const eikControl = component.entityForm.get('identification.eik');
+    const eikControl = component.entityForm.get('eik');
     eikControl?.setValue('');
     expect(eikControl?.valid).toBe(false);
     
@@ -50,7 +50,7 @@ describe('EntityFormComponent', () => {
   });
 
   it('should validate NIF with custom algorithm', () => {
-    const nifControl = component.entityForm.get('identification.nif');
+    const nifControl = component.entityForm.get('nif');
     
     // Invalid length
     nifControl?.setValue('123');
@@ -65,50 +65,30 @@ describe('EntityFormComponent', () => {
     expect(nifControl?.valid).toBe(true);
   });
 
-  it('should validate Email format', () => {
-    const emailControl = component.entityForm.get('contactAndLocation.email');
-    emailControl?.setValue('invalid-email');
-    expect(emailControl?.valid).toBe(false);
-    
-    emailControl?.setValue('test@example.com');
-    expect(emailControl?.valid).toBe(true);
-  });
-
   it('should emit onSave when form is valid', () => {
     const spy = vi.spyOn(component.onSave, 'emit');
     
     const validData: EntityData = {
-      identification: {
-        eik: 'EIK123',
-        type: 'Farmácia',
-        name: 'Farmácia Central',
-        nif: '253634020',
-        isActive: true,
-        logo: 'logo.png'
-      },
-      contactAndLocation: {
-        email: 'contato@farmacia.com',
-        phone: '912345678',
-        contactPerson: 'João Silva',
-        address: 'Rua Principal, 1',
-        postalCode: '1234-567',
-        district: 'Lisboa',
-        county: 'Lisboa'
-      }
+      eik: 'EIK123',
+      type: 'Farmácia',
+      name: 'Farmácia Central',
+      nif: '253634020',
+      isActive: true,
+      logo: 'logo.png'
     };
 
     component.entityForm.patchValue(validData);
     component.submit();
     
     expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-      identification: expect.objectContaining({ eik: 'EIK123' })
+      eik: 'EIK123'
     }));
   });
 
   it('should mark all fields as touched on invalid submit', () => {
-    component.entityForm.patchValue({ identification: { eik: '' } });
+    component.entityForm.patchValue({ eik: '' });
     component.submit();
     
-    expect(component.entityForm.get('identification.eik')?.touched).toBe(true);
+    expect(component.entityForm.get('eik')?.touched).toBe(true);
   });
 });

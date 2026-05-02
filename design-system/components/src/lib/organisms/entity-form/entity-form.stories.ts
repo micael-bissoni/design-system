@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata, applicationConfig } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { importProvidersFrom } from '@angular/core';
 import { EntityFormComponent } from './entity-form.component';
 
 const meta: Meta<EntityFormComponent> = {
@@ -18,7 +19,7 @@ const meta: Meta<EntityFormComponent> = {
       ],
     }),
     moduleMetadata({
-      imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+      imports: [CommonModule, ReactiveFormsModule, FormsModule, TranslateModule],
     }),
   ],
   parameters: {
@@ -60,23 +61,12 @@ export const Prefilled: Story = {
   args: {
     // @ts-ignore - ngModel is handled by CVA
     entityData: {
-      identification: {
-        eik: 'LAB-772',
-        type: 'Laboratório',
-        name: 'Laboratório Central de Análises',
-        nif: '500123456',
-        isActive: true,
-        logo: 'https://placehold.co/400x400?text=LAB'
-      },
-      contactAndLocation: {
-        email: 'contato@labcentral.pt',
-        phone: '+351 210 000 000',
-        contactPerson: 'Dra. Maria Silva',
-        address: 'Avenida da Liberdade, 100',
-        postalCode: '1250-147',
-        district: 'Lisboa',
-        county: 'Lisboa'
-      }
+      eik: 'LAB-772',
+      type: 'Laboratório',
+      name: 'Laboratório Central de Análises',
+      nif: '253634020',
+      isActive: true,
+      logo: 'https://placehold.co/400x400?text=LAB'
     }
   }
 };

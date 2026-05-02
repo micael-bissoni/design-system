@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, DestroyRef, output, input, forwardRef, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, DestroyRef, output, input, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup, NG_VALUE_ACCESSOR, ControlValueAccessor, AbstractControl, ValidationErrors } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -15,7 +15,7 @@ import { type EntityData, type EntityType } from './entity-form.types';
  * Organism: EntityFormComponent
  * 
  * A comprehensive form for managing healthcare entity data, following Atomic Design.
- * Features nested identification and contact/location sections.
+ * Features a flat data structure for core identity information.
  */
 @Component({
   selector: 'ds-entity-form',
@@ -44,7 +44,7 @@ import { type EntityData, type EntityType } from './entity-form.types';
       <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
 
       <div class="space-y-12 relative z-10">
-        <!-- Section A: Identificação Base -->
+        <!-- Section: Identificação Base -->
         <section class="space-y-8">
           <div class="flex items-center gap-6">
             <div class="h-10 w-2 bg-gradient-to-b from-primary to-primary-dark rounded-full shadow-lg shadow-primary/20"></div>
@@ -58,12 +58,12 @@ import { type EntityData, type EntityType } from './entity-form.types';
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-8" formGroupName="identification">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
             <!-- Logo Upload Placeholder / Preview -->
             <div class="md:col-span-3 flex flex-col items-center justify-center space-y-4">
               <div class="w-32 h-32 rounded-2xl bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden transition-all hover:border-primary group cursor-pointer">
-                <ng-container *ngIf="entityForm.get('identification.logo')?.value; else noLogo">
-                  <img [src]="entityForm.get('identification.logo')?.value" class="w-full h-full object-cover" />
+                <ng-container *ngIf="entityForm.get('logo')?.value; else noLogo">
+                  <img [src]="entityForm.get('logo')?.value" class="w-full h-full object-cover" />
                 </ng-container>
                 <ng-template #noLogo>
                   <div class="text-gray-400 group-hover:text-primary flex flex-col items-center">
@@ -76,75 +76,25 @@ import { type EntityData, type EntityType } from './entity-form.types';
             </div>
 
             <div class="md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ds-form-field label="organisms.entityForm.fields.eik" [required]="true" [error]="getControlError('identification.eik')">
+              <ds-form-field label="organisms.entityForm.fields.eik" [required]="true" [error]="getControlError('eik')">
                 <ds-input formControlName="eik" placeholder="organisms.entityForm.placeholders.eik"></ds-input>
               </ds-form-field>
 
-              <ds-form-field label="organisms.entityForm.fields.type" [required]="true" [error]="getControlError('identification.type')">
+              <ds-form-field label="organisms.entityForm.fields.type" [required]="true" [error]="getControlError('type')">
                 <ds-select [options]="entityTypeOptions" formControlName="type" placeholder="organisms.entityForm.placeholders.type"></ds-select>
               </ds-form-field>
 
-              <ds-form-field label="organisms.entityForm.fields.name" [required]="true" [error]="getControlError('identification.name')" class="md:col-span-2">
+              <ds-form-field label="organisms.entityForm.fields.name" [required]="true" [error]="getControlError('name')" class="md:col-span-2">
                 <ds-input formControlName="name" placeholder="organisms.entityForm.placeholders.name"></ds-input>
               </ds-form-field>
 
-              <ds-form-field label="organisms.entityForm.fields.nif" [required]="true" [error]="getControlError('identification.nif')">
+              <ds-form-field label="organisms.entityForm.fields.nif" [required]="true" [error]="getControlError('nif')">
                 <ds-input formControlName="nif" placeholder="organisms.entityForm.placeholders.nif"></ds-input>
               </ds-form-field>
 
               <div class="flex items-center pt-8">
                 <ds-checkbox formControlName="isActive" label="organisms.entityForm.fields.isActive"></ds-checkbox>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Divider with subtle glow -->
-        <div class="h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-
-        <!-- Section B: Contactos e Localização -->
-        <section class="space-y-8">
-          <div class="flex items-center gap-6">
-            <div class="h-10 w-2 bg-gradient-to-b from-secondary to-secondary-dark rounded-full shadow-lg shadow-secondary/20"></div>
-            <div>
-              <h3 class="text-2xl font-black uppercase tracking-[0.2em] text-gray-900 leading-none mb-1">
-                {{ 'organisms.entityForm.sections.contactAndLocation' | translate }}
-              </h3>
-              <p class="text-sm font-medium text-gray-500 uppercase tracking-widest">
-                {{ 'organisms.entityForm.sections.contactSubtitle' | translate | default: 'Reachability & Geographical Data' }}
-              </p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8" formGroupName="contactAndLocation">
-            <ds-form-field label="organisms.entityForm.fields.email" [required]="true" [error]="getControlError('contactAndLocation.email')">
-              <ds-input type="email" formControlName="email" placeholder="organisms.entityForm.placeholders.email"></ds-input>
-            </ds-form-field>
-
-            <ds-form-field label="organisms.entityForm.fields.phone" [error]="getControlError('contactAndLocation.phone')">
-              <ds-input formControlName="phone" placeholder="organisms.entityForm.placeholders.phone"></ds-input>
-            </ds-form-field>
-
-            <ds-form-field label="organisms.entityForm.fields.contactPerson" [error]="getControlError('contactAndLocation.contactPerson')" class="md:col-span-2">
-              <ds-input formControlName="contactPerson" placeholder="organisms.entityForm.placeholders.contactPerson"></ds-input>
-            </ds-form-field>
-
-            <ds-form-field label="organisms.entityForm.fields.address" class="md:col-span-2" [error]="getControlError('contactAndLocation.address')">
-              <ds-input formControlName="address" placeholder="organisms.entityForm.placeholders.address"></ds-input>
-            </ds-form-field>
-
-            <ds-form-field label="organisms.entityForm.fields.postalCode" [error]="getControlError('contactAndLocation.postalCode')">
-              <ds-input formControlName="postalCode" placeholder="organisms.entityForm.placeholders.postalCode"></ds-input>
-            </ds-form-field>
-
-            <div class="grid grid-cols-2 gap-4">
-              <ds-form-field label="organisms.entityForm.fields.district" [error]="getControlError('contactAndLocation.district')">
-                <ds-select [options]="districtOptions" formControlName="district" placeholder="organisms.entityForm.placeholders.district"></ds-select>
-              </ds-form-field>
-
-              <ds-form-field label="organisms.entityForm.fields.county" [error]="getControlError('contactAndLocation.county')">
-                <ds-select [options]="countyOptions" formControlName="county" placeholder="organisms.entityForm.placeholders.county"></ds-select>
-              </ds-form-field>
             </div>
           </div>
         </section>
@@ -180,26 +130,15 @@ export class EntityFormComponent implements ControlValueAccessor {
   onCancel = output<void>();
 
   /**
-   * Typed Reactive Form following EntityData structure
+   * Typed Reactive Form following the flat EntityData structure
    */
   entityForm = this.fb.group({
-    identification: this.fb.group({
-      eik: ['', [Validators.required, Validators.pattern(/^[A-Z0-9-]+$/)]],
-      type: ['', [Validators.required]],
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      nif: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/), this.nifValidator]],
-      isActive: [true],
-      logo: ['']
-    }),
-    contactAndLocation: this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.pattern(/^[0-9\s+]+$/)]],
-      contactPerson: [''],
-      address: [''],
-      postalCode: ['', [Validators.pattern(/^[0-9]{4}-[0-9]{3}$/)]],
-      district: [''],
-      county: ['']
-    })
+    eik: ['', [Validators.required, Validators.pattern(/^[A-Z0-9-]+$/)]],
+    type: ['', [Validators.required]],
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    nif: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/), this.nifValidator]],
+    isActive: [true],
+    logo: ['']
   });
 
   /**
@@ -210,9 +149,6 @@ export class EntityFormComponent implements ControlValueAccessor {
     { label: 'organisms.entityForm.types.ware', value: 'Armazenista' },
     { label: 'organisms.entityForm.types.pharm', value: 'Farmácia' }
   ];
-
-  districtOptions: SelectOption[] = [];
-  countyOptions: SelectOption[] = [];
 
   /**
    * ControlValueAccessor implementation
@@ -253,7 +189,6 @@ export class EntityFormComponent implements ControlValueAccessor {
     if (control?.touched && control?.invalid) {
       if (control.errors?.['required']) return 'organisms.entityForm.errors.required';
       if (control.errors?.['pattern']) return 'organisms.entityForm.errors.pattern';
-      if (control.errors?.['email']) return 'organisms.entityForm.errors.email';
       if (control.errors?.['nifInvalid']) return 'organisms.entityForm.errors.nifInvalid';
       if (control.errors?.['minlength']) return 'organisms.entityForm.errors.minLength';
       return 'organisms.entityForm.errors.invalid';
@@ -277,7 +212,7 @@ export class EntityFormComponent implements ControlValueAccessor {
     if (value) {
       this.entityForm.patchValue(value, { emitEvent: false });
     } else {
-      this.entityForm.reset({}, { emitEvent: false });
+      this.entityForm.reset({ isActive: true }, { emitEvent: false });
     }
   }
 
