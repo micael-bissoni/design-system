@@ -45,15 +45,11 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div class="p-8 bg-gray-50 min-h-screen flex items-center justify-center">
-        <div class="w-full max-w-4xl">
-          <ds-entity-form 
-            [entityTypeOptions]="entityTypeOptions"
-            (onSave)="onSave($event)" 
-            (onCancel)="onCancel()">
-          </ds-entity-form>
-        </div>
-      </div>
+      <ds-entity-form 
+        [entityTypeOptions]="entityTypeOptions"
+        (onSave)="onSave($event)" 
+        (onCancel)="onCancel()">
+      </ds-entity-form>
     `,
   }),
 };
@@ -62,16 +58,12 @@ export const Prefilled: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div class="p-8 bg-gray-50 min-h-screen flex items-center justify-center">
-        <div class="w-full max-w-4xl">
-          <ds-entity-form 
-            [entityTypeOptions]="entityTypeOptions"
-            [ngModel]="entityData" 
-            (onSave)="onSave($event)" 
-            (onCancel)="onCancel()">
-          </ds-entity-form>
-        </div>
-      </div>
+      <ds-entity-form 
+        [entityTypeOptions]="entityTypeOptions"
+        [ngModel]="entityData" 
+        (onSave)="onSave($event)" 
+        (onCancel)="onCancel()">
+      </ds-entity-form>
     `,
   }),
   args: {

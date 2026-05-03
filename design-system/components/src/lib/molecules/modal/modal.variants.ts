@@ -1,15 +1,15 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const modalVariants = cva(
-  'fixed inset-0 z-50 flex items-center justify-center p-4',
+  'relative w-full bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[calc(100vh-2rem)] animate-in fade-in zoom-in duration-200',
   {
     variants: {
       size: {
-        sm: 'max-w-sm',
-        md: 'max-w-md',
-        lg: 'max-w-lg',
-        xl: 'max-w-2xl',
-        full: 'max-w-full m-4',
+        sm: 'sm:max-w-sm',
+        md: 'sm:max-w-md',
+        lg: 'sm:max-w-lg',
+        xl: 'sm:max-w-2xl',
+        full: 'sm:max-w-[calc(100%-2rem)]',
       },
     },
     defaultVariants: {

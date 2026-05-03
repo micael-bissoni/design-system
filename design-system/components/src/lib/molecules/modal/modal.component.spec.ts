@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalComponent } from './modal.component';
 import { describe, beforeEach, it, expect, afterEach, beforeAll, vi } from 'vitest';
@@ -8,13 +9,10 @@ describe('ModalComponent', () => {
   let component: ModalComponent;
   let fixture: ComponentFixture<ModalComponent>;
 
-  /* beforeAll(() => {
-    try {
-      TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-    } catch (e) {
-      // already initialized
-    }
-  }); */
+  beforeAll(() => {
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+  });
 
 
   beforeEach(async () => {

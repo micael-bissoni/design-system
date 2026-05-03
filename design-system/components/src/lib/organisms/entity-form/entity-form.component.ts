@@ -41,25 +41,11 @@ import { vatValidator } from './vat.validator';
     }
   ],
   template: `
-    <div [formGroup]="entityForm" class="relative overflow-hidden p-8 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/20 shadow-2xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
-      <!-- Decorative background element -->
-      <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
-
+    <div [formGroup]="entityForm" class="relative p-8 rounded-3xl">
       <div class="space-y-12 relative z-10">
         <!-- Section: Identificação Base -->
         <section class="space-y-8">
-          <div class="flex items-center gap-6">
-            <div class="h-10 w-2 bg-gradient-to-b from-primary to-primary-dark rounded-full shadow-lg shadow-primary/20"></div>
-            <div>
-              <h3 class="text-2xl font-black uppercase tracking-[0.2em] text-gray-900 leading-none mb-1">
-                {{ 'organisms.entityForm.sections.identification' | translate }}
-              </h3>
-              <p class="text-sm font-medium text-gray-500 uppercase tracking-widest">
-                {{ 'organisms.entityForm.sections.identificationSubtitle' | translate }}
-              </p>
-            </div>
-          </div>
+
 
           <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
             <div class="md:col-span-3 flex flex-col items-center justify-center">
