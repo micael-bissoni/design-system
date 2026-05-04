@@ -41,8 +41,9 @@ describe('EntityFormComponent', () => {
   });
 
   it('should initialize with default values', () => {
-    expect(component.entityForm.get('isActive')?.value).toBe(true);
-    expect(component.entityForm.get('logo')?.value).toBe('');
+    expect(component.entityForm.get('isActive')?.value).toBe(false);
+    expect(component.entityForm.get('isActive')?.disabled).toBe(true);
+    expect(component.entityForm.get('parentId')?.value).toBe('');
   });
 
   it('should validate EIK as mandatory and correct pattern', () => {
@@ -71,6 +72,24 @@ describe('EntityFormComponent', () => {
     // Valid Portuguese VAT (Consumer)
     vatControl?.setValue('253634020');
     expect(vatControl?.valid).toBe(true);
+  });
+
+  it('should make VAT mandatory if parentId is not set', () => {
+    const vatControl = component.entityForm.get('vat');
+    const parentControl = component.entityForm.get('parentId');
+
+    parentControl?.setValue('');
+    vatControl?.setValue('');
+    expect(vatControl?.errors?.['required']).toBeTruthy();
+  });
+
+  it('should make VAT optional if parentId is set', () => {
+    const vatControl = component.entityForm.get('vat');
+    const parentControl = component.entityForm.get('parentId');
+
+    parentControl?.setValue('parent-123');
+    vatControl?.setValue('');
+    expect(vatControl?.errors?.['required']).toBeFalsy();
   });
 
   it('should emit onSave when form is valid', () => {

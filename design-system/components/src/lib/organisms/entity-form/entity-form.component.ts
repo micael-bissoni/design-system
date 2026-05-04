@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, DestroyRef, output, forwardRef, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, DestroyRef, output, forwardRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -10,6 +10,7 @@ import { CheckboxComponent } from '../../atoms/checkbox/checkbox.component';
 import { ButtonComponent } from '../../atoms/button/button.component';
 import { FormFieldComponent } from '../../molecules/form-field/form-field.component';
 import { FileUploadComponent } from '../../molecules/file-upload/file-upload.component';
+import { SelectAutocompleteComponent } from '../../molecules/select-autocomplete/select-autocomplete.component';
 import { type EntityData } from './entity-form.types';
 import { vatValidator } from './vat.validator';
 
@@ -31,7 +32,8 @@ import { vatValidator } from './vat.validator';
     CheckboxComponent,
     ButtonComponent,
     FormFieldComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    SelectAutocompleteComponent
   ],
   providers: [
     {
@@ -57,6 +59,14 @@ import { vatValidator } from './vat.validator';
             </div>
 
             <div class="md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <ds-form-field label="organisms.entityForm.fields.parentId" [error]="getControlError('parentId')">
+                <ds-select-autocomplete 
+                  formControlName="parentId" 
+                  [options]="parentOptions"
+                  placeholder="organisms.entityForm.placeholders.parentId"
+                ></ds-select-autocomplete>
+              </ds-form-field>
+
               <ds-form-field label="organisms.entityForm.fields.eik" [required]="true" [error]="getControlError('eik')">
                 <ds-input formControlName="eik" placeholder="organisms.entityForm.placeholders.eik"></ds-input>
               </ds-form-field>
@@ -104,7 +114,7 @@ import { vatValidator } from './vat.validator';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EntityFormComponent implements ControlValueAccessor {
+export class EntityFormComponent implements ControlValueAccessor, OnChanges {
   private readonly fb = inject(FormBuilder);
   private readonly destroyRef = inject(DestroyRef);
   private readonly translate = inject(TranslateService);
@@ -119,6 +129,7 @@ export class EntityFormComponent implements ControlValueAccessor {
    * Options for selects (Input Decorator)
    */
   @Input() entityTypeOptions: SelectOption[] = [];
+  @Input() parentOptions: SelectOption[] = [];
 
   /**
    * Typed Reactive Form following the flat EntityData structure
@@ -128,8 +139,9 @@ export class EntityFormComponent implements ControlValueAccessor {
     type: ['', [Validators.required]],
     name: ['', [Validators.required, Validators.minLength(3)]],
     abbreviation: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-    vat: ['', [Validators.required, vatValidator(this.translate.currentLang || 'pt-PT')]],
-    isActive: [false],
+    vat: ['', [vatValidator(this.translate.currentLang || 'pt-PT')]],
+    isActive: [{ value: false, disabled: true }],
+    parentId: [''],
     logo: ['']
   });
 
@@ -153,12 +165,32 @@ export class EntityFormComponent implements ControlValueAccessor {
     this.translate.onLangChange
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((event) => {
-        const vatControl = this.entityForm.get('vat');
-        if (vatControl) {
-          vatControl.setValidators([Validators.required, vatValidator(event.lang)]);
-          vatControl.updateValueAndValidity();
-        }
+        this.updateVatValidators(event.lang);
       });
+
+    // Update VAT validator on parentId change
+    this.entityForm.get('parentId')?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.updateVatValidators(this.translate.currentLang || 'pt-PT');
+      });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // Logic for parentOptions updates if needed
+  }
+
+  private updateVatValidators(lang: string): void {
+    const vatControl = this.entityForm.get('vat');
+    const parentId = this.entityForm.get('parentId')?.value;
+    if (vatControl) {
+      const validators = [vatValidator(lang)];
+      if (!parentId) {
+        validators.push(Validators.required);
+      }
+      vatControl.setValidators(validators);
+      vatControl.updateValueAndValidity();
+    }
   }
 
   /**
@@ -193,7 +225,7 @@ export class EntityFormComponent implements ControlValueAccessor {
     if (value) {
       this.entityForm.patchValue(value, { emitEvent: false });
     } else {
-      this.entityForm.reset({ isActive: true }, { emitEvent: false });
+      this.entityForm.reset({ isActive: { value: false, disabled: true } }, { emitEvent: false });
     }
   }
 

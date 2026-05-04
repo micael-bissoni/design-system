@@ -1,6 +1,6 @@
 {
   "common": {
-    "searchPlaceholder": "Pesquisar farmácias, encomendas...",
+    "searchPlaceholder": "Pesquisar...",
     "notifications": "Notificações",
     "settings": "Configurações",
     "pdf": "PDF",
@@ -442,14 +442,16 @@
         "abbreviation": "Abreviatura",
         "vat": "NIF / VAT",
         "isActive": "Ativo / Inativo",
-        "logo": "Logótipo"
+        "logo": "Logótipo",
+        "parentId": "Entidade Pai / Master"
       },
       "placeholders": {
         "eik": "Ex: ENT-001",
         "type": "Selecione o tipo",
         "name": "Nome social completo",
         "abbreviation": "Ex: TREV",
-        "vat": "9 dígitos"
+        "vat": "9 dígitos",
+        "parentId": "Pesquisar entidade pai"
       },
       "hints": {
         "logoFormat": "Formatos aceites: PNG, JPG ou SVG (Máx. 2MB)"

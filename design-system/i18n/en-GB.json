@@ -1,6 +1,6 @@
 {
   "common": {
-    "searchPlaceholder": "Search pharmacies, orders...",
+    "searchPlaceholder": "Search...",
     "notifications": "Notifications",
     "settings": "Settings",
     "pdf": "PDF",
@@ -438,14 +438,16 @@
         "abbreviation": "Abbreviation",
         "vat": "VAT Number",
         "isActive": "Active / Inactive",
-        "logo": "Logo"
+        "logo": "Logo",
+        "parentId": "Parent / Master Entity"
       },
       "placeholders": {
         "eik": "Ex: ENT-001",
         "type": "Select type",
         "name": "Full social name",
         "abbreviation": "Ex: TREV",
-        "vat": "Enter VAT"
+        "vat": "Enter VAT",
+        "parentId": "Search parent entity"
       },
       "hints": {
         "logoFormat": "Accepted formats: PNG, JPG or SVG (Max. 2MB)"

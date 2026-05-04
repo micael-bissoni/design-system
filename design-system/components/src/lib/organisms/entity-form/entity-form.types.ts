@@ -6,4 +6,5 @@ export interface EntityData {
   vat: string;
   isActive: boolean;
   logo?: string;
+  parentId?: string | null;
 }
