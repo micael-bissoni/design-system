@@ -10,7 +10,7 @@ import { type SelectOption } from '../../atoms/select/select.component';
 import { InputComponent } from '../../atoms/input/input.component';
 
 @Component({
-  selector: 'ds-select-autocomplete',
+  selector: 'ds-autocomplete',
   standalone: true,
   imports: [CommonModule, TranslateModule, TranslatePipe, ReactiveFormsModule, InputComponent],
   template: `
@@ -60,13 +60,13 @@ import { InputComponent } from '../../atoms/input/input.component';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SelectAutocompleteComponent),
+      useExisting: forwardRef(() => AutocompleteComponent),
       multi: true,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectAutocompleteComponent implements ControlValueAccessor {
+export class AutocompleteComponent implements ControlValueAccessor {
   options = input.required<SelectOption[]>();
   placeholder = input<string>('common.searchPlaceholder');
   class = input<string>('');

@@ -10,7 +10,7 @@ import { CheckboxComponent } from '../../atoms/checkbox/checkbox.component';
 import { ButtonComponent } from '../../atoms/button/button.component';
 import { FormFieldComponent } from '../../molecules/form-field/form-field.component';
 import { FileUploadComponent } from '../../molecules/file-upload/file-upload.component';
-import { SelectAutocompleteComponent } from '../../molecules/select-autocomplete/select-autocomplete.component';
+import { AutocompleteComponent } from '../../molecules/autocomplete/autocomplete.component';
 import { type EntityData } from './entity-form.types';
 import { vatValidator } from './vat.validator';
 
@@ -33,7 +33,7 @@ import { vatValidator } from './vat.validator';
     ButtonComponent,
     FormFieldComponent,
     FileUploadComponent,
-    SelectAutocompleteComponent
+    AutocompleteComponent
   ],
   providers: [
     {
@@ -60,11 +60,11 @@ import { vatValidator } from './vat.validator';
 
             <div class="md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">
               <ds-form-field label="organisms.entityForm.fields.parentId" [error]="getControlError('parentId')">
-                <ds-select-autocomplete 
+                <ds-autocomplete 
                   formControlName="parentId" 
                   [options]="parentOptions"
                   placeholder="organisms.entityForm.placeholders.parentId"
-                ></ds-select-autocomplete>
+                ></ds-autocomplete>
               </ds-form-field>
 
               <ds-form-field label="organisms.entityForm.fields.eik" [required]="true" [error]="getControlError('eik')">

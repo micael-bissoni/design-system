@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SelectAutocompleteComponent } from './select-autocomplete.component';
+import { AutocompleteComponent } from './autocomplete.component';
 import { describe, beforeEach, it, expect, afterEach, beforeAll, vi } from 'vitest';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
-describe('SelectAutocompleteComponent', () => {
-  let component: SelectAutocompleteComponent;
-  let fixture: ComponentFixture<SelectAutocompleteComponent>;
+describe('AutocompleteComponent', () => {
+  let component: AutocompleteComponent;
+  let fixture: ComponentFixture<AutocompleteComponent>;
 
   beforeAll(() => {
     try {
@@ -19,10 +19,10 @@ describe('SelectAutocompleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SelectAutocompleteComponent, TranslateModule.forRoot(), ReactiveFormsModule],
+      imports: [AutocompleteComponent, TranslateModule.forRoot(), ReactiveFormsModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SelectAutocompleteComponent);
+    fixture = TestBed.createComponent(AutocompleteComponent);
     component = fixture.componentInstance;
     
     // Set required input

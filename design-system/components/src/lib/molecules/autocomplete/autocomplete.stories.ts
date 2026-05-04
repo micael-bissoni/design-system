@@ -3,11 +3,11 @@ import { moduleMetadata, applicationConfig } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { SelectAutocompleteComponent } from './select-autocomplete.component';
+import { AutocompleteComponent } from './autocomplete.component';
 
-const meta: Meta<SelectAutocompleteComponent> = {
-  title: 'Molecules/SelectAutocomplete',
-  component: SelectAutocompleteComponent,
+const meta: Meta<AutocompleteComponent> = {
+  title: 'Molecules/Autocomplete',
+  component: AutocompleteComponent,
   decorators: [
     applicationConfig({
       providers: [
@@ -42,7 +42,7 @@ const meta: Meta<SelectAutocompleteComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<SelectAutocompleteComponent>;
+type Story = StoryObj<AutocompleteComponent>;
 
 export const Default: Story = {
   render: (args) => ({
@@ -50,7 +50,7 @@ export const Default: Story = {
     template: `
       <div class="p-12 bg-gray-50 rounded-3xl min-h-[400px]">
         <div class="max-w-sm mx-auto">
-          <ds-select-autocomplete 
+          <ds-autocomplete 
             [options]="options"
             [placeholder]="placeholder"
             [class]="class"
@@ -72,7 +72,7 @@ export const WithPreselectedValue: Story = {
     template: `
       <div class="p-12 bg-gray-50 rounded-3xl min-h-[400px]">
         <div class="max-w-sm mx-auto flex flex-col gap-4">
-          <ds-select-autocomplete 
+          <ds-autocomplete 
             [options]="options"
             [placeholder]="placeholder"
             [formControl]="control"
@@ -97,7 +97,7 @@ export const Loading: Story = {
     template: `
       <div class="p-12 bg-gray-50 rounded-3xl min-h-[400px]">
         <div class="max-w-sm mx-auto">
-          <ds-select-autocomplete 
+          <ds-autocomplete 
             [options]="options"
             [placeholder]="placeholder"
             [isLoading]="isLoading"
@@ -122,7 +122,7 @@ export const RemoteData: Story = {
     template: `
       <div class="p-12 bg-gray-50 rounded-3xl min-h-[400px]">
         <div class="max-w-sm mx-auto flex flex-col gap-4">
-          <ds-select-autocomplete 
+          <ds-autocomplete 
             [options]="remoteOptions"
             [isLoading]="isFetching"
             (queryChange)="search($event)"

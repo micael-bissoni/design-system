@@ -17,4 +17,4 @@ export * from './input-password/input-password.component';
 export * from './modal/modal.component';
 export * from './toast/toast.component';
 export * from './file-upload/file-upload.component';
-export * from './select-autocomplete/select-autocomplete.component';
+export * from './autocomplete/autocomplete.component';
