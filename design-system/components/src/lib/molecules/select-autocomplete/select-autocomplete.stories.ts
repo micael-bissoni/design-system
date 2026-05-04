@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata, applicationConfig } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { SelectAutocompleteComponent } from './select-autocomplete.component';
 
@@ -16,16 +15,20 @@ const meta: Meta<SelectAutocompleteComponent> = {
       ],
     }),
     moduleMetadata({
-      imports: [CommonModule, TranslateModule.forRoot(), ReactiveFormsModule],
+      imports: [CommonModule, ReactiveFormsModule],
     }),
   ],
   tags: ['autodocs'],
   argTypes: {
     placeholder: { control: 'text' },
     class: { control: 'text' },
+    debounceTime: { control: 'number' },
+    isLoading: { control: 'boolean' },
   },
   args: {
     placeholder: 'common.searchPlaceholder',
+    debounceTime: 300,
+    isLoading: false,
     options: [
       { label: 'Portugal', value: 'PT' },
       { label: 'Spain', value: 'ES' },
@@ -51,6 +54,8 @@ export const Default: Story = {
             [options]="options"
             [placeholder]="placeholder"
             [class]="class"
+            [debounceTime]="debounceTime"
+            [isLoading]="isLoading"
           />
         </div>
       </div>
@@ -71,6 +76,8 @@ export const WithPreselectedValue: Story = {
             [options]="options"
             [placeholder]="placeholder"
             [formControl]="control"
+            [debounceTime]="debounceTime"
+            [isLoading]="isLoading"
           />
           <div class="text-xs text-gray-medium bg-white p-4 rounded-xl border border-gray-light">
             Selected Value: <span class="font-mono text-primary">{{ control.value }}</span>
@@ -81,20 +88,49 @@ export const WithPreselectedValue: Story = {
   }),
 };
 
-export const Disabled: Story = {
+export const Loading: Story = {
+  args: {
+    isLoading: true,
+  },
   render: (args) => ({
-    props: {
-      ...args,
-      control: new FormControl({ value: 'ES', disabled: true }),
-    },
+    props: args,
     template: `
       <div class="p-12 bg-gray-50 rounded-3xl min-h-[400px]">
         <div class="max-w-sm mx-auto">
           <ds-select-autocomplete 
             [options]="options"
             [placeholder]="placeholder"
-            [formControl]="control"
+            [isLoading]="isLoading"
           />
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const RemoteData: Story = {
+  render: (args) => ({
+    props: {
+      ...args,
+      remoteOptions: [],
+      isFetching: false,
+      search: (query: string) => {
+        // This is a simplified demo of how to use it
+        console.log('Searching for:', query);
+      }
+    },
+    template: `
+      <div class="p-12 bg-gray-50 rounded-3xl min-h-[400px]">
+        <div class="max-w-sm mx-auto flex flex-col gap-4">
+          <ds-select-autocomplete 
+            [options]="remoteOptions"
+            [isLoading]="isFetching"
+            (queryChange)="search($event)"
+            placeholder="Type to search (see console)..."
+          />
+          <div class="text-xs text-blue-medium bg-blue-50 p-4 rounded-xl border border-blue-100 italic">
+            Check the console to see the debounced query changes. In a real app, you would fetch data here and update the [options] input.
+          </div>
         </div>
       </div>
     `,

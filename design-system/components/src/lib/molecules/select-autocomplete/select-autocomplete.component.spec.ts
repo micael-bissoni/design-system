@@ -79,4 +79,30 @@ describe('SelectAutocompleteComponent', () => {
     expect(component.internalValue()).toBe('');
     expect(component.searchText()).toBe('');
   });
+
+  it('should emit queryChange with debounce', async () => {
+    const spy = vi.spyOn(component.queryChange, 'emit');
+    
+    component.onSearch('Portugal');
+    
+    // Should not emit immediately
+    expect(spy).not.toHaveBeenCalled();
+    
+    // Wait for debounce (default 300ms)
+    await new Promise(resolve => setTimeout(resolve, 350));
+    
+    expect(spy).toHaveBeenCalledWith('Portugal');
+  });
+
+  it('should show loading state when isLoading is true', () => {
+    fixture.componentRef.setInput('isLoading', true);
+    fixture.detectChanges();
+    
+    component.isOpen.set(true);
+    fixture.detectChanges();
+    
+    const debugElement = fixture.debugElement.nativeElement;
+    const loadingElement = debugElement.querySelector('.animate-spin');
+    expect(loadingElement).toBeTruthy();
+  });
 });
