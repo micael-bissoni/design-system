@@ -45,7 +45,7 @@ import { TranslateModule } from '@ngx-translate/core';
                 </td>
                 <td class="px-4 py-2 font-mono text-[10px] w-8 opacity-40">{{ $index + 1 }}</td>
                 @for (col of columns(); track col.id) {
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-dark font-medium underline decoration-primary-200/30 underline-offset-4 decoration-1 decoration-dashed">{{ row[col.key || ''] }}</td>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-dark font-medium underline decoration-primary-200/30 underline-offset-4 decoration-1 decoration-dashed">{{ row[col.key || col.id] }}</td>
                 }
                 <td class="px-4 py-2 text-right flex items-center justify-end gap-1">
                   @if (nestedConfig()) {
@@ -109,7 +109,7 @@ import { TranslateModule } from '@ngx-translate/core';
               <div class="flex items-center gap-2">
                 <span class="font-mono text-[9px] text-gray-lightest select-none">#{{ $index + 1 }}</span>
                 <span class="text-xs font-bold text-gray-dark truncate max-w-[150px]">
-                  {{ row[columns()[0].key || ''] }}
+                  {{ row[columns()[0].key || columns()[0].id] }}
                 </span>
               </div>
               <div class="flex items-center gap-1">
@@ -152,7 +152,7 @@ import { TranslateModule } from '@ngx-translate/core';
               @for (col of columns().slice(1); track col.id) {
                 <div class="flex flex-col gap-0.5">
                   <span class="text-[8px] font-black uppercase text-gray-lightest tracking-wider">{{ col.label | translate }}</span>
-                  <span class="text-[10px] text-gray-medium truncate">{{ row[col.key || ''] }}</span>
+                  <span class="text-[10px] text-gray-medium truncate">{{ row[col.key || col.id] }}</span>
                 </div>
               }
             </div>

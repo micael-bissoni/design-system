@@ -47,7 +47,7 @@ export interface SelectOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent implements ControlValueAccessor {
-  options = input.required<SelectOption[]>();
+  options = input<SelectOption[]>([]);
   placeholder = input<string>('');
   class = input<string>('');
   

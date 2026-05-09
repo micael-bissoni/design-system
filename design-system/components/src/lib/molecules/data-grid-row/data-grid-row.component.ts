@@ -165,8 +165,8 @@ export class DataGridRowComponent {
   }
 
   getValue(col: DataGridColumn): unknown {
-    if (col.key) return this.record()[col.key];
-    return '';
+    const key = col.key || col.id;
+    return this.record()[key] || '';
   }
 
   getCellInputs(col: DataGridColumn): Record<string, unknown> {

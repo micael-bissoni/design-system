@@ -431,7 +431,9 @@
     "entityForm": {
       "sections": {
         "identification": "Identificación Base",
-        "identificationSubtitle": "Información principal de la entidad"
+        "identificationSubtitle": "Información principal de la entidad",
+        "address": "Dirección de la Entidad",
+        "addressSubtitle": "Detalles de ubicación de la entidad"
       },
       "fields": {
         "eik": "EIK (Entity Identification Key)",
@@ -439,25 +441,26 @@
         "name": "Nombre / Razón Social",
         "abbreviation": "Abreviatura",
         "vat": "VAT / NIF",
+        "vatOptional": "VAT / NIF (Opcional)",
         "isActive": "Activo / Inactivo",
         "logo": "Logotipo",
-        "parentId": "Entidad Padre / Maestra"
+        "parentId": "Entidad Padre / Master"
       },
       "placeholders": {
-        "eik": "Ej: ENT-001",
-        "type": "Seleccione el tipo",
-        "name": "Nombre social completo",
-        "abbreviation": "Ej: TREV",
-        "vat": "9 dígitos",
-        "parentId": "Buscar entidad padre"
-      },
-      "hints": {
-        "logoFormat": "Formatos aceptados: PNG, JPG o SVG (Máx. 2MB)"
+        "parentId": "Seleccione la entidad padre",
+        "eik": "Ej: 123456789",
+        "type": "Seleccione el tipo de entidad",
+        "name": "Ej: Pharma Logistics SA",
+        "abbreviation": "Ej: PLS",
+        "vat": "Ej: ESB12345678"
       },
       "types": {
         "lab": "Laboratorio",
         "ware": "Almacenista",
         "pharm": "Farmacia"
+      },
+      "hints": {
+        "logoFormat": "PNG, JPG o SVG (máx. 800x800px)"
       },
       "errors": {
         "required": "Campo obligatorio",
@@ -467,6 +470,42 @@
         "maxLength": "Longitud máxima excedida",
         "invalid": "Valor inválido"
       }
+    },
+    "addressForm": {
+      "address": "Dirección",
+      "fields": {
+        "street": "Calle / Avenida",
+        "number": "Número",
+        "complement": "Complemento",
+        "neighborhood": "Barrio / Localidad",
+        "city": "Ciudad",
+        "state": "Provincia / Estado",
+        "postalCode": "Código Postal",
+        "country": "País",
+        "type": "Tipo de Dirección"
+      },
+      "placeholders": {
+        "street": "Ej: Av. de la Castellana",
+        "number": "Ej: 123",
+        "complement": "Ej: 4º Izq",
+        "neighborhood": "Ej: Chamberí",
+        "city": "Ej: Madrid",
+        "state": "Ej: Madrid",
+        "postalCode": "Ej: 28001",
+        "country": "Ej: España",
+        "type": "Seleccione el tipo"
+      },
+      "types": {
+        "main": "Principal",
+        "shipping": "Envío",
+        "billing": "Facturación",
+        "other": "Otro"
+      },
+      "errors": {
+        "required": "Campo obligatorio",
+        "invalid": "Valor inválido"
+      },
+      "addAddress": "Añadir Dirección"
     }
   },
   "templates": {

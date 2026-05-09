@@ -433,7 +433,9 @@
     "entityForm": {
       "sections": {
         "identification": "Identificação Base",
-        "identificationSubtitle": "Informação principal da entidade"
+        "identificationSubtitle": "Informação principal da entidade",
+        "address": "Morada da Entidade",
+        "addressSubtitle": "Detalhes de localização da entidade"
       },
       "fields": {
         "eik": "EIK (Entity Identification Key)",
@@ -441,25 +443,26 @@
         "name": "Nome / Designação Social",
         "abbreviation": "Abreviatura",
         "vat": "NIF / VAT",
+        "vatOptional": "NIF / VAT (Opcional)",
         "isActive": "Ativo / Inativo",
         "logo": "Logótipo",
         "parentId": "Entidade Pai / Master"
       },
       "placeholders": {
-        "eik": "Ex: ENT-001",
-        "type": "Selecione o tipo",
-        "name": "Nome social completo",
-        "abbreviation": "Ex: TREV",
-        "vat": "9 dígitos",
-        "parentId": "Pesquisar entidade pai"
-      },
-      "hints": {
-        "logoFormat": "Formatos aceites: PNG, JPG ou SVG (Máx. 2MB)"
+        "parentId": "Selecione a entidade pai",
+        "eik": "Ex: 123456789",
+        "type": "Selecione o tipo de entidade",
+        "name": "Ex: Pharma Logistics SA",
+        "abbreviation": "Ex: PLS",
+        "vat": "Ex: 500123456"
       },
       "types": {
         "lab": "Laboratório",
         "ware": "Armazenista",
         "pharm": "Farmácia"
+      },
+      "hints": {
+        "logoFormat": "PNG, JPG ou SVG (máx. 800x800px)"
       },
       "errors": {
         "required": "Campo obrigatório",
@@ -469,6 +472,42 @@
         "maxLength": "Tamanho máximo excedido",
         "invalid": "Valor inválido"
       }
+    },
+    "addressForm": {
+      "address": "Morada",
+      "fields": {
+        "street": "Rua / Avenida",
+        "number": "Número",
+        "complement": "Complemento",
+        "neighborhood": "Bairro / Freguesia",
+        "city": "Cidade",
+        "state": "Distrito / Estado",
+        "postalCode": "Código Postal",
+        "country": "País",
+        "type": "Tipo de Morada"
+      },
+      "placeholders": {
+        "street": "Ex: Av. da Liberdade",
+        "number": "Ex: 123",
+        "complement": "Ex: 4º Esq",
+        "neighborhood": "Ex: Baixa",
+        "city": "Ex: Lisboa",
+        "state": "Ex: Lisboa",
+        "postalCode": "Ex: 1000-001",
+        "country": "Ex: Portugal",
+        "type": "Selecione o tipo"
+      },
+      "types": {
+        "main": "Principal",
+        "shipping": "Envio",
+        "billing": "Faturação",
+        "other": "Outro"
+      },
+      "errors": {
+        "required": "Campo obrigatório",
+        "invalid": "Valor inválido"
+      },
+      "addAddress": "Adicionar Morada"
     }
   },
   "templates": {

@@ -5,4 +5,5 @@ export * from './login-form/login-form.component';
 export * from './create-account-form/create-account-form.component';
 export * from './entity-form/entity-form.component';
 export * from './entity-form/entity-form.types';
+export * from './address-form/address-form.component';
 export * from './nested-datagrid-form/nested-datagrid-form.component';

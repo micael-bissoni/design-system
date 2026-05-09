@@ -22,7 +22,25 @@ import { InputComponent } from '../../atoms/input/input.component';
         (valueChange)="onSearch($event)"
         (focus)="isOpen.set(true)"
         [class]="calculatedClass()"
-      />
+      >
+        <button 
+          suffix
+          type="button"
+          (click)="toggleOptions($event)"
+          class="text-gray-dark hover:text-primary transition-colors p-1"
+          [disabled]="disabled()"
+        >
+          <svg 
+            class="w-5 h-5 transition-transform duration-200" 
+            [class.rotate-180]="isOpen()"
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </ds-input>
       
       @if (isOpen() && (filteredOptions().length > 0 || isLoading())) {
         <ul class="absolute z-50 w-full mt-2 bg-white border border-gray-light rounded-xl shadow-xl max-h-60 overflow-y-auto overflow-x-hidden animate-in fade-in slide-in-from-top-2 duration-200">
@@ -67,7 +85,7 @@ import { InputComponent } from '../../atoms/input/input.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutocompleteComponent implements ControlValueAccessor {
-  options = input.required<SelectOption[]>();
+  options = input<SelectOption[]>([]);
   placeholder = input<string>('common.searchPlaceholder');
   class = input<string>('');
   debounceTime = input<number>(300);
@@ -94,7 +112,7 @@ export class AutocompleteComponent implements ControlValueAccessor {
 
   calculatedClass = computed(() =>
     cn(
-      'w-full bg-primary/5 border-none rounded-xl px-4 h-14 text-sm outline-none focus:ring-4 focus:ring-primary/20 transition-all text-gray-dark font-base shadow-sm hover:bg-primary/10',
+      'w-full bg-primary/5 border-none rounded-xl h-14 text-sm outline-none focus:ring-4 focus:ring-primary/20 transition-all text-gray-dark font-base shadow-sm hover:bg-primary/10',
       this.class()
     )
   );
@@ -145,6 +163,12 @@ export class AutocompleteComponent implements ControlValueAccessor {
     this.isOpen.set(false);
     this.onChange(option.value);
     this.valueChange.emit(option.value);
+  }
+
+  toggleOptions(event: MouseEvent) {
+    event.stopPropagation();
+    if (this.disabled()) return;
+    this.isOpen.update(prev => !prev);
   }
 
   // ControlValueAccessor methods

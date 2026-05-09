@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, DestroyRef, output, forwardRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, DestroyRef, output, forwardRef, Input, OnChanges, SimpleChanges, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, FormArray, NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -11,14 +11,15 @@ import { ButtonComponent } from '../../atoms/button/button.component';
 import { FormFieldComponent } from '../../molecules/form-field/form-field.component';
 import { FileUploadComponent } from '../../molecules/file-upload/file-upload.component';
 import { AutocompleteComponent } from '../../molecules/autocomplete/autocomplete.component';
-import { type EntityData } from './entity-form.types';
+import { AddressFormComponent } from '../address-form/address-form.component';
+import { type EntityData, type Address } from './entity-form.types';
 import { vatValidator } from './vat.validator';
 
 /**
  * Organism: EntityFormComponent
  * 
  * A comprehensive form for managing healthcare entity data, following Atomic Design.
- * Features a flat data structure for core identity information.
+ * Features a structured data approach with FormArray for addresses.
  */
 @Component({
   selector: 'ds-entity-form',
@@ -33,7 +34,8 @@ import { vatValidator } from './vat.validator';
     ButtonComponent,
     FormFieldComponent,
     FileUploadComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    AddressFormComponent
   ],
   providers: [
     {
@@ -47,8 +49,6 @@ import { vatValidator } from './vat.validator';
       <div class="space-y-12 relative z-10">
         <!-- Section: Identificação Base -->
         <section class="space-y-8">
-
-
           <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
             <div class="md:col-span-3 flex flex-col items-center justify-center">
               <ds-file-upload 
@@ -83,13 +83,43 @@ import { vatValidator } from './vat.validator';
                 <ds-input formControlName="abbreviation" placeholder="organisms.entityForm.placeholders.abbreviation"></ds-input>
               </ds-form-field>
 
-              <ds-form-field label="organisms.entityForm.fields.vat" [required]="true" [error]="getControlError('vat')">
+              <ds-form-field 
+                [label]="isVatRequired() ? 'organisms.entityForm.fields.vat' : 'organisms.entityForm.fields.vatOptional'" 
+                [required]="isVatRequired()" 
+                [error]="getControlError('vat')"
+              >
                 <ds-input formControlName="vat" placeholder="organisms.entityForm.placeholders.vat"></ds-input>
               </ds-form-field>
 
               <div class="flex items-center pt-8">
                 <ds-checkbox formControlName="isActive" label="organisms.entityForm.fields.isActive"></ds-checkbox>
               </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Section: Localização (Moradas) -->
+        <section class="space-y-8">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="h-8 w-1.5 bg-primary rounded-full"></div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900">{{ 'organisms.addressForm.address' | translate }}</h3>
+                <p class="text-sm text-gray-500">{{ 'organisms.entityForm.sections.addressSubtitle' | translate }}</p>
+              </div>
+            </div>
+            <ds-button intent="secondary" size="small" (click)="addAddress()">
+              {{ 'organisms.addressForm.addAddress' | translate }}
+            </ds-button>
+          </div>
+
+          <div formArrayName="addresses" class="space-y-6">
+            <div *ngFor="let address of addresses.controls; let i = index">
+              <ds-address-form 
+                [group]="asFormGroup(address)" 
+                [showRemove]="addresses.length > 1"
+                (onRemove)="removeAddress(i)" 
+              ></ds-address-form>
             </div>
           </div>
         </section>
@@ -119,40 +149,41 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
   private readonly destroyRef = inject(DestroyRef);
   private readonly translate = inject(TranslateService);
 
-  /**
-   * Outputs for parent interaction
-   */
   onSave = output<EntityData>();
   onCancel = output<void>();
 
-  /**
-   * Options for selects (Input Decorator)
-   */
   @Input() entityTypeOptions: SelectOption[] = [];
   @Input() parentOptions: SelectOption[] = [];
+  @Input() set initialData(data: Partial<EntityData> | null) {
+    if (data) {
+      this.writeValue(data as EntityData);
+    }
+  }
 
-  /**
-   * Typed Reactive Form following the flat EntityData structure
-   */
+  isVatRequired = signal<boolean>(true);
+
   entityForm = this.fb.group({
     eik: ['', [Validators.required, Validators.pattern(/^[A-Z0-9-]+$/)]],
     type: ['', [Validators.required]],
     name: ['', [Validators.required, Validators.minLength(3)]],
     abbreviation: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-    vat: ['', [vatValidator(this.translate.currentLang || 'pt-PT')]],
+    vat: [null as string | null, [vatValidator(this.translate.currentLang || 'pt-PT')]],
     isActive: [{ value: false, disabled: true }],
     parentId: [''],
-    logo: ['']
+    logo: [''],
+    addresses: this.fb.array([])
   });
 
-  /**
-   * ControlValueAccessor implementation
-   */
+  get addresses(): FormArray {
+    return this.entityForm.get('addresses') as FormArray;
+  }
+
   onChange: (value: EntityData) => void = () => { };
   onTouched: () => void = () => { };
 
   constructor() {
-    // Sync form changes with ControlValueAccessor
+    this.addAddress(); // Initialize with one address
+
     this.entityForm.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
@@ -161,23 +192,47 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
         }
       });
 
-    // Update VAT validator on language change
     this.translate.onLangChange
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((event) => {
         this.updateVatValidators(event.lang);
       });
 
-    // Update VAT validator on parentId change
     this.entityForm.get('parentId')?.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
+      .subscribe((val) => {
+        this.isVatRequired.set(!val);
         this.updateVatValidators(this.translate.currentLang || 'pt-PT');
       });
+
+    this.updateVatValidators(this.translate.currentLang || 'pt-PT');
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // Logic for parentOptions updates if needed
+  ngOnChanges(changes: SimpleChanges): void { }
+
+  addAddress(data?: Partial<Address>): void {
+    const addressGroup = this.fb.group({
+      street: [data?.street || '', [Validators.required]],
+      number: [data?.number || '', [Validators.required]],
+      complement: [data?.complement || ''],
+      neighborhood: [data?.neighborhood || ''],
+      city: [data?.city || '', [Validators.required]],
+      state: [data?.state || '', [Validators.required]],
+      postalCode: [data?.postalCode || '', [Validators.required]],
+      country: [data?.country || '', [Validators.required]],
+      type: [data?.type || 'MAIN', [Validators.required]]
+    });
+    this.addresses.push(addressGroup);
+  }
+
+  removeAddress(index: number): void {
+    if (this.addresses.length > 1) {
+      this.addresses.removeAt(index);
+    }
+  }
+
+  asFormGroup(control: any): FormGroup {
+    return control as FormGroup;
   }
 
   private updateVatValidators(lang: string): void {
@@ -193,9 +248,6 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
     }
   }
 
-  /**
-   * Helper to get translated error messages
-   */
   getControlError(path: string): string {
     const control = this.entityForm.get(path);
     if (control?.touched && control?.invalid) {
@@ -209,9 +261,6 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
     return '';
   }
 
-  /**
-   * Emits the form value if valid
-   */
   submit(): void {
     if (this.entityForm.valid) {
       this.onSave.emit(this.entityForm.getRawValue() as EntityData);
@@ -220,12 +269,17 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
     }
   }
 
-  // ControlValueAccessor Interface
   writeValue(value: EntityData | null): void {
     if (value) {
+      if (value.addresses) {
+        this.addresses.clear();
+        value.addresses.forEach(addr => this.addAddress(addr));
+      }
       this.entityForm.patchValue(value, { emitEvent: false });
     } else {
       this.entityForm.reset({ isActive: { value: false, disabled: true } }, { emitEvent: false });
+      this.addresses.clear();
+      this.addAddress();
     }
   }
 

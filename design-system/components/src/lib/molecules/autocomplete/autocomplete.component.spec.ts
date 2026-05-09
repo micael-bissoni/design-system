@@ -105,4 +105,17 @@ describe('AutocompleteComponent', () => {
     const loadingElement = debugElement.querySelector('.animate-spin');
     expect(loadingElement).toBeTruthy();
   });
+
+  it('should toggle options when arrow icon is clicked', () => {
+    const arrowButton = fixture.debugElement.nativeElement.querySelector('button');
+    expect(arrowButton).toBeTruthy();
+    
+    arrowButton.click();
+    fixture.detectChanges();
+    expect(component.isOpen()).toBe(true);
+    
+    arrowButton.click();
+    fixture.detectChanges();
+    expect(component.isOpen()).toBe(false);
+  });
 });

@@ -18,26 +18,25 @@ import { TranslatePipe } from '@ngx-translate/core';
         [value]="internalValue()"
         [disabled]="disabled()"
         variant="premium"
-        [hasIcon]="true"
-        [hasSuffix]="true"
         (valueChange)="onValueChange($event)"
         (onBlurEvent)="onBlur()"
         (keydown.enter)="onEnterPressed.emit()"
         [class]="class()"
         data-testid="ds-input-password"
-      ></ds-input>
-
-      @if (showVisibilityToggle()) {
-        <ds-button 
-          type="button" 
-          intent="ghost"
-          (click)="toggleVisibility()" 
-          class="absolute right-3 top-1/2 -translate-y-1/2 !bg-transparent !p-2 transition-colors focus:outline-none z-10"
-          [title]="(showPassword() ? 'molecules.inputPassword.hidePassword' : 'molecules.inputPassword.showPassword') | translate"
-        >
-          <ds-icon [name]="showPassword() ? 'visibility_off' : 'visibility'" size="small" class="opacity-40 hover:opacity-100 transition-opacity"></ds-icon>
-        </ds-button>
-      }
+      >
+        @if (showVisibilityToggle()) {
+          <ds-button 
+            suffix
+            type="button" 
+            intent="ghost"
+            (click)="toggleVisibility()" 
+            class="!bg-transparent !p-2 transition-colors focus:outline-none"
+            [title]="(showPassword() ? 'molecules.inputPassword.hidePassword' : 'molecules.inputPassword.showPassword') | translate"
+          >
+            <ds-icon [name]="showPassword() ? 'visibility_off' : 'visibility'" size="small" class="opacity-40 hover:opacity-100 transition-opacity"></ds-icon>
+          </ds-button>
+        }
+      </ds-input>
     </div>
   `,
   providers: [

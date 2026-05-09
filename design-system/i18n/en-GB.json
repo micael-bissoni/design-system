@@ -429,7 +429,9 @@
     "entityForm": {
       "sections": {
         "identification": "Base Identification",
-        "identificationSubtitle": "Main entity information"
+        "identificationSubtitle": "Main entity information",
+        "address": "Entity Address",
+        "addressSubtitle": "Location details for the entity"
       },
       "fields": {
         "eik": "EIK (Entity Identification Key)",
@@ -437,25 +439,26 @@
         "name": "Name / Social Designation",
         "abbreviation": "Abbreviation",
         "vat": "VAT Number",
+        "vatOptional": "VAT Number (Optional)",
         "isActive": "Active / Inactive",
         "logo": "Logo",
         "parentId": "Parent / Master Entity"
       },
       "placeholders": {
-        "eik": "Ex: ENT-001",
-        "type": "Select type",
-        "name": "Full social name",
-        "abbreviation": "Ex: TREV",
-        "vat": "Enter VAT",
-        "parentId": "Search parent entity"
-      },
-      "hints": {
-        "logoFormat": "Accepted formats: PNG, JPG or SVG (Max. 2MB)"
+        "parentId": "Select parent entity",
+        "eik": "Ex: 123456789",
+        "type": "Select entity type",
+        "name": "Ex: Pharma Logistics SA",
+        "abbreviation": "Ex: PLS",
+        "vat": "Ex: PT500123456"
       },
       "types": {
         "lab": "Laboratory",
         "ware": "Wholesaler",
         "pharm": "Pharmacy"
+      },
+      "hints": {
+        "logoFormat": "PNG, JPG or SVG (max. 800x800px)"
       },
       "errors": {
         "required": "Required field",
@@ -465,6 +468,42 @@
         "maxLength": "Maximum length exceeded",
         "invalid": "Invalid value"
       }
+    },
+    "addressForm": {
+      "address": "Address",
+      "fields": {
+        "street": "Street",
+        "number": "Number",
+        "complement": "Complement",
+        "neighborhood": "Neighborhood",
+        "city": "City",
+        "state": "State",
+        "postalCode": "Postal Code",
+        "country": "Country",
+        "type": "Address Type"
+      },
+      "placeholders": {
+        "street": "Ex: Av. da Liberdade",
+        "number": "Ex: 123",
+        "complement": "Ex: Suite 404",
+        "neighborhood": "Ex: Baixa",
+        "city": "Ex: Lisboa",
+        "state": "Ex: Lisboa",
+        "postalCode": "Ex: 1000-001",
+        "country": "Ex: Portugal",
+        "type": "Select type"
+      },
+      "types": {
+        "main": "Main",
+        "shipping": "Shipping",
+        "billing": "Billing",
+        "other": "Other"
+      },
+      "errors": {
+        "required": "Required field",
+        "invalid": "Invalid value"
+      },
+      "addAddress": "Add Address"
     }
   },
   "templates": {

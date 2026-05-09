@@ -1,7 +1,9 @@
+// @vitest-environment jsdom
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { describe, beforeEach, it, expect, vi, afterEach } from 'vitest';
+import { describe, beforeEach, it, expect, vi, afterEach, beforeAll } from 'vitest';
 import { EntityFormComponent } from './entity-form.component';
 import { type EntityData } from './entity-form.types';
 import { type SelectOption } from '../../atoms/select/select.component';
@@ -9,6 +11,11 @@ import { type SelectOption } from '../../atoms/select/select.component';
 describe('EntityFormComponent', () => {
   let component: EntityFormComponent;
   let fixture: ComponentFixture<EntityFormComponent>;
+
+  beforeAll(() => {
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,6 +34,9 @@ describe('EntityFormComponent', () => {
     fixture.componentRef.setInput('entityTypeOptions', [
       { label: 'Lab', value: 'Laboratório' },
       { label: 'Pharmacy', value: 'Farmácia' }
+    ]);
+    fixture.componentRef.setInput('parentOptions', [
+      { label: 'Parent 1', value: 'parent-1' }
     ]);
 
     fixture.detectChanges();
@@ -65,12 +75,12 @@ describe('EntityFormComponent', () => {
     vatControl?.setValue('123');
     expect(vatControl?.valid).toBe(false);
 
-    // Invalid check digit (hypothetical)
-    vatControl?.setValue('123456789');
+    // Invalid check digit
+    vatControl?.setValue('123456780'); 
     expect(vatControl?.errors?.['vatInvalid']).toBeTruthy();
 
-    // Valid Portuguese VAT (Consumer)
-    vatControl?.setValue('253634020');
+    // Valid Portuguese VAT
+    vatControl?.setValue('123456789');
     expect(vatControl?.valid).toBe(true);
   });
 
@@ -79,6 +89,9 @@ describe('EntityFormComponent', () => {
     const parentControl = component.entityForm.get('parentId');
 
     parentControl?.setValue('');
+    fixture.detectChanges();
+    
+    expect(component.isVatRequired()).toBe(true);
     vatControl?.setValue('');
     expect(vatControl?.errors?.['required']).toBeTruthy();
   });
@@ -88,6 +101,9 @@ describe('EntityFormComponent', () => {
     const parentControl = component.entityForm.get('parentId');
 
     parentControl?.setValue('parent-123');
+    fixture.detectChanges();
+    
+    expect(component.isVatRequired()).toBe(false);
     vatControl?.setValue('');
     expect(vatControl?.errors?.['required']).toBeFalsy();
   });
@@ -99,7 +115,7 @@ describe('EntityFormComponent', () => {
       eik: 'EIK123',
       type: 'Farmácia',
       name: 'Farmácia Central',
-      vat: '253634020',
+      vat: '123456789',
       isActive: true,
       logo: 'logo.png',
       abbreviation: 'pha-cen'
