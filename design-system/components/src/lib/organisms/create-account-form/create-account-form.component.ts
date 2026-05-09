@@ -34,54 +34,56 @@ import { TranslateModule } from '@ngx-translate/core';
       <!-- Name Field -->
       <ds-form-field
         label="organisms.createAccount.name"
-        prefixIcon="person"
         [error]="getNameError()"
       >
         <ds-input 
           type="text" 
           formControlName="name"
           placeholder="organisms.createAccount.namePlaceholder"
-          [hasIcon]="true"
-        ></ds-input>
+        >
+          <ds-icon prefix name="person" size="small"></ds-icon>
+        </ds-input>
       </ds-form-field>
 
       <!-- Email Field -->
       <ds-form-field
         label="organisms.createAccount.email"
-        prefixIcon="alternate_email"
         [error]="getEmailError()"
       >
         <ds-input 
           type="email" 
           formControlName="email"
           placeholder="organisms.createAccount.emailPlaceholder"
-          [hasIcon]="true"
-        ></ds-input>
+        >
+          <ds-icon prefix name="alternate_email" size="small"></ds-icon>
+        </ds-input>
       </ds-form-field>
 
       <!-- Password Field -->
       <ds-form-field
         label="organisms.createAccount.password"
-        prefixIcon="lock"
         [error]="getPasswordError()"
       >
         <ds-input-password
           formControlName="password"
           placeholder="organisms.createAccount.passwordPlaceholder"
-        ></ds-input-password>
+        >
+          <ds-icon prefix name="lock" size="small"></ds-icon>
+        </ds-input-password>
       </ds-form-field>
 
       <!-- Confirm Password Field -->
       <ds-form-field
         label="organisms.createAccount.confirmPassword"
-        prefixIcon="lock"
         [error]="getConfirmPasswordError()"
       >
         <ds-input-password
           formControlName="confirmPassword"
           placeholder="organisms.createAccount.confirmPasswordPlaceholder"
           (onEnterPressed)="onSubmit()"
-        ></ds-input-password>
+        >
+          <ds-icon prefix name="lock" size="small"></ds-icon>
+        </ds-input-password>
       </ds-form-field>
 
       <div class="pt-4">

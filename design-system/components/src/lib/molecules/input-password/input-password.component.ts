@@ -24,6 +24,8 @@ import { TranslatePipe } from '@ngx-translate/core';
         [class]="class()"
         data-testid="ds-input-password"
       >
+        <ng-content select="[prefix]" prefix></ng-content>
+
         @if (showVisibilityToggle()) {
           <ds-button 
             suffix

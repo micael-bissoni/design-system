@@ -34,22 +34,21 @@ import { TranslateModule } from '@ngx-translate/core';
       <!-- Email Field -->
       <ds-form-field
         label="organisms.login.email"
-        prefixIcon="alternate_email"
         [error]="getEmailError()"
       >
         <ds-input 
           type="email" 
           formControlName="email"
           placeholder="organisms.login.emailPlaceholder"
-          [hasIcon]="true"
           (onEnterPressed)="onSignIn.emit()"
-        ></ds-input>
+        >
+          <ds-icon prefix name="alternate_email" size="small"></ds-icon>
+        </ds-input>
       </ds-form-field>
 
       <!-- Password Field -->
       <ds-form-field
         label="organisms.login.password"
-        prefixIcon="lock"
         [error]="getPasswordError()"
       >
         <div class="flex justify-between items-center absolute right-1 top-0 -translate-y-full mb-1">
@@ -62,7 +61,9 @@ import { TranslateModule } from '@ngx-translate/core';
           formControlName="password"
           placeholder="organisms.login.passwordPlaceholder"
           (onEnterPressed)="onSignIn.emit()"
-        ></ds-input-password>
+        >
+          <ds-icon prefix name="lock" size="small"></ds-icon>
+        </ds-input-password>
       </ds-form-field>
 
       <div class="mt-8">
