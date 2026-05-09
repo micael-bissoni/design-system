@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, DestroyRef, output, forwardRef, Input, OnChanges, SimpleChanges, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators, FormArray, NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, FormArray, NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup, AbstractControl } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -84,8 +84,8 @@ import { vatValidator } from './vat.validator';
               </ds-form-field>
 
               <ds-form-field 
-                [label]="isVatRequired() ? 'organisms.entityForm.fields.vat' : 'organisms.entityForm.fields.vatOptional'" 
-                [required]="isVatRequired()" 
+                [label]="isVatRequired ? 'organisms.entityForm.fields.vat' : 'organisms.entityForm.fields.vatOptional'" 
+                [required]="isVatRequired" 
                 [error]="getControlError('vat')"
               >
                 <ds-input formControlName="vat" placeholder="organisms.entityForm.placeholders.vat"></ds-input>
@@ -160,7 +160,6 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
     }
   }
 
-  isVatRequired = signal<boolean>(true);
 
   entityForm = this.fb.group({
     eik: ['', [Validators.required, Validators.pattern(/^[A-Z0-9-]+$/)]],
@@ -176,6 +175,10 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
 
   get addresses(): FormArray {
     return this.entityForm.get('addresses') as FormArray;
+  }
+
+  get isVatRequired(): boolean {
+    return this.entityForm.controls.parentId.disabled;
   }
 
   onChange: (value: EntityData) => void = () => { };
@@ -200,8 +203,13 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
 
     this.entityForm.get('parentId')?.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((val) => {
-        this.isVatRequired.set(!val);
+      .subscribe(() => {
+        this.updateVatValidators(this.translate.currentLang || 'pt-PT');
+      });
+
+    this.entityForm.get('parentId')?.statusChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
         this.updateVatValidators(this.translate.currentLang || 'pt-PT');
       });
 
@@ -231,16 +239,16 @@ export class EntityFormComponent implements ControlValueAccessor, OnChanges {
     }
   }
 
-  asFormGroup(control: any): FormGroup {
+  asFormGroup(control: AbstractControl): FormGroup {
     return control as FormGroup;
   }
 
   private updateVatValidators(lang: string): void {
     const vatControl = this.entityForm.get('vat');
-    const parentId = this.entityForm.get('parentId')?.value;
-    if (vatControl) {
+    const parentIdControl = this.entityForm.get('parentId');
+    if (vatControl && parentIdControl) {
       const validators = [vatValidator(lang)];
-      if (!parentId) {
+      if (parentIdControl.disabled) {
         validators.push(Validators.required);
       }
       vatControl.setValidators(validators);
